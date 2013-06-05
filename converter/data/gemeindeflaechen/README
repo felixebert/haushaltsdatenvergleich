@@ -1,6 +1,4 @@
 Umwandlung zu GeoJSON:
 
-Siehe http://vallandingham.me/shapefile_to_geojson.html
-
-1. http://mapshaper.com/test/MapShaper.swf
-2. ogr2ogr -f geoJSON file.json file.shp
+ogr2ogr -f GeoJSON -s_srs epsg:25832 -t_srs epsg:4326 -simplify 200 DVG1_Gemeinden_utm.json DVG1_Gemeinden_utm.dbf
+iconv -f ISO-8859-1 -t UTF-8 DVG1_Gemeinden_utm.json > gemeinden.json
