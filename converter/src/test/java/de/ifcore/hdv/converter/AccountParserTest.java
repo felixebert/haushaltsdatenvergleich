@@ -20,7 +20,7 @@ public class AccountParserTest {
 		assertEquals("0505978040", account.getAreaKey());
 		assertEquals("611", account.getAccountKey());
 		assertEquals("Steuern, allg. Zuweisungen u. allg. Umlagen", account.getAccountName());
-		assertEquals(18525219, account.getValue());
+		assertEquals(Long.valueOf(18525219), account.getValue());
 		assertEquals(3, result.size());
 	}
 }

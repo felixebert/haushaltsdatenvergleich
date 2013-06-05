@@ -5,9 +5,9 @@ public class Account {
 	private String areaKey;
 	private String accountKey;
 	private String accountName;
-	private long value;
+	private Long value;
 
-	public Account(String areaKey, String accountKey, String accountName, long value) {
+	public Account(String areaKey, String accountKey, String accountName, Long value) {
 		this.areaKey = areaKey;
 		this.accountKey = accountKey;
 		this.accountName = accountName;
@@ -26,7 +26,7 @@ public class Account {
 		return accountName;
 	}
 
-	public long getValue() {
+	public Long getValue() {
 		return value;
 	}
 }

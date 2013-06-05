@@ -32,9 +32,15 @@ public class AccountParser {
 						String accountKey = strings[2];
 						String accountName = strings[3];
 						String value = strings[4];
+						Long convertedValue = null;
+						try {
+							convertedValue = Long.valueOf(value);
+						}
+						catch (NumberFormatException e) {
+							System.err.println("Error converting: " + areaKey + "/" + accountKey + "/" + accountName);
+						}
 						if (hasText(areaKey) && areaKey.length() == 8 && hasText(accountKey)) {
-							result.add(new Account(countryCode + areaKey, accountKey, accountName, Long
-									.parseLong(value)));
+							result.add(new Account(countryCode + areaKey, accountKey, accountName, convertedValue));
 						}
 					}
 				}
