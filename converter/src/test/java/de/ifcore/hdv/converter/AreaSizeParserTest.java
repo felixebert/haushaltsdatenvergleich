@@ -19,8 +19,8 @@ public class AreaSizeParserTest {
 		Map<String, Double> areaSizes = areaSizeParser.parse();
 		assertNotNull(areaSizes);
 		assertFalse(areaSizes.isEmpty());
-		assertTrue(areaSizes.containsKey("010010000000"));
-		Double size = areaSizes.get("010010000000");
+		assertTrue(areaSizes.containsKey("01001000"));
+		Double size = areaSizes.get("01001000");
 		assertEquals(56.74, size.doubleValue(), 0.1);
 		assertEquals(6, areaSizes.size());
 	}

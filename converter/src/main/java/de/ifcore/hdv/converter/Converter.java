@@ -1,6 +1,7 @@
 package de.ifcore.hdv.converter;
 
 import java.io.FileInputStream;
+import java.io.FileWriter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -17,14 +18,17 @@ public class Converter {
 			try {
 				AreaSizeParser areaSizeParser = new AreaSizeParser(new FileInputStream(areaSize));
 				PopulationParser populationParser = new PopulationParser(new FileInputStream(population));
-				AccountParser incomeParser = new AccountParser("05", new FileInputStream(incomeFile));
-				AccountParser spendingsParser = new AccountParser("05", new FileInputStream(spendingsFile));
+				AccountParser incomeParser = new AccountParser(new FileInputStream(incomeFile));
+				AccountParser spendingsParser = new AccountParser(new FileInputStream(spendingsFile));
 				DataMerger dataMerger = new DataMerger();
 				MergedData mergedData = dataMerger.mergeData(populationParser.parse(), areaSizeParser.parse(),
 						incomeParser.parse(), spendingsParser.parse());
 				ObjectMapper objectMapper = new ObjectMapper();
 				String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(mergedData);
-				System.out.println(json);
+				FileWriter fw = new FileWriter("hdv.json");
+				fw.write(json);
+				fw.flush();
+				fw.close();
 			}
 			catch (Exception e) {
 				e.printStackTrace();

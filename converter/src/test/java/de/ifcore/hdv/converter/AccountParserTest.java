@@ -12,12 +12,12 @@ public class AccountParserTest {
 
 	@Test
 	public void itShouldParseDataAsList() throws Exception {
-		AccountParser parser = new AccountParser("05", ResourceUtils.getResourceAsStream("testdata.csv"));
+		AccountParser parser = new AccountParser(ResourceUtils.getResourceAsStream("testdata.csv"));
 		List<Account> result = parser.parse();
 		assertNotNull(result);
 		assertFalse(result.isEmpty());
 		Account account = result.get(0);
-		assertEquals("0505978040", account.getAreaKey());
+		assertEquals("05978040", account.getAreaKey());
 		assertEquals("611", account.getAccountKey());
 		assertEquals("Steuern, allg. Zuweisungen u. allg. Umlagen", account.getAccountName());
 		assertEquals(Long.valueOf(18525219), account.getValue());

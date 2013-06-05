@@ -21,10 +21,10 @@ public class PopulationParserTest {
 		Map<String, Population> result = parser.parse();
 		assertNotNull(result);
 		assertFalse(result.isEmpty());
-		assertTrue(result.containsKey("0101001000"));
-		assertPopulation("Flensburg, Stadt", 82801, result.get("0101001000"));
-		assertPopulation("Diekhusen-Fahrstedt", 756, result.get("0101051021"));
-		assertPopulation("Saara", 2846, result.get("1616077056"));
+		assertTrue(result.containsKey("01001000"));
+		assertPopulation("Flensburg, Stadt", 82801, result.get("01001000"));
+		assertPopulation("Diekhusen-Fahrstedt", 756, result.get("01051021"));
+		assertPopulation("Saara", 2846, result.get("16077056"));
 		assertEquals(11292, result.size());
 	}
 

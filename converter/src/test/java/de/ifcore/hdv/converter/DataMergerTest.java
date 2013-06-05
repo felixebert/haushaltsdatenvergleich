@@ -54,8 +54,8 @@ public class DataMergerTest {
 		while (accountsIterator.hasNext()) {
 			InOutAccount inOutAccount = accountsIterator.next();
 			if (inOutAccount.getKey().equals(expectedKey)) {
-				assertEquals(expectedIn, inOutAccount.getIn().longValue());
-				assertEquals(expectedOut, inOutAccount.getOut().longValue());
+				assertEquals(expectedIn, inOutAccount.getIncome().longValue());
+				assertEquals(expectedOut, inOutAccount.getSpending().longValue());
 				accountFound = true;
 			}
 		}

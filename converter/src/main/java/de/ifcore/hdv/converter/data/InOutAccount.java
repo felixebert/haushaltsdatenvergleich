@@ -3,38 +3,38 @@ package de.ifcore.hdv.converter.data;
 public class InOutAccount {
 
 	private String key;
-	private Long in;
-	private Long out;
+	private Long income;
+	private Long spending;
 
-	public InOutAccount(String key, Long in, Long out) {
+	public InOutAccount(String key, Long income, Long spending) {
 		this.key = key;
-		this.in = in;
-		this.out = out;
+		this.income = income;
+		this.spending = spending;
 	}
 
 	public String getKey() {
 		return key;
 	}
 
-	public Long getIn() {
-		return in;
+	public Long getIncome() {
+		return income;
 	}
 
-	public Long getOut() {
-		return out;
+	public Long getSpending() {
+		return spending;
 	}
 
 	public void incIncome(Long value) {
-		if (in == null)
-			in = value;
+		if (income == null)
+			income = value;
 		else if (value != null)
-			in += value;
+			income += value;
 	}
 
 	public void incSpendings(Long value) {
-		if (out == null)
-			out = value;
+		if (spending == null)
+			spending = value;
 		else if (value != null)
-			out += value;
+			spending += value;
 	}
 }
