@@ -43,8 +43,8 @@ public class DataMergerTest {
 		assertFalse(accountsPerArea.getAccounts().isEmpty());
 		assertAccount("123", 100, 100, accountsPerArea.getAccounts());
 		assertAccount("124", 200, 200, accountsPerArea.getAccounts());
-		assertEquals("Testaccount", mergeData.getAccountMap().get("123"));
-		assertEquals("Testaccount2", mergeData.getAccountMap().get("124"));
+		assertEquals("Testaccount", mergeData.getAccountMap().get("123").getLabel());
+		assertEquals("Testaccount2", mergeData.getAccountMap().get("124").getLabel());
 	}
 
 	private static void assertAccount(String expectedKey, long expectedIn, long expectedOut,

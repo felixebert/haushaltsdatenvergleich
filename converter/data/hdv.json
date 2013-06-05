@@ -138601,91 +138601,779 @@
     } ]
   } ],
   "accountMap" : {
-    "571" : "Wirtschaftsförderung",
-    "241" : "Schülerbeförderung",
-    "111" : "Verwaltungssteuerung und Service",
-    "281" : "Heimat- und sonstige Kunstpflege",
-    "331" : "Förderung von anderen Trägern der Wohlfahrtspflege",
-    "531" : "Elektrizitätsversorgung",
-    "534" : "Fernwärmeversorgung",
-    "533" : "Wasserversorgung",
-    "532" : "Gasversorgung",
-    "575" : "Tourismus",
-    "538" : "Abwasserbeseitigung",
-    "537" : "Abfallwirtschaft",
-    "243" : "Sonstige schulische Aufgaben",
-    "573" : "Allgemeine Einrichtungen und Unternehmen",
-    "242" : "Fördermaßnahmen für Schüler",
-    "126" : "Brandschutz",
-    "127" : "Rettungsdienst",
-    "128" : "Großschadensereignisse, Katastrophenschutz",
-    "121" : "Statistik und Wahlen",
-    "122" : "Ordnungsangelegenheiten",
-    "341" : "Unterhaltsvorschussleistungen",
-    "343" : "Betreuungsleistungen",
-    "344" : "Leistungen für Heimkehrer und politische Häftlinge",
-    "272" : "Büchereien",
-    "271" : "Volkshochschulen",
-    "273" : "Sonstige Volksbildung",
-    "542" : "Kreisstraßen",
-    "541" : "Gemeindestraßen",
-    "544" : "Bundesstraßen",
-    "543" : "Landesstraßen",
-    "546" : "Parkeinrichtungen",
-    "545" : "Straßenreinigung",
-    "548" : "Sonstiger Personen- und Güterverkehr",
-    "547" : "Öffentlicher Personennahverkehr (ÖPNV)",
-    "231" : "Berufskollegs",
-    "549" : "Häfen",
-    "262" : "Musikpflege (ohne Musikschulen)",
-    "211" : "Grundschulen",
-    "263" : "Musikschulen",
-    "212" : "Hauptschulen",
-    "261" : "Theater",
-    "215" : "Realschulen",
-    "315" : "Soziale Einrichtungen",
-    "217" : "Gymnasien",
-    "312" : "Grundsicherungsleistungen (SGB II)",
-    "218" : "Gesamtschulen",
-    "313" : "Leistungen für Asylbewerber (AsylbLG)",
-    "361" : "Förderung v. Kindern (Tageseinr./-pflege)",
-    "311" : "Grundversorgung u. Leistungen (SGB XII)",
-    "362" : "Jugendarbeit",
-    "418" : "Kur- und Badeeinrichtungen",
-    "366" : "Einrichtungen der Jugendarbeit",
-    "365" : "Tageseinrichtungen für Kinder",
-    "511" : "Räuml. Planung u. Entwicklung, Geoinformationen",
-    "363" : "So. Leistungen: Förderung junger Menschen u. Fam.",
-    "368" : "Leistungen n. BEEG",
-    "367" : "So. Einricht: Förderung junger Menschen und Fam.",
-    "554" : "Naturschutz und Landschaftspflege",
-    "555" : "Land- und Forstwirtschaft",
-    "552" : "Öffentliche Gewässer, wasserbauliche Anlagen",
-    "414" : "Gesundheitsschutz und -pflege",
-    "553" : "Friedhofs- und Bestattungswesen",
-    "412" : "Gesundheitseinrichtungen",
-    "551" : "Öffentliches Grün, Landschaftsbau",
-    "411" : "Krankenhäuser",
-    "221" : "Förderschulen",
-    "251" : "Wissenschaft und Forschung",
-    "252" : "Museen, Sammlungen, Ausstellungen",
-    "323" : "Leistungen n. soz. Entschäd.recht einschl. KOF",
-    "324" : "Sonstige Leistungen der Kriegsopferfürsorge",
-    "325" : "Leistungen n. BergmVersG",
-    "321" : "Leistungen nach dem BVG",
-    "291" : "Kirchengemeinden, Religionsgemeinschaften",
-    "322" : "Leistungen f. Schwerbehinderte (SGB IX)",
-    "351" : "Sonstige soziale Leistungen",
-    "522" : "Wohnungsbauförderung",
-    "521" : "Bau- und Grundstücksordnung",
-    "523" : "Denkmalschutz und -pflege",
-    "612" : "Sonstige allgemeine Finanzwirtschaft",
-    "611" : "Steuern, allg. Zuweisungen u. allg. Umlagen",
-    "421" : "Förderung des Sports",
-    "561" : "Umweltschutzmaßnahmen",
-    "562" : "Immissionsschutz",
-    "253" : "Zoologische und Botanische Gärten",
-    "999" : "Summe aller Produktgruppen",
-    "424" : "Sportstätten und Bäder"
+    "571" : {
+      "label" : "Wirtschaftsförderung",
+      "dmax" : 2457197,
+      "dmin" : -10016336,
+      "smin" : 3,
+      "imax" : 2988838,
+      "imin" : 16,
+      "smax" : 30971485
+    },
+    "241" : {
+      "label" : "Schülerbeförderung",
+      "dmax" : -9470,
+      "dmin" : -18583298,
+      "smin" : 16990,
+      "imax" : 245509,
+      "imin" : 20,
+      "smax" : 18583666
+    },
+    "111" : {
+      "label" : "Verwaltungssteuerung und Service",
+      "dmax" : 3033703,
+      "dmin" : -744918753,
+      "smin" : 1069003,
+      "imax" : 159116307,
+      "imin" : 54384,
+      "smax" : 904035060
+    },
+    "281" : {
+      "label" : "Heimat- und sonstige Kunstpflege",
+      "dmax" : 11843,
+      "dmin" : -6242381,
+      "smin" : 200,
+      "imax" : 5598284,
+      "imin" : 8,
+      "smax" : 11840665
+    },
+    "331" : {
+      "label" : "Förderung von anderen Trägern der Wohlfahrtspflege",
+      "dmax" : 16668,
+      "dmin" : -8960924,
+      "smin" : -2749,
+      "imax" : 1337430,
+      "imin" : 300,
+      "smax" : 24848193
+    },
+    "531" : {
+      "label" : "Elektrizitätsversorgung",
+      "dmax" : 45316668,
+      "dmin" : -948818,
+      "smin" : 23,
+      "imax" : 73395494,
+      "imin" : 5846,
+      "smax" : 2820000
+    },
+    "534" : {
+      "label" : "Fernwärmeversorgung",
+      "dmax" : 671117,
+      "dmin" : -294971,
+      "smin" : 1952,
+      "imax" : 5781667,
+      "imin" : 83,
+      "smax" : 297275
+    },
+    "533" : {
+      "label" : "Wasserversorgung",
+      "dmax" : 1832752,
+      "dmin" : -629284,
+      "smin" : 505,
+      "imax" : 3353079,
+      "imin" : 203,
+      "smax" : 1693949
+    },
+    "532" : {
+      "label" : "Gasversorgung",
+      "dmax" : 7724099,
+      "dmin" : -9531,
+      "smin" : 4,
+      "imax" : 9129367,
+      "imin" : -2385,
+      "smax" : 1405268
+    },
+    "575" : {
+      "label" : "Tourismus",
+      "dmax" : 491114,
+      "dmin" : -1464722,
+      "smin" : 141,
+      "imax" : 1431157,
+      "imin" : 12,
+      "smax" : 3788200
+    },
+    "538" : {
+      "label" : "Abwasserbeseitigung",
+      "dmax" : 32636436,
+      "dmin" : -9999157,
+      "smin" : 182,
+      "imax" : 116663909,
+      "imin" : 268,
+      "smax" : 121418024
+    },
+    "537" : {
+      "label" : "Abfallwirtschaft",
+      "dmax" : 8244352,
+      "dmin" : -4793376,
+      "smin" : 443,
+      "imax" : 87118024,
+      "imin" : 56,
+      "smax" : 88088083
+    },
+    "243" : {
+      "label" : "Sonstige schulische Aufgaben",
+      "dmax" : 705736,
+      "dmin" : -39389586,
+      "smin" : 95,
+      "imax" : 31525800,
+      "imin" : 6,
+      "smax" : 70915386
+    },
+    "573" : {
+      "label" : "Allgemeine Einrichtungen und Unternehmen",
+      "dmax" : 57872977,
+      "dmin" : -48382249,
+      "smin" : 76,
+      "imax" : 86589086,
+      "imin" : 9,
+      "smax" : 56622066
+    },
+    "242" : {
+      "label" : "Fördermaßnahmen für Schüler",
+      "dmax" : 2305340,
+      "dmin" : -5507441,
+      "smin" : 72,
+      "imax" : 9925151,
+      "imin" : 20,
+      "smax" : 11252080
+    },
+    "126" : {
+      "label" : "Brandschutz",
+      "dmax" : 28197,
+      "dmin" : -38220675,
+      "smin" : 37207,
+      "imax" : 4822220,
+      "imin" : 480,
+      "smax" : 41294751
+    },
+    "127" : {
+      "label" : "Rettungsdienst",
+      "dmax" : 12314617,
+      "dmin" : -1033829,
+      "smin" : 1572,
+      "imax" : 28672911,
+      "imin" : 70,
+      "smax" : 26032176
+    },
+    "128" : {
+      "label" : "Großschadensereignisse, Katastrophenschutz",
+      "dmax" : 10557,
+      "dmin" : -44273184,
+      "smin" : 30,
+      "imax" : 1268456,
+      "imin" : 85,
+      "smax" : 45541640
+    },
+    "121" : {
+      "label" : "Statistik und Wahlen",
+      "dmax" : 80442,
+      "dmin" : -2648438,
+      "smin" : 74,
+      "imax" : 810813,
+      "imin" : 50,
+      "smax" : 2669181
+    },
+    "122" : {
+      "label" : "Ordnungsangelegenheiten",
+      "dmax" : 37710552,
+      "dmin" : -15685220,
+      "smin" : 6568,
+      "imax" : 50311968,
+      "imin" : 80,
+      "smax" : 41110295
+    },
+    "341" : {
+      "label" : "Unterhaltsvorschussleistungen",
+      "dmax" : 613378,
+      "dmin" : -5433346,
+      "smin" : 2608,
+      "imax" : 7471031,
+      "imin" : 150,
+      "smax" : 12904377
+    },
+    "343" : {
+      "label" : "Betreuungsleistungen",
+      "dmax" : 49757,
+      "dmin" : -656414,
+      "smin" : 17,
+      "imax" : 413663,
+      "imin" : 88,
+      "smax" : 867823
+    },
+    "344" : {
+      "label" : "Leistungen für Heimkehrer und politische Häftlinge",
+      "dmax" : 54277,
+      "dmin" : -909529,
+      "smin" : 28118,
+      "imax" : 436340,
+      "imin" : 10433,
+      "smax" : 994698
+    },
+    "272" : {
+      "label" : "Büchereien",
+      "dmax" : 101055,
+      "dmin" : -8945146,
+      "smin" : 42,
+      "imax" : 859509,
+      "imin" : 11,
+      "smax" : 9619238
+    },
+    "271" : {
+      "label" : "Volkshochschulen",
+      "dmax" : 1465904,
+      "dmin" : -2226814,
+      "smin" : 453,
+      "imax" : 9511073,
+      "imin" : 19,
+      "smax" : 8045169
+    },
+    "273" : {
+      "label" : "Sonstige Volksbildung",
+      "dmax" : 916,
+      "dmin" : -314212,
+      "smin" : 621,
+      "imax" : 112310,
+      "imin" : 442,
+      "smax" : 1898799
+    },
+    "542" : {
+      "label" : "Kreisstraßen",
+      "dmax" : 59517,
+      "dmin" : -5228182,
+      "smin" : 44,
+      "imax" : 3123280,
+      "imin" : 26,
+      "smax" : 6428030
+    },
+    "541" : {
+      "label" : "Gemeindestraßen",
+      "dmax" : 568330,
+      "dmin" : -78049256,
+      "smin" : 39084,
+      "imax" : 18798218,
+      "imin" : 381,
+      "smax" : 96847474
+    },
+    "544" : {
+      "label" : "Bundesstraßen",
+      "dmax" : 644269,
+      "dmin" : -1184525,
+      "smin" : 12,
+      "imax" : 1308770,
+      "imin" : 26,
+      "smax" : 2054776
+    },
+    "543" : {
+      "label" : "Landesstraßen",
+      "dmax" : 798327,
+      "dmin" : -7208521,
+      "smin" : 19,
+      "imax" : 4048863,
+      "imin" : 26,
+      "smax" : 11257384
+    },
+    "546" : {
+      "label" : "Parkeinrichtungen",
+      "dmax" : 11636273,
+      "dmin" : -400475,
+      "smin" : 69,
+      "imax" : 13514934,
+      "imin" : 79,
+      "smax" : 1878661
+    },
+    "545" : {
+      "label" : "Straßenreinigung",
+      "dmax" : 1446644,
+      "dmin" : -5315949,
+      "smin" : 118,
+      "imax" : 20713775,
+      "imin" : -12802,
+      "smax" : 25015016
+    },
+    "548" : {
+      "label" : "Sonstiger Personen- und Güterverkehr",
+      "dmax" : 2384190,
+      "dmin" : -151238,
+      "smin" : 345,
+      "imax" : 3447276,
+      "imin" : 136,
+      "smax" : 1063086
+    },
+    "547" : {
+      "label" : "Öffentlicher Personennahverkehr (ÖPNV)",
+      "dmax" : 8738794,
+      "dmin" : -17006911,
+      "smin" : 1,
+      "imax" : 33811922,
+      "imin" : 5,
+      "smax" : 33984711
+    },
+    "231" : {
+      "label" : "Berufskollegs",
+      "dmax" : 1926203,
+      "dmin" : -22578733,
+      "smin" : 2995,
+      "imax" : 4864071,
+      "imin" : 512,
+      "smax" : 22659055
+    },
+    "549" : {
+      "label" : "Häfen",
+      "dmax" : 226621,
+      "dmin" : -14015,
+      "smin" : 433,
+      "imax" : 230652,
+      "imin" : 12000,
+      "smax" : 52706
+    },
+    "262" : {
+      "label" : "Musikpflege (ohne Musikschulen)",
+      "dmax" : 4294,
+      "dmin" : -12468406,
+      "smin" : 179,
+      "imax" : 371712,
+      "imin" : 107,
+      "smax" : 12495399
+    },
+    "211" : {
+      "label" : "Grundschulen",
+      "dmax" : 358565,
+      "dmin" : -47789548,
+      "smin" : 6310,
+      "imax" : 10329051,
+      "imin" : 25,
+      "smax" : 49821436
+    },
+    "263" : {
+      "label" : "Musikschulen",
+      "dmax" : 1224724,
+      "dmin" : -3989428,
+      "smin" : 138,
+      "imax" : 3280914,
+      "imin" : 250,
+      "smax" : 6701709
+    },
+    "212" : {
+      "label" : "Hauptschulen",
+      "dmax" : 1185305,
+      "dmin" : -20840906,
+      "smin" : 45,
+      "imax" : 1746718,
+      "imin" : 3,
+      "smax" : 21818075
+    },
+    "261" : {
+      "label" : "Theater",
+      "dmax" : 108649,
+      "dmin" : -56073730,
+      "smin" : 22,
+      "imax" : 17500000,
+      "imin" : 122,
+      "smax" : 56271109
+    },
+    "215" : {
+      "label" : "Realschulen",
+      "dmax" : 121935,
+      "dmin" : -15476468,
+      "smin" : 559,
+      "imax" : 1066788,
+      "imin" : 23,
+      "smax" : 15511892
+    },
+    "315" : {
+      "label" : "Soziale Einrichtungen",
+      "dmax" : 1089777,
+      "dmin" : -9298683,
+      "smin" : 18,
+      "imax" : 13717122,
+      "imin" : 109,
+      "smax" : 21833136
+    },
+    "217" : {
+      "label" : "Gymnasien",
+      "dmax" : 196539,
+      "dmin" : -36932923,
+      "smin" : 517,
+      "imax" : 3276620,
+      "imin" : 24,
+      "smax" : 36981874
+    },
+    "312" : {
+      "label" : "Grundsicherungsleistungen (SGB II)",
+      "dmax" : 813429,
+      "dmin" : -217665330,
+      "smin" : 128,
+      "imax" : 118269447,
+      "imin" : 107,
+      "smax" : 322135373
+    },
+    "218" : {
+      "label" : "Gesamtschulen",
+      "dmax" : 51527,
+      "dmin" : -24325668,
+      "smin" : 207,
+      "imax" : 577171,
+      "imin" : 210,
+      "smax" : 24509324
+    },
+    "313" : {
+      "label" : "Leistungen für Asylbewerber (AsylbLG)",
+      "dmax" : 614257,
+      "dmin" : -16868816,
+      "smin" : 534,
+      "imax" : 4591372,
+      "imin" : 300,
+      "smax" : 18710449
+    },
+    "361" : {
+      "label" : "Förderung v. Kindern (Tageseinr./-pflege)",
+      "dmax" : 2923838,
+      "dmin" : -4388803,
+      "smin" : 19,
+      "imax" : 6912394,
+      "imin" : 1,
+      "smax" : 7225378
+    },
+    "311" : {
+      "label" : "Grundversorgung u. Leistungen (SGB XII)",
+      "dmax" : 556644,
+      "dmin" : -195230775,
+      "smin" : 16,
+      "imax" : 41777000,
+      "imin" : -2551,
+      "smax" : 237007775
+    },
+    "362" : {
+      "label" : "Jugendarbeit",
+      "dmax" : 319705,
+      "dmin" : -8911572,
+      "smin" : 168,
+      "imax" : 3282951,
+      "imin" : -133,
+      "smax" : 10577230
+    },
+    "418" : {
+      "label" : "Kur- und Badeeinrichtungen",
+      "dmax" : -14004,
+      "dmin" : -486693,
+      "smin" : 14504,
+      "imax" : 308302,
+      "imin" : 500,
+      "smax" : 620103
+    },
+    "366" : {
+      "label" : "Einrichtungen der Jugendarbeit",
+      "dmax" : 170710,
+      "dmin" : -11439274,
+      "smin" : 328,
+      "imax" : 3973453,
+      "imin" : 7,
+      "smax" : 14194539
+    },
+    "365" : {
+      "label" : "Tageseinrichtungen für Kinder",
+      "dmax" : 1345270,
+      "dmin" : -75662019,
+      "smin" : 10316,
+      "imax" : 152348966,
+      "imin" : -19041,
+      "smax" : 170035057
+    },
+    "511" : {
+      "label" : "Räuml. Planung u. Entwicklung, Geoinformationen",
+      "dmax" : 8033672,
+      "dmin" : -26081009,
+      "smin" : 16,
+      "imax" : 43872858,
+      "imin" : 14,
+      "smax" : 35839186
+    },
+    "363" : {
+      "label" : "So. Leistungen: Förderung junger Menschen u. Fam.",
+      "dmax" : 498338,
+      "dmin" : -114197631,
+      "smin" : 1970,
+      "imax" : 13862060,
+      "imin" : 93,
+      "smax" : 128059691
+    },
+    "368" : {
+      "label" : "Leistungen n. BEEG",
+      "dmax" : 206180,
+      "dmin" : -59201,
+      "smin" : 28526,
+      "imax" : 389295,
+      "imin" : 6975,
+      "smax" : 183115
+    },
+    "367" : {
+      "label" : "So. Einricht: Förderung junger Menschen und Fam.",
+      "dmax" : 18531466,
+      "dmin" : -24878411,
+      "smin" : 3184,
+      "imax" : 26843092,
+      "imin" : 17,
+      "smax" : 33000081
+    },
+    "554" : {
+      "label" : "Naturschutz und Landschaftspflege",
+      "dmax" : 392035,
+      "dmin" : -2680193,
+      "smin" : 18,
+      "imax" : 2388692,
+      "imin" : 489,
+      "smax" : 3039397
+    },
+    "555" : {
+      "label" : "Land- und Forstwirtschaft",
+      "dmax" : 2269131,
+      "dmin" : -1227329,
+      "smin" : 159,
+      "imax" : 3906865,
+      "imin" : 64,
+      "smax" : 1673094
+    },
+    "552" : {
+      "label" : "Öffentliche Gewässer, wasserbauliche Anlagen",
+      "dmax" : 3880474,
+      "dmin" : -12287595,
+      "smin" : 1071,
+      "imax" : 4182675,
+      "imin" : 15,
+      "smax" : 14482809
+    },
+    "414" : {
+      "label" : "Gesundheitsschutz und -pflege",
+      "dmax" : 99493,
+      "dmin" : -7860883,
+      "smin" : 31,
+      "imax" : 3384223,
+      "imin" : 6144,
+      "smax" : 8670585
+    },
+    "553" : {
+      "label" : "Friedhofs- und Bestattungswesen",
+      "dmax" : 12977236,
+      "dmin" : -3708516,
+      "smin" : 231,
+      "imax" : 19520738,
+      "imin" : 104,
+      "smax" : 8424646
+    },
+    "412" : {
+      "label" : "Gesundheitseinrichtungen",
+      "dmax" : -16474,
+      "dmin" : -6405446,
+      "smin" : 3441,
+      "imax" : 2467671,
+      "imin" : 1521,
+      "smax" : 7357308
+    },
+    "551" : {
+      "label" : "Öffentliches Grün, Landschaftsbau",
+      "dmax" : 373347,
+      "dmin" : -27479656,
+      "smin" : 236,
+      "imax" : 4217835,
+      "imin" : 3,
+      "smax" : 28724418
+    },
+    "411" : {
+      "label" : "Krankenhäuser",
+      "dmax" : -449666,
+      "dmin" : -8338528,
+      "smin" : 45675,
+      "imax" : 325642,
+      "imin" : 344,
+      "smax" : 10879475
+    },
+    "221" : {
+      "label" : "Förderschulen",
+      "dmax" : 723143,
+      "dmin" : -9874284,
+      "smin" : 16,
+      "imax" : 4054142,
+      "imin" : 33,
+      "smax" : 9991229
+    },
+    "251" : {
+      "label" : "Wissenschaft und Forschung",
+      "dmax" : 60258,
+      "dmin" : -51522538,
+      "smin" : 4273,
+      "imax" : 5718540,
+      "imin" : 109,
+      "smax" : 57241078
+    },
+    "252" : {
+      "label" : "Museen, Sammlungen, Ausstellungen",
+      "dmax" : 1449489,
+      "dmin" : -35778449,
+      "smin" : 30,
+      "imax" : 1869490,
+      "imin" : -2902,
+      "smax" : 35812291
+    },
+    "323" : {
+      "label" : "Leistungen n. soz. Entschäd.recht einschl. KOF",
+      "dmax" : null,
+      "dmin" : null,
+      "smin" : null,
+      "imax" : null,
+      "imin" : null,
+      "smax" : null
+    },
+    "324" : {
+      "label" : "Sonstige Leistungen der Kriegsopferfürsorge",
+      "dmax" : null,
+      "dmin" : null,
+      "smin" : null,
+      "imax" : null,
+      "imin" : null,
+      "smax" : null
+    },
+    "325" : {
+      "label" : "Leistungen n. BergmVersG",
+      "dmax" : null,
+      "dmin" : null,
+      "smin" : null,
+      "imax" : null,
+      "imin" : null,
+      "smax" : null
+    },
+    "321" : {
+      "label" : "Leistungen nach dem BVG",
+      "dmax" : 445536,
+      "dmin" : -278648,
+      "smin" : 1144,
+      "imax" : 2286831,
+      "imin" : 216,
+      "smax" : 1841295
+    },
+    "291" : {
+      "label" : "Kirchengemeinden, Religionsgemeinschaften",
+      "dmax" : null,
+      "dmin" : null,
+      "smin" : 17,
+      "imax" : 726161,
+      "imin" : 726161,
+      "smax" : 13972
+    },
+    "322" : {
+      "label" : "Leistungen f. Schwerbehinderte (SGB IX)",
+      "dmax" : 781587,
+      "dmin" : -1242886,
+      "smin" : 350,
+      "imax" : 3648432,
+      "imin" : 150,
+      "smax" : 4048914
+    },
+    "351" : {
+      "label" : "Sonstige soziale Leistungen",
+      "dmax" : 258780,
+      "dmin" : -43286617,
+      "smin" : 38,
+      "imax" : 10095582,
+      "imin" : 10,
+      "smax" : 44385642
+    },
+    "522" : {
+      "label" : "Wohnungsbauförderung",
+      "dmax" : 15225519,
+      "dmin" : -4517734,
+      "smin" : 36,
+      "imax" : 24450678,
+      "imin" : 26,
+      "smax" : 9225159
+    },
+    "521" : {
+      "label" : "Bau- und Grundstücksordnung",
+      "dmax" : 14444459,
+      "dmin" : -12813688,
+      "smin" : 23,
+      "imax" : 14905757,
+      "imin" : 13,
+      "smax" : 16848173
+    },
+    "523" : {
+      "label" : "Denkmalschutz und -pflege",
+      "dmax" : 277415,
+      "dmin" : -3829215,
+      "smin" : -3810,
+      "imax" : 3424489,
+      "imin" : 10,
+      "smax" : 4178660
+    },
+    "612" : {
+      "label" : "Sonstige allgemeine Finanzwirtschaft",
+      "dmax" : 134931745,
+      "dmin" : -58695942,
+      "smin" : 619,
+      "imax" : 466055766,
+      "imin" : 605,
+      "smax" : 331124021
+    },
+    "611" : {
+      "label" : "Steuern, allg. Zuweisungen u. allg. Umlagen",
+      "dmax" : 1513681861,
+      "dmin" : -1645397,
+      "smin" : 2291003,
+      "imax" : 1920267612,
+      "imin" : 5041919,
+      "smax" : 406585751
+    },
+    "421" : {
+      "label" : "Förderung des Sports",
+      "dmax" : 241963,
+      "dmin" : -19531862,
+      "smin" : 700,
+      "imax" : 1615228,
+      "imin" : 17,
+      "smax" : 20870454
+    },
+    "561" : {
+      "label" : "Umweltschutzmaßnahmen",
+      "dmax" : 1252446,
+      "dmin" : -3701997,
+      "smin" : 3,
+      "imax" : 2485196,
+      "imin" : 50,
+      "smax" : 4337446
+    },
+    "562" : {
+      "label" : "Immissionsschutz",
+      "dmax" : 80248,
+      "dmin" : -455629,
+      "smin" : 290,
+      "imax" : 345711,
+      "imin" : 225,
+      "smax" : 558128
+    },
+    "253" : {
+      "label" : "Zoologische und Botanische Gärten",
+      "dmax" : -245080,
+      "dmin" : -5049628,
+      "smin" : 72900,
+      "imax" : 2306778,
+      "imin" : 1718,
+      "smax" : 7356406
+    },
+    "999" : {
+      "label" : "Summe aller Produktgruppen",
+      "dmax" : 76737661,
+      "dmin" : -95869420,
+      "smin" : 8265750,
+      "imax" : 3348035128,
+      "imin" : 8081062,
+      "smax" : 3308246498
+    },
+    "424" : {
+      "label" : "Sportstätten und Bäder",
+      "dmax" : 1476685,
+      "dmin" : -27273430,
+      "smin" : 32,
+      "imax" : 3108000,
+      "imin" : 60,
+      "smax" : 30381430
+    }
   }
 }

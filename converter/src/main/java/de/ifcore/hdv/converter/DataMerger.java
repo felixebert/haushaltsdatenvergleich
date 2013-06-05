@@ -16,13 +16,14 @@ import de.ifcore.hdv.converter.data.Population;
 
 public class DataMerger {
 
+	private Map<String, MinMaxAccount> accountMap = new HashMap<>();
+
 	public MergedData mergeData(Map<String, Population> populationMap, Map<String, Double> areaSizes,
 			List<Account> income, List<Account> spendings) {
 		List<AccountsPerArea> result = new ArrayList<AccountsPerArea>();
 		Set<String> areaKeys = createAreaKeys(income, spendings);
-		Map<String, String> accountMap = new HashMap<>();
-		collectAccounts(accountMap, income);
-		collectAccounts(accountMap, spendings);
+		collectAccounts(income);
+		collectAccounts(spendings);
 		for (String areaKey : areaKeys) {
 			Population population = populationMap.get(areaKey);
 			Double areaSize = areaSizes.get(areaKey);
@@ -36,12 +37,21 @@ public class DataMerger {
 				System.out.println("Keine Fläche für " + areaKey + " / " + population.getAreaName());
 			}
 			else {
+				Collection<InOutAccount> accountValues = inOutMap.values();
+				processMinMax(accountValues);
 				AccountsPerArea accountsPerArea = new AccountsPerArea(areaKey, population.getAreaName(),
-						population.getPopulation(), areaSize.doubleValue(), inOutMap.values());
+						population.getPopulation(), areaSize.doubleValue(), accountValues);
 				result.add(accountsPerArea);
 			}
 		}
 		return new MergedData(result, accountMap);
+	}
+
+	private void processMinMax(Collection<InOutAccount> accountValues) {
+		for (InOutAccount inOutAccount : accountValues) {
+			MinMaxAccount minMaxAccount = accountMap.get(inOutAccount.getKey());
+			minMaxAccount.addValue(inOutAccount.getIncome(), inOutAccount.getSpending());
+		}
 	}
 
 	private void processIncomeForArea(String areaKey, Map<String, InOutAccount> inOutMap, List<Account> income) {
@@ -91,9 +101,9 @@ public class DataMerger {
 		}
 	}
 
-	private void collectAccounts(Map<String, String> accountMap, Collection<Account> accounts) {
+	private void collectAccounts(Collection<Account> accounts) {
 		for (Account account : accounts) {
-			accountMap.put(account.getAccountKey(), account.getAccountName());
+			accountMap.put(account.getAccountKey(), new MinMaxAccount(account.getAccountName()));
 		}
 	}
 }

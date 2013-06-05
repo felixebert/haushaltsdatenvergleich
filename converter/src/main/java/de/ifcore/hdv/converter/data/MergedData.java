@@ -3,12 +3,14 @@ package de.ifcore.hdv.converter.data;
 import java.util.List;
 import java.util.Map;
 
+import de.ifcore.hdv.converter.MinMaxAccount;
+
 public class MergedData {
 
 	private List<AccountsPerArea> accountsPerAreas;
-	private Map<String, String> accountMap;
+	private Map<String, MinMaxAccount> accountMap;
 
-	public MergedData(List<AccountsPerArea> accountsPerAreas, Map<String, String> accountMap) {
+	public MergedData(List<AccountsPerArea> accountsPerAreas, Map<String, MinMaxAccount> accountMap) {
 		this.accountsPerAreas = accountsPerAreas;
 		this.accountMap = accountMap;
 	}
@@ -17,7 +19,7 @@ public class MergedData {
 		return accountsPerAreas;
 	}
 
-	public Map<String, String> getAccountMap() {
+	public Map<String, MinMaxAccount> getAccountMap() {
 		return accountMap;
 	}
 }

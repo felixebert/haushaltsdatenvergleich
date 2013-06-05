@@ -1,9 +1,13 @@
 package de.ifcore.hdv.converter.data;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class InOutAccount {
 
 	private String key;
+	@JsonProperty(value = "i")
 	private Long income;
+	@JsonProperty(value = "s")
 	private Long spending;
 
 	public InOutAccount(String key, Long income, Long spending) {
