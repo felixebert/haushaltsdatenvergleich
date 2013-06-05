@@ -30,10 +30,9 @@ public class PopulationParser extends AbstractExcelParser {
 	}
 
 	private String parseAreaKey(Row row) {
-		Cell land = row.getCell(0);
-		Cell code = row.getCell(2);
-		if (land != null && code != null) {
-			return land.getStringCellValue() + code.getStringCellValue();
+		Cell reaKey = row.getCell(2);
+		if (reaKey != null) {
+			return reaKey.getStringCellValue();
 		}
 		else
 			return null;

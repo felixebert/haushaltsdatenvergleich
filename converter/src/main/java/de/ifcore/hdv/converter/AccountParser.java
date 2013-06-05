@@ -12,11 +12,9 @@ import de.ifcore.hdv.converter.data.Account;
 
 public class AccountParser {
 
-	private String countryCode;
 	private CSVReader reader;
 
-	public AccountParser(String countryCode, InputStream in) {
-		this.countryCode = countryCode;
+	public AccountParser(InputStream in) {
 		reader = new CSVReader(new InputStreamReader(in, Charset.forName("ISO-8859-1")), ';');
 	}
 
@@ -37,10 +35,11 @@ public class AccountParser {
 							convertedValue = Long.valueOf(value);
 						}
 						catch (NumberFormatException e) {
-							System.err.println("Error converting: " + areaKey + "/" + accountKey + "/" + accountName);
+							//							System.err.println("Error converting: " + areaKey + "/" + accountKey + "/" + accountName
+							//									+ " => " + value);
 						}
 						if (hasText(areaKey) && areaKey.length() == 8 && hasText(accountKey)) {
-							result.add(new Account(countryCode + areaKey, accountKey, accountName, convertedValue));
+							result.add(new Account(areaKey, accountKey, accountName, convertedValue));
 						}
 					}
 				}

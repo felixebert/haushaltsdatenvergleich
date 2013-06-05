@@ -45,14 +45,20 @@ public class AreaSizeParser extends AbstractExcelParser {
 	private String parseAreaKey(Row row) {
 		StringBuilder sb = new StringBuilder();
 		for (int x = 2; x < 7; x++) {
-			Cell cell = row.getCell(x);
-			if (cell == null)
-				return null;
-			String value = cell.getStringCellValue();
-			if (value == null || value.isEmpty())
-				return null;
-			sb.append(value);
+			if (isNotGemeindeVerband(x)) {
+				Cell cell = row.getCell(x);
+				if (cell == null)
+					return null;
+				String value = cell.getStringCellValue();
+				if (value == null || value.isEmpty())
+					return null;
+				sb.append(value);
+			}
 		}
 		return sb.toString();
+	}
+
+	private boolean isNotGemeindeVerband(int x) {
+		return x != 5;
 	}
 }

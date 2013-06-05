@@ -13,8 +13,8 @@ public class InOutAccountTest {
 		InOutAccount account = new InOutAccount(null, null, null);
 		account.incIncome(100L);
 		account.incSpendings(200L);
-		assertEquals(100L, account.getIn().longValue());
-		assertEquals(200L, account.getOut().longValue());
+		assertEquals(100L, account.getIncome().longValue());
+		assertEquals(200L, account.getSpending().longValue());
 	}
 
 	@Test
@@ -22,7 +22,7 @@ public class InOutAccountTest {
 		InOutAccount account = new InOutAccount(null, Long.valueOf(100), Long.valueOf(200));
 		account.incIncome(null);
 		account.incSpendings(null);
-		assertEquals(100L, account.getIn().longValue());
-		assertEquals(200L, account.getOut().longValue());
+		assertEquals(100L, account.getIncome().longValue());
+		assertEquals(200L, account.getSpending().longValue());
 	}
 }
