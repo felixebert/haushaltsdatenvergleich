@@ -32,8 +32,7 @@
 				L.geoJson(json.features, {
 					style: {
 						'opacity': 0.5,
-						'weight': 2,
-						'fillColor': '#FF0000'
+						'weight': 2
 					},
 					onEachFeature: _.bind(function(feature, layer) {
 						this.layers.push({
@@ -45,35 +44,37 @@
 				}).addTo(leafletMap);
 
 				$.getJSON('js/hdv.json', _.bind(function(data) {
-					var boundary = 0;
-					_.each(data.accountsPerAreas, function(area) {
+					var currentAccount = data.accountMap[553];
+					_.each(data.accountsPerAreas, _.bind(function(area) {
+						var layer = this.getLayer(area.areaKey);
+
 						var total = 0;
 						_.each(area.accounts, function(account) {
 							if (account.key == 553) {
-								console.log(account);
 								if (account.i != null && account.s != null) {
-									total += account.i - account.s;
+									total += account.i - Math.abs(account.s);
 								} else if (account.s != null) {
-									total -= account.s;
+									total -= Math.abs(account.s);
 								}
 							}
 						});
-						area.total = total;
 
-						if (total < boundary) {
-							boundary = total;
+						var opacity;
+						var fillColor;
+						if (total <= 0) {
+							opacity = Math.round(total / currentAccount.dmin * 100) / 100;
+							fillColor = opacity < 0 ? '' : '#FF0000';
+						} else {
+							opacity = Math.round(total / currentAccount.dmax * 100) / 100;
+							fillColor = opacity < 0 ? '' : '#00C957';
 						}
-					});
 
-					_.each(data.accountsPerAreas, _.bind(function(area) {
-						var layer = this.getLayer(area.areaKey);
-						var opacity = Math.round(area.total / boundary * 100) / 100;
-						opacity = opacity < 0 ? 0 : opacity;
 						layer.value.setStyle({
-							'fillOpacity': opacity
+							'fillOpacity': opacity,
+							'fillColor': fillColor
 						});
 						layer.value.bindPopup("<strong>" + layer.label + "</strong><br />Summe Friedhofs- und Bestattungswesen: "
-								+ area.total.formatMoney(0, ',', '.') + " €");
+								+ total.formatMoney(0, ',', '.') + " €");
 					}, this));
 				}, this));
 			}, this));
