@@ -6,6 +6,7 @@ files = [
   'web/lib/angular/angular.js',
   'web/lib/angular/angular-*.js',
   'web/lib/underscore.js',
+  'web/lib/leaflet.js',
   'test/lib/angular/angular-mocks.js',
   'web/js/app.js',
   'web/js/utils.js',
