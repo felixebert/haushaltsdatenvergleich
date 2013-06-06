@@ -43,14 +43,16 @@
 					}, this)
 				}).addTo(leafletMap);
 
+				var accountToUse = 241;
+
 				$.getJSON('js/hdv.json', _.bind(function(data) {
-					var currentAccount = data.accountMap[553];
+					var currentAccount = data.accountMap[accountToUse];
 					_.each(data.accountsPerAreas, _.bind(function(area) {
 						var layer = this.getLayer(area.areaKey);
 
 						var total = 0;
 						_.each(area.accounts, function(account) {
-							if (account.key == 553) {
+							if (account.key == accountToUse) {
 								if (account.i != null && account.s != null) {
 									total += account.i - Math.abs(account.s);
 								} else if (account.s != null) {
@@ -73,7 +75,7 @@
 							'fillOpacity': opacity,
 							'fillColor': fillColor
 						});
-						layer.value.bindPopup("<strong>" + layer.label + "</strong><br />Summe Friedhofs- und Bestattungswesen: "
+						layer.value.bindPopup("<strong>" + layer.label + "</strong><br />"+data.accountMap[accountToUse].label+": "
 								+ total.formatMoney(0, ',', '.') + " €");
 					}, this));
 				}, this));
