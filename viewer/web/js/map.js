@@ -1,8 +1,6 @@
 'use strict';
 
-(function(angular, hdv, L, $, _) {
-	var mapModule = angular.module('map', []);
-
+(function(hdv, L, $, _) {
 	Number.prototype.formatMoney = function(c, d, t) {
 		var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "." : d, t = t == undefined ? "," : t, s = n < 0 ? "-" : "", i = parseInt(n = Math
 				.abs(+n || 0).toFixed(c))
@@ -11,14 +9,16 @@
 	};
 
 	var map = {
-		layers: [],
-		getLayer: function(key) {
-			return _.find(this.layers, function(layer) {
-				return layer.key == key;
+		leafletMap: null,
+		areas: [],
+		data: {},
+		getArea: function(key) {
+			return _.find(this.areas, function(area) {
+				return area.key == key;
 			});
 		},
 		init: function() {
-			var leafletMap = L.map('map', {
+			this.leafletMap = L.map('map', {
 				center: [51.463, 7.18],
 				zoom: 10
 			});
@@ -26,64 +26,80 @@
 			L.tileLayer('http://{s}.tile.cloudmade.com/036a729cf53d4388a8ec345e1543ef53/44094/256/{z}/{x}/{y}.png', {
 				attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 				maxZoom: 18
-			}).addTo(leafletMap);
+			}).addTo(this.leafletMap);
 
-			$.getJSON('js/gemeinden.json', _.bind(function(json) {
-				L.geoJson(json.features, {
-					style: {
-						'opacity': 0.5,
-						'weight': 2
-					},
-					onEachFeature: _.bind(function(feature, layer) {
-						this.layers.push({
-							'key': feature.properties.KN,
-							'label': feature.properties.GN,
-							'value': layer
-						});
-					}, this)
-				}).addTo(leafletMap);
+			return this;
+		},
+		loadAreas: function(type) {
+			$.getJSON('js/' + type + '.json', _.bind(this.addAreas, this));
+			return this;
+		},
+		addAreas: function(geojson) {
+			L.geoJson(geojson.features, {
+				style: {
+					'opacity': 0.5,
+					'weight': 2
+				},
+				onEachFeature: _.bind(this.addArea, this)
+			}).addTo(this.leafletMap);
+		},
+		addArea: function(feature, layer) {
+			this.areas.push({
+				'key': feature.properties.KN,
+				'label': feature.properties.GN,
+				'value': layer
+			});
+		},
+		loadData: function(year) {
+			$.getJSON('js/' + year + '.json', _.bind(this.setData, this));
+			return this;
+		},
+		setData: function(data) {
+			this.data = data;
+			this.displayAccount(521);
+		},
+		getAccount: function(accounts, key) {
+			return _.find(accounts, function(account) {
+				return account.key == key;
+			});
+		},
+		getAccountTotal: function(account) {
+			var total = 0;
+			if (account.i != null && account.s != null) {
+				total += account.i - Math.abs(account.s);
+			} else if (account.s != null) {
+				total -= Math.abs(account.s);
+			}
+			return total;
+		},
+		getLayerStyle: function(total, account) {
+			var opacity;
+			var fillColor;
+			if (total <= 0) {
+				opacity = Math.round(total / account.dmin * 100) / 100;
+				fillColor = opacity < 0 ? '' : '#FF0000';
+			} else {
+				opacity = Math.round(total / account.dmax * 100) / 100;
+				fillColor = opacity < 0 ? '' : '#00C957';
+			}
 
-				var accountToUse = 241;
+			return {
+				'fillOpacity': opacity,
+				'fillColor': fillColor
+			};
+		},
+		displayAccount: function(accountKey) {
+			var currentAccount = this.data.accountMap[accountKey];
+			_.each(this.data.accountsPerAreas, _.bind(function(area) {
+				var layer = this.getArea(area.areaKey);
+				var total = this.getAccountTotal(this.getAccount(area.accounts, accountKey));
+				var style = this.getLayerStyle(total, currentAccount);
 
-				$.getJSON('js/hdv.json', _.bind(function(data) {
-					var currentAccount = data.accountMap[accountToUse];
-					_.each(data.accountsPerAreas, _.bind(function(area) {
-						var layer = this.getLayer(area.areaKey);
-
-						var total = 0;
-						_.each(area.accounts, function(account) {
-							if (account.key == accountToUse) {
-								if (account.i != null && account.s != null) {
-									total += account.i - Math.abs(account.s);
-								} else if (account.s != null) {
-									total -= Math.abs(account.s);
-								}
-							}
-						});
-
-						var opacity;
-						var fillColor;
-						if (total <= 0) {
-							opacity = Math.round(total / currentAccount.dmin * 100) / 100;
-							fillColor = opacity < 0 ? '' : '#FF0000';
-						} else {
-							opacity = Math.round(total / currentAccount.dmax * 100) / 100;
-							fillColor = opacity < 0 ? '' : '#00C957';
-						}
-
-						layer.value.setStyle({
-							'fillOpacity': opacity,
-							'fillColor': fillColor
-						});
-						layer.value.bindPopup("<strong>" + layer.label + "</strong><br />"+data.accountMap[accountToUse].label+": "
-								+ total.formatMoney(0, ',', '.') + " €");
-					}, this));
-				}, this));
+				layer.value.setStyle(style);
+				layer.value.bindPopup("<strong>" + layer.label + "</strong><br />" + currentAccount.label + ": " + total.formatMoney(0, ',', '.') + " €");
 			}, this));
 		}
 	};
 
-	mapModule.controller('MapCtrl', function($scope) {
-		map.init();
-	});
-})(angular, hdv, L, $, _);
+	hdv.map = map;
+})(hdv, L, $, _);

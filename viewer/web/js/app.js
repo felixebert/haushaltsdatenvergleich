@@ -1,16 +1,11 @@
 'use strict';
 var hdv = {};
 
-(function(angular) {
-	var appModule = angular.module('hdv', ['map']);
-
-	appModule.config(function($routeProvider) {
-		$routeProvider.when('/map', {
-			templateUrl: 'partials/map.html',
-			controller: 'MapCtrl'
-		});
-		$routeProvider.otherwise({
-			redirectTo: '/map'
-		});
-	});
-})(angular);
+(function(hdv, _) {
+	hdv.array = {
+		remove: function(array, valueToReject) {
+			var indexToReject = _.indexOf(array, valueToReject);
+			array.splice(indexToReject, 1);
+		}
+	};
+})(hdv, _);
