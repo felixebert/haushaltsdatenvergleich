@@ -20,13 +20,10 @@
 		init: function() {
 			this.leafletMap = L.map('map', {
 				center: [51.463, 7.18],
-				zoom: 10
+				zoom: 9,
+				minZoom: 8,
+				maxZoom: 11
 			});
-
-			L.tileLayer('http://{s}.tile.cloudmade.com/036a729cf53d4388a8ec345e1543ef53/44094/256/{z}/{x}/{y}.png', {
-				attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-				maxZoom: 18
-			}).addTo(this.leafletMap);
 
 			return this;
 		},

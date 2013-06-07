@@ -18,15 +18,19 @@
 			<h1>Finanzdaten NRW</h1>
 			
 			<label>Produktbereich</label>
-			<select></select>
+			<select name="pb">
+				<option value="ALL" selected="selected">Alle</option>
+			</select>
 			
 			<label>Produktgruppe</label>
-			<select></select>
+			<select name="pg">
+				<option value="ALL" selected="selected">Alle</option>
+			</select>
 			
 			<label>Gruppierung</label>
 			<p>
-				<input type="radio" name="area" value="lk"> Landkreise
-				<input type="radio" name="area" value="c"> Kommunen
+				<label class="radio"><input type="radio" name="area" value="lk"> Landkreise</label>
+				<label class="radio"><input type="radio" name="area" value="c"> Kommunen</label>
 			</p>
 			
 			<label>Abrechnungsjahr</label>
