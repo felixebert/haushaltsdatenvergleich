@@ -58,38 +58,45 @@
 			this.data = data;
 			this.displayAccount(521);
 		},
-		displayAccount: function(accountToUse) {
-			var currentAccount = this.data.accountMap[accountToUse];
+		getAccount: function(accounts, key) {
+			return _.find(accounts, function(account) {
+				return account.key == key;
+			});
+		},
+		getAccountTotal: function(account) {
+			var total = 0;
+			if (account.i != null && account.s != null) {
+				total += account.i - Math.abs(account.s);
+			} else if (account.s != null) {
+				total -= Math.abs(account.s);
+			}
+			return total;
+		},
+		getLayerStyle: function(total, account) {
+			var opacity;
+			var fillColor;
+			if (total <= 0) {
+				opacity = Math.round(total / account.dmin * 100) / 100;
+				fillColor = opacity < 0 ? '' : '#FF0000';
+			} else {
+				opacity = Math.round(total / account.dmax * 100) / 100;
+				fillColor = opacity < 0 ? '' : '#00C957';
+			}
+
+			return {
+				'fillOpacity': opacity,
+				'fillColor': fillColor
+			};
+		},
+		displayAccount: function(accountKey) {
+			var currentAccount = this.data.accountMap[accountKey];
 			_.each(this.data.accountsPerAreas, _.bind(function(area) {
 				var layer = this.getArea(area.areaKey);
+				var total = this.getAccountTotal(this.getAccount(area.accounts, accountKey));
+				var style = this.getLayerStyle(total, currentAccount);
 
-				var total = 0;
-				_.each(area.accounts, function(account) {
-					if (account.key == accountToUse) {
-						if (account.i != null && account.s != null) {
-							total += account.i - Math.abs(account.s);
-						} else if (account.s != null) {
-							total -= Math.abs(account.s);
-						}
-					}
-				});
-
-				var opacity;
-				var fillColor;
-				if (total <= 0) {
-					opacity = Math.round(total / currentAccount.dmin * 100) / 100;
-					fillColor = opacity < 0 ? '' : '#FF0000';
-				} else {
-					opacity = Math.round(total / currentAccount.dmax * 100) / 100;
-					fillColor = opacity < 0 ? '' : '#00C957';
-				}
-
-				layer.value.setStyle({
-					'fillOpacity': opacity,
-					'fillColor': fillColor
-				});
-				layer.value.bindPopup("<strong>" + layer.label + "</strong><br />" + this.data.accountMap[accountToUse].label + ": "
-						+ total.formatMoney(0, ',', '.') + " €");
+				layer.value.setStyle(style);
+				layer.value.bindPopup("<strong>" + layer.label + "</strong><br />" + currentAccount.label + ": " + total.formatMoney(0, ',', '.') + " €");
 			}, this));
 		}
 	};
