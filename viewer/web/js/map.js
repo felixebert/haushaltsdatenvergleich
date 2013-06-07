@@ -1,8 +1,6 @@
 'use strict';
 
-(function(angular, hdv, L, $, _) {
-	var mapModule = angular.module('map', []);
-
+(function(hdv, L, $, _) {
 	Number.prototype.formatMoney = function(c, d, t) {
 		var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "." : d, t = t == undefined ? "," : t, s = n < 0 ? "-" : "", i = parseInt(n = Math
 				.abs(+n || 0).toFixed(c))
@@ -12,13 +10,14 @@
 
 	var map = {
 		layers: [],
+		leafletMap: null,
 		getLayer: function(key) {
 			return _.find(this.layers, function(layer) {
 				return layer.key == key;
 			});
 		},
 		init: function() {
-			var leafletMap = L.map('map', {
+			this.leafletMap = L.map('map', {
 				center: [51.463, 7.18],
 				zoom: 10
 			});
@@ -26,7 +25,7 @@
 			L.tileLayer('http://{s}.tile.cloudmade.com/036a729cf53d4388a8ec345e1543ef53/44094/256/{z}/{x}/{y}.png', {
 				attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 				maxZoom: 18
-			}).addTo(leafletMap);
+			}).addTo(this.leafletMap);
 
 			$.getJSON('js/gemeinden.json', _.bind(function(json) {
 				L.geoJson(json.features, {
@@ -41,7 +40,7 @@
 							'value': layer
 						});
 					}, this)
-				}).addTo(leafletMap);
+				}).addTo(this.leafletMap);
 
 				var accountToUse = 241;
 
@@ -75,7 +74,7 @@
 							'fillOpacity': opacity,
 							'fillColor': fillColor
 						});
-						layer.value.bindPopup("<strong>" + layer.label + "</strong><br />"+data.accountMap[accountToUse].label+": "
+						layer.value.bindPopup("<strong>" + layer.label + "</strong><br />" + data.accountMap[accountToUse].label + ": "
 								+ total.formatMoney(0, ',', '.') + " €");
 					}, this));
 				}, this));
@@ -83,7 +82,7 @@
 		}
 	};
 
-	mapModule.controller('MapCtrl', function($scope) {
+	hdv.map = function() {
 		map.init();
-	});
-})(angular, hdv, L, $, _);
+	};
+})(hdv, L, $, _);
