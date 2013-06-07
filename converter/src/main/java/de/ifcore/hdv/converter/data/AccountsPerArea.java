@@ -1,30 +1,29 @@
 package de.ifcore.hdv.converter.data;
 
-import java.util.Collection;
+import java.util.Map;
 
 public class AccountsPerArea {
 
-	private String areaKey;
-	private String areaName;
+	private String key;
+	private String name;
 	private long population;
 	private double size;
-	private Collection<InOutAccount> accounts;
+	private Map<Integer, Long[]> accounts;
 
-	public AccountsPerArea(String areaKey, String areaName, long population, double size,
-			Collection<InOutAccount> accounts) {
-		this.areaKey = areaKey;
-		this.areaName = areaName;
+	public AccountsPerArea(String key, String name, long population, double size, Map<Integer, Long[]> accounts) {
+		this.key = key;
+		this.name = name;
 		this.population = population;
 		this.size = size;
 		this.accounts = accounts;
 	}
 
-	public String getAreaKey() {
-		return areaKey;
+	public String getKey() {
+		return key;
 	}
 
-	public String getAreaName() {
-		return areaName;
+	public String getName() {
+		return name;
 	}
 
 	public long getPopulation() {
@@ -35,7 +34,7 @@ public class AccountsPerArea {
 		return size;
 	}
 
-	public Collection<InOutAccount> getAccounts() {
+	public Map<Integer, Long[]> getAccounts() {
 		return accounts;
 	}
 }

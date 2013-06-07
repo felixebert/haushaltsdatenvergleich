@@ -39,15 +39,26 @@ public class DataMerger {
 			}
 			else {
 				Collection<InOutAccount> accountValues = inOutMap.values();
+				Map<Integer, Long[]> accountValuesMap = convertToMap(accountValues);
 				processMinMax(accountValues);
 				AccountsPerArea accountsPerArea = new AccountsPerArea(areaKey, population.getAreaName(),
-						population.getPopulation(), areaSize.doubleValue(), accountValues);
+						population.getPopulation(), areaSize.doubleValue(), accountValuesMap);
 				result.add(accountsPerArea);
 			}
 		}
 		CategoryTree tree = CategoryMerger
 				.createTree(MainCategories.getInstance().getCategories(), accountMap.values());
 		return new MergedData(result, accountMap, tree.getTree());
+	}
+
+	private Map<Integer, Long[]> convertToMap(Collection<InOutAccount> accountValues) {
+		Map<Integer, Long[]> result = new HashMap<>();
+		for (InOutAccount inOutAccount : accountValues) {
+			if (inOutAccount.getIncome() != null || inOutAccount.getSpending() != null) {
+				result.put(inOutAccount.getKey(), new Long[] { inOutAccount.getIncome(), inOutAccount.getSpending() });
+			}
+		}
+		return result;
 	}
 
 	private void processMinMax(Collection<InOutAccount> accountValues) {

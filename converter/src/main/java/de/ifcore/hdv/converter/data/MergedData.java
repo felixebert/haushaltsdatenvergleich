@@ -7,23 +7,23 @@ import de.ifcore.hdv.converter.MinMaxAccount;
 
 public class MergedData {
 
-	private List<AccountsPerArea> accountsPerAreas;
-	private Map<Integer, MinMaxAccount> accountMap;
+	private List<AccountsPerArea> areas;
+	private Map<Integer, MinMaxAccount> accounts;
 	private Map<Integer, List<Integer>> tree;
 
-	public MergedData(List<AccountsPerArea> accountsPerAreas, Map<Integer, MinMaxAccount> accountMap,
+	public MergedData(List<AccountsPerArea> areas, Map<Integer, MinMaxAccount> accounts,
 			Map<Integer, List<Integer>> tree) {
-		this.accountsPerAreas = accountsPerAreas;
-		this.accountMap = accountMap;
+		this.areas = areas;
+		this.accounts = accounts;
 		this.tree = tree;
 	}
 
-	public List<AccountsPerArea> getAccountsPerAreas() {
-		return accountsPerAreas;
+	public List<AccountsPerArea> getAreas() {
+		return areas;
 	}
 
-	public Map<Integer, MinMaxAccount> getAccountMap() {
-		return accountMap;
+	public Map<Integer, MinMaxAccount> getAccounts() {
+		return accounts;
 	}
 
 	public Map<Integer, List<Integer>> getTree() {
