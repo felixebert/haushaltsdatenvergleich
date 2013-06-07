@@ -9,11 +9,11 @@
 	};
 
 	var map = {
-		layers: [],
 		leafletMap: null,
-		getLayer: function(key) {
-			return _.find(this.layers, function(layer) {
-				return layer.key == key;
+		areas: [],
+		getArea: function(key) {
+			return _.find(this.areas, function(area) {
+				return area.key == key;
 			});
 		},
 		init: function() {
@@ -26,7 +26,8 @@
 				attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 				maxZoom: 18
 			}).addTo(this.leafletMap);
-
+		},
+		addAreas: function() {
 			$.getJSON('js/gemeinden.json', _.bind(function(json) {
 				L.geoJson(json.features, {
 					style: {
@@ -34,7 +35,7 @@
 						'weight': 2
 					},
 					onEachFeature: _.bind(function(feature, layer) {
-						this.layers.push({
+						this.areas.push({
 							'key': feature.properties.KN,
 							'label': feature.properties.GN,
 							'value': layer
@@ -47,7 +48,7 @@
 				$.getJSON('js/hdv.json', _.bind(function(data) {
 					var currentAccount = data.accountMap[accountToUse];
 					_.each(data.accountsPerAreas, _.bind(function(area) {
-						var layer = this.getLayer(area.areaKey);
+						var layer = this.getArea(area.areaKey);
 
 						var total = 0;
 						_.each(area.accounts, function(account) {
@@ -84,5 +85,6 @@
 
 	hdv.map = function() {
 		map.init();
+		map.addAreas();
 	};
 })(hdv, L, $, _);
