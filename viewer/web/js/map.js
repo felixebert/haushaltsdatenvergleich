@@ -11,6 +11,7 @@
 	var map = {
 		leafletMap: null,
 		areas: [],
+		data: {},
 		getArea: function(key) {
 			return _.find(this.areas, function(area) {
 				return area.key == key;
@@ -26,65 +27,72 @@
 				attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 				maxZoom: 18
 			}).addTo(this.leafletMap);
+
+			return this;
 		},
-		addAreas: function() {
-			$.getJSON('js/gemeinden.json', _.bind(function(json) {
-				L.geoJson(json.features, {
-					style: {
-						'opacity': 0.5,
-						'weight': 2
-					},
-					onEachFeature: _.bind(function(feature, layer) {
-						this.areas.push({
-							'key': feature.properties.KN,
-							'label': feature.properties.GN,
-							'value': layer
-						});
-					}, this)
-				}).addTo(this.leafletMap);
+		loadAreas: function(type) {
+			$.getJSON('js/' + type + '.json', _.bind(this.addAreas, this));
+			return this;
+		},
+		addAreas: function(geojson) {
+			L.geoJson(geojson.features, {
+				style: {
+					'opacity': 0.5,
+					'weight': 2
+				},
+				onEachFeature: _.bind(this.addArea, this)
+			}).addTo(this.leafletMap);
+		},
+		addArea: function(feature, layer) {
+			this.areas.push({
+				'key': feature.properties.KN,
+				'label': feature.properties.GN,
+				'value': layer
+			});
+		},
+		loadData: function(year) {
+			$.getJSON('js/' + year + '.json', _.bind(this.setData, this));
+			return this;
+		},
+		setData: function(data) {
+			this.data = data;
+			this.displayAccount(521);
+		},
+		displayAccount: function(accountToUse) {
+			var currentAccount = this.data.accountMap[accountToUse];
+			_.each(this.data.accountsPerAreas, _.bind(function(area) {
+				var layer = this.getArea(area.areaKey);
 
-				var accountToUse = 241;
-
-				$.getJSON('js/hdv.json', _.bind(function(data) {
-					var currentAccount = data.accountMap[accountToUse];
-					_.each(data.accountsPerAreas, _.bind(function(area) {
-						var layer = this.getArea(area.areaKey);
-
-						var total = 0;
-						_.each(area.accounts, function(account) {
-							if (account.key == accountToUse) {
-								if (account.i != null && account.s != null) {
-									total += account.i - Math.abs(account.s);
-								} else if (account.s != null) {
-									total -= Math.abs(account.s);
-								}
-							}
-						});
-
-						var opacity;
-						var fillColor;
-						if (total <= 0) {
-							opacity = Math.round(total / currentAccount.dmin * 100) / 100;
-							fillColor = opacity < 0 ? '' : '#FF0000';
-						} else {
-							opacity = Math.round(total / currentAccount.dmax * 100) / 100;
-							fillColor = opacity < 0 ? '' : '#00C957';
+				var total = 0;
+				_.each(area.accounts, function(account) {
+					if (account.key == accountToUse) {
+						if (account.i != null && account.s != null) {
+							total += account.i - Math.abs(account.s);
+						} else if (account.s != null) {
+							total -= Math.abs(account.s);
 						}
+					}
+				});
 
-						layer.value.setStyle({
-							'fillOpacity': opacity,
-							'fillColor': fillColor
-						});
-						layer.value.bindPopup("<strong>" + layer.label + "</strong><br />" + data.accountMap[accountToUse].label + ": "
-								+ total.formatMoney(0, ',', '.') + " €");
-					}, this));
-				}, this));
+				var opacity;
+				var fillColor;
+				if (total <= 0) {
+					opacity = Math.round(total / currentAccount.dmin * 100) / 100;
+					fillColor = opacity < 0 ? '' : '#FF0000';
+				} else {
+					opacity = Math.round(total / currentAccount.dmax * 100) / 100;
+					fillColor = opacity < 0 ? '' : '#00C957';
+				}
+
+				layer.value.setStyle({
+					'fillOpacity': opacity,
+					'fillColor': fillColor
+				});
+				layer.value.bindPopup("<strong>" + layer.label + "</strong><br />" + this.data.accountMap[accountToUse].label + ": "
+						+ total.formatMoney(0, ',', '.') + " €");
 			}, this));
 		}
 	};
 
-	hdv.map = function() {
-		map.init();
-		map.addAreas();
-	};
+	hdv.map = map;
 })(hdv, L, $, _);
