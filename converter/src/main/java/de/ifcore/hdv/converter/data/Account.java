@@ -3,11 +3,11 @@ package de.ifcore.hdv.converter.data;
 public class Account {
 
 	private String areaKey;
-	private String accountKey;
+	private int accountKey;
 	private String accountName;
 	private Long value;
 
-	public Account(String areaKey, String accountKey, String accountName, Long value) {
+	public Account(String areaKey, int accountKey, String accountName, Long value) {
 		this.areaKey = areaKey;
 		this.accountKey = accountKey;
 		this.accountName = accountName;
@@ -18,7 +18,7 @@ public class Account {
 		return areaKey;
 	}
 
-	public String getAccountKey() {
+	public int getAccountKey() {
 		return accountKey;
 	}
 

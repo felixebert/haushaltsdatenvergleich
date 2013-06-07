@@ -18,7 +18,7 @@ public class AccountParserTest {
 		assertFalse(result.isEmpty());
 		Account account = result.get(0);
 		assertEquals("05978040", account.getAreaKey());
-		assertEquals("611", account.getAccountKey());
+		assertEquals(611, account.getAccountKey());
 		assertEquals("Steuern, allg. Zuweisungen u. allg. Umlagen", account.getAccountName());
 		assertEquals(Long.valueOf(18525219), account.getValue());
 		assertEquals(3, result.size());

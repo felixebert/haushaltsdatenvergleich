@@ -10,13 +10,14 @@ import java.util.Set;
 
 import de.ifcore.hdv.converter.data.Account;
 import de.ifcore.hdv.converter.data.AccountsPerArea;
+import de.ifcore.hdv.converter.data.CategoryTree;
 import de.ifcore.hdv.converter.data.InOutAccount;
 import de.ifcore.hdv.converter.data.MergedData;
 import de.ifcore.hdv.converter.data.Population;
 
 public class DataMerger {
 
-	private Map<String, MinMaxAccount> accountMap = new HashMap<>();
+	private Map<Integer, MinMaxAccount> accountMap = new HashMap<>();
 
 	public MergedData mergeData(Map<String, Population> populationMap, Map<String, Double> areaSizes,
 			List<Account> income, List<Account> spendings) {
@@ -27,7 +28,7 @@ public class DataMerger {
 		for (String areaKey : areaKeys) {
 			Population population = populationMap.get(areaKey);
 			Double areaSize = areaSizes.get(areaKey);
-			Map<String, InOutAccount> inOutMap = new HashMap<>();
+			Map<Integer, InOutAccount> inOutMap = new HashMap<>();
 			processIncomeForArea(areaKey, inOutMap, income);
 			processSpendingsForArea(areaKey, inOutMap, spendings);
 			if (population == null) {
@@ -44,7 +45,9 @@ public class DataMerger {
 				result.add(accountsPerArea);
 			}
 		}
-		return new MergedData(result, accountMap);
+		CategoryTree tree = CategoryMerger
+				.createTree(MainCategories.getInstance().getCategories(), accountMap.values());
+		return new MergedData(result, accountMap, tree.getTree());
 	}
 
 	private void processMinMax(Collection<InOutAccount> accountValues) {
@@ -54,10 +57,10 @@ public class DataMerger {
 		}
 	}
 
-	private void processIncomeForArea(String areaKey, Map<String, InOutAccount> inOutMap, List<Account> income) {
+	private void processIncomeForArea(String areaKey, Map<Integer, InOutAccount> inOutMap, List<Account> income) {
 		for (Account account : income) {
 			if (areaKey.equals(account.getAreaKey())) {
-				String accountKey = account.getAccountKey();
+				int accountKey = account.getAccountKey();
 				InOutAccount inOutAccount = inOutMap.get(accountKey);
 				Long value = account.getValue();
 				if (inOutAccount == null) {
@@ -71,10 +74,10 @@ public class DataMerger {
 		}
 	}
 
-	private void processSpendingsForArea(String areaKey, Map<String, InOutAccount> inOutMap, List<Account> spendings) {
+	private void processSpendingsForArea(String areaKey, Map<Integer, InOutAccount> inOutMap, List<Account> spendings) {
 		for (Account account : spendings) {
 			if (areaKey.equals(account.getAreaKey())) {
-				String accountKey = account.getAccountKey();
+				int accountKey = account.getAccountKey();
 				InOutAccount inOutAccount = inOutMap.get(accountKey);
 				Long value = account.getValue();
 				if (inOutAccount == null) {
@@ -103,7 +106,8 @@ public class DataMerger {
 
 	private void collectAccounts(Collection<Account> accounts) {
 		for (Account account : accounts) {
-			accountMap.put(account.getAccountKey(), new MinMaxAccount(account.getAccountName()));
+			accountMap.put(account.getAccountKey(),
+					new MinMaxAccount(account.getAccountKey(), account.getAccountName()));
 		}
 	}
 }
