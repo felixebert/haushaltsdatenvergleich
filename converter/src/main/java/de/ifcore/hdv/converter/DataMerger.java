@@ -7,9 +7,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.SortedSet;
 
 import de.ifcore.hdv.converter.data.Account;
 import de.ifcore.hdv.converter.data.AccountsPerArea;
+import de.ifcore.hdv.converter.data.Category;
 import de.ifcore.hdv.converter.data.CategoryTree;
 import de.ifcore.hdv.converter.data.InOutAccount;
 import de.ifcore.hdv.converter.data.MergedData;
@@ -18,13 +20,13 @@ import de.ifcore.hdv.converter.data.Population;
 public class DataMerger {
 
 	private Map<Integer, MinMaxAccount> accountMap = new HashMap<>();
+	private CategoryTree tree;
 
 	public MergedData mergeData(Map<String, Population> populationMap, Map<String, Double> areaSizes,
 			List<Account> income, List<Account> spendings) {
 		List<AccountsPerArea> result = new ArrayList<AccountsPerArea>();
 		Set<String> areaKeys = createAreaKeys(income, spendings);
-		collectAccounts(income);
-		collectAccounts(spendings);
+		createCategoryMap(income, spendings);
 		for (String areaKey : areaKeys) {
 			Population population = populationMap.get(areaKey);
 			Double areaSize = areaSizes.get(areaKey);
@@ -46,9 +48,20 @@ public class DataMerger {
 				result.add(accountsPerArea);
 			}
 		}
-		CategoryTree tree = CategoryMerger
-				.createTree(MainCategories.getInstance().getCategories(), accountMap.values());
 		return new MergedData(result, accountMap, tree.getTree());
+	}
+
+	private void createCategoryMap(List<Account> income, List<Account> spendings) {
+		collectAccounts(income);
+		collectAccounts(spendings);
+		tree = CategoryMerger.createTree(MainCategories.getInstance().getCategories(), accountMap.values());
+		injectMainCategoriesIntoAccountMap(MainCategories.getInstance().getCategories());
+	}
+
+	private void injectMainCategoriesIntoAccountMap(SortedSet<Category> categories) {
+		for (Category category : categories) {
+			accountMap.put(category.getKey(), new MinMaxAccount(category.getKey(), category.getLabel()));
+		}
 	}
 
 	private Map<Integer, Long[]> convertToMap(Collection<InOutAccount> accountValues) {
