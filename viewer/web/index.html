@@ -14,42 +14,44 @@
 	<div id="map"></div>
 	
 	<div id="nav">
-		<div class="nav-container">
+		<form class="nav-container form-inline" method="GET" action="index.html">
 			<h1>Finanzdaten NRW</h1>
 			
-			<label>Produktbereich</label>
+			<label class="title">Produktbereich</label>
 			<select name="pb">
 				<option value="ALL" selected="selected">Alle</option>
 			</select>
 			
-			<label>Produktgruppe</label>
+			<label class="title">Produktgruppe</label>
 			<select name="pg">
 				<option value="ALL" selected="selected">Alle</option>
 			</select>
 			
-			<label>Gruppierung</label>
+			<label class="title">Was vergleichen?</label>
 			<p>
-				<label class="radio"><input type="radio" name="area" value="lk"> Landkreise</label>
-				<label class="radio"><input type="radio" name="area" value="c"> Kommunen</label>
+				<label class="radio"><input type="radio" name="compare" value="in"> Einnahmen</label>
+				<label class="radio"><input type="radio" name="compare" value="out"> Ausgaben</label>
+				<label class="radio"><input type="radio" name="compare" value="diff" checked="checked"> Summe</label>
 			</p>
 			
-			<label>Abrechnungsjahr</label>
-			<select></select>
-			
-			<label>Zahlen</label>
+			<label class="title">im Verhältnis zur?</label>
 			<p>
-				<input type="radio" name="compare" value="in"> Einnahmen
-				<input type="radio" name="compare" value="out"> Ausgaben
-				<input type="radio" name="compare" value="diff"> Summe
+				<label class="radio"><input type="radio" name="relation" value="residents"> Einwohnerzahl</label>
+				<label class="radio"><input type="radio" name="relation" value="area"> Fläche</label>
+				<label class="radio"><input type="radio" name="relation" value="none" checked="checked"> absolut</label>
+			</p>
+
+			<label class="title">Gebietsgröße</label>
+			<p>
+				<label class="radio"><input type="radio" name="areaLayer" value="g" checked="checked"> Kommunen</label>
+				<label class="radio"><input type="radio" name="areaLayer" value="lk"> Landkreise</label>
 			</p>
 			
-			<label>Verhältnis</label>
-			<p>
-				<input type="radio" name="relation" value="total"> absolut
-				<input type="radio" name="relation" value="residents"> Einwohnerzahl
-				<input type="radio" name="relation" value="area"> Fläche
-			</p>
-		</div>
+			<label class="title">Abrechnungsjahr</label>
+			<select name="year">
+				<option value="2010" selected="selected">2010</option>
+			</select>
+		</form>
 	</div>
 
 	<script src="lib/underscore.js"></script>
