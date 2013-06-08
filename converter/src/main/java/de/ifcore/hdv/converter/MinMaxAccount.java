@@ -2,6 +2,7 @@ package de.ifcore.hdv.converter;
 
 public class MinMaxAccount {
 
+	private int key;
 	private String label;
 	private Long iMin;
 	private Long iMax;
@@ -10,8 +11,13 @@ public class MinMaxAccount {
 	private Long dMin;
 	private Long dMax;
 
-	public MinMaxAccount(String label) {
+	public MinMaxAccount(int key, String label) {
+		this.key = key;
 		this.label = label;
+	}
+
+	public int getKey() {
+		return key;
 	}
 
 	public String getLabel() {

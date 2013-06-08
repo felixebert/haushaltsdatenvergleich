@@ -4,19 +4,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class InOutAccount {
 
-	private String key;
+	private int key;
 	@JsonProperty(value = "i")
 	private Long income;
 	@JsonProperty(value = "s")
 	private Long spending;
 
-	public InOutAccount(String key, Long income, Long spending) {
+	public InOutAccount(int key, Long income, Long spending) {
 		this.key = key;
 		this.income = income;
 		this.spending = spending;
 	}
 
-	public String getKey() {
+	public int getKey() {
 		return key;
 	}
 

@@ -30,16 +30,10 @@ public class AccountParser {
 						String accountKey = strings[2];
 						String accountName = strings[3];
 						String value = strings[4];
-						Long convertedValue = null;
-						try {
-							convertedValue = Long.valueOf(value);
-						}
-						catch (NumberFormatException e) {
-							//							System.err.println("Error converting: " + areaKey + "/" + accountKey + "/" + accountName
-							//									+ " => " + value);
-						}
+						Long convertedValue = parseLongSafe(value);
 						if (hasText(areaKey) && areaKey.length() == 8 && hasText(accountKey)) {
-							result.add(new Account(areaKey, accountKey, accountName, convertedValue));
+							int parsedAccountKey = Integer.parseInt(accountKey);
+							result.add(new Account(areaKey, parsedAccountKey, accountName, convertedValue));
 						}
 					}
 				}
@@ -49,6 +43,17 @@ public class AccountParser {
 			return null;
 		}
 		return result;
+	}
+
+	private Long parseLongSafe(String value) {
+		try {
+			return Long.valueOf(value);
+		}
+		catch (NumberFormatException e) {
+			//							System.err.println("Error converting: " + areaKey + "/" + accountKey + "/" + accountName
+			//									+ " => " + value);
+			return null;
+		}
 	}
 
 	public static boolean hasText(String s) {

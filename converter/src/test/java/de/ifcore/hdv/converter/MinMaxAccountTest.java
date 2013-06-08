@@ -8,7 +8,7 @@ public class MinMaxAccountTest {
 
 	@Test
 	public void itShouldTolerateNulls() throws Exception {
-		MinMaxAccount account = new MinMaxAccount(null);
+		MinMaxAccount account = new MinMaxAccount(0, null);
 		account.addValue(null, null);
 		assertNull(account.getIMin());
 		assertNull(account.getIMax());
@@ -20,7 +20,7 @@ public class MinMaxAccountTest {
 
 	@Test
 	public void itShouldCalculateMinMax() throws Exception {
-		MinMaxAccount account = new MinMaxAccount(null);
+		MinMaxAccount account = new MinMaxAccount(0, null);
 		account.addValue(Long.valueOf(123), Long.valueOf(432));
 		account.addValue(Long.valueOf(512), Long.valueOf(32));
 		assertEquals(123, account.getIMin().longValue());
