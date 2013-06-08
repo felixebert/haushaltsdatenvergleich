@@ -26,6 +26,7 @@
 			});
 
 			$(hdv).on('map.loaded', _.bind(this.refreshComparison, this));
+			$('.settings').on('change', _.bind(this.refreshComparison, this));
 
 			return this;
 		},
@@ -57,8 +58,15 @@
 		},
 		setData: function(data) {
 			this.data = data;
+			this.refreshAccountSelectList();
 
 			$(hdv).triggerHandler('map.loaded');
+		},
+		refreshAccountSelectList: function() {
+			var selectList = $('select[name="pg"]');
+			_.each(this.data.accounts, function(account) {
+				selectList.append($("<option />").val(account.key).text(account.label));
+			});
 		},
 		nullSafeNumber: function(number) {
 			return number === null ? 0 : number;
@@ -70,14 +78,14 @@
 			}
 			return total;
 		},
-		getLayerStyle: function(total, account) {
+		getLayerStyle: function(total, min, max) {
 			var opacity;
 			var fillColor;
 			if (total <= 0) {
-				opacity = Math.round(total / account.dmin * 100) / 100;
+				opacity = Math.round(total / min * 100) / 100;
 				fillColor = opacity < 0 ? '' : '#FF0000';
 			} else {
-				opacity = Math.round(total / account.dmax * 100) / 100;
+				opacity = Math.round(total / max * 100) / 100;
 				fillColor = opacity < 0 ? '' : '#00C957';
 			}
 
@@ -91,7 +99,7 @@
 			_.each(this.data.areas, _.bind(function(area) {
 				var areaLayer = this.getAreaLayer(area.key);
 				var total = this.getAccountTotal(area.accounts[accountKey]);
-				var style = this.getLayerStyle(total, currentAccount);
+				var style = this.getLayerStyle(total, currentAccount.dmin, currentAccount.dmax);
 
 				areaLayer.value.setStyle(style);
 				areaLayer.value.bindPopup("<strong>" + area.name + "</strong><br />" + currentAccount.label + ": " + total.formatMoney(0, ',', '.') + " €");
@@ -99,7 +107,12 @@
 		},
 		refreshComparison: function() {
 			if (!_.isEmpty(this.data) && !_.isEmpty(this.areaLayers)) {
-				this.displayAccount(241);
+				var settings = hdv.serialize.toLiteral($('.settings').serializeArray());
+				if (settings.pg === 'all') {
+					$('select[name="pg"]').val(241);
+					settings.pg = 241;
+				}
+				this.displayAccount(settings.pg);
 			}
 		}
 	};

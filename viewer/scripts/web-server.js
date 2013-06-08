@@ -175,6 +175,7 @@ StaticServlet.prototype.sendFile_ = function(req, res, path) {
   if (req.method === 'HEAD') {
     res.end();
   } else {
+	res.setEncoding('utf8');
     file.on('data', res.write.bind(res));
     file.on('close', function() {
       res.end();

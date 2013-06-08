@@ -11,3 +11,19 @@ describe('remove one value of an array', function() {
 		expect(exampleArray.length).toEqual(4);
 	});
 });
+
+describe('convert a jquery serialized array to an object literal', function() {
+	it('should add all elements in the array', function() {
+		var exampleArray = [{
+			name: 'year',
+			value: '2010'
+		}, {
+			name: 'areaLayer',
+			value: 'g'
+		}];
+
+		var result = hdv.serialize.toLiteral(exampleArray);
+		expect(_.keys(result).length).toEqual(exampleArray.length);
+		expect(result.year).toEqual('2010');
+	});
+});
