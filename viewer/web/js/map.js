@@ -10,10 +10,10 @@
 
 	var map = {
 		leafletMap: null,
-		areas: [],
+		areaLayers: [],
 		data: {},
-		getArea: function(key) {
-			return _.find(this.areas, function(area) {
+		getAreaLayer: function(key) {
+			return _.find(this.areaLayers, function(area) {
 				return area.key == key;
 			});
 		},
@@ -25,23 +25,27 @@
 				maxZoom: 11
 			});
 
+			$(hdv).on('map.loaded', _.bind(this.refreshComparison, this));
+
 			return this;
 		},
-		loadAreas: function(type) {
-			$.getJSON('js/' + type + '.json', _.bind(this.addAreas, this));
+		loadAreaLayers: function(type) {
+			$.getJSON('js/' + type + '.json', _.bind(this.addAreaLayers, this));
 			return this;
 		},
-		addAreas: function(geojson) {
+		addAreaLayers: function(geojson) {
 			L.geoJson(geojson.features, {
 				style: {
 					'opacity': 0.5,
 					'weight': 2
 				},
-				onEachFeature: _.bind(this.addArea, this)
+				onEachFeature: _.bind(this.addAreaLayer, this)
 			}).addTo(this.leafletMap);
+
+			$(hdv).triggerHandler('map.loaded');
 		},
-		addArea: function(feature, layer) {
-			this.areas.push({
+		addAreaLayer: function(feature, layer) {
+			this.areaLayers.push({
 				'key': feature.properties.KN,
 				'label': feature.properties.GN,
 				'value': layer
@@ -53,19 +57,16 @@
 		},
 		setData: function(data) {
 			this.data = data;
-			this.displayAccount(521);
+
+			$(hdv).triggerHandler('map.loaded');
 		},
-		getAccount: function(accounts, key) {
-			return _.find(accounts, function(account) {
-				return account.key == key;
-			});
+		nullSafeNumber: function(number) {
+			return number === null ? 0 : number;
 		},
 		getAccountTotal: function(account) {
 			var total = 0;
-			if (account.i != null && account.s != null) {
-				total += account.i - Math.abs(account.s);
-			} else if (account.s != null) {
-				total -= Math.abs(account.s);
+			if (account) {
+				total += this.nullSafeNumber(account[0]) - this.nullSafeNumber(account[1]);
 			}
 			return total;
 		},
@@ -86,15 +87,20 @@
 			};
 		},
 		displayAccount: function(accountKey) {
-			var currentAccount = this.data.accountMap[accountKey];
-			_.each(this.data.accountsPerAreas, _.bind(function(area) {
-				var layer = this.getArea(area.areaKey);
-				var total = this.getAccountTotal(this.getAccount(area.accounts, accountKey));
+			var currentAccount = this.data.accounts[accountKey];
+			_.each(this.data.areas, _.bind(function(area) {
+				var areaLayer = this.getAreaLayer(area.key);
+				var total = this.getAccountTotal(area.accounts[accountKey]);
 				var style = this.getLayerStyle(total, currentAccount);
 
-				layer.value.setStyle(style);
-				layer.value.bindPopup("<strong>" + layer.label + "</strong><br />" + currentAccount.label + ": " + total.formatMoney(0, ',', '.') + " €");
+				areaLayer.value.setStyle(style);
+				areaLayer.value.bindPopup("<strong>" + area.name + "</strong><br />" + currentAccount.label + ": " + total.formatMoney(0, ',', '.') + " €");
 			}, this));
+		},
+		refreshComparison: function() {
+			if (!_.isEmpty(this.data) && !_.isEmpty(this.areaLayers)) {
+				this.displayAccount(241);
+			}
 		}
 	};
 
