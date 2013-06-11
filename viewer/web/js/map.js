@@ -77,20 +77,27 @@
 			return total;
 		},
 		getLayerStyle: function(total, min, max) {
-			var opacity;
-			var fillColor;
-			if (total <= 0) {
-				opacity = Math.round(total / min * 100) / 100;
-				fillColor = opacity < 0 ? '' : '#FF0000';
-			} else {
-				opacity = Math.round(total / max * 100) / 100;
-				fillColor = opacity < 0 ? '' : '#00C957';
-			}
-
+			var boundary = total <= 0 ? min : max;
 			return {
-				'fillOpacity': Math.min(0.75, opacity),
-				'fillColor': fillColor
+				'fillOpacity': this.getOpacity(total, boundary),
+				'fillColor': this.getFillColor(total)
 			};
+		},
+		getFillColor: function(value) {
+			if (value == 0) {
+				return '#888';
+			} else {
+				return value <= 0 ? '#FF0000' : '#00C957';
+			}
+		},
+		getOpacity: function(value, boundary) {
+			return value === 0 ? 0.25 : Math.round(0.75 * this.getOpacityFactor(value, boundary) * 100) / 100;
+		},
+		getOpacityFactor: function(value, boundary) {
+			return Math.round((this.getBaseLog(value)) / this.getBaseLog(boundary) * 100) / 100;
+		},
+		getBaseLog: function(number) {
+			return Math.log(Math.abs(number)) / Math.log(10);
 		},
 		displayAccount: function(accountKey) {
 			var currentAccount = this.data.accounts[accountKey];
@@ -100,8 +107,8 @@
 				var style = this.getLayerStyle(total, currentAccount.dmin, currentAccount.dmax);
 
 				areaLayer.value.setStyle(style);
-				areaLayer.value
-						.bindPopup("<strong>" + areaLayer.label + "</strong><br />" + currentAccount.label + ": " + hdv.formatter.currency(total) + " €");
+				areaLayer.value.bindPopup("<strong>" + areaLayer.label + "</strong><br />" + currentAccount.label + ": " + hdv.formatter.currency(total)
+						+ " € <br />Opacity: " + style.fillOpacity);
 			}, this));
 		},
 		refreshComparison: function() {
