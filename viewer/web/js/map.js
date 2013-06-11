@@ -25,6 +25,11 @@
 				maxZoom: 11
 			});
 
+			L.tileLayer('http://{s}.tile.cloudmade.com/036a729cf53d4388a8ec345e1543ef53/44094/256/{z}/{x}/{y}.png', {
+				attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+				maxZoom: 18
+			}).addTo(this.leafletMap);
+
 			$(hdv).on('map.loaded', _.bind(this.refreshComparison, this));
 			$('.settings').on('change', _.bind(this.refreshComparison, this));
 
@@ -38,7 +43,7 @@
 			L.geoJson(geojson.features, {
 				style: {
 					'opacity': 0.5,
-					'weight': 2
+					'weight': 1
 				},
 				onEachFeature: _.bind(this.addAreaLayer, this)
 			}).addTo(this.leafletMap);
@@ -90,7 +95,7 @@
 			}
 
 			return {
-				'fillOpacity': opacity,
+				'fillOpacity': Math.min(0.75, opacity),
 				'fillColor': fillColor
 			};
 		},
