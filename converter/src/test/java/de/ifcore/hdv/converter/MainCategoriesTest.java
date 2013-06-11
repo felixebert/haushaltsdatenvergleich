@@ -18,6 +18,6 @@ public class MainCategoriesTest {
 		Category first = categories.first();
 		Category last = categories.last();
 		assertEquals("Innere Verwaltung", first.getLabel());
-		assertEquals("Sicherheit und Ordnung", last.getLabel());
+		assertEquals("Sicherheit und Ordnungöäüß", last.getLabel());
 	}
 }
