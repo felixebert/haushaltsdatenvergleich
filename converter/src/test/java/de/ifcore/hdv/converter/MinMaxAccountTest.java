@@ -30,4 +30,13 @@ public class MinMaxAccountTest {
 		assertEquals(123 - 432, account.getDMin().longValue());
 		assertEquals(512 - 32, account.getDMax().longValue());
 	}
+
+	@Test
+	public void itShouldCalculateDiffWithNullValues() throws Exception {
+		MinMaxAccount account = new MinMaxAccount(0, null);
+		account.addValue(Long.valueOf(123), null);
+		account.addValue(null, Long.valueOf(32));
+		assertEquals(-32, account.getDMin().longValue());
+		assertEquals(123, account.getDMax().longValue());
+	}
 }
