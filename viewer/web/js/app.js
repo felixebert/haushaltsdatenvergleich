@@ -18,4 +18,15 @@ var hdv = {};
 			return literal;
 		}
 	};
+
+	hdv.formatter = {
+		currency: function(number) {
+			var thousand = '.';
+			var negative = number < 0 ? "-" : "";
+			var absNumber = Math.abs(+number || 0) + "";
+			var thousands = (absNumber.length > 3) ? absNumber.length % 3 : 0;
+			return negative + (thousands ? absNumber.substr(0, thousands) + thousand : "")
+					+ absNumber.substr(thousands).replace(/(\d{3})(?=\d)/g, "$1" + thousand);
+		}
+	};
 })(hdv, _);
