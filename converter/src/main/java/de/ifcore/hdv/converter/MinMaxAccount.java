@@ -41,7 +41,11 @@ public class MinMaxAccount {
 			sMin = Math.min(sMin, spendings);
 			sMax = Math.max(sMax, spendings);
 		}
-		if (income != null && spendings != null) {
+		if (income != null || spendings != null) {
+			if (income == null)
+				income = Long.valueOf(0);
+			if (spendings == null)
+				spendings = Long.valueOf(0);
 			if (dMin == null)
 				dMin = income - spendings;
 			if (dMax == null)
