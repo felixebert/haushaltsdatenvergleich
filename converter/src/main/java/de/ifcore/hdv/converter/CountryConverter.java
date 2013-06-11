@@ -2,7 +2,7 @@ package de.ifcore.hdv.converter;
 
 import de.ifcore.hdv.converter.data.MergedData;
 
-public class Converter {
+public class CountryConverter {
 
 	public static void main(String[] args) {
 		if (args.length == 4) {
