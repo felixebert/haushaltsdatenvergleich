@@ -62,9 +62,17 @@
 		},
 		refreshAccountSelectList: function() {
 			var selectList = $('select[name="pg"]');
-			_.each(this.data.accounts, function(account) {
-				selectList.append($("<option />").val(account.key).text(account.label));
-			});
+			_.each(_.keys(this.data.tree), _.bind(function(groupKey) {
+				var groupAccount = this.data.accounts[groupKey];
+				var optGroup = $('<optgroup />').attr('label', groupAccount.label);
+				_.each(this.data.tree[groupKey], _.bind(function(accountKey) {
+					var account = this.data.accounts[accountKey];
+					optGroup.append($("<option />").val(account.key).text(account.label));
+				}, this));
+				selectList.append(optGroup);
+			}, this));
+		},
+		refreshAccountGroupSelectList: function(group) {
 		},
 		nullSafeNumber: function(number) {
 			return number === null ? 0 : number;
@@ -107,8 +115,8 @@
 				var style = this.getLayerStyle(total, currentAccount.dmin, currentAccount.dmax);
 
 				areaLayer.value.setStyle(style);
-				areaLayer.value.bindPopup("<strong>" + areaLayer.label + "</strong><br />" + currentAccount.label + ": " + hdv.formatter.currency(total)
-						+ " € <br />Opacity: " + style.fillOpacity);
+				areaLayer.value
+						.bindPopup("<strong>" + areaLayer.label + "</strong><br />" + currentAccount.label + ": " + hdv.formatter.currency(total) + " €");
 			}, this));
 		},
 		refreshComparison: function() {
