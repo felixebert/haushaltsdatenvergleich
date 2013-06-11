@@ -1,13 +1,6 @@
 'use strict';
 
 (function(hdv, L, $, _) {
-	Number.prototype.formatMoney = function(c, d, t) {
-		var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "." : d, t = t == undefined ? "," : t, s = n < 0 ? "-" : "", i = parseInt(n = Math
-				.abs(+n || 0).toFixed(c))
-				+ "", j = (j = i.length) > 3 ? j % 3 : 0;
-		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
-	};
-
 	var map = {
 		leafletMap: null,
 		areaLayers: [],
@@ -25,6 +18,11 @@
 				maxZoom: 11
 			});
 
+			L.tileLayer('http://{s}.tile.cloudmade.com/036a729cf53d4388a8ec345e1543ef53/44094/256/{z}/{x}/{y}.png', {
+				attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+				maxZoom: 18
+			}).addTo(this.leafletMap);
+
 			$(hdv).on('map.loaded', _.bind(this.refreshComparison, this));
 			$('.settings').on('change', _.bind(this.refreshComparison, this));
 
@@ -38,7 +36,7 @@
 			L.geoJson(geojson.features, {
 				style: {
 					'opacity': 0.5,
-					'weight': 2
+					'weight': 1
 				},
 				onEachFeature: _.bind(this.addAreaLayer, this)
 			}).addTo(this.leafletMap);
@@ -79,20 +77,27 @@
 			return total;
 		},
 		getLayerStyle: function(total, min, max) {
-			var opacity;
-			var fillColor;
-			if (total <= 0) {
-				opacity = Math.round(total / min * 100) / 100;
-				fillColor = opacity < 0 ? '' : '#FF0000';
-			} else {
-				opacity = Math.round(total / max * 100) / 100;
-				fillColor = opacity < 0 ? '' : '#00C957';
-			}
-
+			var boundary = total <= 0 ? min : max;
 			return {
-				'fillOpacity': opacity,
-				'fillColor': fillColor
+				'fillOpacity': this.getOpacity(total, boundary),
+				'fillColor': this.getFillColor(total)
 			};
+		},
+		getFillColor: function(value) {
+			if (value == 0) {
+				return '#888';
+			} else {
+				return value <= 0 ? '#FF0000' : '#00C957';
+			}
+		},
+		getOpacity: function(value, boundary) {
+			return value === 0 ? 0.25 : Math.round(0.75 * this.getOpacityFactor(value, boundary) * 100) / 100;
+		},
+		getOpacityFactor: function(value, boundary) {
+			return Math.round((this.getBaseLog(value)) / this.getBaseLog(boundary) * 100) / 100;
+		},
+		getBaseLog: function(number) {
+			return Math.log(Math.abs(number)) / Math.log(10);
 		},
 		displayAccount: function(accountKey) {
 			var currentAccount = this.data.accounts[accountKey];
@@ -102,7 +107,8 @@
 				var style = this.getLayerStyle(total, currentAccount.dmin, currentAccount.dmax);
 
 				areaLayer.value.setStyle(style);
-				areaLayer.value.bindPopup("<strong>" + area.name + "</strong><br />" + currentAccount.label + ": " + total.formatMoney(0, ',', '.') + " €");
+				areaLayer.value.bindPopup("<strong>" + areaLayer.label + "</strong><br />" + currentAccount.label + ": " + hdv.formatter.currency(total)
+						+ " € <br />Opacity: " + style.fillOpacity);
 			}, this));
 		},
 		refreshComparison: function() {
