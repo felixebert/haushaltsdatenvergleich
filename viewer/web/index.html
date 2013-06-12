@@ -18,10 +18,14 @@
 			<h1>Finanzdaten NRW</h1>
 			
 			<label class="title">Produktbereich</label>
-			<select name="pb"></select>
+			<select name="pb">
+				<option value="all" selected="selected">Alle</option>
+			</select>
 			
 			<label class="title">Produktgruppe</label>
-			<select name="pg"></select>
+			<select name="pg">
+				<option value="all" selected="selected">Alle</option>
+			</select>
 			
 			<label class="title">Was vergleichen?</label>
 			<p>
@@ -60,7 +64,7 @@
 	<script src="js/areas.js"></script>
 	
 	<script type="text/javascript">
-		hdv.map.init().loadAreaLayers('gemeinden').loadData(2009);
+		hdv.map.init().loadAreaLayers('landkreise-05').loadData(2009);
 	</script>
 </body>
 </html>
