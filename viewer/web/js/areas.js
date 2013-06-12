@@ -92,7 +92,7 @@
 			return boundaries;
 		},
 		getBoundary: function(value, boundaries) {
-			return value > 0 ? [boundaries[0], boundaries[1]] : [boundaries[2], boundaries[3]];
+			return value > 0 ? [boundaries[0], boundaries[1]] : [boundaries[3], boundaries[2]];
 		},
 		completeBoundaries: function(boundaries) {
 			if (boundaries.length === 4) {
