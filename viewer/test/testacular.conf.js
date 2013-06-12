@@ -7,7 +7,7 @@ files = [
   'web/lib/underscore.js',
   'web/lib/leaflet.js',
   'web/js/app.js',
-  'web/js/map.js',
+  'web/js/*.js',
   'test/unit/**/*.js'
 ];
 

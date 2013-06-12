@@ -51,15 +51,14 @@
 						.bindPopup("<strong>" + areaLayer.label + "</strong><br />" + currentAccount.label + ": " + hdv.formatter.currency(total) + " €");
 			}, this));
 		},
+		refreshLayers: function(settings) {
+			this.displayAccount(255);
+		},
 		refresh: function() {
 			var settings = hdv.serialize.toLiteral($('.settings').serializeArray());
-			if (settings.pg) {
-				var pg = settings.pg;
-				if (settings.pg === 'all') {
-					pg = 241;
-				}
-				this.displayAccount(pg);
-			}
+			settings.accounts = hdv.accounts.getSelectedAccounts(settings.pb, settings.pg);
+
+			this.refreshLayers(settings);
 		}
 	};
 
