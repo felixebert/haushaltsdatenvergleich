@@ -3,6 +3,7 @@ package de.ifcore.hdv.converter;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
@@ -28,11 +29,20 @@ public class CategoryMergerTest {
 	}
 
 	@Test
-	public void itShouldReturnCategoryRanges() throws Exception {
+	public void itShouldReturnCategoryRangesSortedByCategoryLabel() throws Exception {
 		SortedSet<Category> categories = mockCategories();
 		List<int[]> fromToRanges = CategoryMerger.findFromToRanges(categories);
-		assertArrayEquals(new int[] { 11, 21 }, fromToRanges.get(0));
-		assertArrayEquals(new int[] { 21, 31 }, fromToRanges.get(1));
+		assertArrayEquals(new int[] { 21, 31 }, fromToRanges.get(0));
+		assertArrayEquals(new int[] { 11, 21 }, fromToRanges.get(1));
+		assertArrayEquals(new int[] { 31, 10000 }, fromToRanges.get(2));
+	}
+
+	@Test
+	public void itShouldReorderByCategoryLabel() throws Exception {
+		List<int[]> fromToRanges = CategoryMerger.reorderByCategoryLabel(
+				Arrays.asList(new int[] { 31, 10000 }, new int[] { 11, 21 }, new int[] { 21, 31 }), mockCategories());
+		assertArrayEquals(new int[] { 21, 31 }, fromToRanges.get(0));
+		assertArrayEquals(new int[] { 11, 21 }, fromToRanges.get(1));
 		assertArrayEquals(new int[] { 31, 10000 }, fromToRanges.get(2));
 	}
 
@@ -43,7 +53,7 @@ public class CategoryMergerTest {
 		assertEquals(2, result.size());
 	}
 
-	private SortedSet<Category> mockCategories() {
+	public static SortedSet<Category> mockCategories() {
 		SortedSet<Category> categories = new TreeSet<>();
 		categories.add(new Category(31, "Cat3"));
 		categories.add(new Category(21, "Alpha"));
