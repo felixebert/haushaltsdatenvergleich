@@ -3,7 +3,7 @@
 (function(hdv, $, _) {
 	var accounts = {
 		selectedGroup: 'all',
-		selectedAccount: 'all',
+		selectedAccount: 523,
 		init: function() {
 			$(hdv).on('map.loaded.data', _.bind(this.reset, this));
 			$('.settings').on('change', _.bind(this.refresh, this));
@@ -85,6 +85,10 @@
 			}
 
 			return accounts;
+		},
+		getTopAccount: function(selectedGroup, selectedAccount) {
+			var account = selectedAccount === 'all' ? selectedGroup : selectedAccount;
+			return parseInt(account, 10);
 		}
 	};
 

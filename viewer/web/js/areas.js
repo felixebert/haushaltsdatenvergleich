@@ -9,12 +9,38 @@
 		nullSafeNumber: function(number) {
 			return number === null ? 0 : number;
 		},
-		getAccountTotal: function(account) {
-			var total = 0;
-			if (account) {
-				total += this.nullSafeNumber(account[0]) - this.nullSafeNumber(account[1]);
+		getValueOfArea: function(area, settings) {
+			var inOutSum = this.getInOutSum(area.accounts, settings.accounts);
+			var inOut = inOutSum;
+			if (settings.relation !== 'none') {
+				inOut = this.getInOutInRelationTo(inOutSum, area[settings.relation]);
 			}
-			return total;
+			return this.getValue(inOut, settings.compare);
+		},
+		getValue: function(inOut, compare) {
+			if (compare === 'in') {
+				return this.nullSafeNumber(inOut[0]);
+			}
+			if (compare === 'out') {
+				return this.nullSafeNumber(inOut[1]);
+			}
+			return this.nullSafeNumber(inOut[0]) - this.nullSafeNumber(inOut[1]);
+		},
+		getInOutSum: function(areaAccountsInOut, accounts) {
+			var inOut = [0, 0];
+			_.each(accounts, _.bind(function(account) {
+				var accountInOut = areaAccountsInOut[account];
+				inOut[0] += this.nullSafeNumber(accountInOut[0]);
+				inOut[1] += this.nullSafeNumber(accountInOut[1]);
+			}, this));
+
+			return inOut;
+		},
+		getInOutInRelationTo: function(inOut, relation) {
+			return [this.getValueInRelationTo(inOut[0], relation), this.getValueInRelationTo(inOut[1], relation)];
+		},
+		getValueInRelationTo: function(value, relation) {
+			return Math.round(value / relation);
 		},
 		getLayerStyle: function(total, min, max) {
 			var boundary = total <= 0 ? min : max;
@@ -34,31 +60,73 @@
 			return value === 0 ? 0.25 : Math.round(0.75 * this.getOpacityFactor(value, boundary) * 100) / 100;
 		},
 		getOpacityFactor: function(value, boundary) {
-			return Math.round((this.getBaseLog(value)) / this.getBaseLog(boundary) * 100) / 100;
+			return Math.round((this.getBaseLog(value) - this.getBaseLog(boundary[1])) / (this.getBaseLog(boundary[0]) - this.getBaseLog(boundary[1])) * 100) / 100;
 		},
 		getBaseLog: function(number) {
 			return Math.log(Math.abs(number)) / Math.log(10);
 		},
-		displayAccount: function(accountKey) {
-			var currentAccount = hdv.map.data.accounts[accountKey];
-			_.each(hdv.map.data.areas, _.bind(function(area) {
-				var areaLayer = hdv.map.getAreaLayer(area.key);
-				var total = this.getAccountTotal(area.accounts[accountKey]);
-				var style = this.getLayerStyle(total, currentAccount.dmin, currentAccount.dmax);
+		getBoundaries: function(settings) {
+			var allBoundaries = hdv.map.data.accounts[settings.boundaryAccount];
+			var relevantBoundaries = this.getRelevantBoundaries(allBoundaries, settings.relation, settings.compare);
+			return this.completeBoundaries(relevantBoundaries);
+		},
+		getRelevantBoundaries: function(allBoundaries, relation, compare) {
+			var startPos = 0;
+			var length = 2;
+			if (relation !== 'none') {
+				startPos = relation === 'population' ? 8 : 16;
+			}
+			if (compare === 'in') {
+				startPos += 4;
+			} else if (compare === 'out') {
+				startPos += 6;
+			} else {
+				length = 4;
+			}
 
-				areaLayer.value.setStyle(style);
-				areaLayer.value
-						.bindPopup("<strong>" + areaLayer.label + "</strong><br />" + currentAccount.label + ": " + hdv.formatter.currency(total) + " €");
-			}, this));
+			var boundaries = [];
+			for ( var i = startPos; i < startPos + length; i++) {
+				boundaries.push(allBoundaries[i]);
+			}
+			return boundaries;
+		},
+		getBoundary: function(value, boundaries) {
+			return value > 0 ? [boundaries[0], boundaries[1]] : [boundaries[2], boundaries[3]];
+		},
+		completeBoundaries: function(boundaries) {
+			if (boundaries.length === 4) {
+				return boundaries;
+			}
+
+			var completeBoundaries;
+			if (boundaries[0] < 0) {
+				completeBoundaries = [0, 0, boundaries[0], boundaries[1]];
+			} else {
+				completeBoundaries = [boundaries[0], boundaries[1], 0, 0];
+			}
+			return completeBoundaries;
 		},
 		refreshLayers: function(settings) {
-			this.displayAccount(255);
+			var boundaries = this.getBoundaries(settings);
+
+			_.each(hdv.map.data.areas, _.bind(function(area) {
+				var areaLayer = hdv.map.getAreaLayer(area.key);
+				var areaValue = this.getValueOfArea(area, settings);
+				var boundary = this.getBoundary(areaValue, boundaries);
+
+				var style = this.getLayerStyle(areaValue, boundary);
+				var html = "<strong>" + areaLayer.label + "</strong><br />" + hdv.formatter.currency(areaValue) + " €";
+
+				areaLayer.value.setStyle(style);
+				areaLayer.value.bindPopup(html);
+			}, this));
 		},
 		refresh: function() {
 			var settings = hdv.serialize.toLiteral($('.settings').serializeArray());
 			settings.accounts = hdv.accounts.getSelectedAccounts(settings.pb, settings.pg);
+			settings.boundaryAccount = hdv.accounts.getTopAccount(settings.pb, settings.pg);
 
-			this.refreshLayers(settings);
+			this.displayAccount(611);
 		}
 	};
 

@@ -36,8 +36,8 @@
 			
 			<label class="title">im Verhältnis zur?</label>
 			<p>
-				<label class="radio"><input type="radio" name="relation" value="residents"> Einwohnerzahl</label>
-				<label class="radio"><input type="radio" name="relation" value="area"> Fläche</label>
+				<label class="radio"><input type="radio" name="relation" value="population"> Einwohnerzahl</label>
+				<label class="radio"><input type="radio" name="relation" value="size"> Fläche</label>
 				<label class="radio"><input type="radio" name="relation" value="none" checked="checked"> absolut</label>
 			</p>
 
@@ -64,7 +64,7 @@
 	<script src="js/areas.js"></script>
 	
 	<script type="text/javascript">
-		hdv.map.init().loadAreaLayers('landkreise-05').loadData(2009);
+		hdv.map.init().loadAreaLayers('gemeinden').loadData(2009);
 	</script>
 </body>
 </html>
