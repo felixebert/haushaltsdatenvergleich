@@ -30,8 +30,10 @@
 			var inOut = [0, 0];
 			_.each(accounts, _.bind(function(account) {
 				var accountInOut = areaAccountsInOut[account];
-				inOut[0] += this.nullSafeNumber(accountInOut[0]);
-				inOut[1] += this.nullSafeNumber(accountInOut[1]);
+				if (accountInOut !== undefined) {
+					inOut[0] += this.nullSafeNumber(accountInOut[0]);
+					inOut[1] += this.nullSafeNumber(accountInOut[1]);
+				}
 			}, this));
 
 			return inOut;
@@ -42,8 +44,7 @@
 		getValueInRelationTo: function(value, relation) {
 			return Math.round(value / relation);
 		},
-		getLayerStyle: function(total, min, max) {
-			var boundary = total <= 0 ? min : max;
+		getLayerStyle: function(total, boundary) {
 			return {
 				'fillOpacity': this.getOpacity(total, boundary),
 				'fillColor': this.getFillColor(total)
@@ -66,7 +67,7 @@
 			return Math.log(Math.abs(number)) / Math.log(10);
 		},
 		getBoundaries: function(settings) {
-			var allBoundaries = hdv.map.data.accounts[settings.boundaryAccount];
+			var allBoundaries = hdv.map.data.accounts[settings.boundaryAccount].data;
 			var relevantBoundaries = this.getRelevantBoundaries(allBoundaries, settings.relation, settings.compare);
 			return this.completeBoundaries(relevantBoundaries);
 		},
@@ -126,7 +127,7 @@
 			settings.accounts = hdv.accounts.getSelectedAccounts(settings.pb, settings.pg);
 			settings.boundaryAccount = hdv.accounts.getTopAccount(settings.pb, settings.pg);
 
-			this.displayAccount(611);
+			this.refreshLayers(settings);
 		}
 	};
 

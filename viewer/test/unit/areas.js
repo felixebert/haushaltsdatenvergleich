@@ -15,6 +15,7 @@ describe('area layer visualization', function() {
 
 		expect(hdv.areas.getInOutSum(accountsInOut, [611])).toEqual([9269650, 4974823]);
 		expect(hdv.areas.getInOutSum(accountsInOut, [611, 411])).toEqual([9269650, 4974823 + 93863]);
+		expect(hdv.areas.getInOutSum(accountsInOut, [620])).toEqual([0, 0]);
 	});
 
 	it('should return inOut in relation to a number', function() {
