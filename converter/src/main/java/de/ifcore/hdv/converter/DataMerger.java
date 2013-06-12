@@ -42,9 +42,9 @@ public class DataMerger {
 			else {
 				Collection<InOutAccount> accountValues = inOutMap.values();
 				Map<Integer, Long[]> accountValuesMap = convertToMap(accountValues);
-				processMinMax(accountValues);
 				AccountsPerArea accountsPerArea = new AccountsPerArea(areaKey, population.getPopulation(),
 						areaSize.doubleValue(), accountValuesMap);
+				processMinMax(accountValues, accountsPerArea);
 				result.add(accountsPerArea);
 			}
 		}
@@ -74,10 +74,10 @@ public class DataMerger {
 		return result;
 	}
 
-	private void processMinMax(Collection<InOutAccount> accountValues) {
+	private void processMinMax(Collection<InOutAccount> accountValues, AccountsPerArea accountsPerArea) {
 		for (InOutAccount inOutAccount : accountValues) {
 			MinMaxAccount minMaxAccount = accountMap.get(inOutAccount.getKey());
-			minMaxAccount.addValue(inOutAccount.getIncome(), inOutAccount.getSpending());
+			minMaxAccount.addValue(inOutAccount.getIncome(), inOutAccount.getSpending(), accountsPerArea);
 		}
 	}
 
