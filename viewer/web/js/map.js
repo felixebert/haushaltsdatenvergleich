@@ -1,5 +1,4 @@
 'use strict';
-
 (function(hdv, L, $, _) {
 	var map = {
 		leafletMap: null,
@@ -28,7 +27,7 @@
 			}
 		},
 		loadAreaLayers: function(type) {
-			$.getJSON('js/' + type + '.geojson', _.bind(this.addAreaLayers, this));
+			$.getJSON('data/' + type + '.geojson', _.bind(this.addAreaLayers, this));
 			return this;
 		},
 		addAreaLayers: function(geojson) {
@@ -54,8 +53,8 @@
 				return area.key == key;
 			});
 		},
-		loadData: function(file) {
-			$.getJSON('js/' + file + '.json', _.bind(this.setData, this));
+		loadData: function(year) {
+			$.getJSON('data/finanzen-gemeinden-' + year + '.json', _.bind(this.setData, this));
 			return this;
 		},
 		setData: function(data) {
