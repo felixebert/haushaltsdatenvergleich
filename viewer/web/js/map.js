@@ -28,7 +28,7 @@
 			}
 		},
 		loadAreaLayers: function(type) {
-			$.getJSON('js/' + type + '.json', _.bind(this.addAreaLayers, this));
+			$.getJSON('js/' + type + '.geojson', _.bind(this.addAreaLayers, this));
 			return this;
 		},
 		addAreaLayers: function(geojson) {
@@ -54,8 +54,8 @@
 				return area.key == key;
 			});
 		},
-		loadData: function(year) {
-			$.getJSON('js/' + year + '.json', _.bind(this.setData, this));
+		loadData: function(file) {
+			$.getJSON('js/' + file + '.json', _.bind(this.setData, this));
 			return this;
 		},
 		setData: function(data) {

@@ -92,7 +92,7 @@
 			return boundaries;
 		},
 		getBoundary: function(value, boundaries) {
-			return value > 0 ? [boundaries[0], boundaries[1]] : [boundaries[3], boundaries[2]];
+			return value > 0 ? [boundaries[0], boundaries[1]] : [boundaries[2], boundaries[3]];
 		},
 		completeBoundaries: function(boundaries) {
 			if (boundaries.length === 4) {
@@ -112,14 +112,18 @@
 
 			_.each(hdv.map.data.areas, _.bind(function(area) {
 				var areaLayer = hdv.map.getAreaLayer(area.key);
-				var areaValue = this.getValueOfArea(area, settings);
-				var boundary = this.getBoundary(areaValue, boundaries);
+				if (areaLayer) {
+					var areaValue = this.getValueOfArea(area, settings);
+					var boundary = this.getBoundary(areaValue, boundaries);
 
-				var style = this.getLayerStyle(areaValue, boundary);
-				var html = "<strong>" + areaLayer.label + "</strong><br />" + hdv.formatter.currency(areaValue) + " €";
+					var style = this.getLayerStyle(areaValue, boundary);
+					var html = "<strong>" + areaLayer.label + "</strong><br />" + hdv.formatter.currency(areaValue) + " €";
 
-				areaLayer.value.setStyle(style);
-				areaLayer.value.bindPopup(html);
+					areaLayer.value.setStyle(style);
+					areaLayer.value.bindPopup(html);
+				} else {
+					console.error('no layer for area ' + area.key);
+				}
 			}, this));
 		},
 		refresh: function() {
