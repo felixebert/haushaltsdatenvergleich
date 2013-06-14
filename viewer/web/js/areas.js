@@ -44,27 +44,31 @@
 		getValueInRelationTo: function(value, relation) {
 			return Math.round(value / relation);
 		},
-		getLayerStyle: function(total, boundary) {
+		getLayerStyle: function(total, boundary, compare) {
 			return {
 				'fillOpacity': this.getOpacity(total, boundary),
-				'fillColor': this.getFillColor(total)
+				'fillColor': this.getFillColor(total, compare)
 			};
 		},
-		getFillColor: function(value) {
+		getFillColor: function(value, compare) {
 			if (value == 0) {
 				return '#888';
 			} else {
-				return value <= 0 ? '#FF0000' : '#00C957';
+				return value <= 0 || compare === 'out' ? '#FF0000' : '#00C957';
 			}
 		},
-		getOpacity: function(value, boundary) {
-			return value === 0 ? 0.25 : Math.round(0.75 * this.getOpacityFactor(value, boundary) * 100) / 100;
+		getOpacity: function(value, log10Boundary) {
+			if (value === 0) {
+				return 0.25;
+			}
+			var opacity = Math.round(0.75 * this.getOpacityFactor(value, log10Boundary) * 100) / 100;
+			return Math.max(0.1, opacity);
 		},
-		getOpacityFactor: function(value, boundary) {
-			return Math.round((this.getBaseLog(value) - this.getBaseLog(boundary[1])) / (this.getBaseLog(boundary[0]) - this.getBaseLog(boundary[1])) * 100) / 100;
+		getOpacityFactor: function(value, log10Boundary) {
+			return Math.round((this.log10(value) - log10Boundary[1]) / (log10Boundary[0] - log10Boundary[1]) * 100) / 100;
 		},
-		getBaseLog: function(number) {
-			return Math.log(Math.abs(number)) / Math.log(10);
+		log10: function(number) {
+			return number === 0 ? 0 : Math.log(Math.abs(number)) / Math.LN10;
 		},
 		getBoundaries: function(settings) {
 			var allBoundaries = hdv.map.data.accounts[settings.boundaryAccount].data;
@@ -107,16 +111,24 @@
 			}
 			return completeBoundaries;
 		},
+		toLog10: function(boundaries) {
+			var log10Boundaries = [];
+			_.each(boundaries, _.bind(function(boundaryValue) {
+				log10Boundaries.push(this.log10(boundaryValue));
+			}, this));
+			return log10Boundaries;
+		},
 		refreshLayers: function(settings) {
 			var boundaries = this.getBoundaries(settings);
+			var log10Boundaries = this.toLog10(boundaries);
 
 			_.each(hdv.map.data.areas, _.bind(function(area) {
 				var areaLayer = hdv.map.getAreaLayer(area.key);
 				if (areaLayer) {
 					var areaValue = this.getValueOfArea(area, settings);
-					var boundary = this.getBoundary(areaValue, boundaries);
+					var boundary = this.getBoundary(areaValue, log10Boundaries);
 
-					var style = this.getLayerStyle(areaValue, boundary);
+					var style = this.getLayerStyle(areaValue, boundary, settings.compare);
 					var html = "<strong>" + areaLayer.label + "</strong><br />" + hdv.formatter.currency(areaValue) + " €";
 
 					areaLayer.value.setStyle(style);
