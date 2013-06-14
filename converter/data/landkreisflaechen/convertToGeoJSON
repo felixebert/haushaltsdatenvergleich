@@ -1,3 +1,3 @@
 #!/bin/bash
-rm landkreise.json
-ogr2ogr -f GeoJSON -s_srs epsg:25832 -t_srs epsg:4326 -simplify 200 landkreise.json vg250_f.dbf
+rm landkreise.geojson
+ogr2ogr -f GeoJSON -s_srs epsg:25832 -t_srs epsg:4326 -simplify 200 landkreise.geojson vg1000_krs.dbf
