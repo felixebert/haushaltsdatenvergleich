@@ -18,6 +18,6 @@ public class AreaLabelParserTest {
 		Map<String, LabelAgs> labels = parser.parse();
 		assertNotNull(labels);
 		assertEquals("Brunsbüttel, Stadt", labels.get("010510011011").getLabel());
-		assertEquals("01051011", labels.get("010510011011").getAgs());
+		assertEquals("01051", labels.get("010510011011").getAgs());
 	}
 }
