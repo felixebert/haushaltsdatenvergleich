@@ -28,7 +28,7 @@ public class AreaLabelParser extends AbstractExcelParser {
 			if (areaKey != null && !areaKey.isEmpty()) {
 				String label = getCellStringValue(row, 7);
 				if (label != null)
-					result.put(areaKey, new LabelAgs(label, ags));
+					result.put(ags, new LabelAgs(label, ags));
 			}
 		}
 		return result;
