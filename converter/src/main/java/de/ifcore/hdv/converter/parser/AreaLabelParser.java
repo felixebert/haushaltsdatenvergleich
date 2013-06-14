@@ -24,7 +24,7 @@ public class AreaLabelParser extends AbstractExcelParser {
 		while (rowIterator.hasNext()) {
 			Row row = rowIterator.next();
 			String areaKey = parseCellsIntoOne(row, new int[] { 2, 3, 4, 5, 6 });
-			String ags = parseCellsIntoOne(row, new int[] { 2, 3, 4, 6 });
+			String ags = parseCellsIntoOne(row, new int[] { 2, 3, 4 });
 			if (areaKey != null && !areaKey.isEmpty()) {
 				String label = getCellStringValue(row, 7);
 				if (label != null)
