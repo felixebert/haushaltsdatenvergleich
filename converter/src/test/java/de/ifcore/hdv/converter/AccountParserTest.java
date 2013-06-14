@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Test;
 
 import de.ifcore.hdv.converter.data.Account;
+import de.ifcore.hdv.converter.parser.AccountParser;
 
 public class AccountParserTest {
 

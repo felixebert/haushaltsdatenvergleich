@@ -1,4 +1,4 @@
-package de.ifcore.hdv.converter;
+package de.ifcore.hdv.converter.filter;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -13,7 +13,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.SimpleType;
 
+import de.ifcore.hdv.converter.Utils;
 import de.ifcore.hdv.converter.data.LabelAgs;
+import de.ifcore.hdv.converter.parser.AreaLabelParser;
 
 public class CountyFilter {
 

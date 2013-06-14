@@ -7,6 +7,7 @@ import java.util.Map;
 import org.junit.Test;
 
 import de.ifcore.hdv.converter.data.Population;
+import de.ifcore.hdv.converter.parser.PopulationParser;
 
 public class PopulationParserTest {
 

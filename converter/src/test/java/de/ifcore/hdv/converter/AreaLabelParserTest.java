@@ -7,6 +7,7 @@ import java.util.Map;
 import org.junit.Test;
 
 import de.ifcore.hdv.converter.data.LabelAgs;
+import de.ifcore.hdv.converter.parser.AreaLabelParser;
 
 public class AreaLabelParserTest {
 

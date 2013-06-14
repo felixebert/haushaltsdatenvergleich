@@ -1,4 +1,4 @@
-package de.ifcore.hdv.converter;
+package de.ifcore.hdv.converter.parser;
 
 import java.io.InputStream;
 import java.util.HashSet;

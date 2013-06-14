@@ -9,6 +9,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.ifcore.hdv.converter.data.MergedData;
+import de.ifcore.hdv.converter.parser.AccountParser;
+import de.ifcore.hdv.converter.parser.AreaSizeParser;
+import de.ifcore.hdv.converter.parser.PopulationParser;
 
 public class BaseConverter {
 

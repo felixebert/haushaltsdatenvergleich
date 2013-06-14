@@ -10,6 +10,7 @@ import java.util.Map;
 import org.junit.Test;
 
 import de.ifcore.hdv.converter.data.LabelAgs;
+import de.ifcore.hdv.converter.filter.CountyFilter;
 
 public class CountyFilterTest {
 

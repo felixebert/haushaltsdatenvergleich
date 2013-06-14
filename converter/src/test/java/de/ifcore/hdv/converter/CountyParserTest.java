@@ -6,6 +6,8 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import de.ifcore.hdv.converter.parser.CountyParser;
+
 public class CountyParserTest {
 
 	@Test
