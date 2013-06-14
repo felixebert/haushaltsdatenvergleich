@@ -27,4 +27,10 @@
 					+ absNumber.substr(thousands).replace(/(\d{3})(?=\d)/g, "$1" + thousand);
 		}
 	};
+
+	hdv.calc = {
+		safeLog10: function(number) {
+			return number === 0 ? 0 : Math.log(Math.abs(number)) / Math.LN10;
+		}
+	};
 })(hdv, _);

@@ -37,3 +37,12 @@ describe('formatter', function() {
 		expect('1').toEqual(hdv.formatter.currency(1));
 	});
 });
+
+describe('claculator', function() {
+	it('should safely calculate the log10 value of a number', function() {
+		expect(1).toEqual(hdv.calc.safeLog10(10));
+		expect(2).toEqual(hdv.calc.safeLog10(100));
+		expect(1).toEqual(hdv.calc.safeLog10(-10));
+		expect(0).toEqual(hdv.calc.safeLog10(0));
+	});
+});

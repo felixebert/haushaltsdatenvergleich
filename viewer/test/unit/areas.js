@@ -22,27 +22,4 @@ describe('area layer visualization', function() {
 		expect(hdv.areas.getInOutInRelationTo([9269650, 4974823], 55.41)).toEqual([167292, 89782]);
 		expect(hdv.areas.getInOutInRelationTo([9269650, 4974823], 8655)).toEqual([1071, 575]);
 	});
-
-	it('should find boundary for value', function() {
-		expect(hdv.areas.getBoundary(100, [200, 10, -300, -20])).toEqual([200, 10]);
-		expect(hdv.areas.getBoundary(-100, [200, 10, -300, -20])).toEqual([-300, -20]);
-	});
-
-	it('should find relevant boundaries', function() {
-		var absolutBoundaries = [200, 10, -300, -20, 300, 30, -400, -20];
-		var populationBoundaries = [20, 1, -30, -2, 30, 3, -40, -2];
-		var areaBoundaries = [25, 2, -35, -3, 40, 4, -40, -3];
-		var allBoundaries = [].concat(absolutBoundaries).concat(populationBoundaries).concat(areaBoundaries);
-
-		expect(hdv.areas.getRelevantBoundaries(allBoundaries, 'none', 'sum')).toEqual([200, 10, -300, -20]);
-		expect(hdv.areas.getRelevantBoundaries(allBoundaries, 'none', 'in')).toEqual([300, 30]);
-		expect(hdv.areas.getRelevantBoundaries(allBoundaries, 'none', 'out')).toEqual([-400, -20]);
-		expect(hdv.areas.getRelevantBoundaries(allBoundaries, 'population', 'sum')).toEqual([20, 1, -30, -2]);
-	});
-
-	it('should complate boundaries if necessary', function() {
-		expect(hdv.areas.completeBoundaries([200, 10, -300, -20])).toEqual([200, 10, -300, -20]);
-		expect(hdv.areas.completeBoundaries([200, 10])).toEqual([200, 10, 0, 0]);
-		expect(hdv.areas.completeBoundaries([-200, -10])).toEqual([0, 0, -200, -10]);
-	});
 });
