@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import de.ifcore.hdv.converter.data.LabelAgs;
 import de.ifcore.hdv.converter.parser.AreaLabelParser;
+import de.ifcore.hdv.converter.utils.ResourceUtils;
 
 public class AreaLabelParserTest {
 

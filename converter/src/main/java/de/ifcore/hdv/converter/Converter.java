@@ -1,6 +1,7 @@
 package de.ifcore.hdv.converter;
 
 import de.ifcore.hdv.converter.data.MergedData;
+import de.ifcore.hdv.converter.utils.Utils;
 
 public class Converter {
 
@@ -14,7 +15,7 @@ public class Converter {
 			try {
 				BaseConverter baseConverter = new BaseConverter(incomeFile, spendingsFile, population, areaSize);
 				MergedData mergedData = baseConverter.createMergedData();
-				baseConverter.writeData(mergedData, outputFile);
+				Utils.writeData(mergedData, outputFile);
 			}
 			catch (Exception e) {
 				e.printStackTrace();

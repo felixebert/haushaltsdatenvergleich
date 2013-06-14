@@ -1,6 +1,7 @@
 package de.ifcore.hdv.converter;
 
 import de.ifcore.hdv.converter.data.MergedData;
+import de.ifcore.hdv.converter.utils.Utils;
 
 public class CountyConverter {
 
@@ -12,10 +13,9 @@ public class CountyConverter {
 			String areaSize = args[3];
 			String outputFile = args[4];
 			try {
-				BaseConverter baseConverter = new BaseConverter(incomeFile, spendingsFile, population, areaSize);
-				//TODO group by county
+				BaseConverter baseConverter = new BaseCountyConverter(incomeFile, spendingsFile, population, areaSize);
 				MergedData mergedData = baseConverter.createMergedData();
-				baseConverter.writeData(mergedData, outputFile);
+				Utils.writeData(mergedData, outputFile);
 			}
 			catch (Exception e) {
 				e.printStackTrace();

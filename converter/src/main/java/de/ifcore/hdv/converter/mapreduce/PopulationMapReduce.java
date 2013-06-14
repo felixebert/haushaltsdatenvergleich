@@ -1,12 +1,12 @@
-package de.ifcore.hdv.converter.data;
+package de.ifcore.hdv.converter.mapreduce;
 
-import de.ifcore.hdv.converter.MapReduce;
+import de.ifcore.hdv.converter.data.Population;
 
 public class PopulationMapReduce implements MapReduce<Population> {
 
 	@Override
 	public String extractKey(String key) {
-		return key.substring(0, 6);
+		return key.substring(0, 5);
 	}
 
 	@Override

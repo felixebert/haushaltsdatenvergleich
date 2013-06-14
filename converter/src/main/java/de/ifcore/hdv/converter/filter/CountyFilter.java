@@ -13,9 +13,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.SimpleType;
 
-import de.ifcore.hdv.converter.Utils;
 import de.ifcore.hdv.converter.data.LabelAgs;
 import de.ifcore.hdv.converter.parser.AreaLabelParser;
+import de.ifcore.hdv.converter.utils.Utils;
 
 public class CountyFilter {
 

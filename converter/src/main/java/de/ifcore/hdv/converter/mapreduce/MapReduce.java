@@ -1,4 +1,4 @@
-package de.ifcore.hdv.converter;
+package de.ifcore.hdv.converter.mapreduce;
 
 public interface MapReduce<T> {
 

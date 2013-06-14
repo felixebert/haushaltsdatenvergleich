@@ -8,6 +8,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import de.ifcore.hdv.converter.data.Category;
+import de.ifcore.hdv.converter.utils.ResourceUtils;
 
 public class MainCategories {
 

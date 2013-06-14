@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import de.ifcore.hdv.converter.data.Account;
 import de.ifcore.hdv.converter.parser.AccountParser;
+import de.ifcore.hdv.converter.utils.ResourceUtils;
 
 public class AccountParserTest {
 

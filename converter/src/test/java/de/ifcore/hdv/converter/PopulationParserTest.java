@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import de.ifcore.hdv.converter.data.Population;
 import de.ifcore.hdv.converter.parser.PopulationParser;
+import de.ifcore.hdv.converter.utils.ResourceUtils;
 
 public class PopulationParserTest {
 

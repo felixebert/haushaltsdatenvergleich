@@ -11,6 +11,8 @@ import org.junit.Test;
 
 import de.ifcore.hdv.converter.data.LabelAgs;
 import de.ifcore.hdv.converter.filter.CountyFilter;
+import de.ifcore.hdv.converter.utils.ResourceUtils;
+import de.ifcore.hdv.converter.utils.Utils;
 
 public class CountyFilterTest {
 
