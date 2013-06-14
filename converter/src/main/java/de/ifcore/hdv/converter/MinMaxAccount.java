@@ -82,8 +82,8 @@ public class MinMaxAccount {
 					data[nmin] = diff;
 				if (data[nmax] == null)
 					data[nmax] = diff;
-				data[nmin] = Math.min(data[nmin], diff);
-				data[nmax] = Math.max(data[nmax], diff);
+				data[nmin] = Math.max(data[nmin], diff);
+				data[nmax] = Math.min(data[nmax], diff);
 			}
 		}
 	}
