@@ -1,15 +1,12 @@
 'use strict';
 
 (function(hdv, $, _) {
-	var areas = {
-		init: function() {
-			$(hdv).on('map.ready', _.bind(this.refresh, this));
-			$('.settings').on('change', _.bind(this.refresh, this));
-		},
-		nullSafeNumber: function(number) {
-			return number === null ? 0 : number;
-		},
-		getValueOfArea: function(area, settings) {
+	var nullSafeNumber = function(number) {
+		return number === null ? 0 : number;
+	};
+
+	var areaValue = {
+		ofArea: function(area, settings) {
 			var inOutSum = this.getInOutSum(area.accounts, settings.accounts);
 			var inOut = inOutSum;
 			if (settings.relation !== 'none') {
@@ -19,20 +16,20 @@
 		},
 		getValue: function(inOut, compare) {
 			if (compare === 'in') {
-				return this.nullSafeNumber(inOut[0]);
+				return nullSafeNumber(inOut[0]);
 			}
 			if (compare === 'out') {
-				return this.nullSafeNumber(inOut[1]);
+				return nullSafeNumber(inOut[1]);
 			}
-			return this.nullSafeNumber(inOut[0]) - this.nullSafeNumber(inOut[1]);
+			return nullSafeNumber(inOut[0]) - nullSafeNumber(inOut[1]);
 		},
 		getInOutSum: function(areaAccountsInOut, accounts) {
 			var inOut = [0, 0];
 			_.each(accounts, _.bind(function(account) {
 				var accountInOut = areaAccountsInOut[account];
 				if (accountInOut !== undefined) {
-					inOut[0] += this.nullSafeNumber(accountInOut[0]);
-					inOut[1] += this.nullSafeNumber(accountInOut[1]);
+					inOut[0] += nullSafeNumber(accountInOut[0]);
+					inOut[1] += nullSafeNumber(accountInOut[1]);
 				}
 			}, this));
 
@@ -43,13 +40,20 @@
 		},
 		getValueInRelationTo: function(value, relation) {
 			return Math.round(value / relation);
+		}
+	};
+
+	var areas = {
+		init: function() {
+			$(hdv).on('map.ready', _.bind(this.refresh, this));
+			$('.settings').on('change', _.bind(this.refresh, this));
 		},
 		/**
-		 * @param value -
+		 * @param value
 		 *            value of the layer
-		 * @param boundary -
+		 * @param boundary
 		 *            boundary array [max / min]
-		 * @param compare -
+		 * @param compare
 		 *            what to compare? (in / out / sum)
 		 */
 		getLayerStyle: function(value, log10Boundary, compare) {
@@ -80,16 +84,16 @@
 			var log10Boundaries = hdv.accountBoundaries.toLog10(boundaries);
 
 			_.each(hdv.map.data.areas, _.bind(function(area) {
-				var areaLayer = hdv.map.getAreaLayer(area.key);
-				if (areaLayer) {
-					var areaValue = this.getValueOfArea(area, settings);
-					var boundary = hdv.accountBoundaries.forValue(areaValue, log10Boundaries);
+				var layer = hdv.map.getlayer(area.key);
+				if (layer) {
+					var value = areaValue.ofArea(area, settings);
+					var boundary = hdv.accountBoundaries.forValue(value, log10Boundaries);
 
-					var style = this.getLayerStyle(areaValue, boundary, settings.compare);
-					var html = "<strong>" + areaLayer.label + "</strong><br />" + hdv.formatter.currency(areaValue) + " €";
+					var style = this.getLayerStyle(value, boundary, settings.compare);
+					var html = "<strong>" + layer.label + "</strong><br />" + hdv.formatter.currency(value) + " €";
 
-					areaLayer.value.setStyle(style);
-					areaLayer.value.bindPopup(html);
+					layer.value.setStyle(style);
+					layer.value.bindPopup(html);
 				} else {
 					console.error('no layer for area ' + area.key);
 				}
@@ -105,5 +109,6 @@
 	};
 
 	hdv.areas = areas;
+	hdv.areaValue = areaValue;
 	areas.init();
 })(hdv, $, _);
