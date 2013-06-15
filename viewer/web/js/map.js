@@ -4,6 +4,8 @@
 		leafletMap: null,
 		areaLayers: [],
 		data: {},
+		loadedAreaLayers: null,
+		loadedData: null,
 		init: function() {
 			this.leafletMap = L.map('map', {
 				center: [51.463, 7.18],
@@ -19,6 +21,9 @@
 
 			$(hdv).on('map.loaded.areaLayers map.loaded.data', _.bind(this.fireMapIsReady, this));
 
+			$('.settings').on('change', _.bind(this.reload, this));
+			this.reload();
+
 			return this;
 		},
 		fireMapIsReady: function() {
@@ -27,8 +32,19 @@
 			}
 		},
 		loadAreaLayers: function(type) {
-			$.getJSON('data/' + type + '.geojson', _.bind(this.addAreaLayers, this));
-			return this;
+			if (this.loadedAreaLayers !== type) {
+				_.each(this.areaLayers, _.bind(function(areaLayer) {
+					this.leafletMap.removeLayer(areaLayer.value);
+				}, this));
+				this.areaLayers = [];
+				this.loadedAreaLayers = null;
+
+				$.getJSON('data/' + type + '.geojson', _.bind(function(data) {
+					this.addAreaLayers(data);
+					this.loadedAreaLayers = type;
+					$(hdv).triggerHandler('map.loaded.areaLayers');
+				}, this));
+			}
 		},
 		addAreaLayers: function(geojson) {
 			L.geoJson(geojson.features, {
@@ -38,13 +54,11 @@
 				},
 				onEachFeature: _.bind(this.addAreaLayer, this)
 			}).addTo(this.leafletMap);
-
-			$(hdv).triggerHandler('map.loaded.areaLayers');
 		},
 		addAreaLayer: function(feature, layer) {
 			this.areaLayers.push({
-				'key': feature.properties.KN,
-				'label': feature.properties.GN,
+				'key': feature.properties.KN ? feature.properties.KN : feature.properties.AGS,
+				'label': feature.properties.GN ? feature.properties.GN : feature.properties.GEN,
 				'value': layer
 			});
 		},
@@ -53,14 +67,26 @@
 				return area.key == key;
 			});
 		},
-		loadData: function(year) {
-			$.getJSON('data/finanzen-gemeinden-' + year + '.json', _.bind(this.setData, this));
-			return this;
+		loadData: function(areaType, year) {
+			var jsonFile = 'finanzen-' + areaType + '-' + year;
+			if (this.loadedData !== jsonFile) {
+				this.data = {};
+				this.loadedData = null;
+
+				$.getJSON('data/' + jsonFile + '.json', _.bind(function(data) {
+					this.setData(data);
+					this.loadedData = jsonFile;
+					$(hdv).triggerHandler('map.loaded.data');
+				}, this));
+			}
 		},
 		setData: function(data) {
 			this.data = data;
-
-			$(hdv).triggerHandler('map.loaded.data');
+		},
+		reload: function() {
+			var settings = hdv.serialize.toLiteral($('.settings').serializeArray());
+			this.loadAreaLayers(settings.areaLayer);
+			this.loadData(settings.areaLayer, settings.year);
 		}
 	};
 

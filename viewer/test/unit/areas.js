@@ -34,7 +34,7 @@ describe('area layer utils', function() {
 	});
 
 	it('should always find an useful opacity', function() {
-		expect(hdv.areas.getOpacity(10, [2, 1])).toEqual(0.1);
+		expect(hdv.areas.getOpacity(10, [2, 1])).toEqual(0.2);
 		expect(hdv.areas.getOpacity(70, [2, 1])).toEqual(0.64);
 		expect(hdv.areas.getOpacity(100, [2, 1])).toEqual(0.75);
 	});
@@ -49,7 +49,7 @@ describe('area layer utils', function() {
 
 	it('should return a valid layerStyle', function() {
 		expect(hdv.areas.getLayerStyle(10, [2, 1], 'sum')).toEqual({
-			fillOpacity: 0.1,
+			fillOpacity: 0.2,
 			fillColor: '#00C957'
 		});
 	});

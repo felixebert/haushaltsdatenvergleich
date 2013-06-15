@@ -74,7 +74,7 @@
 				return 0.25;
 			}
 			var opacity = Math.round(0.75 * this.getOpacityFactor(value, log10Boundary) * 100) / 100;
-			return Math.max(0.1, opacity);
+			return Math.max(0.2, opacity);
 		},
 		getOpacityFactor: function(value, log10Boundary) {
 			return Math.round((hdv.calc.safeLog10(value) - log10Boundary[1]) / (log10Boundary[0] - log10Boundary[1]) * 100) / 100;
@@ -84,7 +84,7 @@
 			var log10Boundaries = hdv.accountBoundaries.toLog10(boundaries);
 
 			_.each(hdv.map.data.areas, _.bind(function(area) {
-				var layer = hdv.map.getlayer(area.key);
+				var layer = hdv.map.getAreaLayer(area.key);
 				if (layer) {
 					var value = areaValue.ofArea(area, settings);
 					var boundary = hdv.accountBoundaries.forValue(value, log10Boundaries);
@@ -100,6 +100,9 @@
 			}, this));
 		},
 		refresh: function() {
+			if (_.isEmpty(hdv.map.data) || _.isEmpty(hdv.map.areaLayers)) {
+				return false;
+			}
 			var settings = hdv.serialize.toLiteral($('.settings').serializeArray());
 			settings.accounts = hdv.accounts.getSelectedAccounts(settings.pb, settings.pg);
 			settings.boundaryAccount = hdv.accounts.getTopAccount(settings.pb, settings.pg);
