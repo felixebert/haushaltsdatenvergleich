@@ -3,6 +3,7 @@ package de.ifcore.hdv.converter.filter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -22,7 +23,7 @@ public class CountyFilter {
 	public static Map<String, Object> readCounties(InputStream in) {
 		try {
 			Map<String, Object> map = new ObjectMapper().readValue(
-					in,
+					new InputStreamReader(in, "ISO-8859-1"),
 					MapType.construct(HashMap.class, SimpleType.construct(String.class),
 							SimpleType.construct(Object.class)));
 			return map;
@@ -49,6 +50,7 @@ public class CountyFilter {
 					Map<String, Object> newProperties = new HashMap<>();
 					newProperties.put("GEN", labelAgs.getLabel());
 					newProperties.put("AGS", labelAgs.getAgs());
+					newProperties.put("DES", properties.get("DES"));
 					Map<String, Object> newFeature = Utils.asMap("type", feature.get("type"), "geometry",
 							feature.get("geometry"), "properties", newProperties);
 					filteredFeatures.add(newFeature);
@@ -68,7 +70,7 @@ public class CountyFilter {
 				Map<String, LabelAgs> labels = parser.parse();
 				Map<String, Object> countiesMap = readCounties(new FileInputStream(countiesFile));
 				Map<String, Object> filteredMap = filterCountyByKey(countiesMap, lkNr, labels);
-				String newFileName = countiesFile.substring(0, countiesFile.lastIndexOf('.')) + "-" + lkNr + ".json";
+				String newFileName = countiesFile.substring(0, countiesFile.lastIndexOf('.')) + "-" + lkNr + ".geojson";
 				System.out.println("Schreibe Ausgabe nach " + newFileName);
 				new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(new FileOutputStream(newFileName),
 						filteredMap);
