@@ -34,6 +34,8 @@
 		},
 		loadAreaLayers: function(type) {
 			if (this.loadedAreaLayers !== type) {
+				$('.ajax-loader').show();
+
 				_.each(this.areaLayers, _.bind(function(areaLayer) {
 					this.leafletMap.removeLayer(areaLayer.value);
 				}, this));
@@ -71,6 +73,7 @@
 		loadData: function(areaType, year) {
 			var jsonFile = 'finanzen-' + areaType + '-' + year;
 			if (this.loadedData !== jsonFile) {
+				$('.ajax-loader').show();
 				this.data = {};
 				this.loadedData = null;
 
@@ -85,7 +88,6 @@
 			this.data = data;
 		},
 		reload: function() {
-			$('.ajax-loader').show();
 			var settings = hdv.serialize.toLiteral($('.settings').serializeArray());
 			this.loadAreaLayers(settings.areaLayer);
 			this.loadData(settings.areaLayer, settings.year);
