@@ -37,14 +37,14 @@ public class DataMerger {
 				System.out.println("Keine Einwohnerzahlen für " + areaKey);
 			}
 			else if (areaSize == null) {
-				System.out.println("Keine Fläche für " + areaKey + " / " + population.getAreaName());
+				System.out.println("Keine Fläche für " + areaKey);
 			}
 			else {
 				Collection<InOutAccount> accountValues = inOutMap.values();
 				Map<Integer, Long[]> accountValuesMap = convertToMap(accountValues);
-				processMinMax(accountValues);
-				AccountsPerArea accountsPerArea = new AccountsPerArea(areaKey, population.getAreaName(),
-						population.getPopulation(), areaSize.doubleValue(), accountValuesMap);
+				AccountsPerArea accountsPerArea = new AccountsPerArea(areaKey, population.getPopulation(),
+						areaSize.doubleValue(), accountValuesMap);
+				processMinMax(accountValues, accountsPerArea);
 				result.add(accountsPerArea);
 			}
 		}
@@ -74,10 +74,10 @@ public class DataMerger {
 		return result;
 	}
 
-	private void processMinMax(Collection<InOutAccount> accountValues) {
+	private void processMinMax(Collection<InOutAccount> accountValues, AccountsPerArea accountsPerArea) {
 		for (InOutAccount inOutAccount : accountValues) {
 			MinMaxAccount minMaxAccount = accountMap.get(inOutAccount.getKey());
-			minMaxAccount.addValue(inOutAccount.getIncome(), inOutAccount.getSpending());
+			minMaxAccount.addValue(inOutAccount.getIncome(), inOutAccount.getSpending(), accountsPerArea);
 		}
 	}
 

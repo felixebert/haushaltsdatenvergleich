@@ -6,6 +6,9 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import de.ifcore.hdv.converter.parser.AreaSizeParser;
+import de.ifcore.hdv.converter.utils.ResourceUtils;
+
 public class AreaSizeParserTest {
 
 	@Test(expected = RuntimeException.class)

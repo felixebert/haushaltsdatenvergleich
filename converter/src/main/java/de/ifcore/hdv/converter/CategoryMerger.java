@@ -2,6 +2,7 @@ package de.ifcore.hdv.converter;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -47,7 +48,12 @@ public class CategoryMerger {
 			}
 			result.add(new int[] { currentKey, 10000 });
 		}
-		return result;
+		return reorderByCategoryLabel(result, categories);
+	}
+
+	public static List<int[]> reorderByCategoryLabel(List<int[]> ranges, SortedSet<Category> categories) {
+		Collections.sort(ranges, new CategoryRangeComparator(categories));
+		return ranges;
 	}
 
 	private static SortedSet<Category> reorderByKey(SortedSet<Category> categories) {

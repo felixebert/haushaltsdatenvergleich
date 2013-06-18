@@ -24,7 +24,7 @@ public class DataMergerTest {
 		Map<String, Double> areaSizes = new HashMap<>();
 		areaSizes.put(AREA_KEY, Double.valueOf(12345.67));
 		Map<String, Population> population = new HashMap<>();
-		population.put(AREA_KEY, new Population("Test Area", 1234));
+		population.put(AREA_KEY, new Population(1234));
 		List<Account> income = Arrays.asList(new Account(AREA_KEY, 123, "Testaccount", Long.valueOf(100)), new Account(
 				AREA_KEY, 124, "Testaccount2", Long.valueOf(200)));
 		List<Account> spendings = Arrays.asList(new Account(AREA_KEY, 123, "Testaccount", Long.valueOf(100)),
@@ -34,7 +34,6 @@ public class DataMergerTest {
 		assertNotNull(result);
 		AccountsPerArea accountsPerArea = result.get(0);
 		assertEquals(AREA_KEY, accountsPerArea.getKey());
-		assertEquals("Test Area", accountsPerArea.getName());
 		assertEquals(12345.67, accountsPerArea.getSize(), 0.001);
 		assertEquals(1234, accountsPerArea.getPopulation());
 		assertFalse(accountsPerArea.getAccounts().isEmpty());

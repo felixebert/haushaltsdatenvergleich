@@ -27,3 +27,22 @@ describe('convert a jquery serialized array to an object literal', function() {
 		expect(result.year).toEqual('2010');
 	});
 });
+
+describe('formatter', function() {
+	it('should format a money value', function() {
+		expect('100.000.000').toEqual(hdv.formatter.currency(100000000));
+		expect('100.000').toEqual(hdv.formatter.currency(100000));
+		expect('100').toEqual(hdv.formatter.currency(100));
+		expect('10').toEqual(hdv.formatter.currency(10));
+		expect('1').toEqual(hdv.formatter.currency(1));
+	});
+});
+
+describe('claculator', function() {
+	it('should safely calculate the log10 value of a number', function() {
+		expect(1).toEqual(hdv.calc.safeLog10(10));
+		expect(2).toEqual(hdv.calc.safeLog10(100));
+		expect(1).toEqual(hdv.calc.safeLog10(-10));
+		expect(0).toEqual(hdv.calc.safeLog10(0));
+	});
+});

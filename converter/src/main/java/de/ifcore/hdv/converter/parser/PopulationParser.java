@@ -1,4 +1,4 @@
-package de.ifcore.hdv.converter;
+package de.ifcore.hdv.converter.parser;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -21,9 +21,8 @@ public class PopulationParser extends AbstractExcelParser {
 			Row row = rowIterator.next();
 			String areaKey = parseAreaKey(row);
 			if (areaKey != null && !areaKey.isEmpty()) {
-				String areaName = parseAreaName(row);
 				long population = parsePopulation(row);
-				result.put(areaKey, new Population(areaName, population));
+				result.put(areaKey, new Population(population));
 			}
 		}
 		return result;
@@ -36,10 +35,6 @@ public class PopulationParser extends AbstractExcelParser {
 		}
 		else
 			return null;
-	}
-
-	private String parseAreaName(Row row) {
-		return row.getCell(3).getStringCellValue();
 	}
 
 	private long parsePopulation(Row row) {

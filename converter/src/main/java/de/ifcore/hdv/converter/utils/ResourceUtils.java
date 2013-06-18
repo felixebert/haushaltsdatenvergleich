@@ -1,4 +1,4 @@
-package de.ifcore.hdv.converter;
+package de.ifcore.hdv.converter.utils;
 
 import java.io.File;
 import java.io.InputStream;

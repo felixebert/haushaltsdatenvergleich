@@ -36,20 +36,21 @@
 			
 			<label class="title">im Verhältnis zur?</label>
 			<p>
-				<label class="radio"><input type="radio" name="relation" value="residents"> Einwohnerzahl</label>
-				<label class="radio"><input type="radio" name="relation" value="area"> Fläche</label>
+				<label class="radio"><input type="radio" name="relation" value="population"> Einwohnerzahl</label>
+				<label class="radio"><input type="radio" name="relation" value="size"> Fläche</label>
 				<label class="radio"><input type="radio" name="relation" value="none" checked="checked"> absolut</label>
 			</p>
 
 			<label class="title">Gebietsgröße</label>
 			<p>
-				<label class="radio"><input type="radio" name="areaLayer" value="g" checked="checked"> Kommunen</label>
-				<label class="radio"><input type="radio" name="areaLayer" value="lk"> Landkreise</label>
+				<label class="radio"><input type="radio" name="areaLayer" value="gemeinden" checked="checked"> Gemeinden</label>
+				<label class="radio"><input type="radio" name="areaLayer" value="landkreise"> Landkreise</label>
 			</p>
 			
 			<label class="title">Abrechnungsjahr</label>
 			<select name="year">
-				<option value="2010" selected="selected">2010</option>
+				<option value="2009" selected="selected">2009</option>
+				<option value="2010">2010</option>
 			</select>
 		</form>
 	</div>
@@ -58,10 +59,13 @@
 	<script src="lib/leaflet.js"></script>
 	<script src="lib/jquery.js"></script>
 	<script src="js/app.js"></script>
+	<script src="js/utils.js"></script>
 	<script src="js/map.js"></script>
+	<script src="js/accounts.js"></script>
+	<script src="js/areas.js"></script>
 	
 	<script type="text/javascript">
-		hdv.map.init().loadAreaLayers('gemeinden').loadData(2010);
+		hdv.map.init();
 	</script>
 </body>
 </html>
