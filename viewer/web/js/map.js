@@ -28,6 +28,7 @@
 		},
 		fireMapIsReady: function() {
 			if (!_.isEmpty(this.data) && !_.isEmpty(this.areaLayers)) {
+				$('.ajax-loader').hide();
 				$(hdv).triggerHandler('map.ready');
 			}
 		},
@@ -84,6 +85,7 @@
 			this.data = data;
 		},
 		reload: function() {
+			$('.ajax-loader').show();
 			var settings = hdv.serialize.toLiteral($('.settings').serializeArray());
 			this.loadAreaLayers(settings.areaLayer);
 			this.loadData(settings.areaLayer, settings.year);
