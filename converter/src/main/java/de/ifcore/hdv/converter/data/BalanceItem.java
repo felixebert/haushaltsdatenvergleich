@@ -1,7 +1,10 @@
 package de.ifcore.hdv.converter.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class BalanceItem {
 
+	@JsonIgnore
 	private String ks;
 	private String no;
 	private String label;

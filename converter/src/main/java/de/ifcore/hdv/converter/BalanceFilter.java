@@ -6,20 +6,19 @@ import java.util.List;
 import java.util.Set;
 
 import de.ifcore.hdv.converter.data.BalanceItem;
-import de.ifcore.hdv.converter.data.BalanceSheet;
 
-public class BalanceConverter {
+public class BalanceFilter {
 
 	private List<BalanceItem> items;
 
-	public BalanceConverter(List<BalanceItem> items) {
+	public BalanceFilter(List<BalanceItem> items) {
 		this.items = items;
 	}
 
 	public Set<String> collectAllKs() {
 		Set<String> result = new HashSet<>();
 		for (BalanceItem item : items) {
-			result.add(item.getNo());
+			result.add(item.getKs());
 		}
 		return result;
 	}
@@ -27,14 +26,9 @@ public class BalanceConverter {
 	public List<BalanceItem> getItemsProKs(String ks) {
 		List<BalanceItem> result = new ArrayList<BalanceItem>();
 		for (BalanceItem balanceItem : items) {
-			if (balanceItem.getNo().equals(ks))
+			if (balanceItem.getKs().equals(ks))
 				result.add(balanceItem);
 		}
 		return result;
-	}
-
-	public BalanceSheet createBalanceSheet(String ks) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
