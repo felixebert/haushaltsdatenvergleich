@@ -14,8 +14,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.SimpleType;
 
-import de.ifcore.hdv.converter.data.LabelAgs;
-import de.ifcore.hdv.converter.parser.AreaLabelParser;
 import de.ifcore.hdv.converter.utils.Utils;
 
 public class CountyFilter {
@@ -33,8 +31,7 @@ public class CountyFilter {
 		}
 	}
 
-	public static Map<String, Object> filterCountyByKey(Map<String, Object> geoJson, String key,
-			Map<String, LabelAgs> labels) {
+	public static Map<String, Object> filterCountyByKey(Map<String, Object> geoJson, String key) {
 		Map<String, Object> result = Utils.asMap("type", geoJson.get("type"));
 		List<Map<String, Object>> filteredFeatures = new ArrayList<>();
 		result.put("features", filteredFeatures);
@@ -45,16 +42,13 @@ public class CountyFilter {
 			Map<String, Object> properties = (Map<String, Object>)feature.get("properties");
 			String rs = (String)properties.get("RS");
 			if (rs != null && rs.startsWith(key)) {
-				LabelAgs labelAgs = labels.get(rs);
-				if (labelAgs != null) {
-					Map<String, Object> newProperties = new HashMap<>();
-					newProperties.put("GEN", labelAgs.getLabel());
-					newProperties.put("AGS", labelAgs.getAgs());
-					newProperties.put("DES", properties.get("DES"));
-					Map<String, Object> newFeature = Utils.asMap("type", feature.get("type"), "geometry",
-							feature.get("geometry"), "properties", newProperties);
-					filteredFeatures.add(newFeature);
-				}
+				Map<String, Object> newProperties = new HashMap<>();
+				newProperties.put("GEN", properties.get("GEN"));
+				newProperties.put("AGS", rs);
+				newProperties.put("DES", properties.get("DES"));
+				Map<String, Object> newFeature = Utils.asMap("type", feature.get("type"), "geometry",
+						feature.get("geometry"), "properties", newProperties);
+				filteredFeatures.add(newFeature);
 			}
 		}
 		return result;
@@ -65,14 +59,11 @@ public class CountyFilter {
 			try {
 				String countiesFile = args[0];
 				String lkNr = args[1];
-				String areaLabels = args[2];
-				AreaLabelParser parser = new AreaLabelParser(new FileInputStream(areaLabels));
-				Map<String, LabelAgs> labels = parser.parse();
+				String outputFile = args[2];
 				Map<String, Object> countiesMap = readCounties(new FileInputStream(countiesFile));
-				Map<String, Object> filteredMap = filterCountyByKey(countiesMap, lkNr, labels);
-				String newFileName = countiesFile.substring(0, countiesFile.lastIndexOf('.')) + "-" + lkNr + ".geojson";
-				System.out.println("Schreibe Ausgabe nach " + newFileName);
-				new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(new FileOutputStream(newFileName),
+				Map<String, Object> filteredMap = filterCountyByKey(countiesMap, lkNr);
+				System.out.println("Schreibe Ausgabe nach " + outputFile);
+				new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(new FileOutputStream(outputFile),
 						filteredMap);
 			}
 			catch (Exception e) {
@@ -80,6 +71,6 @@ public class CountyFilter {
 			}
 		}
 		else
-			System.out.println("Usage: <geojson mit lankreisen> <landkreis-nr> <datei mit labels und größen>");
+			System.out.println("Usage: <geojson mit lankreisen> <landkreis-nr> <ausgabe datei>");
 	}
 }
