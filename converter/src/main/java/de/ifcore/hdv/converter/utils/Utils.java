@@ -8,13 +8,11 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.ifcore.hdv.converter.data.MergedData;
-
 public class Utils {
 
-	public static void writeData(MergedData mergedData, String filename) throws JsonProcessingException, IOException {
+	public static void writeData(Object object, String filename) throws JsonProcessingException, IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
-		String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(mergedData);
+		String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(object);
 		FileWriter fw = new FileWriter(filename);
 		fw.write(json);
 		fw.flush();

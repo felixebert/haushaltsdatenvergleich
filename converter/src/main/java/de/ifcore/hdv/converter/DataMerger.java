@@ -52,8 +52,8 @@ public class DataMerger {
 	}
 
 	private void createCategoryMap(List<Account> income, List<Account> spendings) {
-		collectAccounts(income);
-		collectAccounts(spendings);
+		collectAccountsIntoAccountMap(income);
+		collectAccountsIntoAccountMap(spendings);
 		tree = CategoryMerger.createTree(MainCategories.getInstance().getCategories(), accountMap.values());
 		injectMainCategoriesIntoAccountMap(MainCategories.getInstance().getCategories());
 	}
@@ -128,7 +128,7 @@ public class DataMerger {
 		}
 	}
 
-	private void collectAccounts(Collection<Account> accounts) {
+	private void collectAccountsIntoAccountMap(Collection<Account> accounts) {
 		for (Account account : accounts) {
 			accountMap.put(account.getAccountKey(),
 					new MinMaxAccount(account.getAccountKey(), account.getAccountName()));

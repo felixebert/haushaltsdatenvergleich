@@ -2,12 +2,9 @@ package de.ifcore.hdv.converter;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
-import java.util.TreeSet;
 
 import org.junit.Test;
 
@@ -18,8 +15,8 @@ public class CategoryMergerTest {
 
 	@Test
 	public void itShouldCreateACategoryTree() throws Exception {
-		List<MinMaxAccount> accounts = mockAccounts();
-		SortedSet<Category> categories = mockCategories();
+		List<MinMaxAccount> accounts = DataMocks.mockAccounts();
+		SortedSet<Category> categories = DataMocks.mockCategories();
 		CategoryTree categoryTree = CategoryMerger.createTree(categories, accounts);
 		assertNotNull(categoryTree);
 		Map<Integer, List<Integer>> tree = categoryTree.getTree();
@@ -29,45 +26,9 @@ public class CategoryMergerTest {
 	}
 
 	@Test
-	public void itShouldReturnCategoryRangesSortedByCategoryLabel() throws Exception {
-		SortedSet<Category> categories = mockCategories();
-		List<int[]> fromToRanges = CategoryMerger.findFromToRanges(categories);
-		assertArrayEquals(new int[] { 21, 31 }, fromToRanges.get(0));
-		assertArrayEquals(new int[] { 11, 21 }, fromToRanges.get(1));
-		assertArrayEquals(new int[] { 31, 10000 }, fromToRanges.get(2));
-	}
-
-	@Test
-	public void itShouldReorderByCategoryLabel() throws Exception {
-		List<int[]> fromToRanges = CategoryMerger.reorderByCategoryLabel(
-				Arrays.asList(new int[] { 31, 10000 }, new int[] { 11, 21 }, new int[] { 21, 31 }), mockCategories());
-		assertArrayEquals(new int[] { 21, 31 }, fromToRanges.get(0));
-		assertArrayEquals(new int[] { 11, 21 }, fromToRanges.get(1));
-		assertArrayEquals(new int[] { 31, 10000 }, fromToRanges.get(2));
-	}
-
-	@Test
 	public void itShouldFindSuitableSubCategories() throws Exception {
-		List<MinMaxAccount> accounts = mockAccounts();
+		List<MinMaxAccount> accounts = DataMocks.mockAccounts();
 		SortedSet<Category> result = CategoryMerger.findSubCategories(12, 22, accounts);
 		assertEquals(2, result.size());
-	}
-
-	public static SortedSet<Category> mockCategories() {
-		SortedSet<Category> categories = new TreeSet<>();
-		categories.add(new Category(31, "Cat3"));
-		categories.add(new Category(21, "Alpha"));
-		categories.add(new Category(11, "Cat1"));
-		return categories;
-	}
-
-	private List<MinMaxAccount> mockAccounts() {
-		List<MinMaxAccount> accounts = new ArrayList<>();
-		accounts.add(new MinMaxAccount(121, "Abc121"));
-		accounts.add(new MinMaxAccount(122, "Abc122"));
-		accounts.add(new MinMaxAccount(221, "Abc221"));
-		accounts.add(new MinMaxAccount(321, "Abc321"));
-		accounts.add(new MinMaxAccount(421, "Abc421"));
-		return accounts;
 	}
 }
