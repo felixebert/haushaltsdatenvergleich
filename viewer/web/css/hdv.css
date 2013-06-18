@@ -1,3 +1,7 @@
+a {
+	cursor: pointer;
+}
+
 /* loader */
 .icon-ajax-loader {
 	background: url("../img/ajax-loader.gif") no-repeat;
@@ -60,16 +64,70 @@
 	left: 0;
 	right: 0;
 }
+@media (max-width: 767px) {
+	.leaflet-control-attribution {
+		display: none;
+	}
+}
+
+/* custom control */
+.leaflet-container .leaflet-control-settings {
+	margin-left: 13px;
+	margin-top: 12px;
+}
+.leaflet-control-settings a {
+	width: 22px;
+	height: 22px;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+}
+.leaflet-control-settings a {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	display: block;
+}
+.leaflet-control-settings a:hover {
+	background-color: #fff;
+	color: #777;
+}
+.leaflet-control-toggle-settings {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 22px;
+	padding-left: 1px;
+}
+.leaflet-control-info {
+	font-family: Tahoma, Verdana, sans-serif;
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 23px;
+}
+.leaflet-touch .leaflet-control-settings a {
+	width: 30px;
+	height: 30px;
+}
+.leaflet-touch .leaflet-control-toggle-settings {
+	font-size: 24px;
+	line-height: 29px;
+}
+.leaflet-touch .leaflet-control-info {
+	font-size: 28px;
+	line-height: 24px;
+}
+a.leaflet-control-active {
+	color: #0078A8;
+}
+
+/* settings */
 #nav {
-	top: 10px;
-	right: 10px;
+	top: 14px;
+	right: 14px;
 	width: 270px;
 	z-index: 100;
 	background: rgba(255, 255, 255, .85);
-}
-h1 {
-	font-size: 22px;
-	margin-bottom: 0;
+	border-radius: 7px;
 }
 .nav-container {
 	margin: 7px;
@@ -78,9 +136,12 @@ h1 {
 .nav-container select {
 	margin: 0 0 0 10px;
 }
+.nav-container label:first-child {
+	margin: 0;
+}
 label.radio {
 	margin-right: 4px;
 }
 label.title {
-	margin-top: 6px;
+	margin-top: 14px;
 }

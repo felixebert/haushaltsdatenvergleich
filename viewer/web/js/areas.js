@@ -57,16 +57,19 @@
 		 *            what to compare? (in / out / sum)
 		 */
 		getLayerStyle: function(value, log10Boundary, compare) {
+			var opacity = this.getOpacity(value, log10Boundary);
 			return {
-				'fillOpacity': this.getOpacity(value, log10Boundary),
+				'fillOpacity': opacity,
 				'fillColor': this.getFillColor(value, compare)
 			};
 		},
 		getFillColor: function(value, compare) {
 			if (value == 0) {
 				return '#888';
+			} else if (value <= 0 || compare === 'out') {
+				return '#FF0000';
 			} else {
-				return value <= 0 || compare === 'out' ? '#FF0000' : '#00C957';
+				return '#00C957';
 			}
 		},
 		getOpacity: function(value, log10Boundary) {

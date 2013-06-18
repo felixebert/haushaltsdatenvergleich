@@ -1,5 +1,51 @@
 'use strict';
 (function(hdv, L, $, _) {
+	var SettingsControl = L.Control.extend({
+		options: {
+			position: 'topleft'
+		},
+		onAdd: function(map) {
+			var container = L.DomUtil.create('div', 'leaflet-control-settings leaflet-bar leaflet-bar-part');
+
+			this.toggleSettingsButton = this._createButton("&#9776;", "Einstellungen", 'leaflet-control-toggle-settings leaflet-bar-part leaflet-bar-part-top',
+					container, this.onToggleSettingsClick, this);
+			this.toggleInfoButton = this._createButton("i", "Information", 'leaflet-control-info leaflet-bar-part leaflet-bar-part-bottom', container);
+
+			this._bindToggleButton(this.toggleSettingsButton, 'nav');
+			this._bindToggleButton(this.toggleInfoButton, 'info');
+
+			return container;
+		},
+		_createButton: function(html, title, className, container, fn, context) {
+			var link = L.DomUtil.create('a', className, container);
+			link.innerHTML = html;
+			link.href = '#';
+			link.title = title;
+
+			return link;
+		},
+		_bindToggleButton: function(button, elementToToggle) {
+			var stop = L.DomEvent.stopPropagation;
+			L.DomEvent.on(button, 'click', stop);
+			L.DomEvent.on(button, 'mousedown', stop);
+			L.DomEvent.on(button, 'dblclick', stop);
+			L.DomEvent.on(button, 'click', L.DomEvent.preventDefault);
+			L.DomEvent.on(button, 'click', function(e) {
+				this.toggle(button, elementToToggle);
+			}, this);
+		},
+		toggle: function(button, elementToToggle) {
+			var activeClass = 'leaflet-control-active';
+			if (button.className.indexOf(activeClass) <= 0) {
+				button.classList.add(activeClass);
+				document.getElementById(elementToToggle).classList.remove('hide');
+			} else {
+				button.classList.remove(activeClass);
+				document.getElementById(elementToToggle).classList.add('hide');
+			}
+		}
+	});
+
 	var map = {
 		leafletMap: null,
 		areaLayers: [],
@@ -11,20 +57,35 @@
 				center: [51.463, 7.18],
 				zoom: 9,
 				minZoom: 8,
-				maxZoom: 11
+				maxZoom: 11,
+				attributionControl: false
 			});
 
-			L.tileLayer('http://{s}.tile.cloudmade.com/036a729cf53d4388a8ec345e1543ef53/44094/256/{z}/{x}/{y}.png', {
-				attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-				maxZoom: 18
-			}).addTo(this.leafletMap);
+			this.addTileLayer();
+			this.addAttributionControl();
+			this.addSettingsControl();
 
-			$(hdv).on('map.loaded.areaLayers map.loaded.data', _.bind(this.fireMapIsReady, this));
-
-			$('.settings').on('change', _.bind(this.reload, this));
+			this.setupEvents();
 			this.reload();
-
-			return this;
+		},
+		setupEvents: function() {
+			$(hdv).on('map.loaded.areaLayers map.loaded.data', _.bind(this.fireMapIsReady, this));
+			$('.settings').on('change', _.bind(this.reload, this));
+		},
+		addTileLayer: function() {
+			L.tileLayer('http://{s}.tile.cloudmade.com/036a729cf53d4388a8ec345e1543ef53/44094/256/{z}/{x}/{y}.png', {
+				'maxZoom': 18
+			}).addTo(this.leafletMap);
+		},
+		addAttributionControl: function() {
+			var attribution = '<a class="imprint">Impressum</a>';
+			L.control.attribution().setPrefix(null).addAttribution(attribution).addTo(this.leafletMap);
+		},
+		addSettingsControl: function() {
+			this.settingsControl = new SettingsControl().addTo(this.leafletMap);
+			if ($(window).width() > 979) {
+				this.settingsControl.toggle(this.settingsControl.toggleSettingsButton, 'nav');
+			}
 		},
 		fireMapIsReady: function() {
 			if (!_.isEmpty(this.data) && !_.isEmpty(this.areaLayers)) {
