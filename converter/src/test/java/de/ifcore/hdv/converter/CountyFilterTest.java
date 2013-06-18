@@ -35,7 +35,7 @@ public class CountyFilterTest {
 		List<Map<String, Object>> features = (List<Map<String, Object>>)result.get("features");
 		Map<String, Object> feature = features.get(0);
 		Map<String, Object> properties = (Map<String, Object>)feature.get("properties");
-		assertEquals("03156004", properties.get("AGS"));
+		assertEquals("03156004", properties.get("KS"));
 		assertEquals("gen", properties.get("GEN"));
 		assertEquals("des", properties.get("DES"));
 	}

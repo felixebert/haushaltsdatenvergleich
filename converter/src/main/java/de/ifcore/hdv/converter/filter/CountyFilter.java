@@ -44,7 +44,7 @@ public class CountyFilter {
 			if (rs != null && rs.startsWith(key)) {
 				Map<String, Object> newProperties = new HashMap<>();
 				newProperties.put("GEN", properties.get("GEN"));
-				newProperties.put("AGS", rs);
+				newProperties.put("KS", rs);
 				newProperties.put("DES", properties.get("DES"));
 				Map<String, Object> newFeature = Utils.asMap("type", feature.get("type"), "geometry",
 						feature.get("geometry"), "properties", newProperties);
