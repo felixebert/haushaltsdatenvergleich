@@ -11,10 +11,11 @@
 <title>Finanzdatenvergleich NRW</title>
 </head>
 <body>
-	<div id="map"></div>
 	<div class="ajax-loader"></div>
 	
-	<div id="nav">
+	<div id="map"></div>
+	
+	<div id="nav" class="hide">
 		<form class="nav-container settings form-inline" method="GET" action="index.html">
 			<label class="title">Produktbereich</label>
 			<select name="pb">
@@ -54,9 +55,34 @@
 		</form>
 	</div>
 
+	<div id="info" class="modal hide fade">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h3>Finanzdatenvergleich NRW</h3>
+		</div>
+		<div class="modal-body">
+			<p>Beim Finanzdatenvergleich NRW handelt es sich um ein Projekt der Piratenpartei NRW ...</p>
+		</div>
+	</div>
+
+	<div id="imprint" class="modal hide fade">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h3>Impressum</h3>
+		</div>
+		<div class="modal-body">
+			<strong>Datenquellen:</strong>
+			<ul>
+				<li>Map powered by Leaflet - Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a></li>
+				<li> ...</li>
+			</ul>
+		</div>
+	</div>
+
 	<script src="lib/underscore.js"></script>
 	<script src="lib/leaflet.js"></script>
 	<script src="lib/jquery.js"></script>
+	<script src="lib/bootstrap.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/utils.js"></script>
 	<script src="js/map.js"></script>

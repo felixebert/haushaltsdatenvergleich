@@ -9,10 +9,10 @@
 
 			this.toggleSettingsButton = this._createButton("&#9776;", "Einstellungen", 'leaflet-control-toggle-settings leaflet-bar-part leaflet-bar-part-top',
 					container, this.onToggleSettingsClick, this);
-			this.toggleInfoButton = this._createButton("i", "Information", 'leaflet-control-info leaflet-bar-part leaflet-bar-part-bottom', container);
+			this._bindToggleButton(this.toggleSettingsButton, this.toggleNav);
 
-			this._bindToggleButton(this.toggleSettingsButton, 'nav');
-			this._bindToggleButton(this.toggleInfoButton, 'info');
+			this.toggleInfoButton = this._createButton("i", "Information", 'leaflet-control-info leaflet-bar-part leaflet-bar-part-bottom', container);
+			this._bindToggleButton(this.toggleInfoButton, this.toggleInfo);
 
 			return container;
 		},
@@ -24,25 +24,22 @@
 
 			return link;
 		},
-		_bindToggleButton: function(button, elementToToggle) {
+		_bindToggleButton: function(button, fn) {
 			var stop = L.DomEvent.stopPropagation;
 			L.DomEvent.on(button, 'click', stop);
 			L.DomEvent.on(button, 'mousedown', stop);
 			L.DomEvent.on(button, 'dblclick', stop);
 			L.DomEvent.on(button, 'click', L.DomEvent.preventDefault);
 			L.DomEvent.on(button, 'click', function(e) {
-				this.toggle(button, elementToToggle);
+				fn.call(this);
 			}, this);
 		},
-		toggle: function(button, elementToToggle) {
-			var activeClass = 'leaflet-control-active';
-			if (button.className.indexOf(activeClass) <= 0) {
-				button.classList.add(activeClass);
-				document.getElementById(elementToToggle).classList.remove('hide');
-			} else {
-				button.classList.remove(activeClass);
-				document.getElementById(elementToToggle).classList.add('hide');
-			}
+		toggleNav: function() {
+			$('#nav').toggleClass('hide');
+			$(this.toggleSettingsButton).toggleClass('leaflet-control-active');
+		},
+		toggleInfo: function() {
+			$('#info').modal('toggle');
 		}
 	});
 
@@ -63,6 +60,7 @@
 
 			this.addTileLayer();
 			this.addAttributionControl();
+			this.initModals();
 			this.addSettingsControl();
 
 			this.setupEvents();
@@ -80,11 +78,23 @@
 		addAttributionControl: function() {
 			var attribution = '<a class="imprint">Impressum</a>';
 			L.control.attribution().setPrefix(null).addAttribution(attribution).addTo(this.leafletMap);
+
+			$('.imprint').on('click', function() {
+				$('#imprint').modal('toggle');
+			});
+		},
+		initModals: function() {
+			$('#info').modal({
+				'show': false
+			});
+			$('#imprint').modal({
+				'show': false
+			});
 		},
 		addSettingsControl: function() {
 			this.settingsControl = new SettingsControl().addTo(this.leafletMap);
 			if ($(window).width() > 979) {
-				this.settingsControl.toggle(this.settingsControl.toggleSettingsButton, 'nav');
+				this.settingsControl.toggleNav();
 			}
 		},
 		fireMapIsReady: function() {
