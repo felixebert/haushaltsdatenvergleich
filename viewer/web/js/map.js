@@ -5,9 +5,9 @@
 			position: 'topleft'
 		},
 		onAdd: function(map) {
-			var container = L.DomUtil.create('div', 'leaflet-control-settings leaflet-bar leaflet-bar-part');
+			var container = L.DomUtil.create('div', 'leaflet-control-settings leaflet-bar');
 
-			this.toggleSettingsButton = this._createButton("&#9776;", "Einstellungen", 'leaflet-control-toggle-settings leaflet-bar-part leaflet-bar-part-top',
+			this.toggleSettingsButton = this._createButton("*", "Einstellungen", 'leaflet-control-toggle-settings leaflet-bar-part leaflet-bar-part-top',
 					container, this.onToggleSettingsClick, this);
 			this._bindToggleButton(this.toggleSettingsButton, this.toggleNav);
 
@@ -90,6 +90,9 @@
 			$('#imprint').modal({
 				'show': false
 			});
+			$('.close-nav').on('click', _.bind(function() {
+				this.settingsControl.toggleNav();
+			}, this));
 		},
 		addSettingsControl: function() {
 			this.settingsControl = new SettingsControl().addTo(this.leafletMap);
