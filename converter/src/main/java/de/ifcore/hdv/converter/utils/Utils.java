@@ -1,7 +1,9 @@
 package de.ifcore.hdv.converter.utils;
 
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,10 +15,10 @@ public class Utils {
 	public static void writeData(Object object, String filename) throws JsonProcessingException, IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(object);
-		FileWriter fw = new FileWriter(filename);
-		fw.write(json);
-		fw.flush();
-		fw.close();
+		OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(filename), Charset.forName("UTF8"));
+		out.write(json);
+		out.flush();
+		out.close();
 	}
 
 	public static Map<String, Object> asMap(Object... objects) {
