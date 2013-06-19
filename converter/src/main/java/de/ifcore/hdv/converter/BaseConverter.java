@@ -1,7 +1,5 @@
 package de.ifcore.hdv.converter;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 
@@ -14,10 +12,6 @@ import de.ifcore.hdv.converter.parser.PopulationParser;
 
 public class BaseConverter {
 
-	private String incomeFile;
-	private String spendingsFile;
-	private String population;
-	private String areaSize;
 	private AreaSizeParser areaSizeParser;
 	private PopulationParser populationParser;
 	private AccountParser incomeParser;
@@ -27,15 +21,15 @@ public class BaseConverter {
 	protected List<Account> parsedIncome;
 	protected List<Account> parsedSpendings;
 
-	public BaseConverter(String incomeFile, String spendingsFile, String population, String areaSize) {
-		this.incomeFile = incomeFile;
-		this.spendingsFile = spendingsFile;
-		this.population = population;
-		this.areaSize = areaSize;
+	public BaseConverter(AreaSizeParser areaSizeParser, PopulationParser populationParser, AccountParser incomeParser,
+			AccountParser spendingsParser) {
+		this.areaSizeParser = areaSizeParser;
+		this.populationParser = populationParser;
+		this.incomeParser = incomeParser;
+		this.spendingsParser = spendingsParser;
 	}
 
-	public MergedData createMergedData() throws FileNotFoundException {
-		readData();
+	public MergedData createMergedData() {
 		parseData();
 		processData();
 		DataMerger dataMerger = new DataMerger();
@@ -50,12 +44,5 @@ public class BaseConverter {
 		parsedArea = areaSizeParser.parse();
 		parsedIncome = incomeParser.parse();
 		parsedSpendings = spendingsParser.parse();
-	}
-
-	private void readData() throws FileNotFoundException {
-		areaSizeParser = new AreaSizeParser(new FileInputStream(areaSize));
-		populationParser = new PopulationParser(new FileInputStream(population));
-		incomeParser = new AccountParser(new FileInputStream(incomeFile));
-		spendingsParser = new AccountParser(new FileInputStream(spendingsFile));
 	}
 }

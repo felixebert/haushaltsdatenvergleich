@@ -17,7 +17,7 @@ public class BalanceConverter {
 			String outputDir = args[1];
 			try {
 				AccountClasses accountClasses = AccountClasses.getInstance();
-				BalanceParser balanceParser = new BalanceParser(new FileInputStream(balanceFile));
+				BalanceParser balanceParser = new BalanceParser(Utils.readCsvFile(new FileInputStream(balanceFile)));
 				List<BalanceItem> balance = balanceParser.parse();
 				BalanceFilter balanceFilter = new BalanceFilter(balance);
 				Set<String> allKs = balanceFilter.collectAllKs();
