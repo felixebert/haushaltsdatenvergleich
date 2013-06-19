@@ -1,0 +1,4 @@
+@echo off
+call konvertiere_bilanz.cmd
+call konvertiere_finanzdaten_gemeinden.cmd
+call konvertiere_finanzdaten_landkreise.cmd
