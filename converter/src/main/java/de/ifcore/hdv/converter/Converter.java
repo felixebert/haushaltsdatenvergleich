@@ -1,6 +1,11 @@
 package de.ifcore.hdv.converter;
 
+import java.io.FileInputStream;
+
 import de.ifcore.hdv.converter.data.MergedData;
+import de.ifcore.hdv.converter.parser.AreaSizeParser;
+import de.ifcore.hdv.converter.parser.CommuneAccountParser;
+import de.ifcore.hdv.converter.parser.PopulationParser;
 import de.ifcore.hdv.converter.utils.Utils;
 
 public class Converter {
@@ -13,7 +18,12 @@ public class Converter {
 			String areaSize = args[3];
 			String outputFile = args[4];
 			try {
-				BaseConverter baseConverter = new BaseConverter(incomeFile, spendingsFile, population, areaSize);
+				AreaSizeParser areaSizeParser = new AreaSizeParser(new FileInputStream(areaSize));
+				PopulationParser populationParser = new PopulationParser(new FileInputStream(population));
+				CommuneAccountParser incomeParser = new CommuneAccountParser(Utils.readCsvFile(incomeFile));
+				CommuneAccountParser spendingsParser = new CommuneAccountParser(Utils.readCsvFile(spendingsFile));
+				BaseConverter baseConverter = new BaseConverter(areaSizeParser, populationParser, incomeParser,
+						spendingsParser);
 				MergedData mergedData = baseConverter.createMergedData();
 				Utils.writeData(mergedData, outputFile);
 			}

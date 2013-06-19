@@ -4,11 +4,15 @@ import de.ifcore.hdv.converter.mapreduce.AccountAggregator;
 import de.ifcore.hdv.converter.mapreduce.Aggregator;
 import de.ifcore.hdv.converter.mapreduce.PopulationMapReduce;
 import de.ifcore.hdv.converter.mapreduce.SizeMapReduce;
+import de.ifcore.hdv.converter.parser.AccountParser;
+import de.ifcore.hdv.converter.parser.AreaSizeParser;
+import de.ifcore.hdv.converter.parser.PopulationParser;
 
 public class BaseCountyConverter extends BaseConverter {
 
-	public BaseCountyConverter(String incomeFile, String spendingsFile, String population, String areaSize) {
-		super(incomeFile, spendingsFile, population, areaSize);
+	public BaseCountyConverter(AreaSizeParser areaSizeParser, PopulationParser populationParser,
+			AccountParser incomeParser, AccountParser spendingsParser) {
+		super(areaSizeParser, populationParser, incomeParser, spendingsParser);
 	}
 
 	@Override

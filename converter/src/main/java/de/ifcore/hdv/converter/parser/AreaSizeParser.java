@@ -23,13 +23,17 @@ public class AreaSizeParser extends AbstractExcelParser {
 		while (rowIterator.hasNext()) {
 			Row row = rowIterator.next();
 			String areaKey = parseAreaKey(row);
-			if (areaKey != null && !areaKey.isEmpty()) {
+			if (areaKeyAccepted(areaKey)) {
 				Double size = parseSize(row);
 				if (size != null)
 					result.put(areaKey, size);
 			}
 		}
 		return result;
+	}
+
+	private boolean areaKeyAccepted(String areaKey) {
+		return areaKey != null && !areaKey.isEmpty();
 	}
 
 	private Double parseSize(Row row) {

@@ -1,14 +1,14 @@
 package de.ifcore.hdv.converter;
 
-import java.io.InputStream;
+import java.util.Collection;
 
 import de.ifcore.hdv.converter.data.BalanceItem;
 import de.ifcore.hdv.converter.parser.AbstractCsvParser;
 
 public class BalanceParser extends AbstractCsvParser<BalanceItem> {
 
-	public BalanceParser(InputStream in) {
-		super(in);
+	public BalanceParser(Collection<String[]> lines) {
+		super(lines);
 	}
 
 	@Override

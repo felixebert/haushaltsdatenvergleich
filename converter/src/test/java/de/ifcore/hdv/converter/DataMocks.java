@@ -45,4 +45,20 @@ public class DataMocks {
 		return new TreeSet<>(Arrays.asList(new AccountClass("01", "test1"), new AccountClass("10", "test2"),
 				new AccountClass("20", "test3")));
 	}
+
+	public static List<String[]> mockAccountCsvData() {
+		return Arrays.asList(new String[] { "GENESIS-Tabelle: Temporär" }, new String[] {
+				"Auszahlungen insgesamt nach Produktgruppen", "", "", "", "" }, new String[] {
+				"- Land, Gemeinden, Gemeindeverbände - Jahr", "", "", "", "" }, new String[] {
+				"Finanzrechnungsstatistik der Gemeinden/GV", "", "", "", "" }, new String[] { "Auszahlungen (EUR)", "",
+				"", "", "" }, new String[] { "Auszahlungskonten: Auszahlungen insgesamt", "", "", "", "" },
+				new String[] { "", "", "", "", "Jahr" }, new String[] { "", "", "", "", "2009" }, new String[] { "05",
+						"Nordrhein-Westfalen", "111", "Verwaltungssteuerung und Service", "7950660525" }, new String[] {
+						"05", "Nordrhein-Westfalen", "121", "Statistik und Wahlen", "72717205" }, new String[] { "05",
+						"Nordrhein-Westfalen", "122", "Ordnungsangelegenheiten", "929640752" }, new String[] { "05",
+						"Nordrhein-Westfalen", "126", "Brandschutz", "706599561" }, new String[] { "05978040",
+						"Werne, Stadt", "611", "Steuern, allg. Zuweisungen u. allg. Umlagen", "18525219" },
+				new String[] { "05978040", "Werne, Stadt", "612", "Sonstige allgemeine Finanzwirtschaft", "12678523" },
+				new String[] { "05978040", "Werne, Stadt", "999", "Summe aller Produktgruppen", "70535060" });
+	}
 }
