@@ -86,27 +86,30 @@
 	
 	<script id="popup-template" type="text/x-handlebars-template">
 		<p><strong>{{areaLabel}}</strong></p>
-		<p style="text-align:center;">
-			<strong>{{value}} &euro;</strong>
+		<p>
+			<strong>{{number value}} &euro;</strong>
 		</p>
 		<table class="table table-area">
 			<thead>
 				<tr>
 					<th><i class="icon-user" title="Einwohnerzahl"></i></th>
-					<td>{{area.population}}</td>
-					<th><i class="icon-hand-right"></i></th>
-					<td>{{accountInOut.[0]}}</td>
+					<td title="Einwohnerzahl">{{number area.population}}</td>
+					<th><i class="icon-hand-right" title="Einnahmen"></i></th>
+					<td title="Einnahmen">{{number accountInOut.[0]}} &euro;</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<th><i class="icon-globe" title="Fläche"></i></th>
-					<td>{{area.size}}</td>
-					<th><i class="icon-hand-left"></i></th>
-					<td>{{accountInOut.[1]}}</td>
+					<td title="Fläche">{{number area.size}}</td>
+					<th><i class="icon-hand-left" title="Ausgaben"></i></th>
+					<td title="Ausgaben">{{number accountInOut.[1]}} &euro;</td>
 				</tr>
 			</tbody>
 		</table>
+		<p>
+			<button type="button" class="btn"><i class="icon-briefcase"></i> Bilanz</button>
+		</p>
 	</script>
 
 	<script src="lib/underscore.js"></script>
@@ -116,6 +119,7 @@
 	<script src="lib/handlebars.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/utils.js"></script>
+	<script src="js/handlebars-helper.js"></script>
 	<script src="js/map.js"></script>
 	<script src="js/accounts.js"></script>
 	<script src="js/areas.js"></script>

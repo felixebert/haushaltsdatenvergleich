@@ -18,13 +18,11 @@
 	};
 
 	hdv.formatter = {
-		currency: function(number) {
-			var thousand = '.';
-			var negative = number < 0 ? "-" : "";
-			var absNumber = Math.abs(+number || 0) + "";
-			var thousands = (absNumber.length > 3) ? absNumber.length % 3 : 0;
-			return negative + (thousands ? absNumber.substr(0, thousands) + thousand : "")
-					+ absNumber.substr(thousands).replace(/(\d{3})(?=\d)/g, "$1" + thousand);
+		number: function(n) {
+			var sign = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(2)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+			var result = sign + (j ? i.substr(0, j) + '.' : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + '.')
+					+ (2 ? ',' + Math.abs(n - i).toFixed(2).slice(2) : "");
+			return result.replace(/,00/g, '');
 		}
 	};
 
