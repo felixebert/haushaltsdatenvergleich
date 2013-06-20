@@ -11,7 +11,7 @@
 			}, this));
 		},
 		render: function(key, data) {
-			$('#h1').text('Bilanz von ' + data.label);
+			$('h1').text('Bilanz von ' + data.label);
 			$('.assets').html(this.template(data.assets));
 			$('.liabilities').html(this.template(data.liabilities));
 

@@ -117,7 +117,7 @@
 		getCurrentValueLabel : function() {
 			var compare = $('.settings input[name="compare"]:checked').data('label');
 			var relation = $('.settings input[name="relation"]:checked').data('label');
-			return compare + " " + relation;
+			return compare + (relation ? ' '  + relation : '');
 		}
 
 	};

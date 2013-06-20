@@ -87,10 +87,11 @@
 	<script id="popup-template" type="text/x-handlebars-template">
 		<p class="popup-label"><strong>{{areaLabel}}</strong></p>
 		
-		<button type="button" class="btn btn-balance btn-popup" title="Bilanz"><i class="icon-briefcase"></i></button>
+		<a href="bilanz.html?{{area.key}}" target="_blank" class="btn btn-balance btn-popup" title="Bilanz"><i class="icon-briefcase"></i></a>
 		
+		<br />
 		<p>
-			<div>{{valueLabel}}</div>
+			<strong>{{valueLabel}}:</strong><br />
 			<strong class="popup-value"> {{number value}} &euro;</strong>
 		</p>
 
