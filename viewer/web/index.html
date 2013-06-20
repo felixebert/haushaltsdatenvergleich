@@ -89,19 +89,19 @@
 		
 		<a href="bilanz.html?{{area.key}}" target="_blank" class="btn btn-balance btn-popup" title="Bilanz"><i class="icon-briefcase"></i></a>
 		
-		<br />
 		<p>
 			<strong>{{valueLabel}}:</strong><br />
-			<strong class="popup-value"> {{number value}} &euro;</strong>
+			<strong class="popup-value"> {{{currency value}}}</strong>
 		</p>
 
+		<strong>Rohdaten:</strong>
 		<table class="table table-area">
 			<thead>
 				<tr>
 					<th><i class="icon-user" title="Einwohnerzahl"></i></th>
 					<td title="Einwohnerzahl">{{number area.population}}</td>
 					<th><i class="icon-hand-right" title="Einnahmen"></i></th>
-					<td title="Einnahmen">{{number accountInOut.[0]}} &euro;</td>
+					<td title="Einnahmen">{{{currency accountInOut.[0]}}}</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -109,7 +109,7 @@
 					<th><i class="icon-globe" title="Fläche"></i></th>
 					<td title="Fläche">{{number area.size}} km²</td>
 					<th><i class="icon-hand-left" title="Ausgaben"></i></th>
-					<td title="Ausgaben">{{number accountInOut.[1]}} &euro;</td>
+					<td title="Ausgaben">{{{currency accountInOut.[1]}}}</td>
 				</tr>
 			</tbody>
 		</table>

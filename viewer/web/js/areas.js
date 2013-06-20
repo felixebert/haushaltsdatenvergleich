@@ -83,24 +83,31 @@
 			var boundaries = hdv.accountBoundaries.findAccordingTo(settings);
 			var log10Boundaries = hdv.accountBoundaries.toLog10(boundaries);
 			var valueLabel = this.getCurrentValueLabel();
-			_.each(hdv.map.data.areas, _.bind(function(area) {
-				var layer = hdv.map.getAreaLayer(area.key);
-				if (layer) {
-					var value = areaValue.ofArea(area, settings);
-					var boundary = hdv.accountBoundaries.forValue(value, log10Boundaries);
 
-					layer.value.setStyle(this.getLayerStyle(value, boundary, settings.compare));
-					layer.value.bindPopup(hdv.map.templates.popup({
-						'valueLabel': valueLabel,
-						'areaLabel': layer.label,
-						'area': area,
-						'value': value,
-						'accountInOut': area.accounts[settings.account]
-					}));
-				} else {
-					console.error('no layer for area ' + area.key);
-				}
+			_.each(hdv.map.data.areas, _.bind(function(area) {
+				this.refreshLayer(area, log10Boundaries, valueLabel);
 			}, this));
+		},
+		refreshLayer: function(area, log10Boundaries, valueLabel) {
+			var layer = hdv.map.getAreaLayer(area.key);
+			if (layer) {
+				var value = areaValue.ofArea(area, settings);
+				var boundary = hdv.accountBoundaries.forValue(value, log10Boundaries);
+
+				layer.value.setStyle(this.getLayerStyle(value, boundary, settings.compare));
+				layer.value.bindPopup(hdv.map.templates.popup(this.getTemplateObject(valueLabel, layer, area, value)));
+			} else {
+				console.error('no layer for area ' + area.key);
+			}
+		},
+		getTemplateObject: function(valueLabel, layer, area, value) {
+			return {
+				'valueLabel': valueLabel,
+				'areaLabel': layer.label,
+				'area': area,
+				'value': value,
+				'accountInOut': area.accounts[settings.account]
+			};
 		},
 		refresh: function() {
 			if (_.isEmpty(hdv.map.data) || _.isEmpty(hdv.map.areaLayers)) {
