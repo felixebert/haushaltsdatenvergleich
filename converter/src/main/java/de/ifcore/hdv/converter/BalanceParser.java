@@ -15,7 +15,9 @@ public class BalanceParser extends AbstractCsvParser<BalanceItem> {
 	protected BalanceItem parseItem(String[] strings) {
 		if (strings.length >= 6) {
 			Long value = Long.valueOf(strings[5].trim());
-			return new BalanceItem(strings[0].trim(), strings[3].trim(), strings[4].trim(), value);
+			String areaKey = strings[0].trim();
+			return new BalanceItem(areaKey.substring(0, areaKey.length() - 1), strings[2].trim(), strings[3].trim(),
+					strings[4].trim(), value);
 		}
 		else
 			return null;

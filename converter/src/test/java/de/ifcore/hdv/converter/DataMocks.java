@@ -31,9 +31,9 @@ public class DataMocks {
 	}
 
 	public static List<BalanceItem> mockBalanceItems() {
-		return Arrays.asList(new BalanceItem("051110001", "0100", "test1", Long.valueOf(1)), new BalanceItem(
-				"051110002", "1000", "test2", Long.valueOf(2)),
-				new BalanceItem("051110003", "2000", "test3", Long.valueOf(3)));
+		return Arrays.asList(new BalanceItem("05111001", "ort", "0100", "test1", Long.valueOf(1)), new BalanceItem(
+				"05111002", "ort", "1000", "test2", Long.valueOf(2)), new BalanceItem("05111003", "ort", "2000",
+				"test3", Long.valueOf(3)));
 	}
 
 	public static SortedSet<AccountClass> mockMainAccountClasses() {

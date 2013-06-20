@@ -34,16 +34,16 @@
 			
 			<label class="title">Was vergleichen?</label>
 			<p>
-				<label class="radio"><input type="radio" name="compare" value="in"> Einnahmen</label>
-				<label class="radio"><input type="radio" name="compare" value="out"> Ausgaben</label>
-				<label class="radio"><input type="radio" name="compare" value="sum" checked="checked"> Summe</label>
+				<label class="radio"><input type="radio" name="compare" value="in" data-label="Einnahmen"> Einnahmen</label>
+				<label class="radio"><input type="radio" name="compare" value="out" data-label="Ausgaben"> Ausgaben</label>
+				<label class="radio"><input type="radio" name="compare" value="sum" data-label="Summe" checked="checked" > Summe</label>
 			</p>
 			
 			<label class="title">im Verhältnis zur?</label>
 			<p>
-				<label class="radio"><input type="radio" name="relation" value="population"> Einwohnerzahl</label>
-				<label class="radio"><input type="radio" name="relation" value="size"> Fläche</label>
-				<label class="radio"><input type="radio" name="relation" value="none" checked="checked"> absolut</label>
+				<label class="radio"><input type="radio" name="relation" value="population" data-label="pro Einwohnerzahl"> Einwohnerzahl</label>
+				<label class="radio"><input type="radio" name="relation" value="size" data-label="pro Fläche"> Fläche</label>
+				<label class="radio"><input type="radio" name="relation" value="none" checked="checked" data-label=""> absolut</label>
 			</p>
 
 			<label class="title">Gebietsgröße</label>
@@ -85,13 +85,15 @@
 	</div>
 	
 	<script id="popup-template" type="text/x-handlebars-template">
-		<p><strong>{{areaLabel}}</strong></p>
+		<p class="popup-label"><strong>{{areaLabel}}</strong></p>
+		
+		<button type="button" class="btn btn-balance btn-popup" title="Bilanz"><i class="icon-briefcase"></i></button>
+		
 		<p>
-			<strong>{{number value}} &euro;</strong>
+			<div>{{valueLabel}}</div>
+			<strong class="popup-value"> {{number value}} &euro;</strong>
 		</p>
-		<p>
-			<button type="button" class="btn btn-balance" onclick="hdv.balance.open('{{area.key}}')"><i class="icon-briefcase"></i> Bilanz</button>
-		</p>
+
 		<table class="table table-area">
 			<thead>
 				<tr>
@@ -104,7 +106,7 @@
 			<tbody>
 				<tr>
 					<th><i class="icon-globe" title="Fläche"></i></th>
-					<td title="Fläche">{{number area.size}}</td>
+					<td title="Fläche">{{number area.size}} km²</td>
 					<th><i class="icon-hand-left" title="Ausgaben"></i></th>
 					<td title="Ausgaben">{{number accountInOut.[1]}} &euro;</td>
 				</tr>

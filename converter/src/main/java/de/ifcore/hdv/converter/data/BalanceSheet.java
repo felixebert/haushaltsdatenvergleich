@@ -6,8 +6,13 @@ import java.util.Map;
 
 public class BalanceSheet {
 
+	private String label;
 	private Map<String, Map<String, List<BalanceItem>>> assets = new LinkedHashMap<>();
 	private Map<String, Map<String, List<BalanceItem>>> liabilities = new LinkedHashMap<>();
+
+	public BalanceSheet(String label) {
+		this.label = label;
+	}
 
 	public void addAssets(String label, Map<String, List<BalanceItem>> newAssets) {
 		assets.put(label, newAssets);
@@ -23,5 +28,9 @@ public class BalanceSheet {
 
 	public Map<String, Map<String, List<BalanceItem>>> getLiabilities() {
 		return liabilities;
+	}
+
+	public String getLabel() {
+		return label;
 	}
 }

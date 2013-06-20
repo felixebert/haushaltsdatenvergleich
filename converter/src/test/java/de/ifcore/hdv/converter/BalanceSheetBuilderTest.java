@@ -12,7 +12,7 @@ public class BalanceSheetBuilderTest {
 	public void itShouldCreateABalanceSheet() throws Exception {
 		BalanceSheetBuilder builder = new BalanceSheetBuilder(DataMocks.mockMainAccountClasses(),
 				DataMocks.mockSubAccountClasses());
-		BalanceSheet sheet = builder.createBalanceSheet(DataMocks.mockBalanceItems());
+		BalanceSheet sheet = builder.createBalanceSheet(DataMocks.mockBalanceItems(), "label");
 		assertNotNull(sheet.getAssets().get("imma"));
 		assertNotNull(sheet.getAssets().get("finan"));
 		assertNotNull(sheet.getLiabilities().get("eigen"));
