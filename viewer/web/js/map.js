@@ -49,6 +49,7 @@
 		data: {},
 		loadedAreaLayers: null,
 		loadedData: null,
+		templates: {},
 		init: function() {
 			this.leafletMap = L.map('map', {
 				center: [51.463, 7.18],
@@ -64,7 +65,11 @@
 			this.addSettingsControl();
 
 			this.setupEvents();
+			this.setupTemplates();
 			this.reload();
+		},
+		setupTemplates: function() {
+			this.templates.popup = Handlebars.compile($('#popup-template').html());
 		},
 		setupEvents: function() {
 			$(hdv).on('map.loaded.areaLayers map.loaded.data', _.bind(this.fireMapIsReady, this));

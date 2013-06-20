@@ -7,15 +7,15 @@ describe('area value utils', function() {
 		expect(hdv.areaValue.getValue([100, 10], 'sum')).toEqual(90);
 	});
 
-	it('should return inOut-sum of given account list', function() {
+	it('should return null-safe inOut of given account list', function() {
 		var accountsInOut = {
 			"611": [9269650, 4974823],
 			"411": [null, 93863],
 		};
 
-		expect(hdv.areaValue.getInOutSum(accountsInOut, [611])).toEqual([9269650, 4974823]);
-		expect(hdv.areaValue.getInOutSum(accountsInOut, [611, 411])).toEqual([9269650, 4974823 + 93863]);
-		expect(hdv.areaValue.getInOutSum(accountsInOut, [620])).toEqual([0, 0]);
+		expect(hdv.areaValue.getInOut(accountsInOut, 611)).toEqual([9269650, 4974823]);
+		expect(hdv.areaValue.getInOut(accountsInOut, 411)).toEqual([0, 93863]);
+		expect(hdv.areaValue.getInOut(accountsInOut, 620)).toEqual([0, 0]);
 	});
 
 	it('should return inOut in relation to a number', function() {

@@ -1,14 +1,13 @@
 'use strict';
 
-(function(hdv, $, _) {
+(function(hdv, $, _, Handlebars) {
 	var nullSafeNumber = function(number) {
 		return number === null ? 0 : number;
 	};
 
 	var areaValue = {
 		ofArea: function(area, settings) {
-			var inOutSum = this.getInOutSum(area.accounts, settings.accounts);
-			var inOut = inOutSum;
+			var inOut = this.getInOut(area.accounts, settings.account);
 			if (settings.relation !== 'none') {
 				inOut = this.getInOutInRelationTo(inOutSum, area[settings.relation]);
 			}
@@ -23,15 +22,13 @@
 			}
 			return nullSafeNumber(inOut[0]) - nullSafeNumber(inOut[1]);
 		},
-		getInOutSum: function(areaAccountsInOut, accounts) {
+		getInOut: function(areaAccountsInOut, account) {
 			var inOut = [0, 0];
-			_.each(accounts, _.bind(function(account) {
-				var accountInOut = areaAccountsInOut[account];
-				if (accountInOut !== undefined) {
-					inOut[0] += nullSafeNumber(accountInOut[0]);
-					inOut[1] += nullSafeNumber(accountInOut[1]);
-				}
-			}, this));
+			var accountInOut = areaAccountsInOut[account];
+			if (accountInOut !== undefined) {
+				inOut[0] += nullSafeNumber(accountInOut[0]);
+				inOut[1] += nullSafeNumber(accountInOut[1]);
+			}
 
 			return inOut;
 		},
@@ -92,11 +89,13 @@
 					var value = areaValue.ofArea(area, settings);
 					var boundary = hdv.accountBoundaries.forValue(value, log10Boundaries);
 
-					var style = this.getLayerStyle(value, boundary, settings.compare);
-					var html = "<strong>" + layer.label + "</strong><br />" + hdv.formatter.currency(value) + " €";
-
-					layer.value.setStyle(style);
-					layer.value.bindPopup(html);
+					layer.value.setStyle(this.getLayerStyle(value, boundary, settings.compare));
+					layer.value.bindPopup(hdv.map.templates.popup({
+						'areaLabel': layer.label,
+						'area': area,
+						'value': value,
+						'accountInOut': area.accounts[settings.account]
+					}));
 				} else {
 					console.error('no layer for area ' + area.key);
 				}
@@ -106,9 +105,9 @@
 			if (_.isEmpty(hdv.map.data) || _.isEmpty(hdv.map.areaLayers)) {
 				return false;
 			}
+
 			var settings = hdv.serialize.toLiteral($('.settings').serializeArray());
-			settings.accounts = hdv.accounts.getSelectedAccounts(settings.pb, settings.pg);
-			settings.boundaryAccount = hdv.accounts.getTopAccount(settings.pb, settings.pg);
+			settings.account = hdv.accounts.getSelectedAccount(settings.pg);
 
 			this.refreshLayers(settings);
 		}
@@ -117,4 +116,4 @@
 	hdv.areas = areas;
 	hdv.areaValue = areaValue;
 	areas.init();
-})(hdv, $, _);
+})(hdv, $, _, Handlebars);

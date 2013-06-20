@@ -33,25 +33,6 @@ var mockData = {
 	}
 };
 
-describe('accounts', function() {
-	it('should find all related accounts to current user selection', function() {
-		hdv.map.data = mockData;
-
-		expect(hdv.accounts.getSelectedAccounts('all', '111')).toEqual([111]);
-		expect(hdv.accounts.getSelectedAccounts('11', 'all')).toEqual([111]);
-		expect(hdv.accounts.getSelectedAccounts('12', 'all').length).toEqual(mockData.tree[12].length);
-		expect(hdv.accounts.getSelectedAccounts('all', 'all').length).toEqual(_.keys(mockData.accounts).length);
-	});
-
-	it('should find the top account (by level)', function() {
-		hdv.map.data = mockData;
-
-		expect(hdv.accounts.getTopAccount('all', '111')).toEqual(111);
-		expect(hdv.accounts.getTopAccount('11', 'all')).toEqual(11);
-		expect(hdv.accounts.getTopAccount('11', '111')).toEqual(111);
-	});
-});
-
 describe('account boundaries utils', function() {
 	it('should find boundary for value', function() {
 		expect(hdv.accountBoundaries.forValue(100, [200, 10, -300, -20])).toEqual([200, 10]);
@@ -86,7 +67,7 @@ describe('account boundaries utils', function() {
 			}
 		};
 		var settings = {
-			boundaryAccount: 255,
+			account: 255,
 			relation: 'none',
 			compare: 'sum'
 		};

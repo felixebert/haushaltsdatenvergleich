@@ -63,32 +63,8 @@
 			var account = hdv.map.data.accounts[accountKey];
 			parentElement.append($("<option />").val(account.key).text(account.label));
 		},
-		getSelectedAccounts: function(selectedGroup, selectedAccount) {
-			var accounts = [];
-			if (selectedAccount !== 'all') {
-				accounts.push(parseInt(selectedAccount, 10));
-			} else {
-				var groups = [];
-				if (selectedGroup === 'all') {
-					_.each(_.keys(hdv.map.data.tree), function(group) {
-						groups.push(group);
-					});
-				} else {
-					groups.push(selectedGroup);
-				}
-
-				_.each(groups, function(group) {
-					_.each(hdv.map.data.tree[group], function(account) {
-						accounts.push(account);
-					});
-				});
-			}
-
-			return accounts;
-		},
-		getTopAccount: function(selectedGroup, selectedAccount) {
-			var account = selectedAccount === 'all' ? selectedGroup : selectedAccount;
-			return parseInt(account, 10);
+		getSelectedAccount: function(selectedAccount) {
+			return parseInt(selectedAccount, 10);
 		}
 	};
 
@@ -110,7 +86,7 @@
 	 */
 	var accountBoundaries = {
 		findAccordingTo: function(settings) {
-			var allBoundaries = hdv.map.data.accounts[settings.boundaryAccount].data;
+			var allBoundaries = hdv.map.data.accounts[settings.account].data;
 			var relevantBoundaries = this.findRelevant(allBoundaries, settings.relation, settings.compare);
 			return relevantBoundaries;
 		},
