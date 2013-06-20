@@ -2,22 +2,22 @@
 
 (function(hdv, $, _) {
 	var accounts = {
-		selectedGroup : 'all',
-		init : function() {
+		selectedGroup: 'all',
+		init: function() {
 			$(hdv).on('map.loaded.data', _.bind(this.reset, this));
 			$('.settings').on('change', _.bind(this.refresh, this));
 		},
-		reset : function() {
+		reset: function() {
 			this.resetAccountGroups();
 			this.resetAccounts();
 		},
-		refresh : function() {
+		refresh: function() {
 			if (this.selectedGroup !== $('select[name="pb"]').val()) {
 				this.selectedGroup = $('select[name="pb"]').val();
 				this.resetAccounts();
 			}
 		},
-		resetAccountGroups : function() {
+		resetAccountGroups: function() {
 			var selectList = $('select[name="pb"]');
 			selectList.empty();
 			selectList.append($("<option />").val('all').text('Alle'));
@@ -27,7 +27,7 @@
 
 			selectList.val(this.selectedGroup);
 		},
-		resetAccounts : function() {
+		resetAccounts: function() {
 			var selectList = $('select[name="pg"]');
 
 			selectList.empty();
@@ -39,7 +39,7 @@
 
 			selectList.val(this.selectedAccount);
 		},
-		addAllAccounts : function(selectList) {
+		addAllAccounts: function(selectList) {
 			_.each(_.keys(hdv.map.data.tree), _.bind(function(groupKey) {
 				var groupAccount = hdv.map.data.accounts[groupKey];
 				var optGroup = $('<optgroup />').attr('label', groupAccount.label);
@@ -47,16 +47,16 @@
 				selectList.append(optGroup);
 			}, this));
 		},
-		addAccountsOfGroup : function(parentElement, groupKey) {
+		addAccountsOfGroup: function(parentElement, groupKey) {
 			_.each(hdv.map.data.tree[groupKey], _.bind(function(accountKey) {
 				this.addOption(parentElement, accountKey);
 			}, this));
 		},
-		addOption : function(parentElement, accountKey) {
+		addOption: function(parentElement, accountKey) {
 			var account = hdv.map.data.accounts[accountKey];
 			parentElement.append($("<option />").val(account.key).text(account.label));
 		},
-		getSelectedAccount : function(selectedAccount) {
+		getSelectedAccount: function(selectedAccount) {
 			return parseInt(selectedAccount, 10);
 		}
 	};
@@ -78,13 +78,12 @@
 	 * diese Produktgruppe über alle Areas (Gemeinden / Landkreise) hinweg gibt.
 	 */
 	var accountBoundaries = {
-		findAccordingTo : function(settings) {
+		findAccordingTo: function(settings) {
 			var allBoundaries = hdv.map.data.accounts[settings.account].data;
-			var relevantBoundaries = this.findRelevant(allBoundaries, settings.relation,
-					settings.compare);
+			var relevantBoundaries = this.findRelevant(allBoundaries, settings.relation, settings.compare);
 			return relevantBoundaries;
 		},
-		findRelevant : function(allBoundaries, relation, compare) {
+		findRelevant: function(allBoundaries, relation, compare) {
 			var startPos = 0;
 			var length = 2;
 			if (relation !== 'none') {
@@ -104,13 +103,13 @@
 			}
 			return boundaries;
 		},
-		forValue : function(value, boundaries) {
+		forValue: function(value, boundaries) {
 			if (boundaries.length == 2) {
 				return boundaries;
 			}
-			return value > 0 ? [ boundaries[0], boundaries[1] ] : [ boundaries[2], boundaries[3] ];
+			return value > 0 ? [boundaries[0], boundaries[1]] : [boundaries[2], boundaries[3]];
 		},
-		toLog10 : function(boundaries) {
+		toLog10: function(boundaries) {
 			var log10Boundaries = [];
 			_.each(boundaries, _.bind(function(boundaryValue) {
 				log10Boundaries.push(hdv.calc.safeLog10(boundaryValue));

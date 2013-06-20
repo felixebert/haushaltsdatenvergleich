@@ -1,24 +1,22 @@
 'use strict';
 (function(hdv, L, $, _) {
 	var SettingsControl = L.Control.extend({
-		options : {
-			position : 'topleft'
+		options: {
+			position: 'topleft'
 		},
-		onAdd : function(map) {
+		onAdd: function(map) {
 			var container = L.DomUtil.create('div', 'leaflet-control-settings leaflet-bar');
 
-			this.toggleSettingsButton = this._createButton("*", "Einstellungen",
-					'leaflet-control-toggle-settings leaflet-bar-part leaflet-bar-part-top',
+			this.toggleSettingsButton = this._createButton("*", "Einstellungen", 'leaflet-control-toggle-settings leaflet-bar-part leaflet-bar-part-top',
 					container, this.onToggleSettingsClick, this);
 			this._bindToggleButton(this.toggleSettingsButton, this.toggleNav);
 
-			this.toggleInfoButton = this._createButton("i", "Information",
-					'leaflet-control-info leaflet-bar-part leaflet-bar-part-bottom', container);
+			this.toggleInfoButton = this._createButton("i", "Information", 'leaflet-control-info leaflet-bar-part leaflet-bar-part-bottom', container);
 			this._bindToggleButton(this.toggleInfoButton, this.toggleInfo);
 
 			return container;
 		},
-		_createButton : function(html, title, className, container, fn, context) {
+		_createButton: function(html, title, className, container, fn, context) {
 			var link = L.DomUtil.create('a', className, container);
 			link.innerHTML = html;
 			link.href = '#';
@@ -26,7 +24,7 @@
 
 			return link;
 		},
-		_bindToggleButton : function(button, fn) {
+		_bindToggleButton: function(button, fn) {
 			var stop = L.DomEvent.stopPropagation;
 			L.DomEvent.on(button, 'click', stop);
 			L.DomEvent.on(button, 'mousedown', stop);
@@ -36,37 +34,34 @@
 				fn.call(this);
 			}, this);
 		},
-		toggleNav : function() {
+		toggleNav: function() {
 			$('#nav').toggleClass('hide');
 			$(this.toggleSettingsButton).toggleClass('leaflet-control-active');
 		},
-		toggleInfo : function() {
+		toggleInfo: function() {
 			$('#info').modal('toggle');
 		}
 	});
 
 	var map = {
-		leafletMap : null,
-		areaLayers : [],
-		data : {},
-		loadedAreaLayers : null,
-		loadedData : null,
-		templates : {},
-		init : function() {
+		leafletMap: null,
+		areaLayers: [],
+		data: {},
+		loadedAreaLayers: null,
+		loadedData: null,
+		templates: {},
+		init: function() {
 			this.leafletMap = L.map('map', {
-				center : [ hdv.defaults.lat, hdv.defaults.lon ],
-				zoom : hdv.defaults.zoom,
-				minZoom : 8,
-				maxZoom : 11,
-				attributionControl : false
+				center: [hdv.defaults.lat, hdv.defaults.lon],
+				zoom: hdv.defaults.zoom,
+				minZoom: 8,
+				maxZoom: 11,
+				attributionControl: false
 			});
 
-			$('.settings input[name="compare"]').filter('[value="' + hdv.defaults.compare + '"]')
-					.prop('checked', true);
-			$('.settings input[name="relation"]').filter('[value="' + hdv.defaults.relation + '"]')
-					.prop('checked', true);
-			$('.settings input[name="areaLayer"]').filter(
-					'[value="' + hdv.defaults.areaLayer + '"]').prop('checked', true);
+			$('.settings input[name="compare"]').filter('[value="' + hdv.defaults.compare + '"]').prop('checked', true);
+			$('.settings input[name="relation"]').filter('[value="' + hdv.defaults.relation + '"]').prop('checked', true);
+			$('.settings input[name="areaLayer"]').filter('[value="' + hdv.defaults.areaLayer + '"]').prop('checked', true);
 
 			this.addTileLayer();
 			this.addAttributionControl();
@@ -77,39 +72,35 @@
 			this.setupTemplates();
 			this.reload();
 		},
-		setupTemplates : function() {
+		setupTemplates: function() {
 			this.templates.popup = Handlebars.compile($('#popup-template').html());
 		},
-		setupEvents : function() {
+		setupEvents: function() {
 			$(hdv).on('map.loaded.areaLayers map.loaded.data', _.bind(this.fireMapIsReady, this));
 			$('.settings').on('change', _.bind(this.reload, this));
 		},
-		addTileLayer : function() {
-			L
-					.tileLayer(
-							'http://{s}.tile.cloudmade.com/036a729cf53d4388a8ec345e1543ef53/44094/256/{z}/{x}/{y}.png',
-							{
-								'maxZoom' : 18
-							}).addTo(this.leafletMap);
+		addTileLayer: function() {
+			L.tileLayer('http://{s}.tile.cloudmade.com/036a729cf53d4388a8ec345e1543ef53/44094/256/{z}/{x}/{y}.png', {
+				'maxZoom': 18
+			}).addTo(this.leafletMap);
 		},
-		addAttributionControl : function() {
+		addAttributionControl: function() {
 			var attribution = '<a class="imprint">Impressum</a>';
-			L.control.attribution().setPrefix(null).addAttribution(attribution).addTo(
-					this.leafletMap);
+			L.control.attribution().setPrefix(null).addAttribution(attribution).addTo(this.leafletMap);
 
 			$('.imprint').on('click', function() {
 				$('#imprint').modal('toggle');
 			});
 		},
-		initModals : function() {
-			var modals = [ 'info', 'imprint' ];
+		initModals: function() {
+			var modals = ['info', 'imprint'];
 			_.each(modals, function(modalId) {
 				$('#' + modalId).modal({
-					'show' : false
+					'show': false
 				});
 			});
 		},
-		addSettingsControl : function() {
+		addSettingsControl: function() {
 			this.settingsControl = new SettingsControl().addTo(this.leafletMap);
 			if ($(window).width() > 979) {
 				this.settingsControl.toggleNav();
@@ -119,19 +110,17 @@
 				this.settingsControl.toggleNav();
 			}, this));
 		},
-		fireMapIsReady : function() {
+		fireMapIsReady: function() {
 			if (!_.isEmpty(this.data) && !_.isEmpty(this.areaLayers)) {
 				$('.ajax-loader').hide();
 
-				$('.settings select[name="pg"] option[value="' + hdv.defaults.pg + '"]').prop(
-						'selected', true);
-				$('.settings select[name="year"] option[value="' + hdv.defaults.year + '"]').prop(
-						'selected', true);
+				$('.settings select[name="pg"] option[value="' + hdv.defaults.pg + '"]').prop('selected', true);
+				$('.settings select[name="year"] option[value="' + hdv.defaults.year + '"]').prop('selected', true);
 
 				$(hdv).triggerHandler('map.ready');
 			}
 		},
-		loadAreaLayers : function(type) {
+		loadAreaLayers: function(type) {
 			if (this.loadedAreaLayers !== type) {
 				$('.ajax-loader').show();
 
@@ -148,28 +137,28 @@
 				}, this));
 			}
 		},
-		addAreaLayers : function(geojson) {
+		addAreaLayers: function(geojson) {
 			L.geoJson(geojson.features, {
-				style : {
-					'opacity' : 0.5,
-					'weight' : 1
+				style: {
+					'opacity': 0.5,
+					'weight': 1
 				},
-				onEachFeature : _.bind(this.addAreaLayer, this)
+				onEachFeature: _.bind(this.addAreaLayer, this)
 			}).addTo(this.leafletMap);
 		},
-		addAreaLayer : function(feature, layer) {
+		addAreaLayer: function(feature, layer) {
 			this.areaLayers.push({
-				'key' : feature.properties.KN ? feature.properties.KN : feature.properties.AGS,
-				'label' : feature.properties.GN ? feature.properties.GN : feature.properties.GEN,
-				'value' : layer
+				'key': feature.properties.KN ? feature.properties.KN : feature.properties.AGS,
+				'label': feature.properties.GN ? feature.properties.GN : feature.properties.GEN,
+				'value': layer
 			});
 		},
-		getAreaLayer : function(key) {
+		getAreaLayer: function(key) {
 			return _.find(this.areaLayers, function(area) {
 				return area.key == key;
 			});
 		},
-		loadData : function(areaType, year) {
+		loadData: function(areaType, year) {
 			var jsonFile = 'finanzen-' + areaType + '-' + year;
 			if (this.loadedData !== jsonFile) {
 				$('.ajax-loader').show();
@@ -183,10 +172,10 @@
 				}, this));
 			}
 		},
-		setData : function(data) {
+		setData: function(data) {
 			this.data = data;
 		},
-		reload : function() {
+		reload: function() {
 			var settings = hdv.serialize.toLiteral($('.settings').serializeArray());
 			this.loadAreaLayers(settings.areaLayer);
 			this.loadData(settings.areaLayer, settings.year);
