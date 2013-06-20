@@ -85,12 +85,11 @@
 	</div>
 	
 	<script id="popup-template" type="text/x-handlebars-template">
-		<p><strong>{{areaLabel}}</strong></p>
+		<p class="popup-label"><strong>{{areaLabel}}</strong></p>
+		<button type="button" class="btn popup-button " title="Bilanz"><i class="icon-briefcase"></i></button>
 		<p>
-			<strong>{{valueLabel}} {{number value}} &euro;</strong>
-		</p>
-		<p>
-			<button type="button" class="btn"><i class="icon-briefcase"></i> Bilanz</button>
+			<div>{{valueLabel}}</div>
+			<div style="text-align:right"><strong> {{number value}} &euro;</strong></div>
 		</p>
 		<table class="table table-area">
 			<thead>
@@ -104,7 +103,7 @@
 			<tbody>
 				<tr>
 					<th><i class="icon-globe" title="Fläche"></i></th>
-					<td title="Fläche">{{number area.size}}</td>
+					<td title="Fläche">{{number area.size}} km²</td>
 					<th><i class="icon-hand-left" title="Ausgaben"></i></th>
 					<td title="Ausgaben">{{number accountInOut.[1]}} &euro;</td>
 				</tr>

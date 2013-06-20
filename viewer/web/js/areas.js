@@ -37,7 +37,7 @@
 					this.getValueInRelationTo(inOut[1], relation) ];
 		},
 		getValueInRelationTo : function(value, relation) {
-			return Math.round(value / relation);
+			return Math.round((value / relation) * 100) / 100;
 		}
 	};
 
@@ -84,7 +84,7 @@
 		refreshLayers : function(settings) {
 			var boundaries = hdv.accountBoundaries.findAccordingTo(settings);
 			var log10Boundaries = hdv.accountBoundaries.toLog10(boundaries);
-
+			var valueLabel = this.getCurrentValueLabel();
 			_.each(hdv.map.data.areas, _.bind(function(area) {
 				var layer = hdv.map.getAreaLayer(area.key);
 				if (layer) {
@@ -93,7 +93,7 @@
 
 					layer.value.setStyle(this.getLayerStyle(value, boundary, settings.compare));
 					layer.value.bindPopup(hdv.map.templates.popup({
-						'valueLabel' : this.getCurrentValueLabel(),
+						'valueLabel' : valueLabel,
 						'areaLabel' : layer.label,
 						'area' : area,
 						'value' : value,
@@ -115,8 +115,9 @@
 			this.refreshLayers(settings);
 		},
 		getCurrentValueLabel : function() {
-			return $('.settings input[compare]').data('label')
-					+ $('.settings input[relation]').data('label');
+			var compare = $('.settings input[name="compare"]:checked').data('label');
+			var relation = $('.settings input[name="relation"]:checked').data('label');
+			return compare + " " + relation;
 		}
 
 	};
