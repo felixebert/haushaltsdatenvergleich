@@ -93,6 +93,7 @@
 
 					layer.value.setStyle(this.getLayerStyle(value, boundary, settings.compare));
 					layer.value.bindPopup(hdv.map.templates.popup({
+						'valueLabel' : this.getCurrentValueLabel(),
 						'areaLabel' : layer.label,
 						'area' : area,
 						'value' : value,
@@ -112,14 +113,12 @@
 			settings.account = hdv.accounts.getSelectedAccount(settings.pg);
 
 			this.refreshLayers(settings);
-		}
-	};
-
-	hdv.labels = {
+		},
 		getCurrentValueLabel : function() {
 			return $('.settings input[compare]').data('label')
 					+ $('.settings input[relation]').data('label');
 		}
+
 	};
 
 	hdv.areas = areas;
