@@ -17,8 +17,8 @@ public class BaseCountyConverter extends BaseConverter {
 
 	@Override
 	protected void processData() {
-		parsedIncome = AccountAggregator.aggregate(parsedIncome);
-		parsedSpendings = AccountAggregator.aggregate(parsedSpendings);
+		parsedIncome = AccountAggregator.reduceAreaKeyForCounty(parsedIncome);
+		parsedSpendings = AccountAggregator.reduceAreaKeyForCounty(parsedSpendings);
 		parsedPopulation = Aggregator.aggregateMap(parsedPopulation, new PopulationMapReduce());
 		parsedArea = Aggregator.aggregateMap(parsedArea, new SizeMapReduce());
 	}

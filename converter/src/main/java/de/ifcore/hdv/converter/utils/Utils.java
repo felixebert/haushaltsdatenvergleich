@@ -71,6 +71,10 @@ public class Utils {
 	}
 
 	public static boolean isCounty(String areaKey) {
-		return areaKey.endsWith("000") || areaKey.endsWith("001");
+		return areaKey.endsWith("001");
+	}
+
+	public static boolean isKreisfreieCity(String areaKey) {
+		return areaKey.endsWith("000");
 	}
 }
