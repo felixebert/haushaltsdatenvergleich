@@ -9,7 +9,7 @@
 		ofArea: function(area, settings) {
 			var inOut = this.getInOut(area.accounts, settings.account);
 			if (settings.relation !== 'none') {
-				inOut = this.getInOutInRelationTo(inOutSum, area[settings.relation]);
+				inOut = this.getInOutInRelationTo(inOut, area[settings.relation]);
 			}
 			return this.getValue(inOut, settings.compare);
 		},
