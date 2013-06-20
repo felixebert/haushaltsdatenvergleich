@@ -85,29 +85,36 @@
 			var valueLabel = this.getCurrentValueLabel();
 
 			_.each(hdv.map.data.areas, _.bind(function(area) {
-				this.refreshLayer(area, log10Boundaries, valueLabel);
+				this.refreshLayer(area, log10Boundaries, valueLabel, settings);
 			}, this));
 		},
-		refreshLayer: function(area, log10Boundaries, valueLabel) {
+		refreshLayer: function(area, log10Boundaries, valueLabel, settings) {
 			var layer = hdv.map.getAreaLayer(area.key);
 			if (layer) {
 				var value = areaValue.ofArea(area, settings);
 				var boundary = hdv.accountBoundaries.forValue(value, log10Boundaries);
 
 				layer.value.setStyle(this.getLayerStyle(value, boundary, settings.compare));
-				layer.value.bindPopup(hdv.map.templates.popup(this.getTemplateObject(valueLabel, layer, area, value)));
+				layer.value.bindPopup(hdv.map.templates.popup(this.getTemplateObject(valueLabel, layer, area, value, settings)));
 			} else {
 				console.error('no layer for area ' + area.key);
 			}
 		},
-		getTemplateObject: function(valueLabel, layer, area, value) {
+		getTemplateObject: function(valueLabel, layer, area, value, settings) {
 			return {
 				'valueLabel': valueLabel,
 				'areaLabel': layer.label,
 				'area': area,
 				'value': value,
-				'accountInOut': area.accounts[settings.account]
+				'accountInOut': area.accounts[settings.account],
+				'keyForBalance': this.getKeyForBalance(area.key, layer.attribute)
 			};
+		},
+		getKeyForBalance: function(areaKey, areaAttribute) {
+			if (areaKey.length > 5) {
+				return areaKey;
+			}
+			return areaAttribute === 'Kreis' ? areaKey + '001' : areaKey + '000';
 		},
 		refresh: function() {
 			if (_.isEmpty(hdv.map.data) || _.isEmpty(hdv.map.areaLayers)) {

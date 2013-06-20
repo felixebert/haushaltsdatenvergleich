@@ -150,6 +150,7 @@
 			this.areaLayers.push({
 				'key': feature.properties.KN ? feature.properties.KN : feature.properties.AGS,
 				'label': feature.properties.GN ? feature.properties.GN : feature.properties.GEN,
+				'attribute': feature.properties.DES,
 				'value': layer
 			});
 		},

@@ -5,7 +5,7 @@ var hdv = {
 		lon: 7.18,
 		zoom: 9,
 		pg: 523,
-		compare: 'in',
+		compare: 'sum',
 		relation: 'none',
 		areaLayer: 'gemeinden',
 		year: 2009
