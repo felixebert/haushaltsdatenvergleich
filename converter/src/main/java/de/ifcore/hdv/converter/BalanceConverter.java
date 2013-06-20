@@ -23,11 +23,14 @@ public class BalanceConverter {
 				Set<String> allKs = balanceFilter.collectAllKs();
 				for (String ks : allKs) {
 					List<BalanceItem> itemsProKs = balanceFilter.getItemsProKs(ks);
-					BalanceSheetBuilder builder = new BalanceSheetBuilder(accountClasses.getMainAccountClasses(),
-							accountClasses.getSubAccountClasses());
-					BalanceSheet sheet = builder.createBalanceSheet(itemsProKs);
-					String outputFile = outputDir + File.separatorChar + ks + ".json";
-					Utils.writeData(sheet, outputFile);
+					if (!itemsProKs.isEmpty()) {
+						BalanceItem areaLabelContainer = itemsProKs.get(0);
+						BalanceSheetBuilder builder = new BalanceSheetBuilder(accountClasses.getMainAccountClasses(),
+								accountClasses.getSubAccountClasses());
+						BalanceSheet sheet = builder.createBalanceSheet(itemsProKs, areaLabelContainer.getAreaLabel());
+						String outputFile = outputDir + File.separatorChar + ks + ".json";
+						Utils.writeData(sheet, outputFile);
+					}
 				}
 			}
 			catch (Exception e) {

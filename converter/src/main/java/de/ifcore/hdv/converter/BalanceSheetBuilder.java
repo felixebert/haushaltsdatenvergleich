@@ -31,11 +31,11 @@ public class BalanceSheetBuilder {
 		}
 	}
 
-	public BalanceSheet createBalanceSheet(List<BalanceItem> items) {
+	public BalanceSheet createBalanceSheet(List<BalanceItem> items, String label) {
 		for (BalanceItem balanceItem : items) {
 			addItem(balanceItem);
 		}
-		BalanceSheet sheet = new BalanceSheet();
+		BalanceSheet sheet = new BalanceSheet(label);
 		for (AccountClass accountClass : mainAccountClasses) {
 			if (AccountClasses.isAsset(accountClass.getPrefix())) {
 				sheet.addAssets(accountClass.getLabel(), groupedItems.get(accountClass.getLabel()));

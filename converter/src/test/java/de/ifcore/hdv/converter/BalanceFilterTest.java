@@ -17,14 +17,14 @@ public class BalanceFilterTest {
 	public void itShouldCollectAllKs() throws Exception {
 		Set<String> ksList = filter.collectAllKs();
 		assertNotNull(ksList);
-		assertTrue(ksList.contains("051110001"));
-		assertTrue(ksList.contains("051110002"));
-		assertTrue(ksList.contains("051110003"));
+		assertTrue(ksList.contains("05111001"));
+		assertTrue(ksList.contains("05111002"));
+		assertTrue(ksList.contains("05111003"));
 	}
 
 	@Test
 	public void itShouldReturnOnlyItemsWithGivenKs() throws Exception {
-		List<BalanceItem> list = filter.getItemsProKs("051110001");
+		List<BalanceItem> list = filter.getItemsProKs("05111001");
 		assertFalse(list.isEmpty());
 		for (BalanceItem balanceItem : list) {
 			assertTrue(balanceItem.getNo().equals("0100"));
