@@ -7,11 +7,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.SortedSet;
 
 import de.ifcore.hdv.converter.data.Account;
 import de.ifcore.hdv.converter.data.AccountsPerArea;
-import de.ifcore.hdv.converter.data.Category;
 import de.ifcore.hdv.converter.data.CategoryTree;
 import de.ifcore.hdv.converter.data.InOutAccount;
 import de.ifcore.hdv.converter.data.MergedData;
@@ -55,13 +53,6 @@ public class DataMerger {
 		collectAccountsIntoAccountMap(income);
 		collectAccountsIntoAccountMap(spendings);
 		tree = CategoryMerger.createTree(MainCategories.getInstance().getCategories(), accountMap.values());
-		injectMainCategoriesIntoAccountMap(MainCategories.getInstance().getCategories());
-	}
-
-	private void injectMainCategoriesIntoAccountMap(SortedSet<Category> categories) {
-		for (Category category : categories) {
-			accountMap.put(category.getKey(), new MinMaxAccount(category.getKey(), category.getLabel()));
-		}
 	}
 
 	private Map<Integer, Long[]> convertToMap(Collection<InOutAccount> accountValues) {

@@ -3,6 +3,7 @@ package de.ifcore.hdv.converter.parser;
 import java.util.Collection;
 
 import de.ifcore.hdv.converter.utils.ConverterConfig;
+import de.ifcore.hdv.converter.utils.Utils;
 
 public class CountyAccountParser extends AccountParser {
 
@@ -12,6 +13,7 @@ public class CountyAccountParser extends AccountParser {
 
 	@Override
 	protected boolean isAreaKeyAcceptable(String areaKey) {
-		return !ConverterConfig.AREA_KEYS_TO_IGNORE.contains(areaKey); // TODO && Utils.isCounty(areaKey);
+		return !ConverterConfig.AREA_KEYS_TO_IGNORE.contains(areaKey)
+				&& (Utils.isCounty(areaKey) || Utils.isKreisfreieCity(areaKey));
 	}
 }
