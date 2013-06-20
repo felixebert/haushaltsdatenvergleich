@@ -3,7 +3,6 @@
 (function(hdv, $, _) {
 	var accounts = {
 		selectedGroup : 'all',
-		selectedAccount : 523,
 		init : function() {
 			$(hdv).on('map.loaded.data', _.bind(this.reset, this));
 			$('.settings').on('change', _.bind(this.refresh, this));
@@ -15,10 +14,8 @@
 		refresh : function() {
 			if (this.selectedGroup !== $('select[name="pb"]').val()) {
 				this.selectedGroup = $('select[name="pb"]').val();
-				this.selectedAccount = $('select[name="pb"] option:first').val();
 				this.resetAccounts();
 			}
-			this.selectedAccount = $('select[name="pg"]').val();
 		},
 		resetAccountGroups : function() {
 			var selectList = $('select[name="pb"]');
