@@ -36,19 +36,19 @@
 			<p>
 				<label class="radio"><input type="radio" name="compare" value="in" data-label="Einnahmen"> Einnahmen</label>
 				<label class="radio"><input type="radio" name="compare" value="out" data-label="Ausgaben"> Ausgaben</label>
-				<label class="radio"><input type="radio" name="compare" value="sum" data-label="Summe" checked="checked" > Summe</label>
+				<label class="radio"><input type="radio" name="compare" value="sum" data-label="Summe"> Summe</label>
 			</p>
 			
 			<label class="title">im Verhältnis zur?</label>
 			<p>
 				<label class="radio"><input type="radio" name="relation" value="population" data-label="pro Einwohnerzahl"> Einwohnerzahl</label>
 				<label class="radio"><input type="radio" name="relation" value="size" data-label="pro Fläche"> Fläche</label>
-				<label class="radio"><input type="radio" name="relation" value="none" checked="checked" data-label=""> absolut</label>
+				<label class="radio"><input type="radio" name="relation" value="none" data-label=""> absolut</label>
 			</p>
 
 			<label class="title">Gebietsgröße</label>
 			<p>
-				<label class="radio"><input type="radio" name="areaLayer" value="gemeinden" checked="checked"> Gemeinden</label>
+				<label class="radio"><input type="radio" name="areaLayer" value="gemeinden"> Gemeinden</label>
 				<label class="radio"><input type="radio" name="areaLayer" value="landkreise"> Landkreise</label>
 			</p>
 			
@@ -124,6 +124,7 @@
 	<script src="js/areas.js"></script>
 	
 	<script type="text/javascript">
+		hdv.initDefaults();
 		hdv.map.init();
 	</script>
 </body>
