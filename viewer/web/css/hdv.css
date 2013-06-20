@@ -169,13 +169,18 @@ label.title {
 	text-align: right;
 }
 
-.popup-button {
+.btn-popup {
 	position: absolute;
 	right: 10px;
 	top: 10px;
 }
 .popup-label {
 	padding-right: 30px;
+}
+.popup-value {
+	display: block;
+	text-align: right;
+	margin-right: 8px;
 }
 .leaflet-popup-close-button {
 	display: none;

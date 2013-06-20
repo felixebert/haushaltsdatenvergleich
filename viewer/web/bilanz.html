@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="css/bootstrap.css" rel="stylesheet" />
+	<link href="css/bootstrap-responsive.css" rel="stylesheet" />
+	<link href="css/leaflet.css" rel="stylesheet" />
+	<link href="css/hdv.css" rel="stylesheet" />
+	<title>Finanzdatenvergleich NRW - Bilanz</title>
+</head>
+<body>
+	<div class="ajax-loader"></div>
+	
+	<div class="container">
+		<h1>Bilanz von bla</h1>
+		
+		<div class="row-fluid">
+			<div class="span6 assets-container">
+				<h2>Aktiva</h2>
+			
+				<div class="assets"></div>
+			</div>
+			<div class="span6 liabilities-container">
+				<h2>Passiva</h2>
+				
+				<div class="liabilities"></div>
+			</div>
+		</div>
+	</div>
+	
+	<script id="balance-template" type="text/x-handlebars-template">
+		{{#eachProperty this}}
+			<h3>{{key}}</h3>
+
+			{{#eachProperty value}}
+				{{#if value.length}}
+				<h4>{{key}}</h4>
+
+				<table class="table table-bordered table-condensed">
+					<thead>
+					</thead>
+					<tbody>
+						{{#each value}}
+							<tr>
+								<td>{{label}}</td>
+								<td>{{number value}} &euro;</td>
+							</tr>
+						{{/each}}
+					</tbody>
+				</table>
+				{{/if}}
+			{{/eachProperty}}
+		{{/eachProperty}}
+	</script>
+
+	<script src="lib/underscore.js"></script>
+	<script src="lib/jquery.js"></script>
+	<script src="lib/handlebars.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/utils.js"></script>
+	<script src="js/handlebars-helper.js"></script>
+	<script src="js/balance.js"></script>
+	
+	<script type="text/javascript">
+		$(function() {
+			hdv.balance.init('059780400');
+		});
+	</script>
+</body>
+</html>

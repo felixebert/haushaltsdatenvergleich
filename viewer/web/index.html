@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="css/bootstrap.css" rel="stylesheet" />
-<link href="css/bootstrap-responsive.css" rel="stylesheet" />
-<link href="css/leaflet.css" rel="stylesheet" />
-<link href="css/hdv.css" rel="stylesheet" />
-<title>Finanzdatenvergleich NRW</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="css/bootstrap.css" rel="stylesheet" />
+	<link href="css/bootstrap-responsive.css" rel="stylesheet" />
+	<link href="css/leaflet.css" rel="stylesheet" />
+	<link href="css/hdv.css" rel="stylesheet" />
+	<title>Finanzdatenvergleich NRW</title>
 </head>
 <body>
 	<div class="ajax-loader"></div>
@@ -86,11 +86,14 @@
 	
 	<script id="popup-template" type="text/x-handlebars-template">
 		<p class="popup-label"><strong>{{areaLabel}}</strong></p>
-		<button type="button" class="btn popup-button " title="Bilanz"><i class="icon-briefcase"></i></button>
+		
+		<button type="button" class="btn btn-balance btn-popup" title="Bilanz"><i class="icon-briefcase"></i></button>
+		
 		<p>
 			<div>{{valueLabel}}</div>
-			<div style="text-align:right"><strong> {{number value}} &euro;</strong></div>
+			<strong class="popup-value"> {{number value}} &euro;</strong>
 		</p>
+
 		<table class="table table-area">
 			<thead>
 				<tr>
@@ -124,8 +127,10 @@
 	<script src="js/areas.js"></script>
 	
 	<script type="text/javascript">
-		hdv.initDefaults();
-		hdv.map.init();
+		$(function() {
+			hdv.initDefaults();
+			hdv.map.init();
+		});
 	</script>
 </body>
 </html>

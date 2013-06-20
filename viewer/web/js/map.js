@@ -102,21 +102,22 @@
 			});
 		},
 		initModals : function() {
-			$('#info').modal({
-				'show' : false
+			var modals = [ 'info', 'imprint' ];
+			_.each(modals, function(modalId) {
+				$('#' + modalId).modal({
+					'show' : false
+				});
 			});
-			$('#imprint').modal({
-				'show' : false
-			});
-			$('.close-nav').on('click', _.bind(function() {
-				this.settingsControl.toggleNav();
-			}, this));
 		},
 		addSettingsControl : function() {
 			this.settingsControl = new SettingsControl().addTo(this.leafletMap);
 			if ($(window).width() > 979) {
 				this.settingsControl.toggleNav();
 			}
+
+			$('.close-nav').on('click', _.bind(function() {
+				this.settingsControl.toggleNav();
+			}, this));
 		},
 		fireMapIsReady : function() {
 			if (!_.isEmpty(this.data) && !_.isEmpty(this.areaLayers)) {
