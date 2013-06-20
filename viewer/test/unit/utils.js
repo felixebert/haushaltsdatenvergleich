@@ -29,12 +29,14 @@ describe('convert a jquery serialized array to an object literal', function() {
 });
 
 describe('formatter', function() {
-	it('should format a money value', function() {
-		expect('100.000.000').toEqual(hdv.formatter.currency(100000000));
-		expect('100.000').toEqual(hdv.formatter.currency(100000));
-		expect('100').toEqual(hdv.formatter.currency(100));
-		expect('10').toEqual(hdv.formatter.currency(10));
-		expect('1').toEqual(hdv.formatter.currency(1));
+	it('should format a number value', function() {
+		expect('100.000.000').toEqual(hdv.formatter.number(100000000));
+		expect('100.000').toEqual(hdv.formatter.number(100000));
+		expect('100').toEqual(hdv.formatter.number(100));
+		expect('10').toEqual(hdv.formatter.number(10));
+		expect('1').toEqual(hdv.formatter.number(1));
+		expect('10,33').toEqual(hdv.formatter.number(10.33));
+		expect('10,30').toEqual(hdv.formatter.number(10.3));
 	});
 });
 
