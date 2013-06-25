@@ -11,7 +11,7 @@ import de.ifcore.hdv.converter.utils.FromToRanges;
 
 public class CategoryMerger {
 
-	public static CategoryTree createTree(SortedSet<Category> categories, Collection<MinMaxAccount> accounts) {
+	public static CategoryTree createTree(SortedSet<Category> categories, Collection<MinMaxProduct> accounts) {
 		CategoryTree result = new CategoryTree();
 		List<int[]> ranges = FromToRanges.findFromToRanges(categories);
 		for (int[] range : ranges) {
@@ -21,9 +21,9 @@ public class CategoryMerger {
 		return result;
 	}
 
-	public static SortedSet<Category> findSubCategories(int startKey, int nextKey, Collection<MinMaxAccount> accounts) {
+	public static SortedSet<Category> findSubCategories(int startKey, int nextKey, Collection<MinMaxProduct> accounts) {
 		SortedSet<Category> result = new TreeSet<>();
-		for (MinMaxAccount account : accounts) {
+		for (MinMaxProduct account : accounts) {
 			if (account.getKey() >= startKey * 10 && account.getKey() < nextKey * 10) {
 				result.add(new Category(account.getKey(), account.getLabel()));
 			}

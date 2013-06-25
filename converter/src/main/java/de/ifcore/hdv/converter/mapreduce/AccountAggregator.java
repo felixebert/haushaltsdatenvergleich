@@ -13,7 +13,8 @@ public class AccountAggregator {
 		for (Account account : accounts) {
 			String countyKey = extractCountyKey(account);
 			if (countyKey != null)
-				result.add(new Account(countyKey, account.getAccountKey(), account.getAccountName(), account.getValue()));
+				result.add(new Account(countyKey, account.getProductKey(), account.getProductName(), account
+						.getAccountKey(), account.getAccountName(), account.getValue()));
 		}
 		return result;
 	}

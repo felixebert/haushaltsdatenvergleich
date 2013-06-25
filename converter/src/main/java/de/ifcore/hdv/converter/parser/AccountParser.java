@@ -7,6 +7,13 @@ import de.ifcore.hdv.converter.utils.Utils;
 
 public abstract class AccountParser extends AbstractCsvParser<Account> {
 
+	private static final int REQ_COLUMNS = 7;
+	private static final int ACCOUNT_KEY = 2;
+	private static final int ACCOUNT_NAME = 3;
+	private static final int PRODUCT_KEY = 4;
+	private static final int PRODUCT_NAME = 5;
+	private static final int VALUE = 6;
+
 	public AccountParser(Collection<String[]> lines) {
 		super(lines);
 	}
@@ -14,20 +21,28 @@ public abstract class AccountParser extends AbstractCsvParser<Account> {
 	@Override
 	protected Account parseItem(String[] strings) {
 		Account item = null;
-		if (strings.length == 5) {
+		if (strings.length == REQ_COLUMNS) {
 			String areaKey = strings[0];
 			if (isAreaKeyAcceptable(areaKey)) {
-				String accountKey = strings[2];
-				String accountName = strings[3];
-				String value = strings[4];
+				String accountKey = strings[ACCOUNT_KEY];
+				String accountName = strings[ACCOUNT_NAME];
+				String productKey = strings[PRODUCT_KEY];
+				String productName = strings[PRODUCT_NAME];
+				String value = strings[VALUE];
 				Long convertedValue = Utils.parseLongSafe(value);
-				if (Utils.hasText(areaKey) && areaKey.length() == 8 && Utils.hasText(accountKey)) {
+				if (isAreaKeyValid(areaKey) && Utils.hasText(accountKey) && Utils.hasText(productKey)) {
+					int parsedProductKey = Integer.parseInt(productKey);
 					int parsedAccountKey = Integer.parseInt(accountKey);
-					item = new Account(areaKey, parsedAccountKey, accountName, convertedValue);
+					item = new Account(areaKey, parsedProductKey, productName, parsedAccountKey, accountName,
+							convertedValue);
 				}
 			}
 		}
 		return item;
+	}
+
+	private boolean isAreaKeyValid(String areaKey) {
+		return Utils.hasText(areaKey) && areaKey.length() == 8;
 	}
 
 	protected abstract boolean isAreaKeyAcceptable(String areaKey);

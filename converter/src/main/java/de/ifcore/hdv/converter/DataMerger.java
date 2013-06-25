@@ -3,36 +3,35 @@ package de.ifcore.hdv.converter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.SortedSet;
 
 import de.ifcore.hdv.converter.data.Account;
+import de.ifcore.hdv.converter.data.AccountValue;
 import de.ifcore.hdv.converter.data.AccountsPerArea;
-import de.ifcore.hdv.converter.data.Category;
 import de.ifcore.hdv.converter.data.CategoryTree;
-import de.ifcore.hdv.converter.data.InOutAccount;
+import de.ifcore.hdv.converter.data.InOutProduct;
 import de.ifcore.hdv.converter.data.MergedData;
 import de.ifcore.hdv.converter.data.Population;
+import de.ifcore.hdv.converter.utils.AreaUtils;
 
 public class DataMerger {
 
-	private Map<Integer, MinMaxAccount> accountMap = new HashMap<>();
+	private Map<Integer, MinMaxProduct> productMap = new HashMap<>();
 	private CategoryTree tree;
 
 	public MergedData mergeData(Map<String, Population> populationMap, Map<String, Double> areaSizes,
 			List<Account> income, List<Account> spendings) {
 		List<AccountsPerArea> result = new ArrayList<AccountsPerArea>();
-		Set<String> areaKeys = createAreaKeys(income, spendings);
+		Set<String> areaKeys = AreaUtils.createUniqueAreaKeys(income, spendings);
 		createCategoryMap(income, spendings);
 		for (String areaKey : areaKeys) {
 			Population population = populationMap.get(areaKey);
 			Double areaSize = areaSizes.get(areaKey);
-			Map<Integer, InOutAccount> inOutMap = new HashMap<>();
-			processIncomeForArea(areaKey, inOutMap, income);
-			processSpendingsForArea(areaKey, inOutMap, spendings);
+			Map<Integer, InOutProduct> inOutMap = new HashMap<>();
+			processDataForArea(areaKey, inOutMap, income);
+			processDataForArea(areaKey, inOutMap, spendings);
 			if (population == null) {
 				System.out.println("Keine Einwohnerzahlen für " + areaKey);
 			}
@@ -40,98 +39,73 @@ public class DataMerger {
 				System.out.println("Keine Fläche für " + areaKey);
 			}
 			else {
-				Collection<InOutAccount> accountValues = inOutMap.values();
-				Map<Integer, Long[]> accountValuesMap = convertToMap(accountValues);
+				Collection<InOutProduct> accountValues = inOutMap.values();
+				Map<Integer, InOutProduct> accountValuesMap = convertToMap(accountValues);
 				AccountsPerArea accountsPerArea = new AccountsPerArea(areaKey, population.getPopulation(),
 						areaSize.doubleValue(), accountValuesMap);
 				processMinMax(accountValues, accountsPerArea);
 				result.add(accountsPerArea);
 			}
 		}
-		return new MergedData(result, accountMap, tree.getTree());
+		return new MergedData(result, productMap, tree.getTree());
 	}
 
 	private void createCategoryMap(List<Account> income, List<Account> spendings) {
-		collectAccountsIntoAccountMap(income);
-		collectAccountsIntoAccountMap(spendings);
-		tree = CategoryMerger.createTree(MainCategories.getInstance().getCategories(), accountMap.values());
-		injectMainCategoriesIntoAccountMap(MainCategories.getInstance().getCategories());
+		collectProductsIntoProductMap(income);
+		collectProductsIntoProductMap(spendings);
+		tree = CategoryMerger.createTree(MainCategories.getInstance().getCategories(), productMap.values());
 	}
 
-	private void injectMainCategoriesIntoAccountMap(SortedSet<Category> categories) {
-		for (Category category : categories) {
-			accountMap.put(category.getKey(), new MinMaxAccount(category.getKey(), category.getLabel()));
+	private void collectProductsIntoProductMap(Collection<Account> accounts) {
+		for (Account account : accounts) {
+			MinMaxProduct product = productMap.get(account.getProductKey());
+			if (product == null) {
+				product = new MinMaxProduct(account.getProductKey(), account.getProductName());
+				productMap.put(account.getProductKey(), product);
+			}
+			product.addAccount(account.getAccountKey(), account.getAccountName());
 		}
 	}
 
-	private Map<Integer, Long[]> convertToMap(Collection<InOutAccount> accountValues) {
-		Map<Integer, Long[]> result = new HashMap<>();
-		for (InOutAccount inOutAccount : accountValues) {
-			if (inOutAccount.getIncome() != null || inOutAccount.getSpending() != null) {
-				result.put(inOutAccount.getKey(), new Long[] { inOutAccount.getIncome(), inOutAccount.getSpending() });
+	private Map<Integer, InOutProduct> convertToMap(Collection<InOutProduct> accountValues) {
+		Map<Integer, InOutProduct> result = new HashMap<>();
+		for (InOutProduct inOutProduct : accountValues) {
+			if (hasIncomeOrSpending(inOutProduct)) {
+				result.put(inOutProduct.getProductKey(), inOutProduct);
 			}
 		}
 		return result;
 	}
 
-	private void processMinMax(Collection<InOutAccount> accountValues, AccountsPerArea accountsPerArea) {
-		for (InOutAccount inOutAccount : accountValues) {
-			MinMaxAccount minMaxAccount = accountMap.get(inOutAccount.getKey());
-			minMaxAccount.addValue(inOutAccount.getIncome(), inOutAccount.getSpending(), accountsPerArea);
+	private boolean hasIncomeOrSpending(InOutProduct inOutProduct) {
+		return true; //inOutProduct.getIncome() != null || inOutProduct.getSpending() != null;
+	}
+
+	private void processMinMax(Collection<InOutProduct> accountValues, AccountsPerArea accountsPerArea) {
+		for (InOutProduct inOutAccount : accountValues) {
+			MinMaxProduct minMaxAccount = productMap.get(inOutAccount.getProductKey());
+			for (AccountValue accountValue : inOutAccount.getAccounts().values()) {
+				minMaxAccount.addValue(accountValue.getKey(), accountValue.getValue(), accountsPerArea);
+			}
 		}
 	}
 
-	private void processIncomeForArea(String areaKey, Map<Integer, InOutAccount> inOutMap, List<Account> income) {
+	private void processDataForArea(String areaKey, Map<Integer, InOutProduct> inOutMap, List<Account> income) {
 		for (Account account : income) {
 			if (areaKey.equals(account.getAreaKey())) {
-				int accountKey = account.getAccountKey();
-				InOutAccount inOutAccount = inOutMap.get(accountKey);
-				Long value = account.getValue();
-				if (inOutAccount == null) {
-					inOutAccount = new InOutAccount(accountKey, value, null);
-					inOutMap.put(accountKey, inOutAccount);
-				}
-				else {
-					inOutAccount.incIncome(value);
-				}
+				InOutProduct inOut = getInOutProduct(inOutMap, account);
+				inOut.setValue(account);
 			}
 		}
 	}
 
-	private void processSpendingsForArea(String areaKey, Map<Integer, InOutAccount> inOutMap, List<Account> spendings) {
-		for (Account account : spendings) {
-			if (areaKey.equals(account.getAreaKey())) {
-				int accountKey = account.getAccountKey();
-				InOutAccount inOutAccount = inOutMap.get(accountKey);
-				Long value = account.getValue();
-				if (inOutAccount == null) {
-					inOutAccount = new InOutAccount(accountKey, null, value);
-					inOutMap.put(accountKey, inOutAccount);
-				}
-				else {
-					inOutAccount.incSpendings(value);
-				}
-			}
+	private InOutProduct getInOutProduct(Map<Integer, InOutProduct> inOutMap, Account account) {
+		int productKey = account.getProductKey();
+		InOutProduct inOut = inOutMap.get(productKey);
+		if (inOut == null) {
+			inOut = new InOutProduct(productKey);
+			inOutMap.put(productKey, inOut);
 		}
-	}
-
-	private Set<String> createAreaKeys(List<Account> income, List<Account> spendings) {
-		Set<String> areaKeys = new HashSet<String>();
-		collectAreaKeys(areaKeys, income);
-		collectAreaKeys(areaKeys, spendings);
-		return areaKeys;
-	}
-
-	private void collectAreaKeys(Set<String> areaKeys, Collection<Account> accounts) {
-		for (Account account : accounts) {
-			areaKeys.add(account.getAreaKey());
-		}
-	}
-
-	private void collectAccountsIntoAccountMap(Collection<Account> accounts) {
-		for (Account account : accounts) {
-			accountMap.put(account.getAccountKey(),
-					new MinMaxAccount(account.getAccountKey(), account.getAccountName()));
-		}
+		return inOut;
 	}
 }

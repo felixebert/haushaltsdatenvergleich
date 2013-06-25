@@ -7,13 +7,13 @@ public class AccountsPerArea {
 	private String key;
 	private long population;
 	private double size;
-	private Map<Integer, Long[]> accounts;
+	private Map<Integer, InOutProduct> products;
 
-	public AccountsPerArea(String key, long population, double size, Map<Integer, Long[]> accounts) {
+	public AccountsPerArea(String key, long population, double size, Map<Integer, InOutProduct> products) {
 		this.key = key;
 		this.population = population;
 		this.size = size;
-		this.accounts = accounts;
+		this.products = products;
 	}
 
 	public String getKey() {
@@ -28,7 +28,7 @@ public class AccountsPerArea {
 		return size;
 	}
 
-	public Map<Integer, Long[]> getAccounts() {
-		return accounts;
+	public Map<Integer, InOutProduct> getProducts() {
+		return products;
 	}
 }
