@@ -10,6 +10,7 @@ import java.util.Set;
 import de.ifcore.hdv.converter.data.Account;
 import de.ifcore.hdv.converter.data.AccountValue;
 import de.ifcore.hdv.converter.data.AccountsPerArea;
+import de.ifcore.hdv.converter.data.Category;
 import de.ifcore.hdv.converter.data.CategoryTree;
 import de.ifcore.hdv.converter.data.InOutProduct;
 import de.ifcore.hdv.converter.data.MergedData;
@@ -20,6 +21,9 @@ public class DataMerger {
 
 	private Map<Integer, MinMaxProduct> productMap = new HashMap<>();
 	private CategoryTree tree;
+	private Map<Integer, String> productLabels = new HashMap<>();
+	private Map<Integer, String> incomeLabels = new HashMap<>();
+	private Map<Integer, String> spendingsLabels = new HashMap<>();
 
 	public MergedData mergeData(Map<String, Population> populationMap, Map<String, Double> areaSizes,
 			List<Account> income, List<Account> spendings) {
@@ -47,17 +51,32 @@ public class DataMerger {
 				result.add(accountsPerArea);
 			}
 		}
-		return new MergedData(result, productMap, tree.getTree());
+		filterNullValuesInProducts();
+		return new MergedData(result, productMap, tree.getTree(), productLabels, incomeLabels, spendingsLabels);
+	}
+
+	private void filterNullValuesInProducts() {
+		for (MinMaxProduct product : productMap.values()) {
+			product.filterNullValues();
+		}
 	}
 
 	private void createCategoryMap(List<Account> income, List<Account> spendings) {
-		collectProductsIntoProductMap(income);
-		collectProductsIntoProductMap(spendings);
+		collectProductsIntoProductMap(income, true);
+		collectProductsIntoProductMap(spendings, false);
 		tree = CategoryMerger.createTree(MainCategories.getInstance().getCategories(), productMap.values());
+		for (Category category : MainCategories.getInstance().getCategories()) {
+			productLabels.put(category.getKey(), category.getLabel());
+		}
 	}
 
-	private void collectProductsIntoProductMap(Collection<Account> accounts) {
+	private void collectProductsIntoProductMap(Collection<Account> accounts, boolean income) {
 		for (Account account : accounts) {
+			productLabels.put(account.getProductKey(), account.getProductName());
+			if (income)
+				incomeLabels.put(account.getAccountKey(), account.getAccountName());
+			else
+				spendingsLabels.put(account.getAccountKey(), account.getAccountName());
 			MinMaxProduct product = productMap.get(account.getProductKey());
 			if (product == null) {
 				product = new MinMaxProduct(account.getProductKey(), account.getProductName());
@@ -70,15 +89,16 @@ public class DataMerger {
 	private Map<Integer, InOutProduct> convertToMap(Collection<InOutProduct> accountValues) {
 		Map<Integer, InOutProduct> result = new HashMap<>();
 		for (InOutProduct inOutProduct : accountValues) {
-			if (hasIncomeOrSpending(inOutProduct)) {
+			inOutProduct.filterNullValues();
+			if (hasValue(inOutProduct)) {
 				result.put(inOutProduct.getProductKey(), inOutProduct);
 			}
 		}
 		return result;
 	}
 
-	private boolean hasIncomeOrSpending(InOutProduct inOutProduct) {
-		return true; //inOutProduct.getIncome() != null || inOutProduct.getSpending() != null;
+	private boolean hasValue(InOutProduct inOutProduct) {
+		return !inOutProduct.getAccounts().isEmpty();
 	}
 
 	private void processMinMax(Collection<InOutProduct> accountValues, AccountsPerArea accountsPerArea) {

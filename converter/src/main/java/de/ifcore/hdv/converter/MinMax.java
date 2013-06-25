@@ -11,20 +11,14 @@ public class MinMax {
 	public static final int MAX_VALUE_PER_AREA = 4;
 	public static final int MIN_VALUE_PER_AREA = 5;
 	private int key;
-	private String label;
 	private Long[] data = new Long[3 * 2];
 
-	public MinMax(int key, String label) {
+	public MinMax(int key) {
 		this.key = key;
-		this.label = label;
 	}
 
 	public int getKey() {
 		return key;
-	}
-
-	public String getLabel() {
-		return label;
 	}
 
 	protected void addValue(Long value, AccountsPerArea accountsPerArea) {
@@ -51,5 +45,13 @@ public class MinMax {
 
 	public Long getDataValue(int index) {
 		return data[index];
+	}
+
+	public boolean hasData() {
+		boolean result = false;
+		for (Long l : data) {
+			result = result || l != null;
+		}
+		return result;
 	}
 }

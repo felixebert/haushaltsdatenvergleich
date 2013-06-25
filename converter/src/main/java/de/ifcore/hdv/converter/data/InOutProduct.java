@@ -1,6 +1,7 @@
 package de.ifcore.hdv.converter.data;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,5 +36,13 @@ public class InOutProduct {
 			accounts.put(account.getAccountKey(), inOut);
 		}
 		return inOut;
+	}
+
+	public void filterNullValues() {
+		Iterator<AccountValue> it = accounts.values().iterator();
+		while (it.hasNext()) {
+			if (it.next().getValue() == null)
+				it.remove();
+		}
 	}
 }
