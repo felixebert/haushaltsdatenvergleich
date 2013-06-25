@@ -25,6 +25,12 @@
 			$('h1').text('Bilanz von ' + data.label);
 			$('.assets').html(this.template(data.assets));
 			$('.liabilities').html(this.template(data.liabilities));
+		},
+		getKeyForArea: function(areaKey, areaAttribute) {
+			if (areaKey.length > 5) {
+				return areaKey;
+			}
+			return areaAttribute === 'Kreis' ? areaKey + '001' : areaKey + '000';
 		}
 	};
 

@@ -45,39 +45,35 @@
 			$(hdv).on('map.ready', _.bind(this.refresh, this));
 			$('.settings').on('change', _.bind(this.refresh, this));
 		},
-		/**
-		 * @param value
-		 *            value of the layer
-		 * @param boundary
-		 *            boundary array [max / min]
-		 * @param compare
-		 *            what to compare? (in / out / sum)
-		 */
-		getLayerStyle: function(value, log10Boundary, compare) {
-			var opacity = this.getOpacity(value, log10Boundary);
+		getCurrentValueLabel: function() {
+			var compare = $('.settings input[name="compare"]:checked').data('label');
+			var relation = $('.settings input[name="relation"]:checked').data('label');
+			return compare + (relation ? ' ' + relation : '');
+		},
+		getTemplateObject: function(valueLabel, layer, area, value, settings) {
 			return {
-				'fillOpacity': opacity,
-				'fillColor': this.getFillColor(value, compare)
+				'valueLabel': valueLabel,
+				'areaLabel': layer.label,
+				'area': area,
+				'value': value,
+				'accountInOut': area.accounts[settings.account],
+				'keyForBalance': hdv.balance.getKeyForArea(area.key, layer.attribute)
 			};
 		},
-		getFillColor: function(value, compare) {
-			if (value == 0) {
-				return '#888';
-			} else if (value <= 0 || compare === 'out') {
-				return '#FF0000';
+		refreshLayer: function(area, log10Boundaries, valueLabel, settings) {
+			var layer = hdv.map.getAreaLayer(area.key);
+			if (layer) {
+				var value = areaValue.ofArea(area, settings);
+				var boundary = hdv.accountBoundaries.forValue(value, log10Boundaries);
+
+				layer.value.setStyle(hdv.layerStyle.forValue(value, boundary, this.hasNegativeMeaning(settings.compare)));
+				layer.value.bindPopup(hdv.map.templates.popup(this.getTemplateObject(valueLabel, layer, area, value, settings)));
 			} else {
-				return '#00C957';
+				console.error('no layer for area ' + area.key);
 			}
 		},
-		getOpacity: function(value, log10Boundary) {
-			if (value === 0) {
-				return 0.25;
-			}
-			var opacity = Math.round(0.75 * this.getOpacityFactor(value, log10Boundary) * 100) / 100;
-			return Math.max(0.2, opacity);
-		},
-		getOpacityFactor: function(value, log10Boundary) {
-			return Math.round((hdv.calc.safeLog10(value) - log10Boundary[1]) / (log10Boundary[0] - log10Boundary[1]) * 100) / 100;
+		hasNegativeMeaning: function(compare) {
+			return compare === 'out' ? true : false;
 		},
 		refreshLayers: function(settings) {
 			var boundaries = hdv.accountBoundaries.findAccordingTo(settings);
@@ -88,34 +84,6 @@
 				this.refreshLayer(area, log10Boundaries, valueLabel, settings);
 			}, this));
 		},
-		refreshLayer: function(area, log10Boundaries, valueLabel, settings) {
-			var layer = hdv.map.getAreaLayer(area.key);
-			if (layer) {
-				var value = areaValue.ofArea(area, settings);
-				var boundary = hdv.accountBoundaries.forValue(value, log10Boundaries);
-
-				layer.value.setStyle(this.getLayerStyle(value, boundary, settings.compare));
-				layer.value.bindPopup(hdv.map.templates.popup(this.getTemplateObject(valueLabel, layer, area, value, settings)));
-			} else {
-				console.error('no layer for area ' + area.key);
-			}
-		},
-		getTemplateObject: function(valueLabel, layer, area, value, settings) {
-			return {
-				'valueLabel': valueLabel,
-				'areaLabel': layer.label,
-				'area': area,
-				'value': value,
-				'accountInOut': area.accounts[settings.account],
-				'keyForBalance': this.getKeyForBalance(area.key, layer.attribute)
-			};
-		},
-		getKeyForBalance: function(areaKey, areaAttribute) {
-			if (areaKey.length > 5) {
-				return areaKey;
-			}
-			return areaAttribute === 'Kreis' ? areaKey + '001' : areaKey + '000';
-		},
 		refresh: function() {
 			if (_.isEmpty(hdv.map.data) || _.isEmpty(hdv.map.areaLayers)) {
 				return false;
@@ -125,11 +93,6 @@
 			settings.account = hdv.accounts.getSelectedAccount(settings.pg);
 
 			this.refreshLayers(settings);
-		},
-		getCurrentValueLabel: function() {
-			var compare = $('.settings input[name="compare"]:checked').data('label');
-			var relation = $('.settings input[name="relation"]:checked').data('label');
-			return compare + (relation ? ' ' + relation : '');
 		}
 
 	};
