@@ -37,6 +37,14 @@
 		},
 		getValueInRelationTo: function(value, relation) {
 			return Math.round((value / relation) * 100) / 100;
+		},
+		getCurrentLabel: function() {
+			var account = $('.settings select[name="account"] option:selected').text();
+			var relation = $('.settings input[name="relation"]:checked').data('label');
+			return this.getLabel(account, relation);
+		},
+		getLabel: function(accountName, relationLabel) {
+			return accountName + (relationLabel ? ' ' + relationLabel : '');
 		}
 	};
 
@@ -44,11 +52,6 @@
 		init: function() {
 			$(hdv).on('map.ready', _.bind(this.refresh, this));
 			$('.settings').on('change', _.bind(this.refresh, this));
-		},
-		getCurrentValueLabel: function() {
-			var compare = $('.settings input[name="compare"]:checked').data('label');
-			var relation = $('.settings input[name="relation"]:checked').data('label');
-			return compare + (relation ? ' ' + relation : '');
 		},
 		getTemplateObject: function(valueLabel, layer, area, value, settings) {
 			return {
@@ -78,7 +81,7 @@
 		refreshLayers: function(settings) {
 			var boundaries = hdv.accountBoundaries.findAccordingTo(settings);
 			var log10Boundaries = hdv.accountBoundaries.toLog10(boundaries);
-			var valueLabel = this.getCurrentValueLabel();
+			var valueLabel = areaValue.getCurrentLabel();
 
 			_.each(hdv.map.data.areas, _.bind(function(area) {
 				this.refreshLayer(area, log10Boundaries, valueLabel, settings);

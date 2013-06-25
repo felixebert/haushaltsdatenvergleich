@@ -22,4 +22,9 @@ describe('area value utils', function() {
 		expect(hdv.areaValue.getInOutInRelationTo([9269650, 4974823], 55.41)).toEqual([167292.01, 89782.04]);
 		expect(hdv.areaValue.getInOutInRelationTo([9269650, 4974823], 8655)).toEqual([1071.02, 574.79]);
 	});
+
+	it('should generate a value label', function() {
+		expect(hdv.areaValue.getLabel('Hundesteuer', null)).toEqual('Hundesteuer');
+		expect(hdv.areaValue.getLabel('Hundesteuer', 'pro Einwohnerzahl')).toEqual('Hundesteuer pro Einwohnerzahl');
+	});
 });
