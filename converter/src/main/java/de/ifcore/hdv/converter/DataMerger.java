@@ -3,29 +3,27 @@ package de.ifcore.hdv.converter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.SortedSet;
 
 import de.ifcore.hdv.converter.data.Account;
 import de.ifcore.hdv.converter.data.AccountsPerArea;
-import de.ifcore.hdv.converter.data.Category;
 import de.ifcore.hdv.converter.data.CategoryTree;
 import de.ifcore.hdv.converter.data.InOutAccount;
 import de.ifcore.hdv.converter.data.MergedData;
 import de.ifcore.hdv.converter.data.Population;
+import de.ifcore.hdv.converter.utils.AreaUtils;
 
 public class DataMerger {
 
-	private Map<Integer, MinMaxAccount> accountMap = new HashMap<>();
+	private Map<Integer, MinMaxAccount> productMap = new HashMap<>();
 	private CategoryTree tree;
 
 	public MergedData mergeData(Map<String, Population> populationMap, Map<String, Double> areaSizes,
 			List<Account> income, List<Account> spendings) {
 		List<AccountsPerArea> result = new ArrayList<AccountsPerArea>();
-		Set<String> areaKeys = createAreaKeys(income, spendings);
+		Set<String> areaKeys = AreaUtils.createUniqueAreaKeys(income, spendings);
 		createCategoryMap(income, spendings);
 		for (String areaKey : areaKeys) {
 			Population population = populationMap.get(areaKey);
@@ -48,20 +46,13 @@ public class DataMerger {
 				result.add(accountsPerArea);
 			}
 		}
-		return new MergedData(result, accountMap, tree.getTree());
+		return new MergedData(result, productMap, tree.getTree());
 	}
 
 	private void createCategoryMap(List<Account> income, List<Account> spendings) {
 		collectAccountsIntoAccountMap(income);
 		collectAccountsIntoAccountMap(spendings);
-		tree = CategoryMerger.createTree(MainCategories.getInstance().getCategories(), accountMap.values());
-		injectMainCategoriesIntoAccountMap(MainCategories.getInstance().getCategories());
-	}
-
-	private void injectMainCategoriesIntoAccountMap(SortedSet<Category> categories) {
-		for (Category category : categories) {
-			accountMap.put(category.getKey(), new MinMaxAccount(category.getKey(), category.getLabel()));
-		}
+		tree = CategoryMerger.createTree(MainCategories.getInstance().getCategories(), productMap.values());
 	}
 
 	private Map<Integer, Long[]> convertToMap(Collection<InOutAccount> accountValues) {
@@ -76,7 +67,7 @@ public class DataMerger {
 
 	private void processMinMax(Collection<InOutAccount> accountValues, AccountsPerArea accountsPerArea) {
 		for (InOutAccount inOutAccount : accountValues) {
-			MinMaxAccount minMaxAccount = accountMap.get(inOutAccount.getKey());
+			MinMaxAccount minMaxAccount = productMap.get(inOutAccount.getKey());
 			minMaxAccount.addValue(inOutAccount.getIncome(), inOutAccount.getSpending(), accountsPerArea);
 		}
 	}
@@ -84,12 +75,12 @@ public class DataMerger {
 	private void processIncomeForArea(String areaKey, Map<Integer, InOutAccount> inOutMap, List<Account> income) {
 		for (Account account : income) {
 			if (areaKey.equals(account.getAreaKey())) {
-				int accountKey = account.getAccountKey();
-				InOutAccount inOutAccount = inOutMap.get(accountKey);
+				int productKey = account.getProductKey();
+				InOutAccount inOutAccount = inOutMap.get(productKey);
 				Long value = account.getValue();
 				if (inOutAccount == null) {
-					inOutAccount = new InOutAccount(accountKey, value, null);
-					inOutMap.put(accountKey, inOutAccount);
+					inOutAccount = new InOutAccount(productKey, value, null);
+					inOutMap.put(productKey, inOutAccount);
 				}
 				else {
 					inOutAccount.incIncome(value);
@@ -101,12 +92,12 @@ public class DataMerger {
 	private void processSpendingsForArea(String areaKey, Map<Integer, InOutAccount> inOutMap, List<Account> spendings) {
 		for (Account account : spendings) {
 			if (areaKey.equals(account.getAreaKey())) {
-				int accountKey = account.getAccountKey();
-				InOutAccount inOutAccount = inOutMap.get(accountKey);
+				int productKey = account.getProductKey();
+				InOutAccount inOutAccount = inOutMap.get(productKey);
 				Long value = account.getValue();
 				if (inOutAccount == null) {
-					inOutAccount = new InOutAccount(accountKey, null, value);
-					inOutMap.put(accountKey, inOutAccount);
+					inOutAccount = new InOutAccount(productKey, null, value);
+					inOutMap.put(productKey, inOutAccount);
 				}
 				else {
 					inOutAccount.incSpendings(value);
@@ -115,23 +106,10 @@ public class DataMerger {
 		}
 	}
 
-	private Set<String> createAreaKeys(List<Account> income, List<Account> spendings) {
-		Set<String> areaKeys = new HashSet<String>();
-		collectAreaKeys(areaKeys, income);
-		collectAreaKeys(areaKeys, spendings);
-		return areaKeys;
-	}
-
-	private void collectAreaKeys(Set<String> areaKeys, Collection<Account> accounts) {
-		for (Account account : accounts) {
-			areaKeys.add(account.getAreaKey());
-		}
-	}
-
 	private void collectAccountsIntoAccountMap(Collection<Account> accounts) {
 		for (Account account : accounts) {
-			accountMap.put(account.getAccountKey(),
-					new MinMaxAccount(account.getAccountKey(), account.getAccountName()));
+			productMap.put(account.getProductKey(),
+					new MinMaxAccount(account.getProductKey(), account.getProductName()));
 		}
 	}
 }
