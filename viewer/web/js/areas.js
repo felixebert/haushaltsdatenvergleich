@@ -40,52 +40,40 @@
 		}
 	};
 
-	var colors = {
-		red: ["#fee0d2", "#fcbba1", "#fc9272", "#fb6a4a", "#ef3b2c", "#cb181d", "#a50f15", "#67000d"],
-		green: ["#e5f5e0", "#c7e9c0", "#a1d99b", "#74c476", "#41ab5d", "#238b45", "#006d2c", "#00441b"]
-	};
-
 	var areas = {
 		init: function() {
 			$(hdv).on('map.ready', _.bind(this.refresh, this));
 			$('.settings').on('change', _.bind(this.refresh, this));
 		},
-		/**
-		 * @param value
-		 *            value of the layer
-		 * @param boundary
-		 *            boundary array [max / min]
-		 * @param compare
-		 *            what to compare? (in / out / sum)
-		 */
-		getLayerStyle: function(value, log10Boundary, compare) {
+		getCurrentValueLabel: function() {
+			var compare = $('.settings input[name="compare"]:checked').data('label');
+			var relation = $('.settings input[name="relation"]:checked').data('label');
+			return compare + (relation ? ' ' + relation : '');
+		},
+		getTemplateObject: function(valueLabel, layer, area, value, settings) {
 			return {
-				'fillOpacity': 0.65,
-				'fillColor': this.getFillColor(value, compare, log10Boundary)
+				'valueLabel': valueLabel,
+				'areaLabel': layer.label,
+				'area': area,
+				'value': value,
+				'accountInOut': area.accounts[settings.account],
+				'keyForBalance': hdv.balance.getKeyForArea(area.key, layer.attribute)
 			};
 		},
-		getFillColor: function(value, compare, log10Boundary) {
-			if (value == 0) {
-				return '#EEE';
-			}
+		refreshLayer: function(area, log10Boundaries, valueLabel, settings) {
+			var layer = hdv.map.getAreaLayer(area.key);
+			if (layer) {
+				var value = areaValue.ofArea(area, settings);
+				var boundary = hdv.accountBoundaries.forValue(value, log10Boundaries);
 
-			var colorScheme = (value <= 0 || compare === 'out') ? colors.red : colors.green;
-			var factor = this.getComparisonFactor(value, log10Boundary);
-			var colorIndex = Math.max(0, Math.round((colorScheme.length - 1) * factor));
-			return colorScheme[colorIndex];
-		},
-		getOpacity: function(value, log10Boundary) {
-			if (value === 0) {
-				return 0.25;
+				layer.value.setStyle(hdv.layerStyle.forValue(value, boundary, this.hasNegativeMeaning(settings.compare)));
+				layer.value.bindPopup(hdv.map.templates.popup(this.getTemplateObject(valueLabel, layer, area, value, settings)));
+			} else {
+				console.error('no layer for area ' + area.key);
 			}
-			var opacity = Math.round(0.75 * this.getComparisonFactor(value, log10Boundary) * 100) / 100;
-			return Math.max(0.2, opacity);
 		},
-		getComparisonFactor: function(value, log10Boundary) {
-			if (log10Boundary[0] === log10Boundary[1]) {
-				return 1;
-			}
-			return Math.round((hdv.calc.safeLog10(value) - log10Boundary[1]) / (log10Boundary[0] - log10Boundary[1]) * 100) / 100;
+		hasNegativeMeaning: function(compare) {
+			return compare === 'out' ? true : false;
 		},
 		refreshLayers: function(settings) {
 			var boundaries = hdv.accountBoundaries.findAccordingTo(settings);
@@ -96,34 +84,6 @@
 				this.refreshLayer(area, log10Boundaries, valueLabel, settings);
 			}, this));
 		},
-		refreshLayer: function(area, log10Boundaries, valueLabel, settings) {
-			var layer = hdv.map.getAreaLayer(area.key);
-			if (layer) {
-				var value = areaValue.ofArea(area, settings);
-				var boundary = hdv.accountBoundaries.forValue(value, log10Boundaries);
-
-				layer.value.setStyle(this.getLayerStyle(value, boundary, settings.compare));
-				layer.value.bindPopup(hdv.map.templates.popup(this.getTemplateObject(valueLabel, layer, area, value, settings)));
-			} else {
-				console.error('no layer for area ' + area.key);
-			}
-		},
-		getTemplateObject: function(valueLabel, layer, area, value, settings) {
-			return {
-				'valueLabel': valueLabel,
-				'areaLabel': layer.label,
-				'area': area,
-				'value': value,
-				'accountInOut': area.accounts[settings.account],
-				'keyForBalance': this.getKeyForBalance(area.key, layer.attribute)
-			};
-		},
-		getKeyForBalance: function(areaKey, areaAttribute) {
-			if (areaKey.length > 5) {
-				return areaKey;
-			}
-			return areaAttribute === 'Kreis' ? areaKey + '001' : areaKey + '000';
-		},
 		refresh: function() {
 			if (_.isEmpty(hdv.map.data) || _.isEmpty(hdv.map.areaLayers)) {
 				return false;
@@ -133,11 +93,6 @@
 			settings.account = hdv.accounts.getSelectedAccount(settings.pg);
 
 			this.refreshLayers(settings);
-		},
-		getCurrentValueLabel: function() {
-			var compare = $('.settings input[name="compare"]:checked').data('label');
-			var relation = $('.settings input[name="relation"]:checked').data('label');
-			return compare + (relation ? ' ' + relation : '');
 		}
 
 	};
