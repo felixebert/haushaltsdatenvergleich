@@ -26,11 +26,15 @@ describe('area value utils', function() {
 
 describe('area layer utils', function() {
 	it('should calculate a logarithmic opacity factor', function() {
-		expect(hdv.areas.getOpacityFactor(10, [2, 1])).toEqual(0);
-		expect(hdv.areas.getOpacityFactor(40, [2, 1])).toEqual(0.6);
-		expect(hdv.areas.getOpacityFactor(70, [2, 1])).toEqual(0.85);
-		expect(hdv.areas.getOpacityFactor(100, [2, 1])).toEqual(1);
-		expect(hdv.areas.getOpacityFactor(-10, [2, 1])).toEqual(0);
+		expect(hdv.areas.getComparisonFactor(10, [2, 1])).toEqual(0);
+		expect(hdv.areas.getComparisonFactor(40, [2, 1])).toEqual(0.6);
+		expect(hdv.areas.getComparisonFactor(70, [2, 1])).toEqual(0.85);
+		expect(hdv.areas.getComparisonFactor(100, [2, 1])).toEqual(1);
+		expect(hdv.areas.getComparisonFactor(-10, [2, 1])).toEqual(0);
+	});
+
+	it('should handle equal max / min boundary', function() {
+		expect(hdv.areas.getComparisonFactor(10, [1, 1])).toEqual(1);
 	});
 
 	it('should always find an useful opacity', function() {
@@ -40,17 +44,17 @@ describe('area layer utils', function() {
 	});
 
 	it('should find a proper fillColor', function() {
-		expect(hdv.areas.getFillColor(10, 'in')).toEqual('#00C957');
-		expect(hdv.areas.getFillColor(10, 'out')).toEqual('#FF0000');
-		expect(hdv.areas.getFillColor(10, 'sum')).toEqual('#00C957');
-		expect(hdv.areas.getFillColor(-10, 'sum')).toEqual('#FF0000');
-		expect(hdv.areas.getFillColor(0, 'in')).toEqual('#888');
+		expect(hdv.areas.getFillColor(10, 'in', [0, 100])).toEqual('#00441b');
+		expect(hdv.areas.getFillColor(10, 'out', [0, 100])).toEqual('#67000d');
+		expect(hdv.areas.getFillColor(10, 'sum', [0, 100])).toEqual('#00441b');
+		expect(hdv.areas.getFillColor(-10, 'sum', [0, 100])).toEqual('#67000d');
+		expect(hdv.areas.getFillColor(0, 'in', [0, 100])).toEqual('#EEE');
 	});
 
 	it('should return a valid layerStyle', function() {
 		expect(hdv.areas.getLayerStyle(10, [2, 1], 'sum')).toEqual({
-			fillOpacity: 0.2,
-			fillColor: '#00C957'
+			fillOpacity: 0.65,
+			fillColor: '#e5f5e0'
 		});
 	});
 

@@ -40,6 +40,11 @@
 		}
 	};
 
+	var colors = {
+		red: ["#fee0d2", "#fcbba1", "#fc9272", "#fb6a4a", "#ef3b2c", "#cb181d", "#a50f15", "#67000d"],
+		green: ["#e5f5e0", "#c7e9c0", "#a1d99b", "#74c476", "#41ab5d", "#238b45", "#006d2c", "#00441b"]
+	};
+
 	var areas = {
 		init: function() {
 			$(hdv).on('map.ready', _.bind(this.refresh, this));
@@ -54,29 +59,32 @@
 		 *            what to compare? (in / out / sum)
 		 */
 		getLayerStyle: function(value, log10Boundary, compare) {
-			var opacity = this.getOpacity(value, log10Boundary);
 			return {
-				'fillOpacity': opacity,
-				'fillColor': this.getFillColor(value, compare)
+				'fillOpacity': 0.65,
+				'fillColor': this.getFillColor(value, compare, log10Boundary)
 			};
 		},
-		getFillColor: function(value, compare) {
+		getFillColor: function(value, compare, log10Boundary) {
 			if (value == 0) {
-				return '#888';
-			} else if (value <= 0 || compare === 'out') {
-				return '#FF0000';
-			} else {
-				return '#00C957';
+				return '#EEE';
 			}
+
+			var colorScheme = (value <= 0 || compare === 'out') ? colors.red : colors.green;
+			var factor = this.getComparisonFactor(value, log10Boundary);
+			var colorIndex = Math.max(0, Math.round((colorScheme.length - 1) * factor));
+			return colorScheme[colorIndex];
 		},
 		getOpacity: function(value, log10Boundary) {
 			if (value === 0) {
 				return 0.25;
 			}
-			var opacity = Math.round(0.75 * this.getOpacityFactor(value, log10Boundary) * 100) / 100;
+			var opacity = Math.round(0.75 * this.getComparisonFactor(value, log10Boundary) * 100) / 100;
 			return Math.max(0.2, opacity);
 		},
-		getOpacityFactor: function(value, log10Boundary) {
+		getComparisonFactor: function(value, log10Boundary) {
+			if (log10Boundary[0] === log10Boundary[1]) {
+				return 1;
+			}
 			return Math.round((hdv.calc.safeLog10(value) - log10Boundary[1]) / (log10Boundary[0] - log10Boundary[1]) * 100) / 100;
 		},
 		refreshLayers: function(settings) {
