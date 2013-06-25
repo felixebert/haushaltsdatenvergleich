@@ -15,7 +15,7 @@ public class CategoryMergerTest {
 
 	@Test
 	public void itShouldCreateACategoryTree() throws Exception {
-		List<MinMaxAccount> accounts = DataMocks.mockAccounts();
+		List<MinMaxProduct> accounts = DataMocks.mockAccounts();
 		SortedSet<Category> categories = DataMocks.mockCategories();
 		CategoryTree categoryTree = CategoryMerger.createTree(categories, accounts);
 		assertNotNull(categoryTree);
@@ -27,7 +27,7 @@ public class CategoryMergerTest {
 
 	@Test
 	public void itShouldFindSuitableSubCategories() throws Exception {
-		List<MinMaxAccount> accounts = DataMocks.mockAccounts();
+		List<MinMaxProduct> accounts = DataMocks.mockAccounts();
 		SortedSet<Category> result = CategoryMerger.findSubCategories(12, 22, accounts);
 		assertEquals(2, result.size());
 	}

@@ -20,13 +20,13 @@ public class DataMocks {
 		return categories;
 	}
 
-	public static List<MinMaxAccount> mockAccounts() {
-		List<MinMaxAccount> accounts = new ArrayList<>();
-		accounts.add(new MinMaxAccount(121, "Abc121"));
-		accounts.add(new MinMaxAccount(122, "Abc122"));
-		accounts.add(new MinMaxAccount(221, "Abc221"));
-		accounts.add(new MinMaxAccount(321, "Abc321"));
-		accounts.add(new MinMaxAccount(421, "Abc421"));
+	public static List<MinMaxProduct> mockAccounts() {
+		List<MinMaxProduct> accounts = new ArrayList<>();
+		accounts.add(new MinMaxProduct(121, "Abc121"));
+		accounts.add(new MinMaxProduct(122, "Abc122"));
+		accounts.add(new MinMaxProduct(221, "Abc221"));
+		accounts.add(new MinMaxProduct(321, "Abc321"));
+		accounts.add(new MinMaxProduct(421, "Abc421"));
 		return accounts;
 	}
 
