@@ -1,44 +1,45 @@
 package de.ifcore.hdv.converter.parser;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import de.ifcore.hdv.converter.data.Account;
 import de.ifcore.hdv.converter.utils.Utils;
 
-public abstract class AccountParser extends AbstractCsvParser<Account> {
+public abstract class AccountParser extends AbstractColumnCsvParser<Account> {
 
-	private static final int REQ_COLUMNS = 7;
-	private static final int ACCOUNT_KEY = 2;
-	private static final int ACCOUNT_NAME = 3;
-	private static final int PRODUCT_KEY = 4;
-	private static final int PRODUCT_NAME = 5;
-	private static final int VALUE = 6;
+	private static final int AREA_KEY = 1;
+	private static final int ACCOUNT_KEY = 3;
+	private static final int ACCOUNT_NAME = 4;
+	private static final int VALUE_COLMN = 5;
 
 	public AccountParser(Collection<String[]> lines) {
-		super(lines);
+		super(lines, 7);
 	}
 
 	@Override
-	protected Account parseItem(String[] strings) {
-		Account item = null;
-		if (strings.length == REQ_COLUMNS) {
-			String areaKey = strings[0];
+	protected List<Account> parseItem(String[] strings) {
+		List<Account> result = new ArrayList<>();
+		List<ColumnDefinition> columnDefinitions = getColumnDefinitions();
+		if (strings.length == VALUE_COLMN + columnDefinitions.size()) {
+			String areaKey = strings[AREA_KEY];
 			if (isAreaKeyAcceptable(areaKey)) {
 				String accountKey = strings[ACCOUNT_KEY];
 				String accountName = strings[ACCOUNT_NAME];
-				String productKey = strings[PRODUCT_KEY];
-				String productName = strings[PRODUCT_NAME];
-				String value = strings[VALUE];
-				Long convertedValue = Utils.parseLongSafe(value);
-				if (isAreaKeyValid(areaKey) && Utils.hasText(accountKey) && Utils.hasText(productKey)) {
-					int parsedProductKey = Integer.parseInt(productKey);
+				if (isAreaKeyValid(areaKey) && Utils.hasText(accountKey)) {
 					int parsedAccountKey = Integer.parseInt(accountKey);
-					item = new Account(areaKey, parsedProductKey, productName, parsedAccountKey, accountName,
-							convertedValue);
+					for (int x = 0; x < columnDefinitions.size(); x++) {
+						ColumnDefinition cd = columnDefinitions.get(x);
+						String value = strings[VALUE_COLMN + x];
+						Long convertedValue = Utils.parseLongSafe(value);
+						result.add(new Account(areaKey, cd.getKey(), cd.getLabel(), parsedAccountKey, accountName,
+								convertedValue));
+					}
 				}
 			}
 		}
-		return item;
+		return result;
 	}
 
 	private boolean isAreaKeyValid(String areaKey) {

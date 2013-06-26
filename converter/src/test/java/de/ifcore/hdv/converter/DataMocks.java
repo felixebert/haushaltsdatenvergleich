@@ -22,11 +22,11 @@ public class DataMocks {
 
 	public static List<MinMaxProduct> mockAccounts() {
 		List<MinMaxProduct> accounts = new ArrayList<>();
-		accounts.add(new MinMaxProduct(121, null));
-		accounts.add(new MinMaxProduct(122, null));
-		accounts.add(new MinMaxProduct(221, null));
-		accounts.add(new MinMaxProduct(321, null));
-		accounts.add(new MinMaxProduct(421, null));
+		accounts.add(new MinMaxProduct(121, "label1"));
+		accounts.add(new MinMaxProduct(122, "label2"));
+		accounts.add(new MinMaxProduct(221, "label3"));
+		accounts.add(new MinMaxProduct(321, "label4"));
+		accounts.add(new MinMaxProduct(421, "label5"));
 		return accounts;
 	}
 
