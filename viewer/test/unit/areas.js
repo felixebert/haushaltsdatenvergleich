@@ -1,26 +1,27 @@
 'use strict';
 
 describe('area value utils', function() {
-	it('should return inOut-value according to "compare" setting', function() {
-		expect(hdv.areaValue.getValue([100, 10], 'in')).toEqual(100);
-		expect(hdv.areaValue.getValue([100, 10], 'out')).toEqual(10);
-		expect(hdv.areaValue.getValue([100, 10], 'sum')).toEqual(90);
-	});
-
-	it('should return null-safe inOut of given account list', function() {
-		var accountsInOut = {
-			"611": [9269650, 4974823],
-			"411": [null, 93863],
+	it('should return null-safe value of given product account values', function() {
+		var values = {
+			"611": {
+				"100": 10,
+				"200": 20
+			},
+			"612": {
+				"100": 30,
+				"200": 40
+			}
 		};
 
-		expect(hdv.areaValue.getInOut(accountsInOut, 611)).toEqual([9269650, 4974823]);
-		expect(hdv.areaValue.getInOut(accountsInOut, 411)).toEqual([0, 93863]);
-		expect(hdv.areaValue.getInOut(accountsInOut, 620)).toEqual([0, 0]);
+		expect(hdv.areaValue.findValue(values, 611, 200)).toEqual(20);
+		expect(hdv.areaValue.findValue(values, 612, 100)).toEqual(30);
+		expect(hdv.areaValue.findValue(values, 612, 900)).toEqual(0);
+		expect(hdv.areaValue.findValue(values, 400, 200)).toEqual(0);
 	});
 
-	it('should return inOut in relation to a number', function() {
-		expect(hdv.areaValue.getInOutInRelationTo([9269650, 4974823], 55.41)).toEqual([167292.01, 89782.04]);
-		expect(hdv.areaValue.getInOutInRelationTo([9269650, 4974823], 8655)).toEqual([1071.02, 574.79]);
+	it('should return value in relation to a number', function() {
+		expect(hdv.areaValue.getValueInRelationTo(9269650, 55.41)).toEqual(167292.01);
+		expect(hdv.areaValue.getValueInRelationTo(4974823, 8655)).toEqual(574.79);
 	});
 
 	it('should generate a value label', function() {
