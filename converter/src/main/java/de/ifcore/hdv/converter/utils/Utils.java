@@ -21,6 +21,7 @@ public class Utils {
 
 	public static void writeData(Object object, String filename) throws JsonProcessingException, IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.registerModule(new JsonModule());
 		String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(object);
 		OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(filename), Charset.forName("UTF8"));
 		out.write(json);
