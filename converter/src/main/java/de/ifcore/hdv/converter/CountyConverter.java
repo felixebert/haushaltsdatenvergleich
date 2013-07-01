@@ -7,6 +7,8 @@ import de.ifcore.hdv.converter.parser.AccountParser;
 import de.ifcore.hdv.converter.parser.AreaSizeParser;
 import de.ifcore.hdv.converter.parser.CountyAccountParser;
 import de.ifcore.hdv.converter.parser.PopulationParser;
+import de.ifcore.hdv.converter.split.DataSplit;
+import de.ifcore.hdv.converter.split.DataSplitter;
 import de.ifcore.hdv.converter.utils.Utils;
 
 public class CountyConverter {
@@ -17,7 +19,7 @@ public class CountyConverter {
 			String spendingsFile = args[1];
 			String population = args[2];
 			String areaSize = args[3];
-			String outputFile = args[4];
+			String outputDir = args[4];
 			try {
 				AreaSizeParser areaSizeParser = new AreaSizeParser(new FileInputStream(areaSize));
 				PopulationParser populationParser = new PopulationParser(new FileInputStream(population));
@@ -26,7 +28,9 @@ public class CountyConverter {
 				BaseConverter baseConverter = new BaseCountyConverter(areaSizeParser, populationParser, incomeParser,
 						spendingsParser);
 				MergedData mergedData = baseConverter.createMergedData();
-				Utils.writeData(mergedData, outputFile);
+				DataSplitter splitter = new DataSplitter(mergedData);
+				DataSplit split = splitter.split();
+				Utils.writeSplittedData(split, outputDir);
 			}
 			catch (Exception e) {
 				e.printStackTrace();
