@@ -3,20 +3,13 @@
 describe('area value utils', function() {
 	it('should return null-safe value of given product account values', function() {
 		var values = {
-			"611": {
-				"100": 10,
-				"200": 20
-			},
-			"612": {
-				"100": 30,
-				"200": 40
-			}
+			"100": '.',
+			"200": 20
 		};
 
-		expect(hdv.areaValue.findValue(values, 611, 200)).toEqual(20);
-		expect(hdv.areaValue.findValue(values, 612, 100)).toEqual(30);
-		expect(hdv.areaValue.findValue(values, 612, 900)).toEqual(0);
-		expect(hdv.areaValue.findValue(values, 400, 200)).toEqual(0);
+		expect(hdv.areaValue.of(values, 200)).toEqual(20);
+		expect(hdv.areaValue.of(values, 100)).toEqual('.');
+		expect(hdv.areaValue.of(values, 10)).toEqual(0);
 	});
 
 	it('should return value in relation to a number', function() {
