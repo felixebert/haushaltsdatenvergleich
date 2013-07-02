@@ -4,8 +4,8 @@
 	var accounts = {
 		selectedGroup: 'all',
 		init: function() {
-			$(hdv).on('map.loaded.data', _.bind(this.reset, this));
-			$('.settings').on('change', _.bind(this.refresh, this));
+			// $(hdv).on('map.loaded.data', _.bind(this.reset, this));
+			// $('.settings').on('change', _.bind(this.refresh, this));
 		},
 		reset: function() {
 			this.resetAccountGroups();
@@ -62,18 +62,11 @@
 	};
 
 	/**
-	 * Je Produktgruppe (Account) sind 24 Grenzwerte unter dem Attribut "data"
-	 * vorhanden. Diese Grenzwerte unterteilen sich in je 3 Gruppen, die das
+	 * Je Produktgruppe (Account) sind 6 Grenzwerte unter dem Attribut "data"
+	 * vorhanden. Diese Grenzwerte unterteilen sich in 3 Gruppen, die das
 	 * Attribut "relation" (Im Verhältnis zu?) abdecken: absolut / Einwohnerzahl /
 	 * Fläche (in dieser Reihenfolge).<br />
-	 * Je Gruppe unterteilen sich die 8 Werte in 3 Untergruppen, die das
-	 * Attribut "compare" (Was vergleichen?) abdecken: Summe, Einnahmen,
-	 * Ausgaben (in dieser Reihenfolge)<br />
-	 * Die Untergruppe Summe besteht aus 4 Werten: positive Summe (max),
-	 * positive Summe (min), negative Summe (max abs.), negative Summe (min
-	 * abs.)<br />
-	 * Die Untergruppen Einnahmen und Ausgaben bestehen je aus 2 Werten: max und
-	 * min<br />
+	 * Jede Gruppe besteht aus 2 Werten: max und min<br />
 	 * Max und Min steht immer für den maximalen bzw. minimalen Wert, den es für
 	 * diese Produktgruppe über alle Areas (Gemeinden / Landkreise) hinweg gibt.
 	 */

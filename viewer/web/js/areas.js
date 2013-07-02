@@ -9,6 +9,11 @@
 		of: function(area, settings) {
 			return this.findValue(area.products, settings.pg, settings.account);
 		},
+		getCurrentLabel: function() {
+			var account = $('.settings select[name="account"] option:selected').text();
+			var relation = $('.settings input[name="relation"]:checked').data('label');
+			return this.getLabel(account, relation);
+		},
 		inRelationTo: function(value, settings) {
 			if (settings.relation !== 'none') {
 				return this.getValueInRelationTo(value, area[settings.relation]);
@@ -27,11 +32,6 @@
 		getValueInRelationTo: function(value, relation) {
 			return Math.round((value / relation) * 100) / 100;
 		},
-		getCurrentLabel: function() {
-			var account = $('.settings select[name="account"] option:selected').text();
-			var relation = $('.settings input[name="relation"]:checked').data('label');
-			return this.getLabel(account, relation);
-		},
 		getLabel: function(accountName, relationLabel) {
 			return accountName + (relationLabel ? ' ' + relationLabel : '');
 		}
@@ -40,7 +40,7 @@
 	var areas = {
 		init: function() {
 			$(hdv).on('map.ready', _.bind(this.refresh, this));
-			$('.settings').on('change', _.bind(this.refresh, this));
+			// $('.settings').on('change', _.bind(this.refresh, this));
 		},
 		getTemplateObject: function(valueLabel, layer, area, value, accountValue) {
 			return {
