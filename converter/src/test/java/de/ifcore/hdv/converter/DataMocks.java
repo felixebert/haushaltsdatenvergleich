@@ -2,13 +2,18 @@ package de.ifcore.hdv.converter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
 import de.ifcore.hdv.converter.data.AccountClass;
+import de.ifcore.hdv.converter.data.AccountsPerArea;
 import de.ifcore.hdv.converter.data.BalanceItem;
 import de.ifcore.hdv.converter.data.Category;
+import de.ifcore.hdv.converter.data.InOutProduct;
+import de.ifcore.hdv.converter.data.MergedData;
 
 public class DataMocks {
 
@@ -60,5 +65,20 @@ public class DataMocks {
 						"Werne, Stadt", "611", "Steuern, allg. Zuweisungen u. allg. Umlagen", "18525219" },
 				new String[] { "05978040", "Werne, Stadt", "612", "Sonstige allgemeine Finanzwirtschaft", "12678523" },
 				new String[] { "05978040", "Werne, Stadt", "999", "Summe aller Produktgruppen", "70535060" });
+	}
+
+	public static MergedData mockMergedData() {
+		Map<Integer, InOutProduct> productsPerArea = new HashMap<>();
+		productsPerArea.put(100, new InOutProduct(100));
+		List<AccountsPerArea> areas = Arrays.asList(new AccountsPerArea("areakey", 10, 20, productsPerArea));
+		Map<Integer, MinMaxProduct> products = new HashMap<>();
+		products.put(100, new MinMaxProduct(1234, "label"));
+		Map<Integer, List<Integer>> tree = new HashMap<>();
+		tree.put(1, Arrays.asList(100));
+		Map<Integer, String> productLabels = new HashMap<>();
+		productLabels.put(100, "Product_100");
+		Map<Integer, String> incomeLabels = new HashMap<>();
+		Map<Integer, String> spendingsLabels = new HashMap<>();
+		return new MergedData(areas, products, tree, productLabels, incomeLabels, spendingsLabels);
 	}
 }
