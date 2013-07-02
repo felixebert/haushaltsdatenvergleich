@@ -8,7 +8,7 @@
 		/**
 		 * @param value
 		 *            value of the layer
-		 * @param boundary
+		 * @param log10Boundary
 		 *            boundary array [max / min]
 		 * @param hasNegativeMeaning
 		 */
