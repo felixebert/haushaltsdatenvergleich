@@ -13,6 +13,7 @@ import de.ifcore.hdv.converter.data.Account;
 import de.ifcore.hdv.converter.data.AccountValue;
 import de.ifcore.hdv.converter.data.AccountsPerArea;
 import de.ifcore.hdv.converter.data.InOutProduct;
+import de.ifcore.hdv.converter.data.LongValue;
 import de.ifcore.hdv.converter.data.MergedData;
 import de.ifcore.hdv.converter.data.Population;
 
@@ -28,11 +29,11 @@ public class DataMergerTest {
 		Map<String, Population> population = new HashMap<>();
 		population.put(AREA_KEY, new Population(1234));
 		List<Account> income = Arrays.asList(
-				new Account(AREA_KEY, 223, "Testproduct", 123, "Testaccount", Long.valueOf(100)), new Account(AREA_KEY,
-						224, "Testproduct2", 124, "Testaccount2", Long.valueOf(200)));
+				new Account(AREA_KEY, 223, "Testproduct", 123, "Testaccount", LongValue.valueOf(100)),
+				new Account(AREA_KEY, 224, "Testproduct2", 124, "Testaccount2", LongValue.valueOf(200)));
 		List<Account> spendings = Arrays.asList(
-				new Account(AREA_KEY, 223, "Testproduct", 123, "Testaccount", Long.valueOf(100)), new Account(AREA_KEY,
-						224, "Testproduct2", 124, "Testaccount2", Long.valueOf(200)));
+				new Account(AREA_KEY, 223, "Testproduct", 123, "Testaccount", LongValue.valueOf(100)),
+				new Account(AREA_KEY, 224, "Testproduct2", 124, "Testaccount2", LongValue.valueOf(200)));
 		MergedData mergedData = dataMerger.mergeData(population, areaSizes, income, spendings);
 		List<AccountsPerArea> result = mergedData.getAreas();
 		assertNotNull(result);
@@ -49,6 +50,6 @@ public class DataMergerTest {
 			Map<Integer, InOutProduct> accounts) {
 		InOutProduct product = accounts.get(expectedProductKey);
 		AccountValue accountValue = product.getAccounts().get(expectedAccountKey);
-		assertEquals(expectedValue, accountValue.getValue().longValue());
+		assertEquals(expectedValue, accountValue.getValue().getValue().longValue());
 	}
 }

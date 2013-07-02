@@ -41,7 +41,7 @@ public class InOutProduct {
 	public void filterNullValues() {
 		Iterator<AccountValue> it = accounts.values().iterator();
 		while (it.hasNext()) {
-			if (it.next().getValue() == null)
+			if (!it.next().getValue().isValidForOutput())
 				it.remove();
 		}
 	}

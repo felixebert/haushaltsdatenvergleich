@@ -8,11 +8,11 @@ import de.ifcore.hdv.converter.data.AccountValue;
 public class Product {
 
 	private Map<String, Map<Integer, AccountValue>> areas;
-	private Map<Integer, MinMax> minmax;
+	private Map<Integer, MinMax> maxmin;
 
-	public Product(Map<String, Map<Integer, AccountValue>> areas, Map<Integer, MinMax> minmax) {
+	public Product(Map<String, Map<Integer, AccountValue>> areas, Map<Integer, MinMax> maxmin) {
 		this.areas = areas;
-		this.minmax = minmax;
+		this.maxmin = maxmin;
 	}
 
 	public Map<String, Map<Integer, AccountValue>> getAreas() {
@@ -20,6 +20,6 @@ public class Product {
 	}
 
 	public Map<Integer, MinMax> getMinmax() {
-		return minmax;
+		return maxmin;
 	}
 }

@@ -29,13 +29,13 @@ public class AccountParserTest {
 		assertEquals("Auszahlungen insgesamt", account.getAccountName());
 		assertEquals(611, account.getProductKey());
 		assertEquals("Steuern, allg. Zuweisungen u. allg. Umlagen", account.getProductName());
-		assertEquals(Long.valueOf(1), account.getValue());
+		assertEquals(Long.valueOf(1), account.getValue().getValue());
 		account = accounts.get(1);
 		assertEquals("05978040", account.getAreaKey());
 		assertEquals(7, account.getAccountKey());
 		assertEquals("Auszahlungen insgesamt", account.getAccountName());
 		assertEquals(111, account.getProductKey());
 		assertEquals("Verwaltungssteuerung und Service", account.getProductName());
-		assertEquals(Long.valueOf(2), account.getValue());
+		assertEquals(Long.valueOf(2), account.getValue().getValue());
 	}
 }

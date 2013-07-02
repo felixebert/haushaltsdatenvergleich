@@ -31,7 +31,7 @@ public class BalanceSheetBuilder {
 		}
 	}
 
-	public BalanceSheet createBalanceSheet(List<BalanceItem> items, String label) {
+	public BalanceSheet createBalanceSheet(Iterable<BalanceItem> items, String label) {
 		for (BalanceItem balanceItem : items) {
 			addItem(balanceItem);
 		}
@@ -48,19 +48,35 @@ public class BalanceSheetBuilder {
 	}
 
 	private void addItem(BalanceItem balanceItem) {
-		AccountClass mainAccountClass = mainClassLookup.get(balanceItem.getNo().subSequence(0, 1));
-		AccountClass subAccountClass = subClassLookup.get(balanceItem.getNo().subSequence(0, 2));
-		if (mainAccountClass == null || subAccountClass == null) {
-			System.out.println("Kontenklasse unbekannt: " + balanceItem.getNo());
+		String no = extractAccountNo(balanceItem);
+		if (no != null) {
+			AccountClass mainAccountClass = mainClassLookup.get(no.subSequence(0, 1));
+			AccountClass subAccountClass = subClassLookup.get(no.subSequence(0, 2));
+			if (mainAccountClass == null || subAccountClass == null) {
+				System.out.println("Kontenklasse unbekannt: " + no);
+			}
+			else {
+				Map<String, List<BalanceItem>> subClasses = groupedItems.get(mainAccountClass.getLabel());
+				if (subClasses != null) {
+					List<BalanceItem> items = subClasses.get(subAccountClass.getLabel());
+					items.add(balanceItem);
+				}
+				else
+					System.out.println("Kontenklasse fehlt: " + no + " / " + balanceItem.getLabel());
+			}
 		}
 		else {
-			Map<String, List<BalanceItem>> subClasses = groupedItems.get(mainAccountClass.getLabel());
-			if (subClasses != null) {
-				List<BalanceItem> items = subClasses.get(subAccountClass.getLabel());
-				items.add(balanceItem);
-			}
-			else
-				System.out.println("Kontenklasse fehlt: " + balanceItem.getNo() + " / " + balanceItem.getLabel());
+			System.out.println("Bilanzeintrag ohne Kontenklasse gefunden: " + balanceItem.getKs() + " / "
+					+ balanceItem.getAreaLabel() + " / " + balanceItem.getLabel());
 		}
+	}
+
+	private String extractAccountNo(BalanceItem bi) {
+		if (bi.getCurrent() != null)
+			return bi.getCurrent().getNo();
+		else if (bi.getPrevious() != null)
+			return bi.getPrevious().getNo();
+		else
+			return null;
 	}
 }

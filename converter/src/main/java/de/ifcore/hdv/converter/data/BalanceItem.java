@@ -8,16 +8,30 @@ public class BalanceItem {
 	private String ks;
 	@JsonIgnore
 	private String areaLabel;
-	private String no;
 	private String label;
-	private Long value;
+	private BalanceValue current;
+	private BalanceValue previous;
 
-	public BalanceItem(String ks, String areaLabel, String no, String label, Long value) {
+	public BalanceItem(String ks, String areaLabel, String label) {
 		this.ks = ks;
 		this.areaLabel = areaLabel;
-		this.no = no;
 		this.label = label;
-		this.value = value;
+	}
+
+	public BalanceValue getCurrent() {
+		return current;
+	}
+
+	public void setCurrent(BalanceValue current) {
+		this.current = current;
+	}
+
+	public BalanceValue getPrevious() {
+		return previous;
+	}
+
+	public void setPrevious(BalanceValue previous) {
+		this.previous = previous;
 	}
 
 	public String getKs() {
@@ -28,15 +42,7 @@ public class BalanceItem {
 		return areaLabel;
 	}
 
-	public String getNo() {
-		return no;
-	}
-
 	public String getLabel() {
 		return label;
-	}
-
-	public Long getValue() {
-		return value;
 	}
 }

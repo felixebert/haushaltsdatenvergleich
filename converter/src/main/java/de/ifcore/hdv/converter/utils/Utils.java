@@ -67,15 +67,6 @@ public class Utils {
 		return result;
 	}
 
-	public static Long parseLongSafe(String value) {
-		try {
-			return Long.valueOf(value);
-		}
-		catch (NumberFormatException e) {
-			return null;
-		}
-	}
-
 	public static boolean hasText(String s) {
 		return s != null && !s.trim().isEmpty();
 	}
