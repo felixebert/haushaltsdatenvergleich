@@ -66,6 +66,15 @@
 		}
 	};
 
+	var accounts = {
+		isSpending: function(account) {
+			return this._isSpending(account, hdv.data.meta.incomeLabels, hdv.data.meta.spendingsLabels);
+		},
+		_isSpending: function(account, incomeLabels, spendingsLabels) {
+			return _.indexOf(_.keys(incomeLabels), account) >= 0 ? false : true;
+		}
+	};
+
 	/**
 	 * Je Produktgruppe (Account) sind 6 Grenzwerte unter dem Attribut "data"
 	 * vorhanden. Diese Grenzwerte unterteilen sich in 3 Gruppen, die das
@@ -77,22 +86,19 @@
 	 */
 	var accountBoundaries = {
 		findAccordingTo: function(settings) {
-			var allBoundaries = hdv.map.data.accounts[settings.account].data;
-			var relevantBoundaries = this.findRelevant(allBoundaries, settings.relation, settings.compare);
+			var allBoundaries = hdv.data.values.minmax[hdv.settings.account];
+			var relevantBoundaries = this.findRelevant(allBoundaries, hdv.settings.relation);
 			return relevantBoundaries;
 		},
-		findRelevant: function(allBoundaries, relation, compare) {
+		findRelevant: function(allBoundaries, relation) {
+			if (allBoundaries === undefined) {
+				return [0, 0];
+			}
+
 			var startPos = 0;
 			var length = 2;
 			if (relation !== 'none') {
-				startPos = relation === 'population' ? 8 : 16;
-			}
-			if (compare === 'in') {
-				startPos += 4;
-			} else if (compare === 'out') {
-				startPos += 6;
-			} else {
-				length = 4;
+				startPos = relation === 'population' ? 2 : 4;
 			}
 
 			var boundaries = [];
@@ -100,12 +106,6 @@
 				boundaries.push(allBoundaries[i]);
 			}
 			return boundaries;
-		},
-		forValue: function(value, boundaries) {
-			if (boundaries.length == 2) {
-				return boundaries;
-			}
-			return value > 0 ? [boundaries[0], boundaries[1]] : [boundaries[2], boundaries[3]];
 		},
 		toLog10: function(boundaries) {
 			var log10Boundaries = [];
@@ -122,6 +122,6 @@
 	hdv.accountSelectList = accountSelectList;
 	hdv.accountSelectList.init();
 
-	hdv.accounts = {};
+	hdv.accounts = accounts;
 	hdv.accountBoundaries = accountBoundaries;
 })(hdv, $, _);

@@ -63,29 +63,27 @@
 			return !value || value === 'none' ? defaultValue : value;
 		},
 		resetAccount: function() {
-			hdv.settings = hdv.defaults.account;
+			hdv.settings.account = hdv.defaults.account;
+			// $(hdv).triggerHandler('settingsUpdate');
 		}
 	};
 
 	var loader = {
 		loadStatus: {},
 		init: function() {
-			$(hdv).on('loaded.areaLayers loaded.data loaded.meta', _.bind(this.done, this));
+			$(hdv).on('loaded.areaLayers loaded.data loaded.metadata', _.bind(this.done, this));
 			$(hdv).on('settingsUpdate', _.bind(this.update, this));
 		},
 		update: function() {
 			this.loadAreaLayers(hdv.settings.areaType);
 			this.loadValues(this.getValueFile(hdv.settings.areaType, hdv.settings.year, hdv.settings.product));
 			this.loadMetadata(this.getMetadataFile(hdv.settings.areaType, hdv.settings.year));
+			this.done();
 		},
 		done: function() {
 			if (this.allLoaded()) {
 				$('.ajax-loader').hide();
 				$(hdv).triggerHandler('loader.finished');
-				// $('.settings select[name="pg"] option[value="' +
-				// hdv.defaults.pg + '"]').prop('selected', true);
-				// $('.settings select[name="year"] option[value="' +
-				// hdv.defaults.year + '"]').prop('selected', true);
 			}
 		},
 		allLoaded: function() {

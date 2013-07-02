@@ -97,43 +97,44 @@
 			</a>
 		</header>
 
-		<div id="map">
-
-		<div id="nav" class="hide">
-			<div class="visible-phone pull-right">
-				<button type="button" class="btn close-nav">
-					<i class="icon-remove"></i>
-				</button>
+		<div id="map-container">
+			<div id="map"></div>
+	
+			<div id="nav" class="hide">
+				<div class="visible-phone pull-right">
+					<button type="button" class="btn close-nav">
+						<i class="icon-remove"></i>
+					</button>
+				</div>
+	
+				<form class="nav-container settings form-inline" method="GET" action="index.html">
+					<label class="title">Produktgruppe</label>
+					<button type="button" class="close close-nav hidden-phone pull-right" data-dismiss="modal">&times;</button>
+					<select name="product">
+						<option value="none" selected="selected">Bitte wählen ...</option>
+					</select> <label class="title">Konto</label> <select name="account">
+						<option value="none" selected="selected">Bitte wählen ...</option>
+					</select> <label class="title">im Verhältnis zur?</label>
+					<p>
+						<label class="radio"><input type="radio" name="relation" value="population" data-label="pro Einwohnerzahl">
+							Einwohnerzahl</label> <label class="radio"><input type="radio" name="relation" value="size"
+							data-label="pro Fläche"> Fläche</label> <label class="radio"><input type="radio" name="relation"
+							value="none" data-label=""> absolut</label>
+					</p>
+	
+					<label class="title">Gebietsgröße</label>
+					<p>
+						<label class="radio"><input type="radio" name="areaType" value="gemeinden"> Gemeinden</label> <label
+							class="radio"><input type="radio" name="areaType" value="landkreise"> Landkreise</label>
+					</p>
+	
+					<label class="title">Abrechnungsjahr</label> <select name="year">
+						<option value="2009" selected="selected">2009</option>
+						<option value="2010">2010</option>
+						<option value="2011">2011</option>
+					</select>
+				</form>
 			</div>
-
-			<form class="nav-container settings form-inline" method="GET" action="index.html">
-				<label class="title">Produktgruppe</label>
-				<button type="button" class="close close-nav hidden-phone pull-right" data-dismiss="modal">&times;</button>
-				<select name="product">
-					<option value="none" selected="selected">Bitte wählen ...</option>
-				</select> <label class="title">Konto</label> <select name="account">
-					<option value="none" selected="selected">Bitte wählen ...</option>
-				</select> <label class="title">im Verhältnis zur?</label>
-				<p>
-					<label class="radio"><input type="radio" name="relation" value="population" data-label="pro Einwohnerzahl">
-						Einwohnerzahl</label> <label class="radio"><input type="radio" name="relation" value="size"
-						data-label="pro Fläche"> Fläche</label> <label class="radio"><input type="radio" name="relation"
-						value="none" data-label=""> absolut</label>
-				</p>
-
-				<label class="title">Gebietsgröße</label>
-				<p>
-					<label class="radio"><input type="radio" name="areaType" value="gemeinden"> Gemeinden</label> <label
-						class="radio"><input type="radio" name="areaType" value="landkreise"> Landkreise</label>
-				</p>
-
-				<label class="title">Abrechnungsjahr</label> <select name="year">
-					<option value="2009" selected="selected">2009</option>
-					<option value="2010">2010</option>
-					<option value="2011">2011</option>
-				</select>
-			</form>
-		</div>
 		</div>
 
 		<div id="info" class="modal hide">
