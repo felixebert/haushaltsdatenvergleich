@@ -59,9 +59,7 @@
 				attributionControl: false
 			});
 
-			$('.settings input[name="compare"]').filter('[value="' + hdv.defaults.compare + '"]').prop('checked', true);
-			$('.settings input[name="relation"]').filter('[value="' + hdv.defaults.relation + '"]').prop('checked', true);
-			$('.settings input[name="areaLayer"]').filter('[value="' + hdv.defaults.areaLayer + '"]').prop('checked', true);
+			this.initForm(hdv.defaults);
 
 			this.addTileLayer();
 			this.addAttributionControl();
@@ -71,6 +69,10 @@
 			this.setupEvents();
 			this.setupTemplates();
 			this.reload();
+		},
+		initForm: function(defaults) {
+			$('.settings input[name="relation"]').filter('[value="' + hdv.defaults.relation + '"]').prop('checked', true);
+			$('.settings input[name="areaLayer"]').filter('[value="' + hdv.defaults.areaLayer + '"]').prop('checked', true);
 		},
 		setupTemplates: function() {
 			this.templates.popup = Handlebars.compile($('#popup-template').html());
