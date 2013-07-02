@@ -113,7 +113,16 @@
 			}
 		},
 		loadMeta: function(areaType, year) {
+			var jsonFile = year + '/' + areaType + '/metadata';
+			if (this.loadStatus.meta !== jsonFile) {
+				$('.ajax-loader').show();
 
+				$.getJSON('data/' + jsonFile + '.json', _.bind(function(data) {
+					hdv.data.meta = data;
+					this.loadStatus.meta = jsonFile;
+					$(hdv).triggerHandler('map.loaded.meta');
+				}, this));
+			}
 		}
 	};
 
