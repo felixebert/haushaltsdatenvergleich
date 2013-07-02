@@ -21,23 +21,16 @@
 		</div>
 
 		<form class="nav-container settings form-inline" method="GET" action="index.html">
-			<label class="title">Produktbereich</label>
-			<button type="button" class="close close-nav hidden-phone pull-right" data-dismiss="modal">&times;</button>
-			<select name="pb">
-				<option value="all" selected="selected">Alle</option>
-			</select>
-			
 			<label class="title">Produktgruppe</label>
-			<select name="pg">
+			<button type="button" class="close close-nav hidden-phone pull-right" data-dismiss="modal">&times;</button>
+			<select name="product">
 				<option value="none" selected="selected">Bitte wählen ...</option>
 			</select>
-			
-			<label class="title">Was vergleichen?</label>
-			<p>
-				<label class="radio"><input type="radio" name="compare" value="in" data-label="Einnahmen"> Einnahmen</label>
-				<label class="radio"><input type="radio" name="compare" value="out" data-label="Ausgaben"> Ausgaben</label>
-				<label class="radio"><input type="radio" name="compare" value="sum" data-label="Summe"> Summe</label>
-			</p>
+
+			<label class="title">Konto</label>
+			<select name="account">
+				<option value="none" selected="selected">Bitte wählen ...</option>
+			</select>
 			
 			<label class="title">im Verhältnis zur?</label>
 			<p>
