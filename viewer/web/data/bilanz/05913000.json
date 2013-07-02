@@ -3,6 +3,20 @@
   "assets" : {
     "Immaterielle Vermögensgegenstände und Sachanlagen" : {
       "Anlagevermögen" : [ {
+        "label" : "Anlagevermoegen - AHK am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "0001",
+          "value" : 6707222905
+        }
+      }, {
+        "label" : "Anlagevermoegen - Zugaenge im Haushaltsjahr",
+        "current" : {
+          "no" : "0002",
+          "value" : 236475324
+        },
+        "previous" : null
+      }, {
         "label" : "Anlagevermoegen - Abgaenge im Haushaltsjahr",
         "current" : {
           "no" : "0003",
@@ -10,17 +24,17 @@
         },
         "previous" : null
       }, {
+        "label" : "Anlagevermoegen - Abschreibungen im Haushaltsjahr",
+        "current" : {
+          "no" : "0005",
+          "value" : 125370158
+        },
+        "previous" : null
+      }, {
         "label" : "Anlagevermoegen - kumulierte Abschreibungen",
         "current" : {
           "no" : "0007",
           "value" : 343994259
-        },
-        "previous" : null
-      }, {
-        "label" : "Anlagevermoegen - Zugaenge im Haushaltsjahr",
-        "current" : {
-          "no" : "0002",
-          "value" : 236475324
         },
         "previous" : null
       }, {
@@ -33,64 +47,26 @@
           "no" : "0009",
           "value" : 6488598804
         }
-      }, {
-        "label" : "Anlagevermoegen - AHK am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "0001",
-          "value" : 6707222905
-        }
-      }, {
-        "label" : "Anlagevermoegen - Abschreibungen im Haushaltsjahr",
-        "current" : {
-          "no" : "0005",
-          "value" : 125370158
-        },
-        "previous" : null
       } ],
       "Immaterielle Vermögensgegenstände" : [ {
-        "label" : "Buchwert der Sachanlagen am 31.12.",
-        "current" : {
-          "no" : "0198",
-          "value" : 4196335464
-        },
-        "previous" : {
-          "no" : "0199",
-          "value" : 4277066113
-        }
-      }, {
-        "label" : "Zugaenge an Sachanlagen im Haushaltsjahr",
-        "current" : {
-          "no" : "0192",
-          "value" : 143120511
-        },
-        "previous" : null
-      }, {
-        "label" : "Stand der AHK der Sachanlagen am 31.12.",
+        "label" : "Immaterielle Vermoegensgegenstaende - AHK am 31.12.",
         "current" : null,
         "previous" : {
-          "no" : "0191",
-          "value" : 4471161874
+          "no" : "0111",
+          "value" : 6774203
         }
+      }, {
+        "label" : "Immaterielle Vermoegensgegenstaende - Zugaenge im Haushaltsjahr",
+        "current" : {
+          "no" : "0112",
+          "value" : 2921257
+        },
+        "previous" : null
       }, {
         "label" : "Abgaenge von immateriellen Vermoegensgegenstaenden im Haushaltsjahr",
         "current" : {
           "no" : "0113",
           "value" : 16866
-        },
-        "previous" : null
-      }, {
-        "label" : "Kumulierte Abschreibungen bei Sachanlagen",
-        "current" : {
-          "no" : "0197",
-          "value" : 290977987
-        },
-        "previous" : null
-      }, {
-        "label" : "Umbuchungen von Sachanlagen im Haushaltsjahr",
-        "current" : {
-          "no" : "0194",
-          "value" : -121985
         },
         "previous" : null
       }, {
@@ -101,26 +77,12 @@
         },
         "previous" : null
       }, {
-        "label" : "Abschreibungen bei Sachanlagen im Haushaltsjahr",
-        "current" : {
-          "no" : "0195",
-          "value" : 96882226
-        },
-        "previous" : null
-      }, {
         "label" : "Kumulierte Abschreibungen bei immateriellen Vermoegensgegenstaenden",
         "current" : {
           "no" : "0117",
           "value" : 4206375
         },
         "previous" : null
-      }, {
-        "label" : "Immaterielle Vermoegensgegenstaende - AHK am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "0111",
-          "value" : 6774203
-        }
       }, {
         "label" : "Buchwert der immateriellen Vermoegensgegenstaende am 31.12.",
         "current" : {
@@ -132,10 +94,17 @@
           "value" : 4262194
         }
       }, {
-        "label" : "Immaterielle Vermoegensgegenstaende - Zugaenge im Haushaltsjahr",
+        "label" : "Stand der AHK der Sachanlagen am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "0191",
+          "value" : 4471161874
+        }
+      }, {
+        "label" : "Zugaenge an Sachanlagen im Haushaltsjahr",
         "current" : {
-          "no" : "0112",
-          "value" : 2921257
+          "no" : "0192",
+          "value" : 143120511
         },
         "previous" : null
       }, {
@@ -145,12 +114,50 @@
           "value" : 126846949
         },
         "previous" : null
+      }, {
+        "label" : "Umbuchungen von Sachanlagen im Haushaltsjahr",
+        "current" : {
+          "no" : "0194",
+          "value" : -121985
+        },
+        "previous" : null
+      }, {
+        "label" : "Abschreibungen bei Sachanlagen im Haushaltsjahr",
+        "current" : {
+          "no" : "0195",
+          "value" : 96882226
+        },
+        "previous" : null
+      }, {
+        "label" : "Kumulierte Abschreibungen bei Sachanlagen",
+        "current" : {
+          "no" : "0197",
+          "value" : 290977987
+        },
+        "previous" : null
+      }, {
+        "label" : "Buchwert der Sachanlagen am 31.12.",
+        "current" : {
+          "no" : "0198",
+          "value" : 4196335464
+        },
+        "previous" : {
+          "no" : "0199",
+          "value" : 4277066113
+        }
       } ],
       "Unbebaute Grundstücke und grundstücksgleiche Rechte" : [ {
-        "label" : "Abschreibungen bei sonstigen unbebauten Grundstuecken im Haushaltsjahr",
+        "label" : "Stand der AHK der unbebauten Grundstuecke und grundstuecksgleichen Rechte am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "0201",
+          "value" : 722805292
+        }
+      }, {
+        "label" : "Zugaenge an unbebauten Grundstuecken und grundstuecksgleichen Rechten im Haushaltsjahr",
         "current" : {
-          "no" : "0245",
-          "value" : 49287
+          "no" : "0202",
+          "value" : 6917871
         },
         "previous" : null
       }, {
@@ -161,33 +168,12 @@
         },
         "previous" : null
       }, {
-        "label" : "Stand der AHK von Wald und Forsten am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "0231",
-          "value" : 10813792
-        }
-      }, {
-        "label" : "Stand der AHK von sonstigen unbebauten Grundstuecken am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "0241",
-          "value" : 323990501
-        }
-      }, {
-        "label" : "Kumulierte Abschreibungen bei unbebauten Grundstuecken und grundstuecksgleichen Rechten",
+        "label" : "Umbuchungen von unbebauten Grundstuecken und grundstuecksgleichen Rechten im Haushaltsjahr",
         "current" : {
-          "no" : "0207",
-          "value" : 590959
+          "no" : "0204",
+          "value" : 4840357
         },
         "previous" : null
-      }, {
-        "label" : "Stand der AHK der unbebauten Grundstuecke und grundstuecksgleichen Rechte am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "0201",
-          "value" : 722805292
-        }
       }, {
         "label" : "Abschreibungen bei unbebauten Grundstuecken und grundstuecksgleichen Rechten im Haushaltsjahr",
         "current" : {
@@ -196,128 +182,10 @@
         },
         "previous" : null
       }, {
-        "label" : "Umbuchungen von Gruenflaechen im Haushaltsjahr",
+        "label" : "Kumulierte Abschreibungen bei unbebauten Grundstuecken und grundstuecksgleichen Rechten",
         "current" : {
-          "no" : "0214",
-          "value" : 2209100
-        },
-        "previous" : null
-      }, {
-        "label" : "Stand der AHK von Gruenflaechen am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "0211",
-          "value" : 338900267
-        }
-      }, {
-        "label" : "Kumulierte Abschreibungen bei sonstigen unbebauten Grundstuecken",
-        "current" : {
-          "no" : "0247",
-          "value" : 89177
-        },
-        "previous" : null
-      }, {
-        "label" : "Umbuchungen von unbebauten Grundstuecken und grundstuecksgleichen Rechten im Haushaltsjahr",
-        "current" : {
-          "no" : "0204",
-          "value" : 4840357
-        },
-        "previous" : null
-      }, {
-        "label" : "Zugaenge an unbebauten Grundstuecken und grundstuecksgleichen Rechten im Haushaltsjahr",
-        "current" : {
-          "no" : "0202",
-          "value" : 6917871
-        },
-        "previous" : null
-      }, {
-        "label" : "Buchwert des Waldes und der Forsten am 31.12.",
-        "current" : {
-          "no" : "0238",
-          "value" : 10824127
-        },
-        "previous" : {
-          "no" : "0239",
-          "value" : 10813792
-        }
-      }, {
-        "label" : "Zugaenge an sonstigen unbebauten Grundstuecken im Haushaltsjahr",
-        "current" : {
-          "no" : "0242",
-          "value" : 377392
-        },
-        "previous" : null
-      }, {
-        "label" : "Abgaenge von Gruenflaechen im Haushaltsjahr",
-        "current" : {
-          "no" : "0213",
-          "value" : 91196679
-        },
-        "previous" : null
-      }, {
-        "label" : "Zugaenge an Gruenflaechen im Haushaltsjahr",
-        "current" : {
-          "no" : "0212",
-          "value" : 6372647
-        },
-        "previous" : null
-      }, {
-        "label" : "Zugaenge an Ackerland im Haushaltsjahr",
-        "current" : {
-          "no" : "0222",
-          "value" : 158666
-        },
-        "previous" : null
-      }, {
-        "label" : "Umbuchungen von Wald und Forsten im Haushaltsjahr",
-        "current" : {
-          "no" : "0234",
-          "value" : 6165
-        },
-        "previous" : null
-      }, {
-        "label" : "Abgaenge von Wald und Forsten im Haushaltsjahr",
-        "current" : {
-          "no" : "0233",
-          "value" : 4996
-        },
-        "previous" : null
-      }, {
-        "label" : "Umbuchungen von sonstigen unbebauten Grundstuecken im Haushaltsjahr",
-        "current" : {
-          "no" : "0244",
-          "value" : 2673375
-        },
-        "previous" : null
-      }, {
-        "label" : "Buchwert der Gruenflaechen am 31.12.",
-        "current" : {
-          "no" : "0218",
-          "value" : 255783553
-        },
-        "previous" : {
-          "no" : "0219",
-          "value" : 338599920
-        }
-      }, {
-        "label" : "Abgaenge von sonstigen unbebauten Grundstuecken im Haushaltsjahr",
-        "current" : {
-          "no" : "0243",
-          "value" : 2931291
-        },
-        "previous" : null
-      }, {
-        "label" : "Umbuchungen von Ackerland im Haushaltsjahr",
-        "current" : {
-          "no" : "0224",
-          "value" : -48283
-        },
-        "previous" : null
-      }, {
-        "label" : "Abgaenge von Ackerland im Haushaltsjahr",
-        "current" : {
-          "no" : "0223",
-          "value" : 811912
+          "no" : "0207",
+          "value" : 590959
         },
         "previous" : null
       }, {
@@ -331,10 +199,38 @@
           "value" : 722465055
         }
       }, {
-        "label" : "Zugaenge an Wald und Forsten im Haushaltsjahr",
+        "label" : "Stand der AHK von Gruenflaechen am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "0211",
+          "value" : 338900267
+        }
+      }, {
+        "label" : "Zugaenge an Gruenflaechen im Haushaltsjahr",
         "current" : {
-          "no" : "0232",
-          "value" : 9166
+          "no" : "0212",
+          "value" : 6372647
+        },
+        "previous" : null
+      }, {
+        "label" : "Abgaenge von Gruenflaechen im Haushaltsjahr",
+        "current" : {
+          "no" : "0213",
+          "value" : 91196679
+        },
+        "previous" : null
+      }, {
+        "label" : "Umbuchungen von Gruenflaechen im Haushaltsjahr",
+        "current" : {
+          "no" : "0214",
+          "value" : 2209100
+        },
+        "previous" : null
+      }, {
+        "label" : "Abschreibungen bei Gruenflaechen im Haushaltsjahr",
+        "current" : {
+          "no" : "0215",
+          "value" : 201435
         },
         "previous" : null
       }, {
@@ -345,10 +241,41 @@
         },
         "previous" : null
       }, {
-        "label" : "Abschreibungen bei Gruenflaechen im Haushaltsjahr",
+        "label" : "Buchwert der Gruenflaechen am 31.12.",
         "current" : {
-          "no" : "0215",
-          "value" : 201435
+          "no" : "0218",
+          "value" : 255783553
+        },
+        "previous" : {
+          "no" : "0219",
+          "value" : 338599920
+        }
+      }, {
+        "label" : "Stand der AHK von Ackerland am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "0221",
+          "value" : 49100732
+        }
+      }, {
+        "label" : "Zugaenge an Ackerland im Haushaltsjahr",
+        "current" : {
+          "no" : "0222",
+          "value" : 158666
+        },
+        "previous" : null
+      }, {
+        "label" : "Abgaenge von Ackerland im Haushaltsjahr",
+        "current" : {
+          "no" : "0223",
+          "value" : 811912
+        },
+        "previous" : null
+      }, {
+        "label" : "Umbuchungen von Ackerland im Haushaltsjahr",
+        "current" : {
+          "no" : "0224",
+          "value" : -48283
         },
         "previous" : null
       }, {
@@ -362,12 +289,85 @@
           "value" : 49100732
         }
       }, {
-        "label" : "Stand der AHK von Ackerland am 31.12.",
+        "label" : "Stand der AHK von Wald und Forsten am 31.12.",
         "current" : null,
         "previous" : {
-          "no" : "0221",
-          "value" : 49100732
+          "no" : "0231",
+          "value" : 10813792
         }
+      }, {
+        "label" : "Zugaenge an Wald und Forsten im Haushaltsjahr",
+        "current" : {
+          "no" : "0232",
+          "value" : 9166
+        },
+        "previous" : null
+      }, {
+        "label" : "Abgaenge von Wald und Forsten im Haushaltsjahr",
+        "current" : {
+          "no" : "0233",
+          "value" : 4996
+        },
+        "previous" : null
+      }, {
+        "label" : "Umbuchungen von Wald und Forsten im Haushaltsjahr",
+        "current" : {
+          "no" : "0234",
+          "value" : 6165
+        },
+        "previous" : null
+      }, {
+        "label" : "Buchwert des Waldes und der Forsten am 31.12.",
+        "current" : {
+          "no" : "0238",
+          "value" : 10824127
+        },
+        "previous" : {
+          "no" : "0239",
+          "value" : 10813792
+        }
+      }, {
+        "label" : "Stand der AHK von sonstigen unbebauten Grundstuecken am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "0241",
+          "value" : 323990501
+        }
+      }, {
+        "label" : "Zugaenge an sonstigen unbebauten Grundstuecken im Haushaltsjahr",
+        "current" : {
+          "no" : "0242",
+          "value" : 377392
+        },
+        "previous" : null
+      }, {
+        "label" : "Abgaenge von sonstigen unbebauten Grundstuecken im Haushaltsjahr",
+        "current" : {
+          "no" : "0243",
+          "value" : 2931291
+        },
+        "previous" : null
+      }, {
+        "label" : "Umbuchungen von sonstigen unbebauten Grundstuecken im Haushaltsjahr",
+        "current" : {
+          "no" : "0244",
+          "value" : 2673375
+        },
+        "previous" : null
+      }, {
+        "label" : "Abschreibungen bei sonstigen unbebauten Grundstuecken im Haushaltsjahr",
+        "current" : {
+          "no" : "0245",
+          "value" : 49287
+        },
+        "previous" : null
+      }, {
+        "label" : "Kumulierte Abschreibungen bei sonstigen unbebauten Grundstuecken",
+        "current" : {
+          "no" : "0247",
+          "value" : 89177
+        },
+        "previous" : null
       }, {
         "label" : "Buchwert der sonstigen unbebauten Grundstuecke am 31.12.",
         "current" : {
@@ -380,76 +380,24 @@
         }
       } ],
       "Bebaute Grundstücke und grundstücksgleiche Rechte" : [ {
-        "label" : "Abschreibungen bei Schulen im Haushaltsjahr",
-        "current" : {
-          "no" : "0325",
-          "value" : 25410560
-        },
-        "previous" : null
-      }, {
-        "label" : "Zugaenge an Wohnbauten im Haushaltsjahr",
-        "current" : {
-          "no" : "0332",
-          "value" : 19928
-        },
-        "previous" : null
-      }, {
-        "label" : "Kumulierte Abschreibungen bei Schulen",
-        "current" : {
-          "no" : "0327",
-          "value" : 73831368
-        },
-        "previous" : null
-      }, {
-        "label" : "Zugaenge an sonstigen Gebaeuden im Haushaltsjahr",
-        "current" : {
-          "no" : "0392",
-          "value" : 2046891
-        },
-        "previous" : null
-      }, {
-        "label" : "Abschreibungen bei Kinder- und Jugendeinrichtungen im Haushaltsjahr",
-        "current" : {
-          "no" : "0315",
-          "value" : 2244915
-        },
-        "previous" : null
-      }, {
-        "label" : "Abschreibungen bei sonstigen Gebaeuden im Haushaltsjahr",
-        "current" : {
-          "no" : "0395",
-          "value" : 11310273
-        },
-        "previous" : null
-      }, {
-        "label" : "Zugaenge an Schulen im Haushaltsjahr",
-        "current" : {
-          "no" : "0322",
-          "value" : 7600570
-        },
-        "previous" : null
-      }, {
-        "label" : "Buchwert der Wohnbauten am 31.12.",
-        "current" : {
-          "no" : "0338",
-          "value" : 20290002
-        },
+        "label" : "Stand der AHK der bebauten Grundstuecke und grundstuecksgleichen Rechte am 31.12.",
+        "current" : null,
         "previous" : {
-          "no" : "0339",
-          "value" : 20661899
+          "no" : "0301",
+          "value" : 1360391770
         }
       }, {
-        "label" : "Abschreibungen bei Wohnbauten im Haushaltsjahr",
+        "label" : "Zugaenge an bebauten Grundstuecken und grundstuecksgleichen Rechten im Haushaltsjahr",
         "current" : {
-          "no" : "0335",
-          "value" : 2336
+          "no" : "0302",
+          "value" : 10854122
         },
         "previous" : null
       }, {
-        "label" : "Umbuchungen von Wohnbauten im Haushaltsjahr",
+        "label" : "Abgaenge von bebauten Grundstuecken und grundstuecksgleichen Rechten im Haushaltsjahr",
         "current" : {
-          "no" : "0334",
-          "value" : -25808
+          "no" : "0303",
+          "value" : 14374385
         },
         "previous" : null
       }, {
@@ -460,10 +408,17 @@
         },
         "previous" : null
       }, {
-        "label" : "Kumulierte Abschreibungen bei sonstigen Gebaeuden",
+        "label" : "Abschreibungen bei bebauten Grundstuecken und grundstuecksgleichen Rechten im Haushaltsjahr",
         "current" : {
-          "no" : "0397",
-          "value" : 35158520
+          "no" : "0305",
+          "value" : 38968084
+        },
+        "previous" : null
+      }, {
+        "label" : "Kumulierte Abschreibungen bei bebauten Grundstuecken und grundstuecksgleichen Rechten",
+        "current" : {
+          "no" : "0307",
+          "value" : 116525660
         },
         "previous" : null
       }, {
@@ -477,41 +432,17 @@
           "value" : 1282834194
         }
       }, {
-        "label" : "Kumulierte Abschreibungen bei Wohnbauten",
-        "current" : {
-          "no" : "0337",
-          "value" : 1018701
-        },
-        "previous" : null
-      }, {
-        "label" : "Stand der AHK von Schulen am 31.12.",
+        "label" : "Stand der AHK von Kinder- und Jugendeinrichtungen am 31.12.",
         "current" : null,
         "previous" : {
-          "no" : "0321",
-          "value" : 843876387
+          "no" : "0311",
+          "value" : 91374824
         }
       }, {
-        "label" : "Buchwert der Schulen am 31.12.",
+        "label" : "Zugaenge an Kinder- und Jugendeinrichtungen im Haushaltsjahr",
         "current" : {
-          "no" : "0328",
-          "value" : 788088127
-        },
-        "previous" : {
-          "no" : "0329",
-          "value" : 795455579
-        }
-      }, {
-        "label" : "Umbuchungen von Kinder- und Jugendeinrichtungen im Haushaltsjahr",
-        "current" : {
-          "no" : "0314",
-          "value" : 1163081
-        },
-        "previous" : null
-      }, {
-        "label" : "Zugaenge an bebauten Grundstuecken und grundstuecksgleichen Rechten im Haushaltsjahr",
-        "current" : {
-          "no" : "0302",
-          "value" : 10854122
+          "no" : "0312",
+          "value" : 1186733
         },
         "previous" : null
       }, {
@@ -522,31 +453,17 @@
         },
         "previous" : null
       }, {
-        "label" : "Abgaenge von sonstigen Gebaeuden im Haushaltsjahr",
+        "label" : "Umbuchungen von Kinder- und Jugendeinrichtungen im Haushaltsjahr",
         "current" : {
-          "no" : "0393",
-          "value" : 9513401
+          "no" : "0314",
+          "value" : 1163081
         },
         "previous" : null
       }, {
-        "label" : "Stand der AHK von Wohnbauten am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "0331",
-          "value" : 21678264
-        }
-      }, {
-        "label" : "Umbuchungen von sonstigen Gebaeuden im Haushaltsjahr",
+        "label" : "Abschreibungen bei Kinder- und Jugendeinrichtungen im Haushaltsjahr",
         "current" : {
-          "no" : "0394",
-          "value" : -4531534
-        },
-        "previous" : null
-      }, {
-        "label" : "Zugaenge an Kinder- und Jugendeinrichtungen im Haushaltsjahr",
-        "current" : {
-          "no" : "0312",
-          "value" : 1186733
+          "no" : "0315",
+          "value" : 2244915
         },
         "previous" : null
       }, {
@@ -554,37 +471,6 @@
         "current" : {
           "no" : "0317",
           "value" : 6517071
-        },
-        "previous" : null
-      }, {
-        "label" : "Abgaenge von bebauten Grundstuecken und grundstuecksgleichen Rechten im Haushaltsjahr",
-        "current" : {
-          "no" : "0303",
-          "value" : 14374385
-        },
-        "previous" : null
-      }, {
-        "label" : "Buchwert der sonstigen Gebaeude am 31.12.",
-        "current" : {
-          "no" : "0398",
-          "value" : 356305731
-        },
-        "previous" : {
-          "no" : "0399",
-          "value" : 379614048
-        }
-      }, {
-        "label" : "Stand der AHK von Kinder- und Jugendeinrichtungen am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "0311",
-          "value" : 91374824
-        }
-      }, {
-        "label" : "Abgaenge von Wohnbauten im Haushaltsjahr",
-        "current" : {
-          "no" : "0333",
-          "value" : 363681
         },
         "previous" : null
       }, {
@@ -598,12 +484,19 @@
           "value" : 87102668
         }
       }, {
-        "label" : "Stand der AHK von sonstigen Gebaeuden am 31.12.",
+        "label" : "Stand der AHK von Schulen am 31.12.",
         "current" : null,
         "previous" : {
-          "no" : "0391",
-          "value" : 403462295
+          "no" : "0321",
+          "value" : 843876387
         }
+      }, {
+        "label" : "Zugaenge an Schulen im Haushaltsjahr",
+        "current" : {
+          "no" : "0322",
+          "value" : 7600570
+        },
+        "previous" : null
       }, {
         "label" : "Abgaenge von Schulen im Haushaltsjahr",
         "current" : {
@@ -612,20 +505,6 @@
         },
         "previous" : null
       }, {
-        "label" : "Kumulierte Abschreibungen bei bebauten Grundstuecken und grundstuecksgleichen Rechten",
-        "current" : {
-          "no" : "0307",
-          "value" : 116525660
-        },
-        "previous" : null
-      }, {
-        "label" : "Stand der AHK der bebauten Grundstuecke und grundstuecksgleichen Rechte am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "0301",
-          "value" : 1360391770
-        }
-      }, {
         "label" : "Umbuchungen von Schulen im Haushaltsjahr",
         "current" : {
           "no" : "0324",
@@ -633,103 +512,141 @@
         },
         "previous" : null
       }, {
-        "label" : "Abschreibungen bei bebauten Grundstuecken und grundstuecksgleichen Rechten im Haushaltsjahr",
+        "label" : "Abschreibungen bei Schulen im Haushaltsjahr",
         "current" : {
-          "no" : "0305",
-          "value" : 38968084
-        },
-        "previous" : null
-      } ],
-      "Infrastrukturvermögen" : [ {
-        "label" : "Abgaenge von Infrastrukturgrundstuecken im Haushaltsjahr",
-        "current" : {
-          "no" : "0413",
-          "value" : 2258285
+          "no" : "0325",
+          "value" : 25410560
         },
         "previous" : null
       }, {
-        "label" : "Umbuchungen beim Straßennetz im Haushaltsjahr",
+        "label" : "Kumulierte Abschreibungen bei Schulen",
         "current" : {
-          "no" : "0454",
-          "value" : 6910274
+          "no" : "0327",
+          "value" : 73831368
         },
         "previous" : null
       }, {
-        "label" : "Umbuchungen von Bruecken und Tunneln im Haushaltsjahr",
+        "label" : "Buchwert der Schulen am 31.12.",
         "current" : {
-          "no" : "0424",
-          "value" : 65169488
+          "no" : "0328",
+          "value" : 788088127
         },
-        "previous" : null
+        "previous" : {
+          "no" : "0329",
+          "value" : 795455579
+        }
       }, {
-        "label" : "Abgaenge beim Straßennetz im Haushaltsjahr",
-        "current" : {
-          "no" : "0453",
-          "value" : 809231
-        },
-        "previous" : null
-      }, {
-        "label" : "Zugaenge an Infrastrukturgrundstuecken im Haushaltsjahr",
-        "current" : {
-          "no" : "0412",
-          "value" : 1006280
-        },
-        "previous" : null
-      }, {
-        "label" : "Kumulierte Abschreibungen bei Gleisanlagen",
-        "current" : {
-          "no" : "0437",
-          "value" : 37409330
-        },
-        "previous" : null
-      }, {
-        "label" : "Kumulierte Abschreibungen bei Infrastrukturgrundstuecken",
-        "current" : {
-          "no" : "0417",
-          "value" : 547802
-        },
-        "previous" : null
-      }, {
-        "label" : "Stand der AHK von Bruecken und Tunneln am 31.12.",
+        "label" : "Stand der AHK von Wohnbauten am 31.12.",
         "current" : null,
         "previous" : {
-          "no" : "0421",
-          "value" : 201077978
+          "no" : "0331",
+          "value" : 21678264
         }
       }, {
-        "label" : "Buchwert des Straßennetzes am 31.12.",
+        "label" : "Zugaenge an Wohnbauten im Haushaltsjahr",
         "current" : {
-          "no" : "0458",
-          "value" : 273197593
-        },
-        "previous" : {
-          "no" : "0459",
-          "value" : 264259230
-        }
-      }, {
-        "label" : "Zugaenge an Abwasserbeseitigungsanlagen im Haushaltsjahr",
-        "current" : {
-          "no" : "0442",
-          "value" : 12905496
+          "no" : "0332",
+          "value" : 19928
         },
         "previous" : null
       }, {
-        "label" : "Buchwert der sonstigen Infrastrukturbauten am 31.12.",
+        "label" : "Abgaenge von Wohnbauten im Haushaltsjahr",
         "current" : {
-          "no" : "0498",
-          "value" : 1330004
-        },
-        "previous" : {
-          "no" : "0499",
-          "value" : 1395787
-        }
-      }, {
-        "label" : "Abschreibungen bei Gleisanlagen im Haushaltsjahr",
-        "current" : {
-          "no" : "0435",
-          "value" : 13940246
+          "no" : "0333",
+          "value" : 363681
         },
         "previous" : null
+      }, {
+        "label" : "Umbuchungen von Wohnbauten im Haushaltsjahr",
+        "current" : {
+          "no" : "0334",
+          "value" : -25808
+        },
+        "previous" : null
+      }, {
+        "label" : "Abschreibungen bei Wohnbauten im Haushaltsjahr",
+        "current" : {
+          "no" : "0335",
+          "value" : 2336
+        },
+        "previous" : null
+      }, {
+        "label" : "Kumulierte Abschreibungen bei Wohnbauten",
+        "current" : {
+          "no" : "0337",
+          "value" : 1018701
+        },
+        "previous" : null
+      }, {
+        "label" : "Buchwert der Wohnbauten am 31.12.",
+        "current" : {
+          "no" : "0338",
+          "value" : 20290002
+        },
+        "previous" : {
+          "no" : "0339",
+          "value" : 20661899
+        }
+      }, {
+        "label" : "Stand der AHK von sonstigen Gebaeuden am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "0391",
+          "value" : 403462295
+        }
+      }, {
+        "label" : "Zugaenge an sonstigen Gebaeuden im Haushaltsjahr",
+        "current" : {
+          "no" : "0392",
+          "value" : 2046891
+        },
+        "previous" : null
+      }, {
+        "label" : "Abgaenge von sonstigen Gebaeuden im Haushaltsjahr",
+        "current" : {
+          "no" : "0393",
+          "value" : 9513401
+        },
+        "previous" : null
+      }, {
+        "label" : "Umbuchungen von sonstigen Gebaeuden im Haushaltsjahr",
+        "current" : {
+          "no" : "0394",
+          "value" : -4531534
+        },
+        "previous" : null
+      }, {
+        "label" : "Abschreibungen bei sonstigen Gebaeuden im Haushaltsjahr",
+        "current" : {
+          "no" : "0395",
+          "value" : 11310273
+        },
+        "previous" : null
+      }, {
+        "label" : "Kumulierte Abschreibungen bei sonstigen Gebaeuden",
+        "current" : {
+          "no" : "0397",
+          "value" : 35158520
+        },
+        "previous" : null
+      }, {
+        "label" : "Buchwert der sonstigen Gebaeude am 31.12.",
+        "current" : {
+          "no" : "0398",
+          "value" : 356305731
+        },
+        "previous" : {
+          "no" : "0399",
+          "value" : 379614048
+        }
+      } ],
+      "Infrastrukturvermögen" : [ {
+        "label" : "Stand der AHK des Infrastrukturvermoegens am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "0401",
+          "value" : 2035837892
+        }
       }, {
         "label" : "Zugaenge an Infrastrukturvermoegen im Haushaltsjahr",
         "current" : {
@@ -738,10 +655,17 @@
         },
         "previous" : null
       }, {
-        "label" : "Zugaenge an Gleisanlagen im Haushaltsjahr",
+        "label" : "Abgaenge von Infrastrukturvermoegen im Haushaltsjahr",
         "current" : {
-          "no" : "0432",
-          "value" : 17792334
+          "no" : "0403",
+          "value" : 7511786
+        },
+        "previous" : null
+      }, {
+        "label" : "Umbuchungen von Infrastrukturvermoegen im Haushaltsjahr",
+        "current" : {
+          "no" : "0404",
+          "value" : 188287604
         },
         "previous" : null
       }, {
@@ -752,10 +676,10 @@
         },
         "previous" : null
       }, {
-        "label" : "Abschreibungen bei Bruecken und Tunneln im Haushaltsjahr",
+        "label" : "Kumulierte Abschreibungen bei Infrastrukturvermoegen",
         "current" : {
-          "no" : "0425",
-          "value" : 3958435
+          "no" : "0407",
+          "value" : 134147826
         },
         "previous" : null
       }, {
@@ -769,10 +693,31 @@
           "value" : 1948709011
         }
       }, {
-        "label" : "Abgaenge von Bruecken und Tunneln im Haushaltsjahr",
+        "label" : "Stand der AHK von Infrastrukturgrundstuecken am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "0411",
+          "value" : 452213360
+        }
+      }, {
+        "label" : "Zugaenge an Infrastrukturgrundstuecken im Haushaltsjahr",
         "current" : {
-          "no" : "0423",
-          "value" : 4437094
+          "no" : "0412",
+          "value" : 1006280
+        },
+        "previous" : null
+      }, {
+        "label" : "Abgaenge von Infrastrukturgrundstuecken im Haushaltsjahr",
+        "current" : {
+          "no" : "0413",
+          "value" : 2258285
+        },
+        "previous" : null
+      }, {
+        "label" : "Umbuchungen von Infrastrukturgrundstuecken im Haushaltsjahr",
+        "current" : {
+          "no" : "0414",
+          "value" : 689662
         },
         "previous" : null
       }, {
@@ -783,66 +728,62 @@
         },
         "previous" : null
       }, {
-        "label" : "Stand der AHK des Straßennetzes am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "0451",
-          "value" : 283477695
-        }
-      }, {
-        "label" : "Stand der AHK von Abwasserbeseitigungsanlagen am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "0441",
-          "value" : 866810880
-        }
-      }, {
-        "label" : "Kumulierte Abschreibungen bei Infrastrukturvermoegen",
+        "label" : "Kumulierte Abschreibungen bei Infrastrukturgrundstuecken",
         "current" : {
-          "no" : "0407",
-          "value" : 134147826
+          "no" : "0417",
+          "value" : 547802
         },
         "previous" : null
       }, {
-        "label" : "Stand der AHK von Infrastrukturgrundstuecken am 31.12.",
-        "current" : null,
+        "label" : "Buchwert der Infrastrukturgrundstuecke am 31.12.",
+        "current" : {
+          "no" : "0418",
+          "value" : 451103215
+        },
         "previous" : {
-          "no" : "0411",
-          "value" : 452213360
+          "no" : "0419",
+          "value" : 451736127
         }
       }, {
-        "label" : "Kumulierte Abschreibungen bei Abwasserbeseitigungsanlagen",
+        "label" : "Stand der AHK von Bruecken und Tunneln am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "0421",
+          "value" : 201077978
+        }
+      }, {
+        "label" : "Zugaenge an Bruecken und Tunneln im Haushaltsjahr",
         "current" : {
-          "no" : "0447",
-          "value" : 55698289
+          "no" : "0422",
+          "value" : 4237848
         },
         "previous" : null
       }, {
-        "label" : "Stand der AHK von sonstigen Infrastrukturbauten am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "0491",
-          "value" : 1527354
-        }
-      }, {
-        "label" : "Stand der AHK von Gleisanlagen am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "0431",
-          "value" : 230730625
-        }
-      }, {
-        "label" : "Umbuchungen von Infrastrukturvermoegen im Haushaltsjahr",
+        "label" : "Abgaenge von Bruecken und Tunneln im Haushaltsjahr",
         "current" : {
-          "no" : "0404",
-          "value" : 188287604
+          "no" : "0423",
+          "value" : 4437094
         },
         "previous" : null
       }, {
-        "label" : "Abschreibungen beim Straßennetz im Haushaltsjahr",
+        "label" : "Umbuchungen von Bruecken und Tunneln im Haushaltsjahr",
         "current" : {
-          "no" : "0455",
-          "value" : 10341673
+          "no" : "0424",
+          "value" : 65169488
+        },
+        "previous" : null
+      }, {
+        "label" : "Abschreibungen bei Bruecken und Tunneln im Haushaltsjahr",
+        "current" : {
+          "no" : "0425",
+          "value" : 3958435
+        },
+        "previous" : null
+      }, {
+        "label" : "Kumulierte Abschreibungen bei Bruecken und Tunneln",
+        "current" : {
+          "no" : "0427",
+          "value" : 10734917
         },
         "previous" : null
       }, {
@@ -856,17 +797,17 @@
           "value" : 194301496
         }
       }, {
-        "label" : "Umbuchungen von Abwasserbeseitigungsanlagen im Haushaltsjahr",
-        "current" : {
-          "no" : "0444",
-          "value" : 7349156
-        },
-        "previous" : null
+        "label" : "Stand der AHK von Gleisanlagen am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "0431",
+          "value" : 230730625
+        }
       }, {
-        "label" : "Abschreibungen bei sonstigen Infrastrukturbauten im Haushaltsjahr",
+        "label" : "Zugaenge an Gleisanlagen im Haushaltsjahr",
         "current" : {
-          "no" : "0495",
-          "value" : 65783
+          "no" : "0432",
+          "value" : 17792334
         },
         "previous" : null
       }, {
@@ -877,31 +818,17 @@
         },
         "previous" : null
       }, {
-        "label" : "Abgaenge von Infrastrukturvermoegen im Haushaltsjahr",
+        "label" : "Abschreibungen bei Gleisanlagen im Haushaltsjahr",
         "current" : {
-          "no" : "0403",
-          "value" : 7511786
+          "no" : "0435",
+          "value" : 13940246
         },
         "previous" : null
       }, {
-        "label" : "Stand der AHK des Infrastrukturvermoegens am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "0401",
-          "value" : 2035837892
-        }
-      }, {
-        "label" : "Zugaenge beim Straßennetz im Haushaltsjahr",
+        "label" : "Kumulierte Abschreibungen bei Gleisanlagen",
         "current" : {
-          "no" : "0452",
-          "value" : 13178993
-        },
-        "previous" : null
-      }, {
-        "label" : "Zugaenge an Bruecken und Tunneln im Haushaltsjahr",
-        "current" : {
-          "no" : "0422",
-          "value" : 4237848
+          "no" : "0437",
+          "value" : 37409330
         },
         "previous" : null
       }, {
@@ -915,30 +842,31 @@
           "value" : 207261541
         }
       }, {
-        "label" : "Buchwert der Abwasserbeseitigungsanlagen am 31.12.",
-        "current" : {
-          "no" : "0448",
-          "value" : 831360067
-        },
+        "label" : "Stand der AHK von Abwasserbeseitigungsanlagen am 31.12.",
+        "current" : null,
         "previous" : {
-          "no" : "0449",
-          "value" : 829754830
+          "no" : "0441",
+          "value" : 866810880
         }
       }, {
-        "label" : "Buchwert der Infrastrukturgrundstuecke am 31.12.",
+        "label" : "Zugaenge an Abwasserbeseitigungsanlagen im Haushaltsjahr",
         "current" : {
-          "no" : "0418",
-          "value" : 451103215
+          "no" : "0442",
+          "value" : 12905496
         },
-        "previous" : {
-          "no" : "0419",
-          "value" : 451736127
-        }
+        "previous" : null
       }, {
-        "label" : "Kumulierte Abschreibungen bei Bruecken und Tunneln",
+        "label" : "Abgaenge von Abwasserbeseitigungsanlagen im Haushaltsjahr",
         "current" : {
-          "no" : "0427",
-          "value" : 10734917
+          "no" : "0443",
+          "value" : 7176
+        },
+        "previous" : null
+      }, {
+        "label" : "Umbuchungen von Abwasserbeseitigungsanlagen im Haushaltsjahr",
+        "current" : {
+          "no" : "0444",
+          "value" : 7349156
         },
         "previous" : null
       }, {
@@ -949,10 +877,55 @@
         },
         "previous" : null
       }, {
-        "label" : "Kumulierte Abschreibungen bei sonstigen Infrastrukturbauten",
+        "label" : "Kumulierte Abschreibungen bei Abwasserbeseitigungsanlagen",
         "current" : {
-          "no" : "0497",
-          "value" : 197350
+          "no" : "0447",
+          "value" : 55698289
+        },
+        "previous" : null
+      }, {
+        "label" : "Buchwert der Abwasserbeseitigungsanlagen am 31.12.",
+        "current" : {
+          "no" : "0448",
+          "value" : 831360067
+        },
+        "previous" : {
+          "no" : "0449",
+          "value" : 829754830
+        }
+      }, {
+        "label" : "Stand der AHK des Straßennetzes am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "0451",
+          "value" : 283477695
+        }
+      }, {
+        "label" : "Zugaenge beim Straßennetz im Haushaltsjahr",
+        "current" : {
+          "no" : "0452",
+          "value" : 13178993
+        },
+        "previous" : null
+      }, {
+        "label" : "Abgaenge beim Straßennetz im Haushaltsjahr",
+        "current" : {
+          "no" : "0453",
+          "value" : 809231
+        },
+        "previous" : null
+      }, {
+        "label" : "Umbuchungen beim Straßennetz im Haushaltsjahr",
+        "current" : {
+          "no" : "0454",
+          "value" : 6910274
+        },
+        "previous" : null
+      }, {
+        "label" : "Abschreibungen beim Straßennetz im Haushaltsjahr",
+        "current" : {
+          "no" : "0455",
+          "value" : 10341673
         },
         "previous" : null
       }, {
@@ -963,21 +936,62 @@
         },
         "previous" : null
       }, {
-        "label" : "Umbuchungen von Infrastrukturgrundstuecken im Haushaltsjahr",
+        "label" : "Buchwert des Straßennetzes am 31.12.",
         "current" : {
-          "no" : "0414",
-          "value" : 689662
+          "no" : "0458",
+          "value" : 273197593
+        },
+        "previous" : {
+          "no" : "0459",
+          "value" : 264259230
+        }
+      }, {
+        "label" : "Stand der AHK von sonstigen Infrastrukturbauten am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "0491",
+          "value" : 1527354
+        }
+      }, {
+        "label" : "Abschreibungen bei sonstigen Infrastrukturbauten im Haushaltsjahr",
+        "current" : {
+          "no" : "0495",
+          "value" : 65783
         },
         "previous" : null
       }, {
-        "label" : "Abgaenge von Abwasserbeseitigungsanlagen im Haushaltsjahr",
+        "label" : "Kumulierte Abschreibungen bei sonstigen Infrastrukturbauten",
         "current" : {
-          "no" : "0443",
-          "value" : 7176
+          "no" : "0497",
+          "value" : 197350
         },
         "previous" : null
+      }, {
+        "label" : "Buchwert der sonstigen Infrastrukturbauten am 31.12.",
+        "current" : {
+          "no" : "0498",
+          "value" : 1330004
+        },
+        "previous" : {
+          "no" : "0499",
+          "value" : 1395787
+        }
       } ],
       "Bauten auf fremdem Grund und Boden" : [ {
+        "label" : "Stand der AHK von Bauten auf fremdem Grund am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "0511",
+          "value" : 211969
+        }
+      }, {
+        "label" : "Zugaenge an Bauten auf fremdem Grund im Haushaltsjahr",
+        "current" : {
+          "no" : "0512",
+          "value" : 13862
+        },
+        "previous" : null
+      }, {
         "label" : "Umbuchungen von Bauten auf fremdem Grund im Haushaltsjahr",
         "current" : {
           "no" : "0514",
@@ -985,12 +999,12 @@
         },
         "previous" : null
       }, {
-        "label" : "Stand der AHK von Bauten auf fremdem Grund am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "0511",
-          "value" : 211969
-        }
+        "label" : "Abschreibungen bei Bauten auf fremdem Grund im Haushaltsjahr",
+        "current" : {
+          "no" : "0515",
+          "value" : 23090
+        },
+        "previous" : null
       }, {
         "label" : "Kumulierte Abschreibungen bei Bauten auf fremdem Grund",
         "current" : {
@@ -1008,20 +1022,6 @@
           "no" : "0519",
           "value" : 181387
         }
-      }, {
-        "label" : "Zugaenge an Bauten auf fremdem Grund im Haushaltsjahr",
-        "current" : {
-          "no" : "0512",
-          "value" : 13862
-        },
-        "previous" : null
-      }, {
-        "label" : "Abschreibungen bei Bauten auf fremdem Grund im Haushaltsjahr",
-        "current" : {
-          "no" : "0515",
-          "value" : 23090
-        },
-        "previous" : null
       } ],
       "Kunstgegenstände, Kulturdenkmäler" : [ {
         "label" : "Stand der AHK von Kulturguetern am 31.12.",
@@ -1031,17 +1031,17 @@
           "value" : 4429
         }
       }, {
-        "label" : "Kumulierte Abschreibungen bei Kulturguetern",
-        "current" : {
-          "no" : "0617",
-          "value" : 933
-        },
-        "previous" : null
-      }, {
         "label" : "Abschreibungen bei Kulturguetern im Haushaltsjahr",
         "current" : {
           "no" : "0615",
           "value" : 293
+        },
+        "previous" : null
+      }, {
+        "label" : "Kumulierte Abschreibungen bei Kulturguetern",
+        "current" : {
+          "no" : "0617",
+          "value" : 933
         },
         "previous" : null
       }, {
@@ -1056,20 +1056,6 @@
         }
       } ],
       "Maschinen und technische Anlagen, Fahrzeuge" : [ {
-        "label" : "Zugaenge an technischer Ausstattung im Haushaltsjahr",
-        "current" : {
-          "no" : "0712",
-          "value" : 1792144
-        },
-        "previous" : null
-      }, {
-        "label" : "Umbuchungen von technischer Ausstattung im Haushaltsjahr",
-        "current" : {
-          "no" : "0714",
-          "value" : 1327007
-        },
-        "previous" : null
-      }, {
         "label" : "Stand der AHK der technischen Ausstattung am 31.12.",
         "current" : null,
         "previous" : {
@@ -1077,20 +1063,10 @@
           "value" : 28324306
         }
       }, {
-        "label" : "Buchwert der technischen Ausstattung am 31.12.",
+        "label" : "Zugaenge an technischer Ausstattung im Haushaltsjahr",
         "current" : {
-          "no" : "0718",
-          "value" : 18251091
-        },
-        "previous" : {
-          "no" : "0719",
-          "value" : 18824367
-        }
-      }, {
-        "label" : "Kumulierte Abschreibungen bei der technischen Ausstattung",
-        "current" : {
-          "no" : "0717",
-          "value" : 12869498
+          "no" : "0712",
+          "value" : 1792144
         },
         "previous" : null
       }, {
@@ -1101,28 +1077,38 @@
         },
         "previous" : null
       }, {
+        "label" : "Umbuchungen von technischer Ausstattung im Haushaltsjahr",
+        "current" : {
+          "no" : "0714",
+          "value" : 1327007
+        },
+        "previous" : null
+      }, {
         "label" : "Abschreibungen bei der technischen Ausstattung im Haushaltsjahr",
         "current" : {
           "no" : "0715",
           "value" : 3369559
         },
         "previous" : null
+      }, {
+        "label" : "Kumulierte Abschreibungen bei der technischen Ausstattung",
+        "current" : {
+          "no" : "0717",
+          "value" : 12869498
+        },
+        "previous" : null
+      }, {
+        "label" : "Buchwert der technischen Ausstattung am 31.12.",
+        "current" : {
+          "no" : "0718",
+          "value" : 18251091
+        },
+        "previous" : {
+          "no" : "0719",
+          "value" : 18824367
+        }
       } ],
       "Betriebs- und Geschäftsausstattung" : [ {
-        "label" : "Umbuchungen von Betriebs- und Geschaeftsausstattung im Haushaltsjahr",
-        "current" : {
-          "no" : "0814",
-          "value" : 900291
-        },
-        "previous" : null
-      }, {
-        "label" : "Kumulierte Abschreibungen bei der Betriebs- und Geschaeftsausstattung",
-        "current" : {
-          "no" : "0817",
-          "value" : 25091718
-        },
-        "previous" : null
-      }, {
         "label" : "Stand der AHK der Betriebs- und Geschaeftsausstattung am 31.12.",
         "current" : null,
         "previous" : {
@@ -1137,6 +1123,20 @@
         },
         "previous" : null
       }, {
+        "label" : "Abgaenge von Betriebs- und Geschaeftsausstattung im Haushaltsjahr",
+        "current" : {
+          "no" : "0813",
+          "value" : 2543023
+        },
+        "previous" : null
+      }, {
+        "label" : "Umbuchungen von Betriebs- und Geschaeftsausstattung im Haushaltsjahr",
+        "current" : {
+          "no" : "0814",
+          "value" : 900291
+        },
+        "previous" : null
+      }, {
         "label" : "Abschreibungen bei der Betriebs- und Geschaeftsausstattung im Haushaltsjahr",
         "current" : {
           "no" : "0815",
@@ -1144,10 +1144,10 @@
         },
         "previous" : null
       }, {
-        "label" : "Abgaenge von Betriebs- und Geschaeftsausstattung im Haushaltsjahr",
+        "label" : "Kumulierte Abschreibungen bei der Betriebs- und Geschaeftsausstattung",
         "current" : {
-          "no" : "0813",
-          "value" : 2543023
+          "no" : "0817",
+          "value" : 25091718
         },
         "previous" : null
       }, {
@@ -1162,6 +1162,34 @@
         }
       } ],
       "Geleistete Anzahlungen, Anlagen im Bau" : [ {
+        "label" : "Stand der AHK bei Anzahlungen und Anlagen im Bau am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "0911",
+          "value" : 273100689
+        }
+      }, {
+        "label" : "Zugaenge bei Anzahlungen und Anlagen im Bau im Haushaltsjahr",
+        "current" : {
+          "no" : "0912",
+          "value" : 66347902
+        },
+        "previous" : null
+      }, {
+        "label" : "Abgaenge bei Anzahlungen und Anlagen im Bau im Haushaltsjahr",
+        "current" : {
+          "no" : "0913",
+          "value" : 7150009
+        },
+        "previous" : null
+      }, {
+        "label" : "Umbuchungen bei Anzahlungen und Anlagen im Bau im Haushaltsjahr",
+        "current" : {
+          "no" : "0914",
+          "value" : -202766425
+        },
+        "previous" : null
+      }, {
         "label" : "Abschreibungen bei Anzahlungen und Anlagen im Bau im Haushaltsjahr",
         "current" : {
           "no" : "0915",
@@ -1176,27 +1204,6 @@
         },
         "previous" : null
       }, {
-        "label" : "Umbuchungen bei Anzahlungen und Anlagen im Bau im Haushaltsjahr",
-        "current" : {
-          "no" : "0914",
-          "value" : -202766425
-        },
-        "previous" : null
-      }, {
-        "label" : "Stand der AHK bei Anzahlungen und Anlagen im Bau am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "0911",
-          "value" : 273100689
-        }
-      }, {
-        "label" : "Abgaenge bei Anzahlungen und Anlagen im Bau im Haushaltsjahr",
-        "current" : {
-          "no" : "0913",
-          "value" : 7150009
-        },
-        "previous" : null
-      }, {
         "label" : "Buchwert der Anzahlungen und Anlagen im Bau am 31.12.",
         "current" : {
           "no" : "0918",
@@ -1206,13 +1213,6 @@
           "no" : "0919",
           "value" : 271420004
         }
-      }, {
-        "label" : "Zugaenge bei Anzahlungen und Anlagen im Bau im Haushaltsjahr",
-        "current" : {
-          "no" : "0912",
-          "value" : 66347902
-        },
-        "previous" : null
       } ],
       "Anteile an verbundenen Unternehmen" : [ ],
       "Beteiligungen" : [ ],
@@ -1252,30 +1252,6 @@
       "Betriebs- und Geschäftsausstattung" : [ ],
       "Geleistete Anzahlungen, Anlagen im Bau" : [ ],
       "Anteile an verbundenen Unternehmen" : [ {
-        "label" : "Zugaenge an Finanzanlagen im Haushaltsjahr",
-        "current" : {
-          "no" : "1002",
-          "value" : 90433556
-        },
-        "previous" : null
-      }, {
-        "label" : "Abschreibungen bei Anteilen an verbundenen Unternehmen im Haushaltsjahr",
-        "current" : {
-          "no" : "1015",
-          "value" : 16955286
-        },
-        "previous" : null
-      }, {
-        "label" : "Buchwert der Finanzanlagen am 31.12.",
-        "current" : {
-          "no" : "1008",
-          "value" : 2251449111
-        },
-        "previous" : {
-          "no" : "1009",
-          "value" : 2207270497
-        }
-      }, {
         "label" : "Stand der AHK der Finanzanlagen am 31.12.",
         "current" : null,
         "previous" : {
@@ -1283,27 +1259,17 @@
           "value" : 2229286828
         }
       }, {
+        "label" : "Zugaenge an Finanzanlagen im Haushaltsjahr",
+        "current" : {
+          "no" : "1002",
+          "value" : 90433556
+        },
+        "previous" : null
+      }, {
         "label" : "Abgaenge von Finanzanlagen im Haushaltsjahr",
         "current" : {
           "no" : "1003",
           "value" : 19583361
-        },
-        "previous" : null
-      }, {
-        "label" : "Buchwert der Anteile an verbundenen Unternehmen am 31.12.",
-        "current" : {
-          "no" : "1018",
-          "value" : 1932556550
-        },
-        "previous" : {
-          "no" : "1019",
-          "value" : 1934292552
-        }
-      }, {
-        "label" : "Kumulierte Abschreibungen bei Anteilen an verbundenen Unternehmen",
-        "current" : {
-          "no" : "1017",
-          "value" : 19917663
         },
         "previous" : null
       }, {
@@ -1321,13 +1287,6 @@
         },
         "previous" : null
       }, {
-        "label" : "Stand der AHK von Anteilen an verbundenen Unternehmen am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "1011",
-          "value" : 1937254929
-        }
-      }, {
         "label" : "Kumulierte Abschreibungen bei Finanzanlagen",
         "current" : {
           "no" : "1007",
@@ -1335,14 +1294,76 @@
         },
         "previous" : null
       }, {
+        "label" : "Buchwert der Finanzanlagen am 31.12.",
+        "current" : {
+          "no" : "1008",
+          "value" : 2251449111
+        },
+        "previous" : {
+          "no" : "1009",
+          "value" : 2207270497
+        }
+      }, {
+        "label" : "Stand der AHK von Anteilen an verbundenen Unternehmen am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "1011",
+          "value" : 1937254929
+        }
+      }, {
         "label" : "Zugaenge an Anteilen an verbundenen Unternehmen im Haushaltsjahr",
         "current" : {
           "no" : "1012",
           "value" : 15219284
         },
         "previous" : null
+      }, {
+        "label" : "Abschreibungen bei Anteilen an verbundenen Unternehmen im Haushaltsjahr",
+        "current" : {
+          "no" : "1015",
+          "value" : 16955286
+        },
+        "previous" : null
+      }, {
+        "label" : "Kumulierte Abschreibungen bei Anteilen an verbundenen Unternehmen",
+        "current" : {
+          "no" : "1017",
+          "value" : 19917663
+        },
+        "previous" : null
+      }, {
+        "label" : "Buchwert der Anteile an verbundenen Unternehmen am 31.12.",
+        "current" : {
+          "no" : "1018",
+          "value" : 1932556550
+        },
+        "previous" : {
+          "no" : "1019",
+          "value" : 1934292552
+        }
       } ],
       "Beteiligungen" : [ {
+        "label" : "Stand der AHK von Beteiligungen am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "1111",
+          "value" : 2410818
+        }
+      }, {
+        "label" : "Zugaenge an Beteiligungen im Haushaltsjahr",
+        "current" : {
+          "no" : "1112",
+          "value" : 226263
+        },
+        "previous" : null
+      }, {
+        "label" : "Abgaenge von Beteiligungen im Haushaltsjahr",
+        "current" : {
+          "no" : "1113",
+          "value" : 14913
+        },
+        "previous" : null
+      }, {
         "label" : "Abschreibungen bei Beteiligungen im Haushaltsjahr",
         "current" : {
           "no" : "1115",
@@ -1357,13 +1378,6 @@
         },
         "previous" : null
       }, {
-        "label" : "Abgaenge von Beteiligungen im Haushaltsjahr",
-        "current" : {
-          "no" : "1113",
-          "value" : 14913
-        },
-        "previous" : null
-      }, {
         "label" : "Buchwert der Beteiligungen am 31.12.",
         "current" : {
           "no" : "1118",
@@ -1373,29 +1387,8 @@
           "no" : "1119",
           "value" : 1951707
         }
-      }, {
-        "label" : "Zugaenge an Beteiligungen im Haushaltsjahr",
-        "current" : {
-          "no" : "1112",
-          "value" : 226263
-        },
-        "previous" : null
-      }, {
-        "label" : "Stand der AHK von Beteiligungen am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "1111",
-          "value" : 2410818
-        }
       } ],
       "Sondervermögen" : [ {
-        "label" : "Abgaenge von Sondervermoegen im Haushaltsjahr",
-        "current" : {
-          "no" : "1213",
-          "value" : 6634160
-        },
-        "previous" : null
-      }, {
         "label" : "Stand der AHK von Sondervermoegen am 31.12.",
         "current" : null,
         "previous" : {
@@ -1407,6 +1400,27 @@
         "current" : {
           "no" : "1212",
           "value" : 64248692
+        },
+        "previous" : null
+      }, {
+        "label" : "Abgaenge von Sondervermoegen im Haushaltsjahr",
+        "current" : {
+          "no" : "1213",
+          "value" : 6634160
+        },
+        "previous" : null
+      }, {
+        "label" : "Umbuchungen von Sondervermoegen im Haushaltsjahr",
+        "current" : {
+          "no" : "1214",
+          "value" : 121985
+        },
+        "previous" : null
+      }, {
+        "label" : "Abschreibungen bei Sondervermoegen im Haushaltsjahr",
+        "current" : {
+          "no" : "1215",
+          "value" : 9105858
         },
         "previous" : null
       }, {
@@ -1426,81 +1440,26 @@
           "no" : "1219",
           "value" : 197071928
         }
-      }, {
-        "label" : "Abschreibungen bei Sondervermoegen im Haushaltsjahr",
-        "current" : {
-          "no" : "1215",
-          "value" : 9105858
-        },
-        "previous" : null
-      }, {
-        "label" : "Umbuchungen von Sondervermoegen im Haushaltsjahr",
-        "current" : {
-          "no" : "1214",
-          "value" : 121985
-        },
-        "previous" : null
       } ],
       "Ausleihungen" : [ {
-        "label" : "Zugaenge an sonstigen Ausleihungen im Haushaltsjahr",
-        "current" : {
-          "no" : "1392",
-          "value" : 707960
-        },
-        "previous" : null
-      }, {
-        "label" : "Abgaenge von Ausleihungen an Sondervermoegen im Haushaltsjahr",
-        "current" : {
-          "no" : "1333",
-          "value" : 1479318
-        },
-        "previous" : null
-      }, {
-        "label" : "Buchwert der Ausleihungen an verbundene Unternehmen am 31.12.",
-        "current" : {
-          "no" : "1318",
-          "value" : 18439110
-        },
-        "previous" : {
-          "no" : "1319",
-          "value" : 8702153
-        }
-      }, {
-        "label" : "Abgaenge von Ausleihungen an verbundene Unternehmen im Haushaltsjahr",
-        "current" : {
-          "no" : "1313",
-          "value" : 292945
-        },
-        "previous" : null
-      }, {
-        "label" : "Buchwert der sonstigen Ausleihungen am 31.12.",
-        "current" : {
-          "no" : "1398",
-          "value" : 43989841
-        },
-        "previous" : {
-          "no" : "1399",
-          "value" : 46579224
-        }
-      }, {
-        "label" : "Zugaenge an Ausleihungen an Sondervermoegen im Haushaltsjahr",
-        "current" : {
-          "no" : "1332",
-          "value" : 1455
-        },
-        "previous" : null
-      }, {
-        "label" : "Stand der AHK von sonstigen Ausleihungen am 31.12.",
+        "label" : "Stand der AHK der Ausleihungen am 31.12.",
         "current" : null,
         "previous" : {
-          "no" : "1391",
-          "value" : 46579224
+          "no" : "1301",
+          "value" : 65949132
         }
       }, {
-        "label" : "Abgaenge von sonstigen Ausleihungen im Haushaltsjahr",
+        "label" : "Zugaenge an Ausleihungen im Haushaltsjahr",
         "current" : {
-          "no" : "1393",
-          "value" : 3297343
+          "no" : "1302",
+          "value" : 10739317
+        },
+        "previous" : null
+      }, {
+        "label" : "Abgaenge von Ausleihungen im Haushaltsjahr",
+        "current" : {
+          "no" : "1303",
+          "value" : 5069606
         },
         "previous" : null
       }, {
@@ -1514,13 +1473,6 @@
           "value" : 65949132
         }
       }, {
-        "label" : "Stand der AHK von Ausleihungen an Sondervermoegen am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "1331",
-          "value" : 10667755
-        }
-      }, {
         "label" : "Stand der AHK von Ausleihungen an verbundene Unternehmen am 31.12.",
         "current" : null,
         "previous" : {
@@ -1528,31 +1480,48 @@
           "value" : 8702153
         }
       }, {
-        "label" : "Zugaenge an Ausleihungen im Haushaltsjahr",
-        "current" : {
-          "no" : "1302",
-          "value" : 10739317
-        },
-        "previous" : null
-      }, {
-        "label" : "Stand der AHK der Ausleihungen am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "1301",
-          "value" : 65949132
-        }
-      }, {
-        "label" : "Abgaenge von Ausleihungen im Haushaltsjahr",
-        "current" : {
-          "no" : "1303",
-          "value" : 5069606
-        },
-        "previous" : null
-      }, {
         "label" : "Zugaenge an Ausleihungen an verbundene Unternehmen im Haushaltsjahr",
         "current" : {
           "no" : "1312",
           "value" : 10029902
+        },
+        "previous" : null
+      }, {
+        "label" : "Abgaenge von Ausleihungen an verbundene Unternehmen im Haushaltsjahr",
+        "current" : {
+          "no" : "1313",
+          "value" : 292945
+        },
+        "previous" : null
+      }, {
+        "label" : "Buchwert der Ausleihungen an verbundene Unternehmen am 31.12.",
+        "current" : {
+          "no" : "1318",
+          "value" : 18439110
+        },
+        "previous" : {
+          "no" : "1319",
+          "value" : 8702153
+        }
+      }, {
+        "label" : "Stand der AHK von Ausleihungen an Sondervermoegen am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "1331",
+          "value" : 10667755
+        }
+      }, {
+        "label" : "Zugaenge an Ausleihungen an Sondervermoegen im Haushaltsjahr",
+        "current" : {
+          "no" : "1332",
+          "value" : 1455
+        },
+        "previous" : null
+      }, {
+        "label" : "Abgaenge von Ausleihungen an Sondervermoegen im Haushaltsjahr",
+        "current" : {
+          "no" : "1333",
+          "value" : 1479318
         },
         "previous" : null
       }, {
@@ -1565,15 +1534,39 @@
           "no" : "1339",
           "value" : 10667755
         }
-      } ],
-      "Wertpapiere" : [ {
-        "label" : "Buchwert des Umlaufvermoegens am 31.12.",
+      }, {
+        "label" : "Stand der AHK von sonstigen Ausleihungen am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "1391",
+          "value" : 46579224
+        }
+      }, {
+        "label" : "Zugaenge an sonstigen Ausleihungen im Haushaltsjahr",
         "current" : {
-          "no" : "1460",
-          "value" : 245308418
+          "no" : "1392",
+          "value" : 707960
         },
         "previous" : null
       }, {
+        "label" : "Abgaenge von sonstigen Ausleihungen im Haushaltsjahr",
+        "current" : {
+          "no" : "1393",
+          "value" : 3297343
+        },
+        "previous" : null
+      }, {
+        "label" : "Buchwert der sonstigen Ausleihungen am 31.12.",
+        "current" : {
+          "no" : "1398",
+          "value" : 43989841
+        },
+        "previous" : {
+          "no" : "1399",
+          "value" : 46579224
+        }
+      } ],
+      "Wertpapiere" : [ {
         "label" : "Stand der AHK von Wertpapieren des Anlagevermoegens am 31.12.",
         "current" : null,
         "previous" : {
@@ -1597,6 +1590,13 @@
           "no" : "1419",
           "value" : 8005178
         }
+      }, {
+        "label" : "Buchwert des Umlaufvermoegens am 31.12.",
+        "current" : {
+          "no" : "1460",
+          "value" : 245308418
+        },
+        "previous" : null
       } ],
       "Vorräte" : [ {
         "label" : "Buchwert der Vorraete und Anzahlungen am 31.12.",
@@ -1620,120 +1620,34 @@
         }
       } ],
       "Öffentlich-rechtliche Forderungen und Forderungen aus Transferleistungen" : [ {
-        "label" : "Gesamtbetrag der sonstigen oeffentlich-rechtlichen Forderungen am 31.12.",
+        "label" : "Gesamtbetrag der Forderungen am 31.12.",
         "current" : {
-          "no" : "1651",
-          "value" : 9517632
+          "no" : "1601",
+          "value" : 211327779
         },
         "previous" : {
-          "no" : "1655",
-          "value" : 10336448
+          "no" : "1605",
+          "value" : 161800935
         }
-      }, {
-        "label" : "Gesamtbetrag der Steuerforderungen am 31.12.",
-        "current" : {
-          "no" : "1631",
-          "value" : 74373180
-        },
-        "previous" : {
-          "no" : "1635",
-          "value" : 55789865
-        }
-      }, {
-        "label" : "Beitragsforderungen mit einer Restlaufzeit von 1 bis 5 Jahren",
-        "current" : {
-          "no" : "1623",
-          "value" : 231790
-        },
-        "previous" : null
-      }, {
-        "label" : "oeffentlich-rechtliche Forderungen mit einer Restlaufzeit von mehr als 5 Jahren",
-        "current" : {
-          "no" : "1609",
-          "value" : 31759
-        },
-        "previous" : null
-      }, {
-        "label" : "Gebuehrenforderungen mit einer Restlaufzeit von 1 bis 5 Jahren",
-        "current" : {
-          "no" : "1613",
-          "value" : 46770
-        },
-        "previous" : null
-      }, {
-        "label" : "Gesamtbetrag der Gebuehrenforderungen am 31.12.",
-        "current" : {
-          "no" : "1611",
-          "value" : 23107815
-        },
-        "previous" : {
-          "no" : "1615",
-          "value" : 22196026
-        }
-      }, {
-        "label" : "Beitragsforderungen mit einer Restlaufzeit von bis zu 1 Jahr",
-        "current" : {
-          "no" : "1622",
-          "value" : 1252638
-        },
-        "previous" : null
-      }, {
-        "label" : "Gebuehrenforderungen mit einer Restlaufzeit von mehr als 5 Jahren",
-        "current" : {
-          "no" : "1614",
-          "value" : 4406
-        },
-        "previous" : null
-      }, {
-        "label" : "oeffentlich-rechtliche Forderungen mit einer Restlaufzeit von 1 bis 5 Jahren",
-        "current" : {
-          "no" : "1608",
-          "value" : 299753
-        },
-        "previous" : null
-      }, {
-        "label" : "Gebuehrenforderungen mit einer Restlaufzeit von bis zu 1 Jahr",
-        "current" : {
-          "no" : "1612",
-          "value" : 23056639
-        },
-        "previous" : null
-      }, {
-        "label" : "Gesamtbetrag der Forderungen aus Transferleistungen am 31.12.",
-        "current" : {
-          "no" : "1641",
-          "value" : 6113255
-        },
-        "previous" : {
-          "no" : "1645",
-          "value" : 6257371
-        }
-      }, {
-        "label" : "Sonstige oeffentlich-rechtliche Forderungen mit einer Restlaufzeit von bis zu 1 Jahr",
-        "current" : {
-          "no" : "1652",
-          "value" : 9479294
-        },
-        "previous" : null
-      }, {
-        "label" : "Sonstige oeffentlich-rechtliche Forderungen mit einer Restlaufzeit von mehr als 5 Jahren",
-        "current" : {
-          "no" : "1654",
-          "value" : 26139
-        },
-        "previous" : null
-      }, {
-        "label" : "Sonstige oeffentlich-rechtliche Forderungen mit einer Restlaufzeit von 1 bis 5 Jahren",
-        "current" : {
-          "no" : "1653",
-          "value" : 12199
-        },
-        "previous" : null
       }, {
         "label" : "Forderungen mit einer Restlaufzeit von bis zu 1 Jahr",
         "current" : {
           "no" : "1602",
           "value" : 206043729
+        },
+        "previous" : null
+      }, {
+        "label" : "Forderungen mit einer Restlaufzeit von 1 bis 5 Jahren",
+        "current" : {
+          "no" : "1603",
+          "value" : 309730
+        },
+        "previous" : null
+      }, {
+        "label" : "Forderungen mit einer Restlaufzeit von mehr als 5 Jahren",
+        "current" : {
+          "no" : "1604",
+          "value" : 4974320
         },
         "previous" : null
       }, {
@@ -1747,23 +1661,6 @@
           "value" : 95969334
         }
       }, {
-        "label" : "Gesamtbetrag der Forderungen am 31.12.",
-        "current" : {
-          "no" : "1601",
-          "value" : 211327779
-        },
-        "previous" : {
-          "no" : "1605",
-          "value" : 161800935
-        }
-      }, {
-        "label" : "Forderungen mit einer Restlaufzeit von 1 bis 5 Jahren",
-        "current" : {
-          "no" : "1603",
-          "value" : 309730
-        },
-        "previous" : null
-      }, {
         "label" : "oeffentlich-rechtliche Forderungen mit einer Restlaufzeit von bis zu 1 Jahr",
         "current" : {
           "no" : "1607",
@@ -1771,24 +1668,48 @@
         },
         "previous" : null
       }, {
-        "label" : "Forderungen aus Transferleistungen mit einer Restlaufzeit von mehr als 5 Jahren",
+        "label" : "oeffentlich-rechtliche Forderungen mit einer Restlaufzeit von 1 bis 5 Jahren",
         "current" : {
-          "no" : "1644",
-          "value" : 1214
+          "no" : "1608",
+          "value" : 299753
         },
         "previous" : null
       }, {
-        "label" : "Forderungen aus Transferleistungen mit einer Restlaufzeit von 1 bis 5 Jahren",
+        "label" : "oeffentlich-rechtliche Forderungen mit einer Restlaufzeit von mehr als 5 Jahren",
         "current" : {
-          "no" : "1643",
-          "value" : 8994
+          "no" : "1609",
+          "value" : 31759
         },
         "previous" : null
       }, {
-        "label" : "Steuerforderungen mit einer Restlaufzeit von bis zu 1 Jahr",
+        "label" : "Gesamtbetrag der Gebuehrenforderungen am 31.12.",
         "current" : {
-          "no" : "1632",
-          "value" : 74373180
+          "no" : "1611",
+          "value" : 23107815
+        },
+        "previous" : {
+          "no" : "1615",
+          "value" : 22196026
+        }
+      }, {
+        "label" : "Gebuehrenforderungen mit einer Restlaufzeit von bis zu 1 Jahr",
+        "current" : {
+          "no" : "1612",
+          "value" : 23056639
+        },
+        "previous" : null
+      }, {
+        "label" : "Gebuehrenforderungen mit einer Restlaufzeit von 1 bis 5 Jahren",
+        "current" : {
+          "no" : "1613",
+          "value" : 46770
+        },
+        "previous" : null
+      }, {
+        "label" : "Gebuehrenforderungen mit einer Restlaufzeit von mehr als 5 Jahren",
+        "current" : {
+          "no" : "1614",
+          "value" : 4406
         },
         "previous" : null
       }, {
@@ -1802,17 +1723,96 @@
           "value" : 1389624
         }
       }, {
-        "label" : "Forderungen mit einer Restlaufzeit von mehr als 5 Jahren",
+        "label" : "Beitragsforderungen mit einer Restlaufzeit von bis zu 1 Jahr",
         "current" : {
-          "no" : "1604",
-          "value" : 4974320
+          "no" : "1622",
+          "value" : 1252638
         },
         "previous" : null
+      }, {
+        "label" : "Beitragsforderungen mit einer Restlaufzeit von 1 bis 5 Jahren",
+        "current" : {
+          "no" : "1623",
+          "value" : 231790
+        },
+        "previous" : null
+      }, {
+        "label" : "Gesamtbetrag der Steuerforderungen am 31.12.",
+        "current" : {
+          "no" : "1631",
+          "value" : 74373180
+        },
+        "previous" : {
+          "no" : "1635",
+          "value" : 55789865
+        }
+      }, {
+        "label" : "Steuerforderungen mit einer Restlaufzeit von bis zu 1 Jahr",
+        "current" : {
+          "no" : "1632",
+          "value" : 74373180
+        },
+        "previous" : null
+      }, {
+        "label" : "Gesamtbetrag der Forderungen aus Transferleistungen am 31.12.",
+        "current" : {
+          "no" : "1641",
+          "value" : 6113255
+        },
+        "previous" : {
+          "no" : "1645",
+          "value" : 6257371
+        }
       }, {
         "label" : "Forderungen aus Transferleistungen mit einer Restlaufzeit von bis zu 1 Jahr",
         "current" : {
           "no" : "1642",
           "value" : 6103047
+        },
+        "previous" : null
+      }, {
+        "label" : "Forderungen aus Transferleistungen mit einer Restlaufzeit von 1 bis 5 Jahren",
+        "current" : {
+          "no" : "1643",
+          "value" : 8994
+        },
+        "previous" : null
+      }, {
+        "label" : "Forderungen aus Transferleistungen mit einer Restlaufzeit von mehr als 5 Jahren",
+        "current" : {
+          "no" : "1644",
+          "value" : 1214
+        },
+        "previous" : null
+      }, {
+        "label" : "Gesamtbetrag der sonstigen oeffentlich-rechtlichen Forderungen am 31.12.",
+        "current" : {
+          "no" : "1651",
+          "value" : 9517632
+        },
+        "previous" : {
+          "no" : "1655",
+          "value" : 10336448
+        }
+      }, {
+        "label" : "Sonstige oeffentlich-rechtliche Forderungen mit einer Restlaufzeit von bis zu 1 Jahr",
+        "current" : {
+          "no" : "1652",
+          "value" : 9479294
+        },
+        "previous" : null
+      }, {
+        "label" : "Sonstige oeffentlich-rechtliche Forderungen mit einer Restlaufzeit von 1 bis 5 Jahren",
+        "current" : {
+          "no" : "1653",
+          "value" : 12199
+        },
+        "previous" : null
+      }, {
+        "label" : "Sonstige oeffentlich-rechtliche Forderungen mit einer Restlaufzeit von mehr als 5 Jahren",
+        "current" : {
+          "no" : "1654",
+          "value" : 26139
         },
         "previous" : null
       } ],
@@ -1827,10 +1827,87 @@
           "value" : 65831601
         }
       }, {
-        "label" : "Sonstige Vermoegensgegenstaende",
+        "label" : "Privatrechtliche Forderungen mit einer Restlaufzeit von bis zu 1 Jahr",
         "current" : {
-          "no" : "1761",
-          "value" : 26889933
+          "no" : "1707",
+          "value" : 91778931
+        },
+        "previous" : null
+      }, {
+        "label" : "Privatrechtliche Forderungen mit einer Restlaufzeit von 1 bis 5 Jahren",
+        "current" : {
+          "no" : "1708",
+          "value" : 9977
+        },
+        "previous" : null
+      }, {
+        "label" : "Privatrechtliche Forderungen mit einer Restlaufzeit von mehr als 5 Jahren",
+        "current" : {
+          "no" : "1709",
+          "value" : 4942561
+        },
+        "previous" : null
+      }, {
+        "label" : "Gesamtbetrag der privatrechtlichen Forderungen gegenueber dem privaten Bereich am 31.12. des Haushaltsj.",
+        "current" : {
+          "no" : "1711",
+          "value" : 17307812
+        },
+        "previous" : null
+      }, {
+        "label" : "Privatrechtliche Forderungen gegenueber dem priv. Bereich mit einer Restlaufzeit von bis zu 1 Jahr",
+        "current" : {
+          "no" : "1712",
+          "value" : 17297835
+        },
+        "previous" : null
+      }, {
+        "label" : "Privatrechtliche Forderungen gegenueber dem priv. Bereich mit einer Restlaufzeit von 1 bis 5 Jahren",
+        "current" : {
+          "no" : "1713",
+          "value" : 9977
+        },
+        "previous" : null
+      }, {
+        "label" : "Gesamtbetrag der privatrechtlichen Forderungen gegenueber dem priv. Bereich am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "1715",
+          "value" : 6833204
+        }
+      }, {
+        "label" : "Gesamtbetrag der privatrechtliche Forderungen gegenueber dem oeffentl. Bereich am 31.12.",
+        "current" : {
+          "no" : "1721",
+          "value" : 13089169
+        },
+        "previous" : null
+      }, {
+        "label" : "Privatrechtliche Forderungen gegenueber dem oeffentl. Bereich mit einer Restlaufzeit von bis zu 1 Jahr",
+        "current" : {
+          "no" : "1722",
+          "value" : 8146608
+        },
+        "previous" : null
+      }, {
+        "label" : "Privatrechtliche Forderungen gegenueber dem oeffentl. Bereich mit einer Restlaufzeit von mehr als 5 Jahren",
+        "current" : {
+          "no" : "1724",
+          "value" : 4942561
+        },
+        "previous" : null
+      }, {
+        "label" : "Gesamtbetrag der privatrechtlichen Forderungen gegenueber dem oeffentl. Bereich am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "1725",
+          "value" : 9646441
+        }
+      }, {
+        "label" : "Gesamtbetrag der privatrechtlichen Forderungen gegenueber verbundenen Unternehmen am 31.12. des Haushaltsj.",
+        "current" : {
+          "no" : "1731",
+          "value" : 12383586
         },
         "previous" : null
       }, {
@@ -1848,34 +1925,6 @@
           "value" : 10891701
         }
       }, {
-        "label" : "Privatrechtliche Forderungen mit einer Restlaufzeit von bis zu 1 Jahr",
-        "current" : {
-          "no" : "1707",
-          "value" : 91778931
-        },
-        "previous" : null
-      }, {
-        "label" : "Gesamtbetrag der privatrechtliche Forderungen gegenueber dem oeffentl. Bereich am 31.12.",
-        "current" : {
-          "no" : "1721",
-          "value" : 13089169
-        },
-        "previous" : null
-      }, {
-        "label" : "Gesamtbetrag der privatrechtlichen Forderungen gegenueber dem oeffentl. Bereich am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "1725",
-          "value" : 9646441
-        }
-      }, {
-        "label" : "Privatrechtliche Forderungen gegenueber dem priv. Bereich mit einer Restlaufzeit von bis zu 1 Jahr",
-        "current" : {
-          "no" : "1712",
-          "value" : 17297835
-        },
-        "previous" : null
-      }, {
         "label" : "Gesamtbetrag der privatrechtlichen Forderungen gegen Beteiligungen am 31.12.",
         "current" : {
           "no" : "1741",
@@ -1886,38 +1935,10 @@
           "value" : 156938
         }
       }, {
-        "label" : "Privatrechtliche Forderungen gegenueber dem oeffentl. Bereich mit einer Restlaufzeit von mehr als 5 Jahren",
+        "label" : "Privatrechtliche Forderungen gegen Beteiligungen mit einer Restlaufzeit von bis zu 1 Jahr",
         "current" : {
-          "no" : "1724",
-          "value" : 4942561
-        },
-        "previous" : null
-      }, {
-        "label" : "Privatrechtliche Forderungen gegen Sondervermoegen mit einer Restlaufzeit von bis zu 1 Jahr",
-        "current" : {
-          "no" : "1752",
-          "value" : 52168712
-        },
-        "previous" : null
-      }, {
-        "label" : "Gesamtbetrag der privatrechtlichen Forderungen gegenueber dem privaten Bereich am 31.12. des Haushaltsj.",
-        "current" : {
-          "no" : "1711",
-          "value" : 17307812
-        },
-        "previous" : null
-      }, {
-        "label" : "Privatrechtliche Forderungen mit einer Restlaufzeit von mehr als 5 Jahren",
-        "current" : {
-          "no" : "1709",
-          "value" : 4942561
-        },
-        "previous" : null
-      }, {
-        "label" : "Gesamtbetrag der privatrechtlichen Forderungen gegenueber verbundenen Unternehmen am 31.12. des Haushaltsj.",
-        "current" : {
-          "no" : "1731",
-          "value" : 12383586
+          "no" : "1742",
+          "value" : 1782190
         },
         "previous" : null
       }, {
@@ -1931,38 +1952,17 @@
           "value" : 38303317
         }
       }, {
-        "label" : "Privatrechtliche Forderungen gegenueber dem priv. Bereich mit einer Restlaufzeit von 1 bis 5 Jahren",
+        "label" : "Privatrechtliche Forderungen gegen Sondervermoegen mit einer Restlaufzeit von bis zu 1 Jahr",
         "current" : {
-          "no" : "1713",
-          "value" : 9977
+          "no" : "1752",
+          "value" : 52168712
         },
         "previous" : null
       }, {
-        "label" : "Privatrechtliche Forderungen gegenueber dem oeffentl. Bereich mit einer Restlaufzeit von bis zu 1 Jahr",
+        "label" : "Sonstige Vermoegensgegenstaende",
         "current" : {
-          "no" : "1722",
-          "value" : 8146608
-        },
-        "previous" : null
-      }, {
-        "label" : "Gesamtbetrag der privatrechtlichen Forderungen gegenueber dem priv. Bereich am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "1715",
-          "value" : 6833204
-        }
-      }, {
-        "label" : "Privatrechtliche Forderungen mit einer Restlaufzeit von 1 bis 5 Jahren",
-        "current" : {
-          "no" : "1708",
-          "value" : 9977
-        },
-        "previous" : null
-      }, {
-        "label" : "Privatrechtliche Forderungen gegen Beteiligungen mit einer Restlaufzeit von bis zu 1 Jahr",
-        "current" : {
-          "no" : "1742",
-          "value" : 1782190
+          "no" : "1761",
+          "value" : 26889933
         },
         "previous" : null
       } ],
@@ -2022,17 +2022,10 @@
       "Liquide Mittel" : [ ],
       "Aktive Rechnungsabgrenzung" : [ ],
       "Eigenkapital" : [ {
-        "label" : "Jahresueberschuss/Jahresfehlbetrag",
+        "label" : "Eigenkapital",
         "current" : {
-          "no" : "2081",
-          "value" : -57401170
-        },
-        "previous" : null
-      }, {
-        "label" : "Sonderruecklagen",
-        "current" : {
-          "no" : "2031",
-          "value" : 36010717
+          "no" : "2001",
+          "value" : 2155279253
         },
         "previous" : null
       }, {
@@ -2043,6 +2036,13 @@
         },
         "previous" : null
       }, {
+        "label" : "Sonderruecklagen",
+        "current" : {
+          "no" : "2031",
+          "value" : 36010717
+        },
+        "previous" : null
+      }, {
         "label" : "Ausgleichsruecklage",
         "current" : {
           "no" : "2041",
@@ -2050,19 +2050,19 @@
         },
         "previous" : null
       }, {
-        "label" : "Eigenkapital",
+        "label" : "Jahresueberschuss/Jahresfehlbetrag",
         "current" : {
-          "no" : "2001",
-          "value" : 2155279253
+          "no" : "2081",
+          "value" : -57401170
         },
         "previous" : null
       } ],
       "Wertberichtigungen (kein Bilanzausweis)" : [ ],
       "Sonderposten" : [ {
-        "label" : "Sonstige Sonderposten",
+        "label" : "Sonderposten",
         "current" : {
-          "no" : "2391",
-          "value" : 21253907
+          "no" : "2301",
+          "value" : 1272288832
         },
         "previous" : null
       }, {
@@ -2080,17 +2080,17 @@
         },
         "previous" : null
       }, {
-        "label" : "Sonderposten",
-        "current" : {
-          "no" : "2301",
-          "value" : 1272288832
-        },
-        "previous" : null
-      }, {
         "label" : "Sonderposten fuer den Gebuehrenausgleich",
         "current" : {
           "no" : "2331",
           "value" : 16320332
+        },
+        "previous" : null
+      }, {
+        "label" : "Sonstige Sonderposten",
+        "current" : {
+          "no" : "2391",
+          "value" : 21253907
         },
         "previous" : null
       } ],
@@ -2203,19 +2203,15 @@
         "previous" : null
       } ],
       "Verbindlichkeiten aus Krediten für Investitionen" : [ {
-        "label" : "Investitionskredite vom Kreditmarkt mit einer Restlaufzeit von mehr als 5 Jahren",
+        "label" : "Gesamtbetrag der Investitionskredite am 31.12.",
         "current" : {
-          "no" : "32504",
-          "value" : 256151638
+          "no" : "3201",
+          "value" : 925765542
         },
-        "previous" : null
-      }, {
-        "label" : "Investitionskredite von Sondervermoegen mit einer Restlaufzeit von bis zu 1 Jahr",
-        "current" : {
-          "no" : "3232",
-          "value" : 1650099
-        },
-        "previous" : null
+        "previous" : {
+          "no" : "3205",
+          "value" : 915482245
+        }
       }, {
         "label" : "Investitionskredite mit einer Restlaufzeit von bis zu 1 Jahr",
         "current" : {
@@ -2224,17 +2220,10 @@
         },
         "previous" : null
       }, {
-        "label" : "Investitionskredite vom Kreditmarkt mit einer Restlaufzeit von 1 bis 5 Jahren",
+        "label" : "Investitionskredite mit einer Restlaufzeit von 1 bis 5 Jahren",
         "current" : {
-          "no" : "32503",
-          "value" : 133874017
-        },
-        "previous" : null
-      }, {
-        "label" : "Investitionskredite von Banken und Kreditinstituten mit einer Restlaufzeit von mehr als 5 Jahren",
-        "current" : {
-          "no" : "32514",
-          "value" : 256151638
+          "no" : "3203",
+          "value" : 264127511
         },
         "previous" : null
       }, {
@@ -2245,10 +2234,51 @@
         },
         "previous" : null
       }, {
+        "label" : "Gesamtbetrag der Investitionskredite von Sondervermoegen am 31.12.",
+        "current" : {
+          "no" : "3231",
+          "value" : 34962791
+        },
+        "previous" : {
+          "no" : "3235",
+          "value" : 36893705
+        }
+      }, {
+        "label" : "Investitionskredite von Sondervermoegen mit einer Restlaufzeit von bis zu 1 Jahr",
+        "current" : {
+          "no" : "3232",
+          "value" : 1650099
+        },
+        "previous" : null
+      }, {
         "label" : "Investitionskredite von Sondervermoegen mit einer Restlaufzeit von 1 bis 5 Jahren",
         "current" : {
           "no" : "3233",
           "value" : 6679499
+        },
+        "previous" : null
+      }, {
+        "label" : "Investitionskredite von Sondervermoegen mit einer Restlaufzeit von mehr als 5 Jahren",
+        "current" : {
+          "no" : "3234",
+          "value" : 26633193
+        },
+        "previous" : null
+      }, {
+        "label" : "Gesamtbetrag der Investitionskredite vom oeffentlichen Bereich am 31.12.",
+        "current" : {
+          "no" : "32401",
+          "value" : 463273238
+        },
+        "previous" : {
+          "no" : "32405",
+          "value" : 470656150
+        }
+      }, {
+        "label" : "Investitionskredite vom oeffentlichen Bereich mit einer Restlaufzeit von bis zu 1 Jahr",
+        "current" : {
+          "no" : "32402",
+          "value" : 30244850
         },
         "previous" : null
       }, {
@@ -2259,20 +2289,48 @@
         },
         "previous" : null
       }, {
-        "label" : "Gesamtbetrag der Investitionskredite vom Kreditmarkt am 31.12.",
-        "current" : {
-          "no" : "32501",
-          "value" : 427529513
-        },
-        "previous" : {
-          "no" : "32505",
-          "value" : 407932390
-        }
-      }, {
         "label" : "Investitionskredite vom oeffentlichen Bereich mit einer Restlaufzeit von mehr als 5 Jahren",
         "current" : {
           "no" : "32404",
           "value" : 309454393
+        },
+        "previous" : null
+      }, {
+        "label" : "Gesamtbetrag der Investitionskredite vom Land am 31.12.",
+        "current" : {
+          "no" : "32421",
+          "value" : 1444871
+        },
+        "previous" : {
+          "no" : "32425",
+          "value" : 1566803
+        }
+      }, {
+        "label" : "Investitionskredite vom Land mit einer Restlaufzeit von bis zu 1 Jahr",
+        "current" : {
+          "no" : "32422",
+          "value" : 121998
+        },
+        "previous" : null
+      }, {
+        "label" : "Investitionskredite vom Land mit einer Restlaufzeit von 1 bis 5 Jahren",
+        "current" : {
+          "no" : "32423",
+          "value" : 488671
+        },
+        "previous" : null
+      }, {
+        "label" : "Investitionskredite vom Land mit einer Restlaufzeit von mehr als 5 Jahren",
+        "current" : {
+          "no" : "32424",
+          "value" : 834202
+        },
+        "previous" : null
+      }, {
+        "label" : "Gesamtbetrag der Investitionskredite von sonstigen oeffentl. Sonderrechnungen 31.12. des HJ",
+        "current" : {
+          "no" : "32461",
+          "value" : 461828367
         },
         "previous" : null
       }, {
@@ -2290,40 +2348,6 @@
         },
         "previous" : null
       }, {
-        "label" : "Gesamtbetrag der Investitionskredite von sonstigen oeffentl. Sonderrechnungen am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "32465",
-          "value" : 469089347
-        }
-      }, {
-        "label" : "Gesamtbetrag der Investitionskredite am 31.12.",
-        "current" : {
-          "no" : "3201",
-          "value" : 925765542
-        },
-        "previous" : {
-          "no" : "3205",
-          "value" : 915482245
-        }
-      }, {
-        "label" : "Gesamtbetrag der Investitionskredite vom oeffentlichen Bereich am 31.12.",
-        "current" : {
-          "no" : "32401",
-          "value" : 463273238
-        },
-        "previous" : {
-          "no" : "32405",
-          "value" : 470656150
-        }
-      }, {
-        "label" : "Investitionskredite vom Land mit einer Restlaufzeit von 1 bis 5 Jahren",
-        "current" : {
-          "no" : "32423",
-          "value" : 488671
-        },
-        "previous" : null
-      }, {
         "label" : "Investitionskredite von sonstigen oeffentl. Sonderrechnungen mit einer Restlaufzeit von mehr als 5 Jahren",
         "current" : {
           "no" : "32464",
@@ -2331,12 +2355,22 @@
         },
         "previous" : null
       }, {
-        "label" : "Gesamtbetrag der Investitionskredite von sonstigen oeffentl. Sonderrechnungen 31.12. des HJ",
+        "label" : "Gesamtbetrag der Investitionskredite von sonstigen oeffentl. Sonderrechnungen am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "32465",
+          "value" : 469089347
+        }
+      }, {
+        "label" : "Gesamtbetrag der Investitionskredite vom Kreditmarkt am 31.12.",
         "current" : {
-          "no" : "32461",
-          "value" : 461828367
+          "no" : "32501",
+          "value" : 427529513
         },
-        "previous" : null
+        "previous" : {
+          "no" : "32505",
+          "value" : 407932390
+        }
       }, {
         "label" : "Investitionskredite vom Kreditmarkt mit einer Restlaufzeit von bis zu 1 Jahr",
         "current" : {
@@ -2345,14 +2379,28 @@
         },
         "previous" : null
       }, {
-        "label" : "Gesamtbetrag der Investitionskredite vom Land am 31.12.",
+        "label" : "Investitionskredite vom Kreditmarkt mit einer Restlaufzeit von 1 bis 5 Jahren",
         "current" : {
-          "no" : "32421",
-          "value" : 1444871
+          "no" : "32503",
+          "value" : 133874017
+        },
+        "previous" : null
+      }, {
+        "label" : "Investitionskredite vom Kreditmarkt mit einer Restlaufzeit von mehr als 5 Jahren",
+        "current" : {
+          "no" : "32504",
+          "value" : 256151638
+        },
+        "previous" : null
+      }, {
+        "label" : "Gesamtbetrag der Investitionskredite von Banken und Kreditinstituten am 31.12.",
+        "current" : {
+          "no" : "32511",
+          "value" : 427529513
         },
         "previous" : {
-          "no" : "32425",
-          "value" : 1566803
+          "no" : "32515",
+          "value" : 407932390
         }
       }, {
         "label" : "Investitionskredite von Banken und Kreditinstituten mit einer Restlaufzeit von bis zu 1 Jahr",
@@ -2369,87 +2417,18 @@
         },
         "previous" : null
       }, {
-        "label" : "Investitionskredite von Sondervermoegen mit einer Restlaufzeit von mehr als 5 Jahren",
+        "label" : "Investitionskredite von Banken und Kreditinstituten mit einer Restlaufzeit von mehr als 5 Jahren",
         "current" : {
-          "no" : "3234",
-          "value" : 26633193
+          "no" : "32514",
+          "value" : 256151638
         },
         "previous" : null
-      }, {
-        "label" : "Gesamtbetrag der Investitionskredite von Banken und Kreditinstituten am 31.12.",
-        "current" : {
-          "no" : "32511",
-          "value" : 427529513
-        },
-        "previous" : {
-          "no" : "32515",
-          "value" : 407932390
-        }
-      }, {
-        "label" : "Investitionskredite vom Land mit einer Restlaufzeit von bis zu 1 Jahr",
-        "current" : {
-          "no" : "32422",
-          "value" : 121998
-        },
-        "previous" : null
-      }, {
-        "label" : "Investitionskredite vom Land mit einer Restlaufzeit von mehr als 5 Jahren",
-        "current" : {
-          "no" : "32424",
-          "value" : 834202
-        },
-        "previous" : null
-      }, {
-        "label" : "Investitionskredite mit einer Restlaufzeit von 1 bis 5 Jahren",
-        "current" : {
-          "no" : "3203",
-          "value" : 264127511
-        },
-        "previous" : null
-      }, {
-        "label" : "Investitionskredite vom oeffentlichen Bereich mit einer Restlaufzeit von bis zu 1 Jahr",
-        "current" : {
-          "no" : "32402",
-          "value" : 30244850
-        },
-        "previous" : null
-      }, {
-        "label" : "Gesamtbetrag der Investitionskredite von Sondervermoegen am 31.12.",
-        "current" : {
-          "no" : "3231",
-          "value" : 34962791
-        },
-        "previous" : {
-          "no" : "3235",
-          "value" : 36893705
-        }
       } ],
       "Verbindlichkeiten aus Krediten zur Liquiditätssicherung" : [ {
-        "label" : "Gesamtbetrag der Liquiditaetskredite am 31.12.",
-        "current" : null,
-        "previous" : {
-          "no" : "3305",
-          "value" : 728413578
-        }
-      }, {
         "label" : "Gesamtbetrag der Liquiditaetskredite am 31.12",
         "current" : {
           "no" : "3301",
           "value" : 810388332
-        },
-        "previous" : null
-      }, {
-        "label" : "Liquiditaetskredite vom Kreditmarkt mit einer Restlaufzeit bis zu 1 Jahr",
-        "current" : {
-          "no" : "3322",
-          "value" : 525500000
-        },
-        "previous" : null
-      }, {
-        "label" : "Gesamtbetrag der Liquiditaetskredite vom Kreditmarkt am 31.12",
-        "current" : {
-          "no" : "3321",
-          "value" : 525500000
         },
         "previous" : null
       }, {
@@ -2460,17 +2439,38 @@
         },
         "previous" : null
       }, {
-        "label" : "Gesamtbetrag der Liquiditaetskredite vom Kreditmarkt am 31.12.",
+        "label" : "Liquiditaetskredite mit einer Restlaufzeit von 1 bis 5 Jahren",
+        "current" : {
+          "no" : "3303",
+          "value" : 120000000
+        },
+        "previous" : null
+      }, {
+        "label" : "Gesamtbetrag der Liquiditaetskredite am 31.12.",
         "current" : null,
         "previous" : {
-          "no" : "3325",
-          "value" : 449500000
+          "no" : "3305",
+          "value" : 728413578
         }
       }, {
         "label" : "Gesamtbetrag der Liquiditaetskredite vom oeffentl. Bereich am 31.12",
         "current" : {
           "no" : "3311",
           "value" : 284888332
+        },
+        "previous" : null
+      }, {
+        "label" : "Liquiditaetskredite vom oeffentl. Bereich mit einer Restlaufzeit bis zu 1 Jahr",
+        "current" : {
+          "no" : "3312",
+          "value" : 164888332
+        },
+        "previous" : null
+      }, {
+        "label" : "Liquiditaetskredite vom oeffentl. Bereich mit einer Restlaufzeit von 1 bis 5 Jahren",
+        "current" : {
+          "no" : "3313",
+          "value" : 120000000
         },
         "previous" : null
       }, {
@@ -2481,26 +2481,26 @@
           "value" : 278913578
         }
       }, {
-        "label" : "Liquiditaetskredite vom oeffentl. Bereich mit einer Restlaufzeit bis zu 1 Jahr",
+        "label" : "Gesamtbetrag der Liquiditaetskredite vom Kreditmarkt am 31.12",
         "current" : {
-          "no" : "3312",
-          "value" : 164888332
+          "no" : "3321",
+          "value" : 525500000
         },
         "previous" : null
       }, {
-        "label" : "Liquiditaetskredite mit einer Restlaufzeit von 1 bis 5 Jahren",
+        "label" : "Liquiditaetskredite vom Kreditmarkt mit einer Restlaufzeit bis zu 1 Jahr",
         "current" : {
-          "no" : "3303",
-          "value" : 120000000
+          "no" : "3322",
+          "value" : 525500000
         },
         "previous" : null
       }, {
-        "label" : "Liquiditaetskredite vom oeffentl. Bereich mit einer Restlaufzeit von 1 bis 5 Jahren",
-        "current" : {
-          "no" : "3313",
-          "value" : 120000000
-        },
-        "previous" : null
+        "label" : "Gesamtbetrag der Liquiditaetskredite vom Kreditmarkt am 31.12.",
+        "current" : null,
+        "previous" : {
+          "no" : "3325",
+          "value" : 449500000
+        }
       } ],
       "Verbindlichkeiten aus Vorgängen, die Kreditaufnahmen wirtschaftlich gleichkommen" : [ {
         "label" : "Gesamtbetrag der Verbindlichkeiten aus kreditaehnlichen Rechtsgeschaeften am 31.12.",
@@ -2518,6 +2518,16 @@
         "previous" : null
       } ],
       "Verbindlichkeiten aus Lieferungen und Leistungen" : [ {
+        "label" : "Gesamtbetrag der Verbindlichkeiten aus Lieferungen und Leistungen am 31.12.",
+        "current" : {
+          "no" : "3511",
+          "value" : 33146293
+        },
+        "previous" : {
+          "no" : "3515",
+          "value" : 42505360
+        }
+      }, {
         "label" : "Verbindlichkeiten aus Lieferungen und Leistungen mit einer Restlaufzeit von bis zu 1 Jahr",
         "current" : {
           "no" : "3512",
@@ -2531,25 +2541,8 @@
           "value" : 113386
         },
         "previous" : null
-      }, {
-        "label" : "Gesamtbetrag der Verbindlichkeiten aus Lieferungen und Leistungen am 31.12.",
-        "current" : {
-          "no" : "3511",
-          "value" : 33146293
-        },
-        "previous" : {
-          "no" : "3515",
-          "value" : 42505360
-        }
       } ],
       "Verbindlichkeiten aus Transferleistungen" : [ {
-        "label" : "Verbindlichkeiten aus Transferleistungen mit einer Restlaufzeit von bis zu 1 Jahr",
-        "current" : {
-          "no" : "3612",
-          "value" : 44078804
-        },
-        "previous" : null
-      }, {
         "label" : "Gesamtbetrag der Verbindlichkeiten aus Transferleistungen am 31.12.",
         "current" : {
           "no" : "3611",
@@ -2559,15 +2552,15 @@
           "no" : "3615",
           "value" : 163780741
         }
-      } ],
-      "Sonstige Verbindlichkeiten" : [ {
-        "label" : "Sonstige Verbindlichkeiten mit einer Restlaufzeit von mehr als 5 Jahren",
+      }, {
+        "label" : "Verbindlichkeiten aus Transferleistungen mit einer Restlaufzeit von bis zu 1 Jahr",
         "current" : {
-          "no" : "3714",
-          "value" : 59920061
+          "no" : "3612",
+          "value" : 44078804
         },
         "previous" : null
-      }, {
+      } ],
+      "Sonstige Verbindlichkeiten" : [ {
         "label" : "Gesamtbetrag der sonstigen Verbindlichkeiten am 31.12.",
         "current" : {
           "no" : "3711",
@@ -2582,6 +2575,13 @@
         "current" : {
           "no" : "3712",
           "value" : 106721570
+        },
+        "previous" : null
+      }, {
+        "label" : "Sonstige Verbindlichkeiten mit einer Restlaufzeit von mehr als 5 Jahren",
+        "current" : {
+          "no" : "3714",
+          "value" : 59920061
         },
         "previous" : null
       } ],

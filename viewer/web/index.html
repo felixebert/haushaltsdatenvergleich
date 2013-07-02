@@ -1,83 +1,170 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="css/bootstrap.css" rel="stylesheet" />
-	<link href="css/bootstrap-responsive.css" rel="stylesheet" />
-	<link href="css/leaflet.css" rel="stylesheet" />
-	<link href="css/hdv.css" rel="stylesheet" />
-	<title>Finanzdatenvergleich NRW</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/fonts.css" rel="stylesheet" />
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link href="css/bootstrap-responsive.css" rel="stylesheet" />
+<link href="css/leaflet.css" rel="stylesheet" />
+<link href="css/hdv.css" rel="stylesheet" />
+<title>Finanzdatenvergleich NRW</title>
 </head>
 <body>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+
+				<a class="brand" title="Startseite" href="/"><img src="https://haushalt.piratenfraktion-nrw.de/assets/house.png"
+					id="nav_house" border="0" style="display: inline;"></a>
+
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">20 Piraten </a> <!-- http://www.piratenfraktion-nrw.de/20piraten/ -->
+							<ul class="dropdown-menu">
+								<li><a href="http://www.piratenfraktion-nrw.de/20piraten/">Die Fraktion</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/20piraten/blogposts/">Persönliche Blogposts</a></li>
+								<li><a href="/2012/12/nebeneinkunfte-der-20-piraten/">Nebeneinkünfte</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/ausschusse-und-gremien-2/">Ausschüsse und Gremien</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/mitarbeiter/">Fraktionsmitarbeiter</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/satzung/">Satzung</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/wahlordnung-2/">Wahlordnung</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/fo/">Finanzordnung</a></li>
+							</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Politik </a> <!-- http://www.piratenfraktion-nrw.de/category/politik/ -->
+							<ul class="dropdown-menu">
+								<li><a href="http://www.piratenfraktion-nrw.de/category/politik/gesetzesentwuerfe/">Gesetzesentwürfe</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/politik/aenderungsantraege/">Änderungsanträge</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/politik/entschliessungsantraege/">Entschließungsanträge</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/politik/grosse_anfragen/">Große Anfragen</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/politik/kleine_anfragen/">Kleine Anfragen</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/politik/beschluesse/">Beschlüsse der Fraktion</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/antragsfabrik/">Antragsfabrik</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/politik/plenum/">Plenum</a></li>
+								<li><a
+									href="https://www.piratenfraktion-nrw.de/wp-content/uploads/2012/12/WahlprogrammNRW2012_Basis_V2_PrintA5.pdf">Wahlprogramm</a></li>
+							</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Multimedia </a> <!-- http://www.piratenfraktion-nrw.de/category/multimedia/ -->
+							<ul class="dropdown-menu">
+								<li><a href="http://www.piratenfraktion-nrw.de/category/multimedia/videos/">Videos</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/multimedia/podcast_reden/">Reden</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/multimedia/bilder/">Bilder</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/multimedia/protokolle-multimedia/">Archiv
+										Protokolle</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/multimedia/archiv_streaming/">Archiv Streaming</a></li>
+							</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Presse </a> <!-- http://www.piratenfraktion-nrw.de/category/presse/ -->
+							<ul class="dropdown-menu">
+								<li><a href="http://www.piratenfraktion-nrw.de/category/presse/pressemitteilungen/">Pressemitteilungen</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/presse/medien/">Medien</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/presse/archiv/">Archiv</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/presseteam/">Presseteam</a></li>
+							</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Service </a> <!-- http://www.piratenfraktion-nrw.de/category/service/ -->
+							<ul class="dropdown-menu">
+								<li><a href="http://www.piratenfraktion-nrw.de/category/service/ausschreibungen/">Ausschreibungen</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/besuch-uns/">Besuch uns!</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/kontakt/">Kontakt</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/impressum/">Impressum</a></li>
+							</ul></li>
+						<li><a href="http://www.piratenfraktion-nrw.de/live/">LIVE</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<header class="hidden-phone">
+			<div class="pull-right2" style="float: right; padding: 50px 50px 0 0;">
+				<a href="http://www.facebook.com/PiratenfraktionNRW" title="zur Facebookseite der Fraktion"> <img width="32"
+					height="32" alt="Facebook-Icon"
+					src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/icons/facebook-32x32.png">
+				</a> <a href="https://twitter.com/20piraten" title="zum Twitteraccount der Fraktion"> <img width="32" height="32"
+					alt="Twitter-Icon"
+					src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/icons/twitter-32x32.png">
+				</a> <a href="https://youtube.com/PiratenfraktionNRW" title="zum YouTube-Account der Fraktion"> <img width="32"
+					height="32" alt="YouTube-Icon"
+					src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/icons/youtube-32x32.png">
+				</a>
+			</div>
+			<a title="Die offizielle Homepage der Piratenfraktion im Landtag NRW" href="http://www.piratenfraktion-nrw.de"> <img
+				width="580" src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/pp.png">
+			</a>
+		</header>
+
+		<div id="map">
+
+		<div id="nav" class="hide">
+			<div class="visible-phone pull-right">
+				<button type="button" class="btn close-nav">
+					<i class="icon-remove"></i>
+				</button>
+			</div>
+
+			<form class="nav-container settings form-inline" method="GET" action="index.html">
+				<label class="title">Produktgruppe</label>
+				<button type="button" class="close close-nav hidden-phone pull-right" data-dismiss="modal">&times;</button>
+				<select name="product">
+					<option value="none" selected="selected">Bitte wählen ...</option>
+				</select> <label class="title">Konto</label> <select name="account">
+					<option value="none" selected="selected">Bitte wählen ...</option>
+				</select> <label class="title">im Verhältnis zur?</label>
+				<p>
+					<label class="radio"><input type="radio" name="relation" value="population" data-label="pro Einwohnerzahl">
+						Einwohnerzahl</label> <label class="radio"><input type="radio" name="relation" value="size"
+						data-label="pro Fläche"> Fläche</label> <label class="radio"><input type="radio" name="relation"
+						value="none" data-label=""> absolut</label>
+				</p>
+
+				<label class="title">Gebietsgröße</label>
+				<p>
+					<label class="radio"><input type="radio" name="areaType" value="gemeinden"> Gemeinden</label> <label
+						class="radio"><input type="radio" name="areaType" value="landkreise"> Landkreise</label>
+				</p>
+
+				<label class="title">Abrechnungsjahr</label> <select name="year">
+					<option value="2009" selected="selected">2009</option>
+					<option value="2010">2010</option>
+					<option value="2011">2011</option>
+				</select>
+			</form>
+		</div>
+		</div>
+
+		<div id="info" class="modal hide">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h3>Finanzdatenvergleich NRW</h3>
+			</div>
+			<div class="modal-body">
+				<p>Beim Finanzdatenvergleich NRW handelt es sich um ein Projekt der Piratenpartei NRW ...</p>
+			</div>
+		</div>
+
+		<div id="imprint" class="modal hide">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h3>Impressum</h3>
+			</div>
+			<div class="modal-body">
+				<strong>Datenquellen:</strong>
+				<ul>
+					<li>Map powered by Leaflet - Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>
+						contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a
+						href="http://cloudmade.com">CloudMade</a></li>
+					<li>...</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
 	<div class="ajax-loader"></div>
-	
-	<div id="map"></div>
-	
-	<div id="nav" class="hide">
-		<div class="visible-phone pull-right">
-			<button type="button" class="btn close-nav"><i class="icon-remove"></i></button>
-		</div>
 
-		<form class="nav-container settings form-inline" method="GET" action="index.html">
-			<label class="title">Produktgruppe</label>
-			<button type="button" class="close close-nav hidden-phone pull-right" data-dismiss="modal">&times;</button>
-			<select name="product">
-				<option value="none" selected="selected">Bitte wählen ...</option>
-			</select>
-
-			<label class="title">Konto</label>
-			<select name="account">
-				<option value="none" selected="selected">Bitte wählen ...</option>
-			</select>
-			
-			<label class="title">im Verhältnis zur?</label>
-			<p>
-				<label class="radio"><input type="radio" name="relation" value="population" data-label="pro Einwohnerzahl"> Einwohnerzahl</label>
-				<label class="radio"><input type="radio" name="relation" value="size" data-label="pro Fläche"> Fläche</label>
-				<label class="radio"><input type="radio" name="relation" value="none" data-label=""> absolut</label>
-			</p>
-
-			<label class="title">Gebietsgröße</label>
-			<p>
-				<label class="radio"><input type="radio" name="areaType" value="gemeinden"> Gemeinden</label>
-				<label class="radio"><input type="radio" name="areaType" value="landkreise"> Landkreise</label>
-			</p>
-			
-			<label class="title">Abrechnungsjahr</label>
-			<select name="year">
-				<option value="2009" selected="selected">2009</option>
-				<option value="2010">2010</option>
-				<option value="2011">2011</option>
-			</select>
-		</form>
-	</div>
-
-	<div id="info" class="modal hide">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">&times;</button>
-			<h3>Finanzdatenvergleich NRW</h3>
-		</div>
-		<div class="modal-body">
-			<p>Beim Finanzdatenvergleich NRW handelt es sich um ein Projekt der Piratenpartei NRW ...</p>
-		</div>
-	</div>
-
-	<div id="imprint" class="modal hide">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">&times;</button>
-			<h3>Impressum</h3>
-		</div>
-		<div class="modal-body">
-			<strong>Datenquellen:</strong>
-			<ul>
-				<li>Map powered by Leaflet - Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a></li>
-				<li> ...</li>
-			</ul>
-		</div>
-	</div>
-	
 	<script id="popup-template" type="text/x-handlebars-template">
 		<p class="popup-label"><strong>{{areaLabel}}</strong></p>
 		
@@ -122,7 +209,7 @@
 	<script src="js/balance.js"></script>
 	<script src="js/products.js"></script>
 	<script src="js/areas.js"></script>
-	
+
 	<script type="text/javascript">
 		$(function() {
 			hdv.init();

@@ -57,15 +57,13 @@ a {
 }
 
 /* map */
-#map,
 #nav {
 	position: absolute;
 }
 #map {
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
+	position: relative;
+	height: 550px;
+	width: 100%;
 }
 
 /* custom control */
@@ -194,4 +192,21 @@ label.title {
 td.balance-value {
 	width: 120px;
 	text-align: right;
+}
+
+th.balance-value {
+	text-align: right;
+}
+
+thead th {
+	font-size: 0.8em;
+	font-weight: bold;
+}
+
+ul.nav li.dropdown:hover > ul.dropdown-menu{
+    display: block;    
+}
+
+a.menu:after, .dropdown-toggle:after {
+    content: none;
 }

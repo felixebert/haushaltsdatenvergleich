@@ -1,8 +1,8 @@
 package de.ifcore.hdv.converter;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -26,7 +26,7 @@ public class BalanceFilter {
 	}
 
 	public Collection<BalanceItem> getItemsProKs(String ks) {
-		Map<String, BalanceItem> itemMap = new HashMap<>();
+		Map<String, BalanceItem> itemMap = new LinkedHashMap<>();
 		for (BalanceItem balanceItem : items) {
 			if (balanceItem.getKs().equals(ks)) {
 				BalanceItem bi = itemMap.get(balanceItem.getLabel());
