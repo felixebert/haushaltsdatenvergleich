@@ -3,11 +3,14 @@ package de.ifcore.hdv.converter.data;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import de.ifcore.hdv.converter.MinMaxProduct;
 
 public class MergedData {
 
 	private List<AccountsPerArea> areas;
+	@JsonIgnore
 	private Map<Integer, MinMaxProduct> products;
 	private Map<Integer, List<Integer>> tree;
 	private Map<Integer, String> productLabels;

@@ -1,21 +1,21 @@
 package de.ifcore.hdv.converter.split;
 
-import java.util.List;
 import java.util.Map;
 
 import de.ifcore.hdv.converter.MinMax;
+import de.ifcore.hdv.converter.data.AccountValue;
 
 public class Product {
 
-	private List<AccountsPerAreaSplit> areas;
+	private Map<String, Map<Integer, AccountValue>> areas;
 	private Map<Integer, MinMax> minmax;
 
-	public Product(List<AccountsPerAreaSplit> areas, Map<Integer, MinMax> minmax) {
+	public Product(Map<String, Map<Integer, AccountValue>> areas, Map<Integer, MinMax> minmax) {
 		this.areas = areas;
 		this.minmax = minmax;
 	}
 
-	public List<AccountsPerAreaSplit> getAreas() {
+	public Map<String, Map<Integer, AccountValue>> getAreas() {
 		return areas;
 	}
 

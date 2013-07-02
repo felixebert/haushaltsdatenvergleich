@@ -15,7 +15,7 @@ public class DataSplitterTest {
 		DataSplitter dataSplitter = new DataSplitter(mergedData);
 		DataSplit dataSplit = dataSplitter.split();
 		assertNotNull(dataSplit);
-		assertNotNull(dataSplit.getLabels());
+		assertEquals(mergedData, dataSplit.getMergedData());
 		assertTrue(dataSplit.getProducts().containsKey(100));
 	}
 }

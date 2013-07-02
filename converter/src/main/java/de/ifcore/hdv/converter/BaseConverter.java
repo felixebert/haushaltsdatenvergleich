@@ -30,10 +30,17 @@ public class BaseConverter {
 	}
 
 	public MergedData createMergedData() {
+		long time = System.currentTimeMillis();
 		parseData();
+		System.out.println("Daten parsen: " + (System.currentTimeMillis() - time) + " ms");
+		time = System.currentTimeMillis();
 		processData();
+		System.out.println("Daten aggregieren: " + (System.currentTimeMillis() - time) + " ms");
+		time = System.currentTimeMillis();
 		DataMerger dataMerger = new DataMerger();
-		return dataMerger.mergeData(parsedPopulation, parsedArea, parsedIncome, parsedSpendings);
+		MergedData mergedData = dataMerger.mergeData(parsedPopulation, parsedArea, parsedIncome, parsedSpendings);
+		System.out.println("Daten verarbeiten: " + (System.currentTimeMillis() - time) + " ms");
+		return mergedData;
 	}
 
 	protected void processData() {

@@ -27,9 +27,11 @@ public class Converter {
 				BaseConverter baseConverter = new BaseConverter(areaSizeParser, populationParser, incomeParser,
 						spendingsParser);
 				MergedData mergedData = baseConverter.createMergedData();
+				long time = System.currentTimeMillis();
 				DataSplitter splitter = new DataSplitter(mergedData);
 				DataSplit split = splitter.split();
 				Utils.writeSplittedData(split, outputDir);
+				System.out.println("Daten ausgeben: " + (System.currentTimeMillis() - time) + " ms");
 			}
 			catch (Exception e) {
 				e.printStackTrace();
