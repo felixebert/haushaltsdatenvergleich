@@ -1,33 +1,37 @@
 package de.ifcore.hdv.converter;
 
+import de.ifcore.hdv.converter.data.LongValue;
+
 public class ValueCalculator {
 
-	private Long value;
+	private LongValue value;
 	private long population;
 	private double size;
 
-	public ValueCalculator(Long value, long population, double size) {
+	public ValueCalculator(LongValue value, long population, double size) {
 		this.value = value;
 		this.population = population;
 		this.size = size;
 	}
 
-	public Long getValue() {
+	public LongValue getValue() {
 		return value;
 	}
 
-	private Long divideSafe(Long value1, long value2) {
-		if (value1 != null)
-			return Long.valueOf(value1 / value2);
+	private LongValue divideSafe(LongValue value1, long value2) {
+		if (value1.isValid()) {
+			long newValue = Long.valueOf(value1.getValue() / value2);
+			return LongValue.valueOf(newValue);
+		}
 		else
-			return null;
+			return value1;
 	}
 
-	public Long getValuePerArea() {
+	public LongValue getValuePerArea() {
 		return divideSafe(value, Math.round(size));
 	}
 
-	public Long getValuePerPopulation() {
+	public LongValue getValuePerPopulation() {
 		return divideSafe(value, population);
 	}
 }

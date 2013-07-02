@@ -2,7 +2,7 @@ package de.ifcore.hdv.converter;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Set;
 
 import org.junit.Test;
@@ -24,10 +24,10 @@ public class BalanceFilterTest {
 
 	@Test
 	public void itShouldReturnOnlyItemsWithGivenKs() throws Exception {
-		List<BalanceItem> list = filter.getItemsProKs("05111001");
+		Collection<BalanceItem> list = filter.getItemsProKs("05111001");
 		assertFalse(list.isEmpty());
 		for (BalanceItem balanceItem : list) {
-			assertTrue(balanceItem.getNo().equals("0100"));
+			assertTrue(balanceItem.getCurrent().getNo().equals("0100"));
 		}
 	}
 }

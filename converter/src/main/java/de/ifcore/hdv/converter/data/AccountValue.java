@@ -6,7 +6,7 @@ public class AccountValue {
 
 	@JsonIgnore
 	private int key;
-	private Long value;
+	private LongValue value;
 
 	public AccountValue(int key) {
 		this.key = key;
@@ -16,11 +16,11 @@ public class AccountValue {
 		return key;
 	}
 
-	public Long getValue() {
+	public LongValue getValue() {
 		return value;
 	}
 
-	public void setValue(Long value) {
+	public void setValue(LongValue value) {
 		this.value = value;
 	}
 }

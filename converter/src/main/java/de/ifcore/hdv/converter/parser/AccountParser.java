@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import de.ifcore.hdv.converter.data.Account;
+import de.ifcore.hdv.converter.data.LongValue;
 import de.ifcore.hdv.converter.utils.Utils;
 
 public abstract class AccountParser extends AbstractColumnCsvParser<Account> {
@@ -32,7 +33,7 @@ public abstract class AccountParser extends AbstractColumnCsvParser<Account> {
 					for (int x = 0; x < columnDefinitions.size(); x++) {
 						ColumnDefinition cd = columnDefinitions.get(x);
 						String value = strings[VALUE_COLMN + x];
-						Long convertedValue = Utils.parseLongSafe(value);
+						LongValue convertedValue = LongValue.valueOf(value);
 						result.add(new Account(areaKey, cd.getKey(), cd.getLabel(), parsedAccountKey, accountName,
 								convertedValue));
 					}

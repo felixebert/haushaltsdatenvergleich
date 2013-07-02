@@ -18,9 +18,9 @@ public class AccountValueSerializer extends StdSerializer<AccountValue> {
 	@Override
 	public void serialize(AccountValue value, JsonGenerator jgen, SerializerProvider provider) throws IOException,
 			JsonGenerationException {
-		if (value.getValue() == null)
-			jgen.writeNull();
+		if (value.getValue().isValid())
+			jgen.writeNumber(value.getValue().getValue());
 		else
-			jgen.writeNumber(value.getValue());
+			jgen.writeString(value.getValue().getOrgValue());
 	}
 }

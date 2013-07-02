@@ -2,6 +2,7 @@ package de.ifcore.hdv.converter;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -22,9 +23,9 @@ public class BalanceConverter {
 				BalanceFilter balanceFilter = new BalanceFilter(balance);
 				Set<String> allKs = balanceFilter.collectAllKs();
 				for (String ks : allKs) {
-					List<BalanceItem> itemsProKs = balanceFilter.getItemsProKs(ks);
+					Collection<BalanceItem> itemsProKs = balanceFilter.getItemsProKs(ks);
 					if (!itemsProKs.isEmpty()) {
-						BalanceItem areaLabelContainer = itemsProKs.get(0);
+						BalanceItem areaLabelContainer = extractAreaLabel(itemsProKs);
 						BalanceSheetBuilder builder = new BalanceSheetBuilder(accountClasses.getMainAccountClasses(),
 								accountClasses.getSubAccountClasses());
 						BalanceSheet sheet = builder.createBalanceSheet(itemsProKs, areaLabelContainer.getAreaLabel());
@@ -39,5 +40,9 @@ public class BalanceConverter {
 		}
 		else
 			System.out.println("Usage: <bilanz datei> <ausgabeverzeichnis>");
+	}
+
+	private static BalanceItem extractAreaLabel(Collection<BalanceItem> itemsProKs) {
+		return itemsProKs.iterator().next();
 	}
 }

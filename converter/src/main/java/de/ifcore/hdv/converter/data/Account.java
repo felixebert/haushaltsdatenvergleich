@@ -7,9 +7,10 @@ public class Account {
 	private String productName;
 	private int accountKey;
 	private String accountName;
-	private Long value;
+	private LongValue value;
 
-	public Account(String areaKey, int productKey, String productName, int accountKey, String accountName, Long value) {
+	public Account(String areaKey, int productKey, String productName, int accountKey, String accountName,
+			LongValue value) {
 		this.areaKey = areaKey;
 		this.productKey = productKey;
 		this.productName = productName;
@@ -30,7 +31,7 @@ public class Account {
 		return accountName;
 	}
 
-	public Long getValue() {
+	public LongValue getValue() {
 		return value;
 	}
 

@@ -1,6 +1,7 @@
 package de.ifcore.hdv.converter;
 
 import de.ifcore.hdv.converter.data.AccountsPerArea;
+import de.ifcore.hdv.converter.data.LongValue;
 
 public class MinMax {
 
@@ -11,46 +12,45 @@ public class MinMax {
 	public static final int MAX_VALUE_PER_AREA = 4;
 	public static final int MIN_VALUE_PER_AREA = 5;
 	private int key;
-	private Long[] data = new Long[3 * 2];
+	private LongValue[] data = new LongValue[3 * 2];
 
 	public MinMax(int key) {
 		this.key = key;
+		for (int x = 0; x < data.length; x++) {
+			data[x] = LongValue.NA;
+		}
 	}
 
 	public int getKey() {
 		return key;
 	}
 
-	protected void addValue(Long value, AccountsPerArea accountsPerArea) {
+	protected void addValue(LongValue value, AccountsPerArea accountsPerArea) {
 		ValueCalculator calc = new ValueCalculator(value, accountsPerArea.getPopulation(), accountsPerArea.getSize());
 		addMinMaxValue(calc.getValue(), MIN_VALUE, MAX_VALUE);
 		addMinMaxValue(calc.getValuePerArea(), MIN_VALUE_PER_AREA, MAX_VALUE_PER_AREA);
 		addMinMaxValue(calc.getValuePerPopulation(), MIN_VALUE_PER_POP, MAX_VALUE_PER_POP);
 	}
 
-	private void addMinMaxValue(Long value, int min, int max) {
-		if (value != null) {
-			if (data[min] == null)
+	private void addMinMaxValue(LongValue value, int min, int max) {
+		if (value.isValid()) {
+			if (!data[min].isValid())
 				data[min] = value;
-			if (data[max] == null)
+			if (!data[max].isValid())
 				data[max] = value;
-			data[min] = Math.min(data[min], value);
-			data[max] = Math.max(data[max], value);
+			data[min] = LongValue.valueOf(Math.min(data[min].getValue(), value.getValue()));
+			data[max] = LongValue.valueOf(Math.max(data[max].getValue(), value.getValue()));
 		}
 	}
 
-	public Long[] getData() {
+	public LongValue[] getData() {
 		return data;
-	}
-
-	public Long getDataValue(int index) {
-		return data[index];
 	}
 
 	public boolean hasData() {
 		boolean result = false;
-		for (Long l : data) {
-			result = result || l != null;
+		for (LongValue l : data) {
+			result = result || l.isValid();
 		}
 		return result;
 	}

@@ -11,6 +11,7 @@ import java.util.TreeSet;
 import de.ifcore.hdv.converter.data.AccountClass;
 import de.ifcore.hdv.converter.data.AccountsPerArea;
 import de.ifcore.hdv.converter.data.BalanceItem;
+import de.ifcore.hdv.converter.data.BalanceValue;
 import de.ifcore.hdv.converter.data.Category;
 import de.ifcore.hdv.converter.data.InOutProduct;
 import de.ifcore.hdv.converter.data.MergedData;
@@ -36,9 +37,15 @@ public class DataMocks {
 	}
 
 	public static List<BalanceItem> mockBalanceItems() {
-		return Arrays.asList(new BalanceItem("05111001", "ort", "0100", "test1", Long.valueOf(1)), new BalanceItem(
-				"05111002", "ort", "1000", "test2", Long.valueOf(2)), new BalanceItem("05111003", "ort", "2000",
-				"test3", Long.valueOf(3)));
+		return Arrays.asList(mockBalanceItem("05111001", "ort", "0100", "test1", 1),
+				mockBalanceItem("05111002", "ort", "1000", "test2", 2),
+				mockBalanceItem("05111003", "ort", "2000", "test3", 3));
+	}
+
+	public static BalanceItem mockBalanceItem(String ks, String areaLabel, String no, String label, long value) {
+		BalanceItem bi = new BalanceItem(ks, areaLabel, label);
+		bi.setCurrent(new BalanceValue(no, Long.valueOf(value)));
+		return bi;
 	}
 
 	public static SortedSet<AccountClass> mockMainAccountClasses() {

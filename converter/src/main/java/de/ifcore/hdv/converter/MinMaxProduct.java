@@ -7,6 +7,7 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import de.ifcore.hdv.converter.data.AccountsPerArea;
+import de.ifcore.hdv.converter.data.LongValue;
 
 public class MinMaxProduct {
 
@@ -37,7 +38,7 @@ public class MinMaxProduct {
 		accounts.put(accountKey, new MinMax(accountKey));
 	}
 
-	public void addValue(int accountKey, Long value, AccountsPerArea accountsPerArea) {
+	public void addValue(int accountKey, LongValue value, AccountsPerArea accountsPerArea) {
 		MinMax minMax = accounts.get(accountKey);
 		if (minMax == null) {
 			minMax = new MinMax(accountKey);

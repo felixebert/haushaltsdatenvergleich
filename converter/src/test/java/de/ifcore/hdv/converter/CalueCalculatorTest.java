@@ -4,26 +4,32 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import de.ifcore.hdv.converter.data.LongValue;
+
 public class CalueCalculatorTest {
 
-	ValueCalculator calcNullValues = new ValueCalculator(null, 10, 2);
-	ValueCalculator calc = new ValueCalculator(Long.valueOf(2000), 10, 2);
+	ValueCalculator calcNullValues = new ValueCalculator(LongValue.NA, 10, 2);
+	ValueCalculator calc = new ValueCalculator(LongValue.valueOf(2000), 10, 2);
 
 	@Test
 	public void itShouldReturnIncomeAndSpendingsUnmodified() throws Exception {
-		assertNull(calcNullValues.getValue());
-		assertEquals(Long.valueOf(2000), calc.getValue());
+		assertFalse(calcNullValues.getValue().isValid());
+		assertLongValue(2000, calc.getValue());
 	}
 
 	@Test
 	public void itShouldReturnPerAreaValues() throws Exception {
-		assertNull(calcNullValues.getValuePerArea());
-		assertEquals(Long.valueOf(1000), calc.getValuePerArea());
+		assertFalse(calcNullValues.getValuePerArea().isValid());
+		assertLongValue(1000, calc.getValuePerArea());
 	}
 
 	@Test
 	public void itShouldReturnPerPopulationValues() throws Exception {
-		assertNull(calcNullValues.getValuePerPopulation());
-		assertEquals(Long.valueOf(200), calc.getValuePerPopulation());
+		assertFalse(calcNullValues.getValuePerPopulation().isValid());
+		assertLongValue(200, calc.getValuePerPopulation());
+	}
+
+	private static void assertLongValue(long expected, LongValue actual) {
+		assertEquals(Long.valueOf(expected), actual.getValue());
 	}
 }
