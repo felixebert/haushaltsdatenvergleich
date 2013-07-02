@@ -43,12 +43,101 @@
 		}
 	});
 
+	var settings = {};
+	var settingsService = {
+		init: function() {
+			$('.settings').on('change', _.bind(this.update, this));
+			this.update();
+		},
+		update: function() {
+			var settings = hdv.serialize.toLiteral($('.settings').serializeArray());
+			hdv.settings = this.mergeSettings(settings, hdv.defaults);
+			$(hdv).triggerHandler('settingsUpdate');
+		},
+		mergeSettings: function(settings, defaults) {
+			settings.product = this.mergeProperty(settings.product, defaults.product);
+			settings.account = this.mergeProperty(settings.account, defaults.account);
+			return settings;
+		},
+		mergeProperty: function(value, defaultValue) {
+			return !value || value === 'none' ? defaultValue : value;
+		}
+	};
+
+	var loader = {
+		loadStatus: {},
+		init: function() {
+			$(hdv).on('map.loaded.areaLayers map.loaded.data map.loaded.meta', _.bind(this.done, this));
+			$(hdv).on('settingsUpdate', _.bind(this.update, this));
+		},
+		update: function() {
+			this.loadAreaLayers(hdv.settings.areaLayer);
+			this.loadValues(hdv.settings.areaLayer, hdv.settings.year, hdv.settings.product);
+			this.loadMeta(hdv.settings.areaLayer, hdv.settings.year);
+		},
+		done: function() {
+			if (!_.isEmpty(hdv.data.areaLayers) && !_.isEmpty(hdv.data.values)) {
+				$('.ajax-loader').hide();
+
+				// $('.settings select[name="pg"] option[value="' +
+				// hdv.defaults.pg + '"]').prop('selected', true);
+				// $('.settings select[name="year"] option[value="' +
+				// hdv.defaults.year + '"]').prop('selected', true);
+			}
+		},
+		loadAreaLayers: function(type) {
+			if (this.loadStatus.areaLayers !== type) {
+				$('.ajax-loader').show();
+
+				$.getJSON('data/' + type + '.geojson', _.bind(function(data) {
+					hdv.map.removeLayers(hdv.data.areaLayers);
+					hdv.data.areaLayers = [];
+
+					hdv.map.addAreaLayers(data, _.bind(hdv.data.addAreaLayer, hdv.data));
+
+					this.loadStatus.areaLayers = type;
+					$(hdv).triggerHandler('map.loaded.areaLayers');
+				}, this));
+			}
+		},
+		loadValues: function(areaType, year, product) {
+			var jsonFile = year + '/' + areaType + '/' + product;
+			if (this.loadStatus.values !== jsonFile) {
+				$('.ajax-loader').show();
+
+				$.getJSON('data/' + jsonFile + '.json', _.bind(function(data) {
+					hdv.data.values = data;
+					this.loadStatus.values = jsonFile;
+					$(hdv).triggerHandler('map.loaded.data');
+				}, this));
+			}
+		},
+		loadMeta: function(areaType, year) {
+
+		}
+	};
+
+	var data = {
+		areaLayers: [],
+		meta: {},
+		values: {},
+		getAreaLayer: function(key) {
+			return _.find(this.areaLayers, function(area) {
+				return area.key == key;
+			});
+		},
+		addAreaLayer: function(feature, layer) {
+			this.areaLayers.push({
+				'key': feature.properties.KN ? feature.properties.KN : feature.properties.AGS,
+				'label': feature.properties.GN ? feature.properties.GN : feature.properties.GEN,
+				'attribute': feature.properties.DES,
+				'value': layer
+			});
+		}
+	};
+
 	var map = {
 		leafletMap: null,
-		areaLayers: [],
-		data: {},
-		loadedAreaLayers: null,
-		loadedData: null,
 		templates: {},
 		init: function() {
 			this.leafletMap = L.map('map', {
@@ -59,27 +148,19 @@
 				attributionControl: false
 			});
 
-			this.initForm(hdv.defaults);
-
+			this.setupForm(hdv.defaults);
 			this.addTileLayer();
 			this.addAttributionControl();
-			this.initModals();
+			this.setupModals();
 			this.addSettingsControl();
-
-			this.setupEvents();
 			this.setupTemplates();
-			this.reload();
 		},
-		initForm: function(defaults) {
+		setupForm: function(defaults) {
 			$('.settings input[name="relation"]').filter('[value="' + hdv.defaults.relation + '"]').prop('checked', true);
 			$('.settings input[name="areaLayer"]').filter('[value="' + hdv.defaults.areaLayer + '"]').prop('checked', true);
 		},
 		setupTemplates: function() {
 			this.templates.popup = Handlebars.compile($('#popup-template').html());
-		},
-		setupEvents: function() {
-			$(hdv).on('map.loaded.areaLayers map.loaded.data', _.bind(this.fireMapIsReady, this));
-			$('.settings').on('change', _.bind(this.reload, this));
 		},
 		addTileLayer: function() {
 			L.tileLayer('http://{s}.tile.cloudmade.com/036a729cf53d4388a8ec345e1543ef53/44094/256/{z}/{x}/{y}.png', {
@@ -94,7 +175,7 @@
 				$('#imprint').modal('toggle');
 			});
 		},
-		initModals: function() {
+		setupModals: function() {
 			var modals = ['info', 'imprint'];
 			_.each(modals, function(modalId) {
 				$('#' + modalId).modal({
@@ -112,78 +193,25 @@
 				this.settingsControl.toggleNav();
 			}, this));
 		},
-		fireMapIsReady: function() {
-			if (!_.isEmpty(this.data) && !_.isEmpty(this.areaLayers)) {
-				$('.ajax-loader').hide();
-
-				$('.settings select[name="pg"] option[value="' + hdv.defaults.pg + '"]').prop('selected', true);
-				$('.settings select[name="year"] option[value="' + hdv.defaults.year + '"]').prop('selected', true);
-
-				$(hdv).triggerHandler('map.ready');
-			}
+		removeLayers: function(layers) {
+			_.each(layers, _.bind(function(layer) {
+				this.leafletMap.removeLayer(layer.value);
+			}, this));
 		},
-		loadAreaLayers: function(type) {
-			if (this.loadedAreaLayers !== type) {
-				$('.ajax-loader').show();
-
-				_.each(this.areaLayers, _.bind(function(areaLayer) {
-					this.leafletMap.removeLayer(areaLayer.value);
-				}, this));
-				this.areaLayers = [];
-				this.loadedAreaLayers = null;
-
-				$.getJSON('data/' + type + '.geojson', _.bind(function(data) {
-					this.addAreaLayers(data);
-					this.loadedAreaLayers = type;
-					$(hdv).triggerHandler('map.loaded.areaLayers');
-				}, this));
-			}
-		},
-		addAreaLayers: function(geojson) {
+		addAreaLayers: function(geojson, callback) {
 			L.geoJson(geojson.features, {
 				style: {
 					'opacity': 0.5,
 					'weight': 1
 				},
-				onEachFeature: _.bind(this.addAreaLayer, this)
+				onEachFeature: callback
 			}).addTo(this.leafletMap);
-		},
-		addAreaLayer: function(feature, layer) {
-			this.areaLayers.push({
-				'key': feature.properties.KN ? feature.properties.KN : feature.properties.AGS,
-				'label': feature.properties.GN ? feature.properties.GN : feature.properties.GEN,
-				'attribute': feature.properties.DES,
-				'value': layer
-			});
-		},
-		getAreaLayer: function(key) {
-			return _.find(this.areaLayers, function(area) {
-				return area.key == key;
-			});
-		},
-		loadData: function(areaType, year) {
-			var jsonFile = 'finanzen-' + areaType + '-' + year;
-			if (this.loadedData !== jsonFile) {
-				$('.ajax-loader').show();
-				this.data = {};
-				this.loadedData = null;
-
-				$.getJSON('data/' + jsonFile + '.json', _.bind(function(data) {
-					this.setData(data);
-					this.loadedData = jsonFile;
-					$(hdv).triggerHandler('map.loaded.data');
-				}, this));
-			}
-		},
-		setData: function(data) {
-			this.data = data;
-		},
-		reload: function() {
-			var settings = hdv.serialize.toLiteral($('.settings').serializeArray());
-			this.loadAreaLayers(settings.areaLayer);
-			this.loadData(settings.areaLayer, settings.year);
 		}
 	};
 
 	hdv.map = map;
+	hdv.loader = loader;
+	hdv.settingsService = settingsService;
+	hdv.data = data;
+	hdv.settings = settings;
 })(hdv, L, $, _);

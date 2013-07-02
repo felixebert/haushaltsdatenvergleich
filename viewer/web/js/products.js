@@ -4,8 +4,8 @@
 	var accounts = {
 		selectedGroup: 'all',
 		init: function() {
-			$(hdv).on('map.loaded.data', _.bind(this.reset, this));
-			$('.settings').on('change', _.bind(this.refresh, this));
+			// $(hdv).on('map.loaded.data', _.bind(this.reset, this));
+			// $('.settings').on('change', _.bind(this.refresh, this));
 		},
 		reset: function() {
 			this.resetAccountGroups();

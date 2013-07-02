@@ -40,7 +40,7 @@
 	var areas = {
 		init: function() {
 			$(hdv).on('map.ready', _.bind(this.refresh, this));
-			$('.settings').on('change', _.bind(this.refresh, this));
+			// $('.settings').on('change', _.bind(this.refresh, this));
 		},
 		getTemplateObject: function(valueLabel, layer, area, value, accountValue) {
 			return {

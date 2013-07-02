@@ -5,9 +5,16 @@ var hdv = {
 		lon: 7.18,
 		zoom: 9,
 		product: 999,
+		account: 400,
 		relation: 'none',
 		areaLayer: 'gemeinden',
 		year: 2009
+	},
+	init: function() {
+		this.initDefaults();
+		hdv.map.init(this.defaults);
+		hdv.loader.init();
+		hdv.settingsService.init();
 	},
 	initDefaults: function() {
 		_.extend(hdv.defaults, this.extractDefaultsInSearchQuery(window.location.search));
