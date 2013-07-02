@@ -1,6 +1,6 @@
 package de.ifcore.hdv.converter.split;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -20,9 +20,7 @@ public class DataSplitter {
 
 	public DataSplit split() {
 		Map<Integer, List<Integer>> tree = mergedData.getTree();
-		Labels labels = new Labels(tree, mergedData.getProductLabels(), mergedData.getIncomeLabels(),
-				mergedData.getSpendingsLabels());
-		DataSplit dataSplit = new DataSplit(labels);
+		DataSplit dataSplit = new DataSplit(mergedData);
 		for (Entry<Integer, List<Integer>> entry : tree.entrySet()) {
 			for (Integer productId : entry.getValue()) {
 				Product product = createProduct(productId);
@@ -33,18 +31,18 @@ public class DataSplitter {
 	}
 
 	private Product createProduct(Integer productId) {
-		List<AccountsPerAreaSplit> areas = new ArrayList<>();
+		Map<String, Map<Integer, AccountValue>> areas = new HashMap<>();
+		Map<Integer, AccountValue> emptyAccountMap = new HashMap<>();
+		Map<Integer, MinMax> emptyMinMaxAccounts = new HashMap<>();
 		for (AccountsPerArea apa : mergedData.getAreas()) {
-			Map<Integer, AccountValue> accounts = null;
+			Map<Integer, AccountValue> accounts = emptyAccountMap;
 			if (apa.getProducts().containsKey(productId)) {
 				accounts = apa.getProducts().get(productId).getAccounts();
 			}
-			AccountsPerAreaSplit productApa = new AccountsPerAreaSplit(apa.getKey(), apa.getPopulation(),
-					apa.getSize(), accounts);
-			areas.add(productApa);
+			areas.put(apa.getKey(), accounts);
 		}
 		Map<Integer, MinMax> minMaxAccounts = mergedData.getProducts().containsKey(productId) ? mergedData
-				.getProducts().get(productId).getAccounts() : null;
+				.getProducts().get(productId).getAccounts() : emptyMinMaxAccounts;
 		return new Product(areas, minMaxAccounts);
 	}
 }
