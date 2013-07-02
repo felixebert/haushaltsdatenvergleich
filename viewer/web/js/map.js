@@ -61,6 +61,9 @@
 		},
 		mergeProperty: function(value, defaultValue) {
 			return !value || value === 'none' ? defaultValue : value;
+		},
+		resetAccount: function() {
+			hdv.settings = hdv.defaults.account;
 		}
 	};
 
@@ -184,7 +187,7 @@
 		},
 		setupForm: function(defaults) {
 			$('.settings input[name="relation"]').filter('[value="' + hdv.defaults.relation + '"]').prop('checked', true);
-			$('.settings input[name="areaLayer"]').filter('[value="' + hdv.defaults.areaLayer + '"]').prop('checked', true);
+			$('.settings input[name="areaType"]').filter('[value="' + hdv.defaults.areaType + '"]').prop('checked', true);
 		},
 		setupTemplates: function() {
 			this.templates.popup = Handlebars.compile($('#popup-template').html());
