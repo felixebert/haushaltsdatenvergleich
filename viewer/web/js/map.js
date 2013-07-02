@@ -71,7 +71,7 @@
 	var loader = {
 		loadStatus: {},
 		init: function() {
-			$(hdv).on('loaded.areaLayers loaded.data loaded.meta', _.bind(this.done, this));
+			$(hdv).on('loaded.areaLayers loaded.data loaded.metadata', _.bind(this.done, this));
 			$(hdv).on('settingsUpdate', _.bind(this.update, this));
 		},
 		update: function() {
