@@ -1,63 +1,68 @@
 'use strict';
 
 (function(hdv, $, _) {
-	var accounts = {
-		selectedGroup: 'all',
+	var productSelectList = {
 		init: function() {
-			// $(hdv).on('map.loaded.data', _.bind(this.reset, this));
-			// $('.settings').on('change', _.bind(this.refresh, this));
+			$(hdv).on('loaded.metadata', _.bind(this.reset, this));
 		},
 		reset: function() {
-			this.resetAccountGroups();
-			this.resetAccounts();
+			var selectList = $('select[name="product"]');
+			selectList.html(this.generateHtml(hdv.data.meta.tree, hdv.data.meta.productLabels));
+			selectList.val(hdv.settings.product);
 		},
-		refresh: function() {
-			if (this.selectedGroup !== $('select[name="pb"]').val()) {
-				this.selectedGroup = $('select[name="pb"]').val();
-				this.resetAccounts();
+		generateHtml: function(tree, labels) {
+			var html = '';
+			_.each(_.keys(tree), _.bind(function(groupKey) {
+				html += '<optgroup label="' + labels[groupKey] + '">';
+				html += this.generateOptions(tree[groupKey], labels);
+				html += '</optgroup>';
+			}, this));
+			return html;
+		},
+		generateOptions: function(keys, labels) {
+			var html = '';
+			_.each(keys, function(key) {
+				html += '<option value="' + key + '">' + labels[key] + '</option>';
+			});
+			return html;
+		}
+	};
+
+	var accountSelectList = {
+		init: function() {
+			$(hdv).on('loader.finished', _.bind(this.reset, this));
+		},
+		reset: function() {
+			var selectList = $('select[name="account"]');
+			var accounts = this.getAccountsWithValues(hdv.data.values.areas);
+			if (_.indexOf(accounts, hdv.settings.account) < 0) {
+				hdv.settingsService.resetAccount();
 			}
+			selectList.html(this.generateHtml(accounts, hdv.data.meta.incomeLabels, hdv.data.meta.spendingsLabels));
+			selectList.val(hdv.settings.account);
 		},
-		resetAccountGroups: function() {
-			var selectList = $('select[name="pb"]');
-			selectList.empty();
-			selectList.append($("<option />").val('all').text('Alle'));
-			_.each(_.keys(hdv.map.data.tree), _.bind(function(groupKey) {
-				this.addOption(selectList, groupKey);
-			}, this));
-
-			selectList.val(this.selectedGroup);
+		getAccountsWithValues: function(areas) {
+			var accounts = ['6', '7'];
+			_.each(_.values(areas), function(areaAccounts) {
+				accounts = accounts.concat(_.keys(areaAccounts));
+			});
+			return _.uniq(accounts);
 		},
-		resetAccounts: function() {
-			var selectList = $('select[name="pg"]');
-
-			selectList.empty();
-			if (this.selectedGroup === 'all') {
-				this.addAllAccounts(selectList);
-			} else {
-				this.addAccountsOfGroup(selectList, this.selectedGroup);
-			}
-
-			selectList.val(this.selectedAccount);
+		generateHtml: function(accounts, incomeLabels, spendingsLabels) {
+			var html = '';
+			html += this.generateOptGroup(accounts, incomeLabels, 'Einnahmen');
+			html += this.generateOptGroup(accounts, spendingsLabels, 'Ausgaben');
+			return html;
 		},
-		addAllAccounts: function(selectList) {
-			_.each(_.keys(hdv.map.data.tree), _.bind(function(groupKey) {
-				var groupAccount = hdv.map.data.accounts[groupKey];
-				var optGroup = $('<optgroup />').attr('label', groupAccount.label);
-				this.addAccountsOfGroup(optGroup, groupKey);
-				selectList.append(optGroup);
-			}, this));
-		},
-		addAccountsOfGroup: function(parentElement, groupKey) {
-			_.each(hdv.map.data.tree[groupKey], _.bind(function(accountKey) {
-				this.addOption(parentElement, accountKey);
-			}, this));
-		},
-		addOption: function(parentElement, accountKey) {
-			var account = hdv.map.data.accounts[accountKey];
-			parentElement.append($("<option />").val(account.key).text(account.label));
-		},
-		getSelectedAccount: function(selectedAccount) {
-			return parseInt(selectedAccount, 10);
+		generateOptGroup: function(accounts, labels, groupLabel) {
+			var html = '<optgroup label="' + groupLabel + '">';
+			_.each(_.keys(labels), function(accountId) {
+				if (_.indexOf(accounts, accountId) >= 0) {
+					html += '<option value="' + accountId + '">' + labels[accountId] + '</option>';
+				}
+			});
+			html += '</optgroup>';
+			return html;
 		}
 	};
 
@@ -111,7 +116,12 @@
 		}
 	};
 
-	hdv.accounts = accounts;
+	hdv.productSelectList = productSelectList;
+	hdv.productSelectList.init();
+
+	hdv.accountSelectList = accountSelectList;
+	hdv.accountSelectList.init();
+
+	hdv.accounts = {};
 	hdv.accountBoundaries = accountBoundaries;
-	accounts.init();
 })(hdv, $, _);

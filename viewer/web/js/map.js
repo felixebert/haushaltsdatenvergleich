@@ -61,66 +61,87 @@
 		},
 		mergeProperty: function(value, defaultValue) {
 			return !value || value === 'none' ? defaultValue : value;
+		},
+		resetAccount: function() {
+			hdv.settings = hdv.defaults.account;
 		}
 	};
 
 	var loader = {
 		loadStatus: {},
 		init: function() {
-			$(hdv).on('map.loaded.areaLayers map.loaded.data map.loaded.meta', _.bind(this.done, this));
+			$(hdv).on('loaded.areaLayers loaded.data loaded.meta', _.bind(this.done, this));
 			$(hdv).on('settingsUpdate', _.bind(this.update, this));
 		},
 		update: function() {
-			this.loadAreaLayers(hdv.settings.areaLayer);
-			this.loadValues(hdv.settings.areaLayer, hdv.settings.year, hdv.settings.product);
-			this.loadMeta(hdv.settings.areaLayer, hdv.settings.year);
+			this.loadAreaLayers(hdv.settings.areaType);
+			this.loadValues(this.getValueFile(hdv.settings.areaType, hdv.settings.year, hdv.settings.product));
+			this.loadMetadata(this.getMetadataFile(hdv.settings.areaType, hdv.settings.year));
 		},
 		done: function() {
-			if (!_.isEmpty(hdv.data.areaLayers) && !_.isEmpty(hdv.data.values)) {
+			if (this.allLoaded()) {
 				$('.ajax-loader').hide();
-
+				$(hdv).triggerHandler('loader.finished');
 				// $('.settings select[name="pg"] option[value="' +
 				// hdv.defaults.pg + '"]').prop('selected', true);
 				// $('.settings select[name="year"] option[value="' +
 				// hdv.defaults.year + '"]').prop('selected', true);
 			}
 		},
-		loadAreaLayers: function(type) {
-			if (this.loadStatus.areaLayers !== type) {
+		allLoaded: function() {
+			return this.areaLayersLoaded(hdv.settings.areaType)
+					&& this.valuesLoaded(this.getValueFile(hdv.settings.areaType, hdv.settings.year, hdv.settings.product))
+					&& this.metadataLoaded(this.getMetadataFile(hdv.settings.areaType, hdv.settings.year));
+		},
+		areaLayersLoaded: function(areaType) {
+			return this.loadStatus.areaType === areaType;
+		},
+		loadAreaLayers: function(areaType) {
+			if (!this.areaLayersLoaded(areaType)) {
 				$('.ajax-loader').show();
 
-				$.getJSON('data/' + type + '.geojson', _.bind(function(data) {
+				$.getJSON('data/' + areaType + '.geojson', _.bind(function(data) {
 					hdv.map.removeLayers(hdv.data.areaLayers);
 					hdv.data.areaLayers = [];
 
 					hdv.map.addAreaLayers(data, _.bind(hdv.data.addAreaLayer, hdv.data));
 
-					this.loadStatus.areaLayers = type;
-					$(hdv).triggerHandler('map.loaded.areaLayers');
+					this.loadStatus.areaType = areaType;
+					$(hdv).triggerHandler('loaded.areaLayers');
 				}, this));
 			}
 		},
-		loadValues: function(areaType, year, product) {
-			var jsonFile = year + '/' + areaType + '/' + product;
-			if (this.loadStatus.values !== jsonFile) {
+		getValueFile: function(areaType, year, product) {
+			return year + '/' + areaType + '/' + product + '.json';
+		},
+		valuesLoaded: function(valueFile) {
+			return this.loadStatus.values === valueFile;
+		},
+		loadValues: function(valueFile) {
+			if (!this.valuesLoaded(valueFile)) {
 				$('.ajax-loader').show();
 
-				$.getJSON('data/' + jsonFile + '.json', _.bind(function(data) {
+				$.getJSON('data/' + valueFile, _.bind(function(data) {
 					hdv.data.values = data;
-					this.loadStatus.values = jsonFile;
-					$(hdv).triggerHandler('map.loaded.data');
+					this.loadStatus.values = valueFile;
+					$(hdv).triggerHandler('loaded.data');
 				}, this));
 			}
 		},
-		loadMeta: function(areaType, year) {
-			var jsonFile = year + '/' + areaType + '/metadata';
-			if (this.loadStatus.meta !== jsonFile) {
+		getMetadataFile: function(areaType, year) {
+			return year + '/' + areaType + '/metadata.json';
+		},
+		metadataLoaded: function(metadataFile) {
+			return this.loadStatus.metadata === metadataFile;
+		},
+		loadMetadata: function(metadataFile) {
+			if (!this.metadataLoaded(metadataFile)) {
 				$('.ajax-loader').show();
 
-				$.getJSON('data/' + jsonFile + '.json', _.bind(function(data) {
+				$.getJSON('data/' + metadataFile, _.bind(function(data) {
 					hdv.data.meta = data;
-					this.loadStatus.meta = jsonFile;
-					$(hdv).triggerHandler('map.loaded.meta');
+					this.loadStatus.metadata = metadataFile;
+					$(hdv).triggerHandler('loaded.metadata');
 				}, this));
 			}
 		}
@@ -166,7 +187,7 @@
 		},
 		setupForm: function(defaults) {
 			$('.settings input[name="relation"]').filter('[value="' + hdv.defaults.relation + '"]').prop('checked', true);
-			$('.settings input[name="areaLayer"]').filter('[value="' + hdv.defaults.areaLayer + '"]').prop('checked', true);
+			$('.settings input[name="areaType"]').filter('[value="' + hdv.defaults.areaType + '"]').prop('checked', true);
 		},
 		setupTemplates: function() {
 			this.templates.popup = Handlebars.compile($('#popup-template').html());

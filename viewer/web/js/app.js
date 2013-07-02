@@ -5,9 +5,9 @@ var hdv = {
 		lon: 7.18,
 		zoom: 9,
 		product: 999,
-		account: 400,
+		account: 7,
 		relation: 'none',
-		areaLayer: 'gemeinden',
+		areaType: 'gemeinden',
 		year: 2009
 	},
 	init: function() {
