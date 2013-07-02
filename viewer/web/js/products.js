@@ -28,6 +28,44 @@
 		}
 	};
 
+	var accountSelectList = {
+		init: function() {
+			$(hdv).on('loader.finished', _.bind(this.reset, this));
+		},
+		reset: function() {
+			var selectList = $('select[name="account"]');
+			var accounts = this.getAccountsWithValues(hdv.data.values.areas);
+			if (_.indexOf(accounts, hdv.settings.account) < 0) {
+				hdv.settingsService.resetAccount();
+			}
+			selectList.html(this.generateHtml(accounts, hdv.data.meta.incomeLabels, hdv.data.meta.spendingsLabels));
+			selectList.val(hdv.settings.account);
+		},
+		getAccountsWithValues: function(areas) {
+			var accounts = ['6', '7'];
+			_.each(_.values(areas), function(areaAccounts) {
+				accounts = accounts.concat(_.keys(areaAccounts));
+			});
+			return _.uniq(accounts);
+		},
+		generateHtml: function(accounts, incomeLabels, spendingsLabels) {
+			var html = '';
+			html += this.generateOptGroup(accounts, incomeLabels, 'Einnahmen');
+			html += this.generateOptGroup(accounts, spendingsLabels, 'Ausgaben');
+			return html;
+		},
+		generateOptGroup: function(accounts, labels, groupLabel) {
+			var html = '<optgroup label="' + groupLabel + '">';
+			_.each(_.keys(labels), function(accountId) {
+				if (_.indexOf(accounts, accountId) >= 0) {
+					html += '<option value="' + accountId + '">' + labels[accountId] + '</option>';
+				}
+			});
+			html += '</optgroup>';
+			return html;
+		}
+	};
+
 	/**
 	 * Je Produktgruppe (Account) sind 6 Grenzwerte unter dem Attribut "data"
 	 * vorhanden. Diese Grenzwerte unterteilen sich in 3 Gruppen, die das
@@ -80,6 +118,9 @@
 
 	hdv.productSelectList = productSelectList;
 	hdv.productSelectList.init();
+
+	hdv.accountSelectList = accountSelectList;
+	hdv.accountSelectList.init();
 
 	hdv.accounts = {};
 	hdv.accountBoundaries = accountBoundaries;
