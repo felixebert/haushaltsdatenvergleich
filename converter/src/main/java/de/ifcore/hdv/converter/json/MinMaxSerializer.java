@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
 import de.ifcore.hdv.converter.MinMax;
-import de.ifcore.hdv.converter.data.LongValue;
 
 public class MinMaxSerializer extends StdSerializer<MinMax> {
 
@@ -20,11 +19,11 @@ public class MinMaxSerializer extends StdSerializer<MinMax> {
 	public void serialize(MinMax value, JsonGenerator jgen, SerializerProvider provider) throws IOException,
 			JsonGenerationException {
 		jgen.writeStartArray();
-		for (LongValue l : value.getData()) {
-			if (l.isValid())
-				jgen.writeNumber(l.getValue().longValue());
+		for (Double doubleValue : value.getData()) {
+			if (doubleValue != null)
+				jgen.writeNumber(doubleValue.doubleValue());
 			else
-				jgen.writeString(l.getOrgValue());
+				jgen.writeNull();
 		}
 		jgen.writeEndArray();
 	}

@@ -21,9 +21,9 @@ public class DataMerger {
 
 	private Map<Integer, MinMaxProduct> productMap = new HashMap<>();
 	private CategoryTree tree;
-	private Map<Integer, String> productLabels = new HashMap<>();
-	private Map<Integer, String> incomeLabels = new HashMap<>();
-	private Map<Integer, String> spendingsLabels = new HashMap<>();
+	private AccountLabels productLabels = new AccountLabels();
+	private AccountLabels incomeLabels = new AccountLabels();
+	private AccountLabels spendingsLabels = new AccountLabels();
 
 	public MergedData mergeData(Map<String, Population> populationMap, Map<String, Double> areaSizes,
 			List<Account> income, List<Account> spendings) {
@@ -52,7 +52,8 @@ public class DataMerger {
 			}
 		}
 		filterNullValuesInProducts();
-		return new MergedData(result, productMap, tree.getTree(), productLabels, incomeLabels, spendingsLabels);
+		return new MergedData(result, productMap, tree.getTree(), productLabels.asSortedMap(),
+				incomeLabels.asSortedMap(), spendingsLabels.asSortedMap());
 	}
 
 	private void filterNullValuesInProducts() {
@@ -66,17 +67,17 @@ public class DataMerger {
 		collectProductsIntoProductMap(spendings, false);
 		tree = CategoryMerger.createTree(MainCategories.getInstance().getCategories(), productMap.values());
 		for (Category category : MainCategories.getInstance().getCategories()) {
-			productLabels.put(category.getKey(), category.getLabel());
+			productLabels.add(category.getKey(), category.getLabel());
 		}
 	}
 
 	private void collectProductsIntoProductMap(Collection<Account> accounts, boolean income) {
 		for (Account account : accounts) {
-			productLabels.put(account.getProductKey(), account.getProductName());
+			productLabels.add(account.getProductKey(), account.getProductName());
 			if (income)
-				incomeLabels.put(account.getAccountKey(), account.getAccountName());
+				incomeLabels.add(account.getAccountKey(), account.getAccountName());
 			else
-				spendingsLabels.put(account.getAccountKey(), account.getAccountName());
+				spendingsLabels.add(account.getAccountKey(), account.getAccountName());
 			MinMaxProduct product = productMap.get(account.getProductKey());
 			if (product == null) {
 				product = new MinMaxProduct(account.getProductKey(), account.getProductName());

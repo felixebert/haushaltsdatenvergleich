@@ -12,13 +12,10 @@ public class MinMax {
 	public static final int MAX_VALUE_PER_AREA = 4;
 	public static final int MIN_VALUE_PER_AREA = 5;
 	private int key;
-	private LongValue[] data = new LongValue[3 * 2];
+	private Double[] data = new Double[3 * 2];
 
 	public MinMax(int key) {
 		this.key = key;
-		for (int x = 0; x < data.length; x++) {
-			data[x] = LongValue.NA;
-		}
 	}
 
 	public int getKey() {
@@ -34,23 +31,23 @@ public class MinMax {
 
 	private void addMinMaxValue(LongValue value, int min, int max) {
 		if (value.isValid()) {
-			if (!data[min].isValid())
-				data[min] = value;
-			if (!data[max].isValid())
-				data[max] = value;
-			data[min] = LongValue.valueOf(Math.min(data[min].getValue(), value.getValue()));
-			data[max] = LongValue.valueOf(Math.max(data[max].getValue(), value.getValue()));
+			if (data[min] == null)
+				data[min] = Double.valueOf(value.getValue());
+			if (data[max] == null)
+				data[max] = Double.valueOf(value.getValue());
+			data[min] = Math.min(data[min], value.getValue());
+			data[max] = Math.max(data[max], value.getValue());
 		}
 	}
 
-	public LongValue[] getData() {
+	public Double[] getData() {
 		return data;
 	}
 
 	public boolean hasData() {
 		boolean result = false;
-		for (LongValue l : data) {
-			result = result || l.isValid();
+		for (Double l : data) {
+			result = result || l != null;
 		}
 		return result;
 	}
