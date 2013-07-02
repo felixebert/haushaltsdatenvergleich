@@ -1,40 +1,144 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="css/bootstrap.css" rel="stylesheet" />
-	<link href="css/bootstrap-responsive.css" rel="stylesheet" />
-	<link href="css/leaflet.css" rel="stylesheet" />
-	<link href="css/hdv.css" rel="stylesheet" />
-	<title>Finanzdatenvergleich NRW - Bilanz</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/fonts.css" rel="stylesheet" />
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link href="css/bootstrap-responsive.css" rel="stylesheet" />
+<link href="css/leaflet.css" rel="stylesheet" />
+<link href="css/hdv.css" rel="stylesheet" />
+<title>Finanzdatenvergleich NRW - Bilanz</title>
 </head>
 <body>
-	<div class="ajax-loader ajax-loader-white-bg"></div>
-	
-	<div class="container">
-		<div class="alert alert-error hide">
-			<i class="icon-exclamation-sign"></i>
-			<span class="load-error"></span>
-		</div>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
 
-		<h1>Bilanz von ...</h1>
-		
-		<div class="row-fluid">
-			<div class="span6 assets-container">
-				<h2>Aktiva</h2>
-			
-				<div class="assets"></div>
-			</div>
-			<div class="span6 liabilities-container">
-				<h2>Passiva</h2>
-				
-				<div class="liabilities"></div>
+				<a class="brand" title="Startseite" href="/"><img src="https://haushalt.piratenfraktion-nrw.de/assets/house.png"
+					id="nav_house" border="0" style="display: inline;"></a>
+
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">20 Piraten </a> <!-- http://www.piratenfraktion-nrw.de/20piraten/ -->
+							<ul class="dropdown-menu">
+								<li><a href="http://www.piratenfraktion-nrw.de/20piraten/">Die Fraktion</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/20piraten/blogposts/">Persönliche Blogposts</a></li>
+								<li><a href="/2012/12/nebeneinkunfte-der-20-piraten/">Nebeneinkünfte</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/ausschusse-und-gremien-2/">Ausschüsse und Gremien</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/mitarbeiter/">Fraktionsmitarbeiter</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/satzung/">Satzung</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/wahlordnung-2/">Wahlordnung</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/fo/">Finanzordnung</a></li>
+							</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Politik </a> <!-- http://www.piratenfraktion-nrw.de/category/politik/ -->
+							<ul class="dropdown-menu">
+								<li><a href="http://www.piratenfraktion-nrw.de/category/politik/gesetzesentwuerfe/">Gesetzesentwürfe</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/politik/aenderungsantraege/">Änderungsanträge</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/politik/entschliessungsantraege/">Entschließungsanträge</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/politik/grosse_anfragen/">Große Anfragen</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/politik/kleine_anfragen/">Kleine Anfragen</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/politik/beschluesse/">Beschlüsse der Fraktion</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/antragsfabrik/">Antragsfabrik</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/politik/plenum/">Plenum</a></li>
+								<li><a
+									href="https://www.piratenfraktion-nrw.de/wp-content/uploads/2012/12/WahlprogrammNRW2012_Basis_V2_PrintA5.pdf">Wahlprogramm</a></li>
+							</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Multimedia </a> <!-- http://www.piratenfraktion-nrw.de/category/multimedia/ -->
+							<ul class="dropdown-menu">
+								<li><a href="http://www.piratenfraktion-nrw.de/category/multimedia/videos/">Videos</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/multimedia/podcast_reden/">Reden</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/multimedia/bilder/">Bilder</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/multimedia/protokolle-multimedia/">Archiv
+										Protokolle</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/multimedia/archiv_streaming/">Archiv Streaming</a></li>
+							</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Presse </a> <!-- http://www.piratenfraktion-nrw.de/category/presse/ -->
+							<ul class="dropdown-menu">
+								<li><a href="http://www.piratenfraktion-nrw.de/category/presse/pressemitteilungen/">Pressemitteilungen</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/presse/medien/">Medien</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/category/presse/archiv/">Archiv</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/presseteam/">Presseteam</a></li>
+							</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Service </a> <!-- http://www.piratenfraktion-nrw.de/category/service/ -->
+							<ul class="dropdown-menu">
+								<li><a href="http://www.piratenfraktion-nrw.de/category/service/ausschreibungen/">Ausschreibungen</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/besuch-uns/">Besuch uns!</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/kontakt/">Kontakt</a></li>
+								<li><a href="http://www.piratenfraktion-nrw.de/impressum/">Impressum</a></li>
+							</ul></li>
+						<li><a href="http://www.piratenfraktion-nrw.de/live/">LIVE</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
+
+	<div class="ajax-loader ajax-loader-white-bg"></div>
+
+	<div class="container">
+		<header>
+			<div class="pull-right2" style="float: right; padding: 50px 50px 0 0;">
+				<a href="http://www.facebook.com/PiratenfraktionNRW" title="zur Facebookseite der Fraktion"> <img width="32"
+					height="32" alt="Facebook-Icon"
+					src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/icons/facebook-32x32.png">
+				</a> <a href="https://twitter.com/20piraten" title="zum Twitteraccount der Fraktion"> <img width="32" height="32"
+					alt="Twitter-Icon"
+					src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/icons/twitter-32x32.png">
+				</a> <a href="https://youtube.com/PiratenfraktionNRW" title="zum YouTube-Account der Fraktion"> <img width="32"
+					height="32" alt="YouTube-Icon"
+					src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/icons/youtube-32x32.png">
+				</a>
+			</div>
+			<a title="Die offizielle Homepage der Piratenfraktion im Landtag NRW" href="http://www.piratenfraktion-nrw.de"> <img
+				width="580" src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/pp.png">
+			</a>
+		</header>
 	
+		<div class="alert alert-error hide">
+			<i class="icon-exclamation-sign"></i> <span class="load-error"></span>
+		</div>
+
+		<div id="balance">
+		<h1>Bilanz von ...</h1>
+			<div class="row-fluid">
+				<div class="span6 assets-container">
+					<h2>Aktiva</h2>
+	
+					<div class="assets"></div>
+				</div>
+				<div class="span6 liabilities-container">
+					<h2>Passiva</h2>
+	
+					<div class="liabilities"></div>
+				</div>
+			</div>
+		</div>
+		<section>
+			<header class="header">
+				<h2 class="post-title">Erläuterungen</h2>
+			</header>
+			<aside class="meta">
+				<article class="article">
+					Die Daten sind frei verfügbar. Die Veröffentlichung erfolgt ohne Gewähr. Quelle: Finanzministerium NRW<br> <br>Durch
+					Neuordnung einzelner Ressorts ist teilweise der Vorjahresvergleich nicht möglich. Trotz sorgfältiger Prüfung kann
+					für Übertragungsfehler keine Haftung übernommen werden.<br> <br>Anregungen nehmen wir gerne auf und sind
+					hier zu erreichen:<br> <a href="emailto:piratenfraktion@landtag.nrw.de">piratenfraktion@landtag.nrw.de</a><br>
+					<br>
+					<p>Fragen &amp; Kommentare sind ebenfalls direkt über diese Website möglich.</p>
+				</article>
+			</aside>
+		</section>
+		<p class="pull-right">
+			<a href="http://www.piratenfraktion-nrw.de/impressum/">Impressum</a>
+		</p>
+		<p class="attribution">&copy; Piratenfraktion im Landtag NRW</p>
+	</div>
+
 	<script id="balance-template" type="text/x-handlebars-template">
 		{{#eachProperty this}}
 			<h3>{{key}}</h3>
@@ -44,11 +148,19 @@
 				<h4>{{key}}</h4>
 
 				<table class="table table-bordered table-condensed">
+					<thead>
+						<tr>
+							<th>Konto</th>
+							<th class="balance-value">Vorjahr</th>
+							<th class="balance-value">Haushaltsjahr</th>
+						</tr>
+					</thead>
 					<tbody>
 						{{#each value}}
 							<tr>
 								<td>{{label}}</td>
-								<td class="balance-value">{{number value}} &euro;</td>
+								<td class="balance-value">{{number previous.value}} &euro;</td>
+								<td class="balance-value">{{number current.value}} &euro;</td>
 							</tr>
 						{{/each}}
 					</tbody>
@@ -65,7 +177,7 @@
 	<script src="js/utils.js"></script>
 	<script src="js/handlebars-helper.js"></script>
 	<script src="js/balance.js"></script>
-	
+
 	<script type="text/javascript">
 		$(function() {
 			hdv.balance.init(window.location.search.substr(1));
