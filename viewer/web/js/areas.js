@@ -70,7 +70,7 @@
 				'value': value,
 				'accountValue': accountValue,
 				'keyForBalance': hdv.balance.getKeyForArea(areaMeta.key, layer.attribute),
-				'account': hdv.settings.account
+				'settings': hdv.settings
 			};
 		},
 		refreshLayer: function(areaLayer, accountValues, log10Boundaries, valueLabel, isSpending, settings) {
