@@ -8,13 +8,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import au.com.bytecode.opencsv.CSVReader;
+import org.supercsv.io.CsvListReader;
+import org.supercsv.prefs.CsvPreference;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,14 +48,37 @@ public class Utils {
 		}
 	}
 
+	private static long getUsedMemory() {
+		return (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024 * 1024);
+	}
+
 	public static List<String[]> readCsvFile(InputStream in) {
 		try {
+			System.out.println("MemUse before: " + getUsedMemory() + " MB");
 			long time = System.currentTimeMillis();
-			CSVReader reader = new CSVReader(new InputStreamReader(in, Charset.forName("ISO-8859-1")), ';');
-			List<String[]> list = reader.readAll();
+			Reader input = new InputStreamReader(in, Charset.forName("ISO-8859-1"));
+			CsvListReader reader = new CsvListReader(input, CsvPreference.EXCEL_NORTH_EUROPE_PREFERENCE);
+			List<String[]> result = new ArrayList<>();
+			List<String> lineOfStrings = null;
+			do {
+				lineOfStrings = reader.read();
+				if (lineOfStrings != null) {
+					String[] line = new String[lineOfStrings.size()];
+					for (int x = 0; x < lineOfStrings.size(); x++) {
+						String cell = lineOfStrings.get(x);
+						if (cell != null) {
+							line[x] = cell.intern();
+						}
+						else
+							line[x] = "";
+					}
+					result.add(line);
+				}
+			} while (lineOfStrings != null);
 			reader.close();
 			System.out.println("readAll: " + (System.currentTimeMillis() - time) + " ms");
-			return list;
+			System.out.println("MemUse after: " + getUsedMemory() + " MB");
+			return result;
 		}
 		catch (IOException e) {
 			throw new RuntimeException(e);
