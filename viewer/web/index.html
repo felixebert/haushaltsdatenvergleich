@@ -169,40 +169,44 @@
 	<script id="popup-template" type="text/x-handlebars-template">
 		<p class="popup-label"><strong>{{areaLabel}}</strong></p>
 		
-		<div class="btn-group btn-popup">
-		<a href="bilanz.html?{{keyForBalance}}" target="_blank" class="btn btn-balance " title="Bilanz"><i class="icon-briefcase"></i></a>
-		<a class="btn btn-close-popup" href="#" ><i class="icon-remove"></i></a>
-		</div>
-		<p>
-			<strong>{{valueLabel}}:</strong><br />
-			<strong class="popup-value">
-				{{#if value}}
-					{{{currency value}}}
-				{{else}}
-					{{{financeValue accountValue}}}
-				{{/if}}
-			</strong>
-		</p>
-
-		<strong>Rohdaten:</strong>
-		<table class="table table-area">
-			<thead>
-				<tr>
-					<th><i class="icon-user" title="Einwohnerzahl"></i></th>
-					<td title="Einwohnerzahl">{{number area.population}}</td>
-					<th><i class="icon-hand-right" title="Einnahmen"></i></th>
-					<td title="Wert">{{{financeValue accountValue}}}</td>
-				</tr>
-			</thead>
+		<table class="table-comparison-value">
 			<tbody>
 				<tr>
-					<th><i class="icon-globe" title="Fläche"></i></th>
-					<td title="Fläche">{{number area.size}} km²</td>
-					<th>&nbsp;</th>
-					<td>&nbsp;</td>
+					<td>{{valueLabel}}:</td>
+					<th>
+						{{#if value}}
+							{{{currency value}}}
+						{{else}}
+							?
+						{{/if}}
+					</th>
 				</tr>
 			</tbody>
 		</table>
+
+		<p class="raw-values-title">Rohdaten:</p>
+		<table class="table-raw-values">
+			<tbody>
+				<tr title="Einwohnerzahl">
+					<th><i class="icon-user"></i></th>
+					<td>{{number area.population}}</td>
+				<tr title="Fläche">
+					<th><i class="icon-globe"></i></th>
+					<td>{{number area.size}} km²</td>
+				</tr>
+				<tr title="Rohwert des ausgewählten Kontos">
+					<th><i class="icon-briefcase"></i></th>
+					<td>{{{financeValue accountValue}}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p>
+			<a href="bilanz.html?{{keyForBalance}}" target="_blank" class="btn btn-balance btn-popup" title="Bilanz">
+				<i class="icon-share"></i>
+				Bilanz öffnen
+			</a>
+		</p>
 	</script>
 
 	<script src="lib/underscore.js"></script>

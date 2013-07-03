@@ -146,14 +146,6 @@
 			this.setupModals();
 			this.addSettingsControl();
 			this.setupTemplates();
-			this.setupCloseButton();
-		},
-		setupCloseButton : function() {
-			this.leafletMap.on('popupopen', function(event) {
-				$('.btn-close-popup').on('click', function() {
-					event.popup._close();
-				});
-			});
 		},
 		setupForm : function(defaults) {
 			$('.settings input[name="relation"]').filter('[value="' + hdv.defaults.relation + '"]')

@@ -4,16 +4,16 @@
 		return hdv.formatter.number(n);
 	});
 	Handlebars.registerHelper('currency', function(n) {
-		return hdv.formatter.number(n) + ' &euro;';
+		return hdv.formatter.number(n) + '&nbsp;&euro;';
 	});
 	Handlebars.registerHelper('financeValue', function(n) {
-		if (n === null || n === undefined) {
+		if (n === '-' || n === null || n === undefined) {
 			return 'nichts vorhanden';
 		}
 		if (n === '.') {
 			return 'unbekannt oder geheimzuhalten';
 		}
-		return hdv.formatter.number(n) + ' &euro;';
+		return hdv.formatter.number(n) + '&nbsp;&euro;';
 	});
 
 	Handlebars.registerHelper('eachProperty', function(context, options) {
