@@ -2,6 +2,7 @@ package de.ifcore.hdv.converter;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.Map;
 import org.junit.Test;
 
 import de.ifcore.hdv.converter.data.Account;
+import de.ifcore.hdv.converter.data.AccountDataAndLabels;
 import de.ifcore.hdv.converter.data.AccountValue;
 import de.ifcore.hdv.converter.data.AccountsPerArea;
 import de.ifcore.hdv.converter.data.InOutProduct;
@@ -29,12 +31,14 @@ public class DataMergerTest {
 		areaSizes.put(AREA_KEY, Double.valueOf(12345.67));
 		Map<String, Population> population = new HashMap<>();
 		population.put(AREA_KEY, new Population(1234));
-		List<Account> income = Arrays.asList(new Account(AREA_KEY, AREA_LABEL, 223, "Testproduct", 123, "Testaccount",
-				LongValue.valueOf(100)), new Account(AREA_KEY, AREA_LABEL, 224, "Testproduct2", 124, "Testaccount2",
-				LongValue.valueOf(200)));
-		List<Account> spendings = Arrays.asList(new Account(AREA_KEY, AREA_LABEL, 223, "Testproduct", 123,
-				"Testaccount", LongValue.valueOf(100)), new Account(AREA_KEY, AREA_LABEL, 224, "Testproduct2", 124,
-				"Testaccount2", LongValue.valueOf(200)));
+		List<Account> incomeList = new ArrayList<>(Arrays.asList(new Account(AREA_KEY, AREA_LABEL, 223, "Testproduct",
+				123, "Testaccount", LongValue.valueOf(100)), new Account(AREA_KEY, AREA_LABEL, 224, "Testproduct2",
+				124, "Testaccount2", LongValue.valueOf(200))));
+		List<Account> spendingsList = new ArrayList<>(Arrays.asList(new Account(AREA_KEY, AREA_LABEL, 223,
+				"Testproduct", 123, "Testaccount", LongValue.valueOf(100)), new Account(AREA_KEY, AREA_LABEL, 224,
+				"Testproduct2", 124, "Testaccount2", LongValue.valueOf(200))));
+		AccountDataAndLabels income = new AccountDataAndLabels(incomeList, new AccountLabels());
+		AccountDataAndLabels spendings = new AccountDataAndLabels(spendingsList, new AccountLabels());
 		MergedData mergedData = dataMerger.mergeData(population, areaSizes, income, spendings);
 		List<AccountsPerArea> result = mergedData.getAreas();
 		assertNotNull(result);

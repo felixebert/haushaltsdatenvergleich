@@ -10,13 +10,13 @@ public class InOutProduct {
 
 	private Map<Integer, AccountValue> accounts = new HashMap<>();
 	@JsonIgnore
-	private int productKey;
+	private Integer productKey;
 
-	public InOutProduct(int productKey) {
+	public InOutProduct(Integer productKey) {
 		this.productKey = productKey;
 	}
 
-	public int getProductKey() {
+	public Integer getProductKey() {
 		return productKey;
 	}
 

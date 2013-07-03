@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import de.ifcore.hdv.converter.AccountLabels;
 import de.ifcore.hdv.converter.data.Account;
 import de.ifcore.hdv.converter.data.LongValue;
 import de.ifcore.hdv.converter.utils.Utils;
@@ -15,6 +16,7 @@ public abstract class AccountParser extends AbstractColumnCsvParser<Account> {
 	private static final int ACCOUNT_KEY = 3;
 	private static final int ACCOUNT_NAME = 4;
 	private static final int VALUE_COLMN = 5;
+	private AccountLabels labels = new AccountLabels();
 
 	public AccountParser(Collection<String[]> lines) {
 		super(lines, 7);
@@ -38,11 +40,20 @@ public abstract class AccountParser extends AbstractColumnCsvParser<Account> {
 						LongValue convertedValue = LongValue.valueOf(value);
 						result.add(new Account(areaKey, areaLabel, cd.getKey(), cd.getLabel(), parsedAccountKey,
 								accountName, convertedValue));
+						addLabel(parsedAccountKey, accountName);
 					}
 				}
 			}
 		}
 		return result;
+	}
+
+	protected void addLabel(int parsedAccountKey, String accountName) {
+		labels.add(parsedAccountKey, accountName);
+	}
+
+	public AccountLabels getLabels() {
+		return labels;
 	}
 
 	private boolean isAreaKeyValid(String areaKey) {

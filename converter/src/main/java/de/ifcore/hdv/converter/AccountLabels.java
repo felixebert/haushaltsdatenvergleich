@@ -12,7 +12,9 @@ public class AccountLabels {
 	private Set<KeyAccount> keyAccounts = new TreeSet<>();
 
 	public void add(int key, String label) {
-		keyAccounts.add(new KeyAccount(key, label));
+		KeyAccount keyAccount = new KeyAccount(key, label);
+		if (!keyAccounts.contains(keyAccount))
+			keyAccounts.add(new KeyAccount(key, label));
 	}
 
 	public Set<KeyAccount> getKeyAccounts() {

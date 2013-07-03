@@ -78,7 +78,7 @@ public class Utils {
 				}
 			} while (lineOfStrings != null);
 			reader.close();
-			System.out.println("readAll: " + (System.currentTimeMillis() - time) + " ms");
+			System.out.println("readAll: " + (System.currentTimeMillis() - time) + " ms, Elemente: " + result.size());
 			return result;
 		}
 		catch (IOException e) {

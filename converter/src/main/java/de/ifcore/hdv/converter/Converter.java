@@ -14,6 +14,7 @@ public class Converter {
 
 	public static void main(String[] args) {
 		if (args.length == 5) {
+			long totalTime = System.currentTimeMillis();
 			String incomeFile = args[0];
 			String spendingsFile = args[1];
 			String population = args[2];
@@ -36,6 +37,7 @@ public class Converter {
 			catch (Exception e) {
 				e.printStackTrace();
 			}
+			System.out.println("Gesamtdauer: " + (System.currentTimeMillis() - totalTime) + " ms");
 		}
 		else
 			System.out.println("Usage: <income> <spendings> <population> <areaSize> <output-dir>");
