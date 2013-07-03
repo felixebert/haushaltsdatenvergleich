@@ -7,7 +7,7 @@
 		},
 		reset: function() {
 			var selectList = $('select[name="product"]');
-			selectList.html(this.generateHtml(hdv.data.meta.tree, hdv.data.meta.productLabels));
+			selectList.html(this.generateHtml(hdv.data.meta.tree, hdv.data.meta.products));
 			selectList.val(hdv.settings.product);
 		},
 		getLabel: function(productKey, products) {
@@ -51,7 +51,7 @@
 			if (_.indexOf(accountKeys, hdv.settings.account) < 0) {
 				hdv.settingsService.resetAccount();
 			}
-			selectList.html(this.generateHtml(accountKeys, hdv.data.meta.incomeLabels, hdv.data.meta.spendingsLabels));
+			selectList.html(this.generateHtml(accountKeys, hdv.data.meta.incomeAccounts, hdv.data.meta.spendingsAccounts));
 			selectList.val(hdv.settings.account);
 
 			this.status = {
@@ -88,10 +88,13 @@
 
 	var accounts = {
 		isSpending: function(account) {
-			return this._isSpending(account, hdv.data.meta.incomeLabels, hdv.data.meta.spendingsLabels);
+			return this._isSpending(account, hdv.data.meta.incomeAccounts, hdv.data.meta.spendingsAccounts);
 		},
-		_isSpending: function(account, incomeLabels, spendingsLabels) {
-			return _.indexOf(_.keys(incomeLabels), account) >= 0 ? false : true;
+		_isSpending: function(accountKey, incomeAccounts, spendingsAccounts) {
+			var incomeAccount = _.find(incomeAccounts, function(account) {
+				return account.key == accountKey;
+			});
+			return incomeAccount ? false : true;
 		}
 	};
 
