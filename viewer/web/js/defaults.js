@@ -1,6 +1,6 @@
 'use strict';
 
-(function(hdv, $, _, Handlebars) {
+(function(hdv, _) {
 	var defaults = {
 		lat: 51.463,
 		lon: 7.18,
@@ -14,14 +14,14 @@
 
 	var defaultService = {
 		init: function() {
-			_.extend(hdv.defaults, this.parseSearchQuery(window.location.search));
+			_.extend(hdv.defaults, this._parseSearchQuery(window.location.search));
 		},
-		parseSearchQuery: function(search) {
+		_parseSearchQuery: function(search) {
 			var defaults = {};
 			if (search) {
 				var params = search.substr(1).split('&');
-				$.each(params, function(index, elem) {
-					var keyValue = elem.split("=");
+				_.each(params, function(param) {
+					var keyValue = param.split("=");
 					if (keyValue.length == 2)
 						defaults[keyValue[0]] = keyValue[1];
 				});
@@ -32,4 +32,4 @@
 
 	hdv.defaults = defaults;
 	hdv.defaultService = defaultService;
-})(hdv, $, _, Handlebars);
+})(hdv, _);

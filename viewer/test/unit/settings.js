@@ -7,8 +7,8 @@ describe('settingsService', function() {
 			account: 456
 		};
 
-		expect(hdv.settingsService.mergeSettings({}, defaults)).toEqual(defaults);
-		expect(hdv.settingsService.mergeSettings({
+		expect(hdv.settingsService._mergeSettings({}, defaults)).toEqual(defaults);
+		expect(hdv.settingsService._mergeSettings({
 			product: 987
 		}, defaults)).toEqual({
 			product: 987,
@@ -17,8 +17,8 @@ describe('settingsService', function() {
 	});
 
 	it('should prefer default property if current setting is none', function() {
-		expect(hdv.settingsService.mergeProperty(null, '123')).toEqual('123');
-		expect(hdv.settingsService.mergeProperty('none', '123')).toEqual('123');
-		expect(hdv.settingsService.mergeProperty('456', '123')).toEqual('456');
+		expect(hdv.settingsService._mergeProperty(null, '123')).toEqual('123');
+		expect(hdv.settingsService._mergeProperty('none', '123')).toEqual('123');
+		expect(hdv.settingsService._mergeProperty('456', '123')).toEqual('456');
 	});
 });

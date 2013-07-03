@@ -43,31 +43,6 @@
 		}
 	});
 
-	var settings = {};
-	var settingsService = {
-		init: function() {
-			$('.settings').on('change', _.bind(this.update, this));
-			this.update();
-		},
-		update: function() {
-			var settings = hdv.serialize.toLiteral($('.settings').serializeArray());
-			hdv.settings = this.mergeSettings(settings, hdv.defaults);
-			$(hdv).triggerHandler('settingsUpdate');
-		},
-		mergeSettings: function(settings, defaults) {
-			settings.product = this.mergeProperty(settings.product, defaults.product);
-			settings.account = this.mergeProperty(settings.account, defaults.account);
-			return settings;
-		},
-		mergeProperty: function(value, defaultValue) {
-			return !value || value === 'none' ? defaultValue : value;
-		},
-		resetAccount: function() {
-			hdv.settings.account = hdv.defaults.account;
-			// $(hdv).triggerHandler('settingsUpdate');
-		}
-	};
-
 	var loader = {
 		loadStatus: {},
 		init: function() {
@@ -239,7 +214,5 @@
 
 	hdv.map = map;
 	hdv.loader = loader;
-	hdv.settingsService = settingsService;
 	hdv.data = data;
-	hdv.settings = settings;
 })(hdv, L, $, _);
