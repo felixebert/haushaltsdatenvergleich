@@ -17,14 +17,14 @@ describe('layer style utils', function() {
 		expect(hdv.layerStyle.getFillColor(10, [0, 100], false)).toEqual('#00441b');
 		expect(hdv.layerStyle.getFillColor(10, [0, 100], true)).toEqual('#67000d');
 		expect(hdv.layerStyle.getFillColor(-10, [0, 100], false)).toEqual('#67000d');
-		expect(hdv.layerStyle.getFillColor(0, [0, 100], false)).toEqual('#EEE');
-		expect(hdv.layerStyle.getFillColor(0, [0, 100], true)).toEqual('#EEE');
+		expect(hdv.layerStyle.getFillColor(0, [0, 100], false)).toEqual('#00441b');
+		expect(hdv.layerStyle.getFillColor(0, [0, 100], true)).toEqual('#67000d');
 	});
 
 	it('should return a valid layerStyle', function() {
 		expect(hdv.layerStyle.forValue(10, [2, 1], false)).toEqual({
 			fillOpacity: 0.65,
-			fillColor: '#e5f5e0'
+			fillColor: '#F7FCF5'
 		});
 	});
 });

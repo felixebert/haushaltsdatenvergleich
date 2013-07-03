@@ -8,7 +8,7 @@ describe('area value utils', function() {
 		};
 
 		expect(hdv.areaValue.of(values, 200)).toEqual(20);
-		expect(hdv.areaValue.of(values, 100)).toEqual('.');
+		expect(hdv.areaValue.of(values, 100)).toEqual(0);
 		expect(hdv.areaValue.of(values, 10)).toEqual(0);
 	});
 
@@ -18,7 +18,7 @@ describe('area value utils', function() {
 	});
 
 	it('should generate a value label', function() {
-		expect(hdv.areaValue.getLabel('Hundesteuer', null)).toEqual('Hundesteuer');
-		expect(hdv.areaValue.getLabel('Hundesteuer', 'pro Einwohnerzahl')).toEqual('Hundesteuer pro Einwohnerzahl');
+		expect(hdv.areaValue.getLabel('Hundesteuer', 'none', '2009')).toEqual('Hundesteuer in 2009');
+		expect(hdv.areaValue.getLabel('Hundesteuer', 'population', '2010')).toEqual('Hundesteuer je Einwohner in 2010');
 	});
 });
