@@ -77,7 +77,8 @@ public class DataMocks {
 	public static MergedData mockMergedData() {
 		Map<Integer, InOutProduct> productsPerArea = new HashMap<>();
 		productsPerArea.put(100, new InOutProduct(100));
-		List<AccountsPerArea> areas = Arrays.asList(new AccountsPerArea("areakey", 10, 20, productsPerArea));
+		List<AccountsPerArea> areas = Arrays
+				.asList(new AccountsPerArea("areakey", "arealabel", 10, 20, productsPerArea));
 		Map<Integer, MinMaxProduct> products = new HashMap<>();
 		products.put(100, new MinMaxProduct(1234, "label"));
 		Map<Integer, List<Integer>> tree = new HashMap<>();
