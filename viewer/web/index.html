@@ -111,20 +111,30 @@
 					<button type="button" class="close close-nav hidden-phone pull-right" data-dismiss="modal">&times;</button>
 					<select name="product">
 						<option value="none" selected="selected">Bitte wählen ...</option>
-					</select> <label class="title">Konto</label> <select name="account">
+					</select>
+					
+					<label class="title">Konto</label>
+					<select name="account">
 						<option value="none" selected="selected">Bitte wählen ...</option>
-					</select> <label class="title">im Verhältnis zur?</label>
+					</select>
+					
+					<label class="title">im Verhältnis zur?</label>
 					<p>
-						<label class="radio"><input type="radio" name="relation" value="population" data-label="pro Einwohnerzahl">
-							Einwohnerzahl</label> <label class="radio"><input type="radio" name="relation" value="size"
-							data-label="pro Fläche"> Fläche</label> <label class="radio"><input type="radio" name="relation"
-							value="none" data-label=""> absolut</label>
+						<label class="radio">
+							<input type="radio" name="relation" value="population" data-label="pro Einwohnerzahl"> Einwohnerzahl
+						</label>
+						<label class="radio">
+							<input type="radio" name="relation" value="size" data-label="pro Fläche"> Fläche
+						</label>
+						<label class="radio">
+							<input type="radio" name="relation" value="none" data-label=""> absolut
+						</label>
 					</p>
 	
 					<label class="title">Gebietsgröße</label>
 					<p>
-						<label class="radio"><input type="radio" name="areaType" value="gemeinden"> Gemeinden</label> <label
-							class="radio"><input type="radio" name="areaType" value="landkreise"> Landkreise</label>
+						<label class="radio"><input type="radio" name="areaType" value="gemeinden"> Gemeinden</label>
+						<label class="radio"><input type="radio" name="areaType" value="landkreise"> Landkreise</label>
 					</p>
 	
 					<label class="title">Abrechnungsjahr</label> <select name="year">
@@ -194,9 +204,9 @@
 					<th><i class="icon-briefcase"></i></th>
 					<td>{{{financeValue accountValue}}}</td>
 				</tr>
-				<tr title="Gemeindeschlüssel: Produktgruppe - Kontonummer">
+				<tr title="Amtlicher Gemeindeschlüssel / Produktgruppe / Kontonummer">
 					<th><i class="icon-tag"></i></th>
-					<td>{{area.key}}: {{settings.product}} - {{settings.account}}</td>
+					<td>{{area.key}} - PG: {{settings.product}} K: {{settings.account}}</td>
 				</tr>
 			</tbody>
 		</table>
