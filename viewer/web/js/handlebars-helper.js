@@ -4,7 +4,16 @@
 		return hdv.formatter.number(n);
 	});
 	Handlebars.registerHelper('currency', function(n) {
-		return n === null || n === undefined ? 'n.V.' : hdv.formatter.number(n) + ' &euro;';
+		return hdv.formatter.number(n) + ' &euro;';
+	});
+	Handlebars.registerHelper('financeValue', function(n) {
+		if (n === null || n === undefined) {
+			return 'nichts vorhanden';
+		}
+		if (n === '.') {
+			return 'unbekannt oder geheimzuhalten';
+		}
+		return hdv.formatter.number(n) + ' &euro;';
 	});
 
 	Handlebars.registerHelper('eachProperty', function(context, options) {

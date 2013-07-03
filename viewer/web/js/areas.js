@@ -2,7 +2,7 @@
 
 (function(hdv, $, _, Handlebars) {
 	var nullSafeNumber = function(number) {
-		return (number === null || number === undefined || parseInt(number, 10) === NaN) ? 0 : number;
+		return (number === null || number === undefined || isNaN(parseInt(number, 10))) ? 0 : number;
 	};
 
 	var areaValue = {
@@ -55,20 +55,16 @@
 				'keyForBalance': hdv.balance.getKeyForArea(areaMeta.key, layer.attribute)
 			};
 		},
-		refreshLayer: function(areaKey, accountValues, log10Boundaries, valueLabel, isSpending, settings) {
-			var layer = hdv.data.getAreaLayer(areaKey);
-			if (layer) {
-				var areaMeta = this.getAreaMeta(areaKey);
-				var value = areaValue.of(accountValues, settings.account);
-				var comparisonValue = areaValue.inRelationTo(value, this.getRelationValue(areaMeta, settings.relation));
+		refreshLayer: function(areaLayer, accountValues, log10Boundaries, valueLabel, isSpending, settings) {
+			var areaMeta = this.getAreaMeta(areaLayer.key);
+			var rawValue = _.isEmpty(accountValues) ? '-' : accountValues[settings.account];
+			var value = areaValue.of(accountValues, settings.account);
+			var comparisonValue = areaValue.inRelationTo(value, this.getRelationValue(areaMeta, settings.relation));
 
-				var templateObject = this.getTemplateObject(valueLabel, layer, areaMeta, comparisonValue, accountValues[settings.account]);
+			var templateObject = this.getTemplateObject(valueLabel, areaLayer, areaMeta, comparisonValue, rawValue);
 
-				layer.value.setStyle(hdv.layerStyle.forValue(comparisonValue, log10Boundaries, isSpending));
-				layer.value.bindPopup(hdv.map.templates.popup(templateObject));
-			} else {
-				console.error('no layer for area ' + area.key);
-			}
+			areaLayer.value.setStyle(hdv.layerStyle.forValue(comparisonValue, log10Boundaries, isSpending));
+			areaLayer.value.bindPopup(hdv.map.templates.popup(templateObject));
 		},
 		refreshLayers: function(settings) {
 			var boundaries = hdv.accountBoundaries.findAccordingTo(settings);
@@ -76,9 +72,9 @@
 			var valueLabel = areaValue.getCurrentLabel();
 			var isSpending = hdv.accounts.isSpending(settings.account);
 
-			_.each(_.keys(hdv.data.values.areas), _.bind(function(areaKey) {
-				var accountValues = hdv.data.values.areas[areaKey];
-				this.refreshLayer(areaKey, accountValues, log10Boundaries, valueLabel, isSpending, settings);
+			_.each(hdv.data.areaLayers, _.bind(function(areaLayer) {
+				var accountValues = hdv.data.values.areas[areaLayer.key];
+				this.refreshLayer(areaLayer, accountValues, log10Boundaries, valueLabel, isSpending, settings);
 			}, this));
 		},
 		update: function() {
