@@ -29,8 +29,16 @@
 	};
 
 	var accountSelectList = {
+		status: {},
 		init: function() {
-			$(hdv).on('loader.finished', _.bind(this.reset, this));
+			$(hdv).on('loader.finished', _.bind(this.update, this));
+		},
+		update: function() {
+			if (this.status.product != hdv.settings.product || this.status.areaType != hdv.settings.areaType || this.status.year != hdv.settings.year) {
+				this.reset();
+			} else {
+				$(hdv).triggerHandler('accountSelectList.finished');
+			}
 		},
 		reset: function() {
 			var selectList = $('select[name="account"]');
@@ -40,6 +48,13 @@
 			}
 			selectList.html(this.generateHtml(accounts, hdv.data.meta.incomeLabels, hdv.data.meta.spendingsLabels));
 			selectList.val(hdv.settings.account);
+
+			this.status = {
+				product: hdv.settings.product,
+				areaType: hdv.settings.areaType,
+				year: hdv.settings.year
+			};
+			$(hdv).triggerHandler('accountSelectList.finished');
 		},
 		getAccountsWithValues: function(areas) {
 			var accounts = ['6', '7'];

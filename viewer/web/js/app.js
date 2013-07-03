@@ -2,8 +2,8 @@
 var hdv = {};
 
 (function(hdv, $, _, Handlebars) {
-	hdv.init = function() {
-		hdv.defaultService.init();
+	hdv.init = function(options) {
+		hdv.defaultService.init(options);
 		hdv.map.init();
 		hdv.loader.init();
 		hdv.settingsService.init();

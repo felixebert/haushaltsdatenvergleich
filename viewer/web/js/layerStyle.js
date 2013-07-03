@@ -17,10 +17,6 @@
 				'fillOpacity': 0.65,
 				'fillColor': this.getFillColor(value, log10Boundary, hasNegativeMeaning)
 			};
-			if (result.fillColor === NaN || result.fillColor === undefined) {
-				console.log(hdv.calc.safeLog10(value));
-				console.log(log10Boundary);
-			}
 			return result;
 		},
 		getFillColor: function(value, log10Boundary, hasNegativeMeaning) {
