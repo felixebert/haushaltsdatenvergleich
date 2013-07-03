@@ -18,7 +18,7 @@ describe('area value utils', function() {
 	});
 
 	it('should generate a value label', function() {
-		expect(hdv.areaValue.getLabel('Hundesteuer', 'none', '2009')).toEqual('Hundesteuer in 2009');
-		expect(hdv.areaValue.getLabel('Hundesteuer', 'population', '2010')).toEqual('Hundesteuer je Einwohner in 2010');
+		expect(hdv.areaValue.getLabel('Hundesteuer', 100, 'none', '2009', true)).toEqual('Ausgaben für Hundesteuer in 2009');
+		expect(hdv.areaValue.getLabel('Hundesteuer', 6, 'population', '2010', false)).toEqual('Hundesteuer je Einwohner in 2010');
 	});
 });

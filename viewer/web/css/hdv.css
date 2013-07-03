@@ -68,6 +68,19 @@ a {
 	height: 600px;
 	width: 100%;
 }
+@media (max-width: 767px) {
+	#map-container {
+		position: inherit;
+	}
+	#map {
+		position: absolute;
+		height: auto;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+	}
+}
 header {
 	margin-bottom: 2em;
 }

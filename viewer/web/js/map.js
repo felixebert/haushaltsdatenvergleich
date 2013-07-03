@@ -1,24 +1,22 @@
 'use strict';
 (function(hdv, L, $, _) {
 	var SettingsControl = L.Control.extend({
-		options : {
-			position : 'topleft'
+		options: {
+			position: 'topleft'
 		},
-		onAdd : function(map) {
+		onAdd: function(map) {
 			var container = L.DomUtil.create('div', 'leaflet-control-settings leaflet-bar');
 
-			this.toggleSettingsButton = this._createButton("*", "Einstellungen",
-					'leaflet-control-toggle-settings leaflet-bar-part leaflet-bar-part-top',
+			this.toggleSettingsButton = this._createButton("*", "Einstellungen", 'leaflet-control-toggle-settings leaflet-bar-part leaflet-bar-part-top',
 					container, this.onToggleSettingsClick, this);
 			this._bindToggleButton(this.toggleSettingsButton, this.toggleNav);
 
-			this.toggleInfoButton = this._createButton("i", "Information",
-					'leaflet-control-info leaflet-bar-part leaflet-bar-part-bottom', container);
+			this.toggleInfoButton = this._createButton("i", "Information", 'leaflet-control-info leaflet-bar-part leaflet-bar-part-bottom', container);
 			this._bindToggleButton(this.toggleInfoButton, this.toggleInfo);
 
 			return container;
 		},
-		_createButton : function(html, title, className, container, fn, context) {
+		_createButton: function(html, title, className, container, fn, context) {
 			var link = L.DomUtil.create('a', className, container);
 			link.innerHTML = html;
 			link.href = '#';
@@ -26,7 +24,7 @@
 
 			return link;
 		},
-		_bindToggleButton : function(button, fn) {
+		_bindToggleButton: function(button, fn) {
 			var stop = L.DomEvent.stopPropagation;
 			L.DomEvent.on(button, 'click', stop);
 			L.DomEvent.on(button, 'mousedown', stop);
@@ -36,48 +34,45 @@
 				fn.call(this);
 			}, this);
 		},
-		toggleNav : function() {
+		toggleNav: function() {
 			$('#nav').toggleClass('hide');
 			$(this.toggleSettingsButton).toggleClass('leaflet-control-active');
 		},
-		toggleInfo : function() {
+		toggleInfo: function() {
 			$('#info').modal('toggle');
 		}
 	});
 
 	var loader = {
-		loadStatus : {},
-		init : function() {
+		loadStatus: {},
+		init: function() {
 			$(hdv).on('loaded.areaLayers loaded.data loaded.metadata', _.bind(this.done, this));
 			$(hdv).on('settingsUpdate', _.bind(this.update, this));
 		},
-		update : function() {
+		update: function() {
 			if (!this.allLoaded()) {
 				this.loadAreaLayers(hdv.settings.areaType);
-				this.loadValues(this.getValueFile(hdv.settings.areaType, hdv.settings.year,
-						hdv.settings.product));
+				this.loadValues(this.getValueFile(hdv.settings.areaType, hdv.settings.year, hdv.settings.product));
 				this.loadMetadata(this.getMetadataFile(hdv.settings.areaType, hdv.settings.year));
 			} else {
 				this.done();
 			}
 		},
-		done : function() {
+		done: function() {
 			if (this.allLoaded()) {
 				$('.ajax-loader').hide();
 				$(hdv).triggerHandler('loader.finished');
 			}
 		},
-		allLoaded : function() {
+		allLoaded: function() {
 			return this.areaLayersLoaded(hdv.settings.areaType)
-					&& this.valuesLoaded(this.getValueFile(hdv.settings.areaType,
-							hdv.settings.year, hdv.settings.product))
-					&& this.metadataLoaded(this.getMetadataFile(hdv.settings.areaType,
-							hdv.settings.year));
+					&& this.valuesLoaded(this.getValueFile(hdv.settings.areaType, hdv.settings.year, hdv.settings.product))
+					&& this.metadataLoaded(this.getMetadataFile(hdv.settings.areaType, hdv.settings.year));
 		},
-		areaLayersLoaded : function(areaType) {
+		areaLayersLoaded: function(areaType) {
 			return this.loadStatus.areaType === areaType;
 		},
-		loadAreaLayers : function(areaType) {
+		loadAreaLayers: function(areaType) {
 			if (!this.areaLayersLoaded(areaType)) {
 				$('.ajax-loader').show();
 
@@ -92,13 +87,13 @@
 				}, this));
 			}
 		},
-		getValueFile : function(areaType, year, product) {
+		getValueFile: function(areaType, year, product) {
 			return year + '/' + areaType + '/' + product + '.json';
 		},
-		valuesLoaded : function(valueFile) {
+		valuesLoaded: function(valueFile) {
 			return this.loadStatus.values === valueFile;
 		},
-		loadValues : function(valueFile) {
+		loadValues: function(valueFile) {
 			if (!this.valuesLoaded(valueFile)) {
 				$('.ajax-loader').show();
 
@@ -109,13 +104,13 @@
 				}, this));
 			}
 		},
-		getMetadataFile : function(areaType, year) {
+		getMetadataFile: function(areaType, year) {
 			return year + '/' + areaType + '/metadata.json';
 		},
-		metadataLoaded : function(metadataFile) {
+		metadataLoaded: function(metadataFile) {
 			return this.loadStatus.metadata === metadataFile;
 		},
-		loadMetadata : function(metadataFile) {
+		loadMetadata: function(metadataFile) {
 			if (!this.metadataLoaded(metadataFile)) {
 				$('.ajax-loader').show();
 
@@ -129,15 +124,15 @@
 	};
 
 	var map = {
-		leafletMap : null,
-		templates : {},
-		init : function() {
+		leafletMap: null,
+		templates: {},
+		init: function() {
 			this.leafletMap = L.map('map', {
-				center : [ hdv.defaults.lat, hdv.defaults.lon ],
-				zoom : hdv.defaults.zoom,
-				minZoom : 8,
-				maxZoom : 11,
-				attributionControl : false
+				center: [hdv.defaults.lat, hdv.defaults.lon],
+				zoom: hdv.defaults.zoom,
+				minZoom: 8,
+				maxZoom: 11,
+				attributionControl: false
 			});
 
 			this.setupForm(hdv.defaults);
@@ -147,41 +142,35 @@
 			this.addSettingsControl();
 			this.setupTemplates();
 		},
-		setupForm : function(defaults) {
-			$('.settings input[name="relation"]').filter('[value="' + hdv.defaults.relation + '"]')
-					.prop('checked', true);
-			$('.settings input[name="areaType"]').filter('[value="' + hdv.defaults.areaType + '"]')
-					.prop('checked', true);
+		setupForm: function(defaults) {
+			$('.settings input[name="relation"]').filter('[value="' + hdv.defaults.relation + '"]').prop('checked', true);
+			$('.settings input[name="areaType"]').filter('[value="' + hdv.defaults.areaType + '"]').prop('checked', true);
 		},
-		setupTemplates : function() {
+		setupTemplates: function() {
 			this.templates.popup = Handlebars.compile($('#popup-template').html());
 		},
-		addTileLayer : function() {
-			L
-					.tileLayer(
-							'http://{s}.tile.cloudmade.com/036a729cf53d4388a8ec345e1543ef53/44094/256/{z}/{x}/{y}.png',
-							{
-								'maxZoom' : 18
-							}).addTo(this.leafletMap);
+		addTileLayer: function() {
+			L.tileLayer('http://{s}.tile.cloudmade.com/036a729cf53d4388a8ec345e1543ef53/44094/256/{z}/{x}/{y}.png', {
+				'maxZoom': 18
+			}).addTo(this.leafletMap);
 		},
-		addAttributionControl : function() {
+		addAttributionControl: function() {
 			var attribution = '<a class="imprint">Impressum</a>';
-			L.control.attribution().setPrefix(null).addAttribution(attribution).addTo(
-					this.leafletMap);
+			L.control.attribution().setPrefix(null).addAttribution(attribution).addTo(this.leafletMap);
 
 			$('.imprint').on('click', function() {
 				$('#imprint').modal('toggle');
 			});
 		},
-		setupModals : function() {
-			var modals = [ 'info', 'imprint' ];
+		setupModals: function() {
+			var modals = ['info', 'imprint'];
 			_.each(modals, function(modalId) {
 				$('#' + modalId).modal({
-					'show' : false
+					'show': false
 				});
 			});
 		},
-		addSettingsControl : function() {
+		addSettingsControl: function() {
 			this.settingsControl = new SettingsControl().addTo(this.leafletMap);
 			if ($(window).width() > 979) {
 				this.settingsControl.toggleNav();
@@ -191,18 +180,18 @@
 				this.settingsControl.toggleNav();
 			}, this));
 		},
-		removeLayers : function(areaLayers) {
+		removeLayers: function(areaLayers) {
 			_.each(areaLayers, _.bind(function(areaLayer) {
 				this.leafletMap.removeLayer(areaLayer.value);
 			}, this));
 		},
-		addAreaLayers : function(geojson, callback) {
+		addAreaLayers: function(geojson, callback) {
 			L.geoJson(geojson.features, {
-				style : {
-					'opacity' : 0.5,
-					'weight' : 1
+				style: {
+					'opacity': 0.5,
+					'weight': 1
 				},
-				onEachFeature : callback
+				onEachFeature: callback
 			}).addTo(this.leafletMap);
 		}
 	};
