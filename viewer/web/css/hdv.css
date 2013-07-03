@@ -159,11 +159,17 @@ a.leaflet-control-active {
 		width: 100%;
 		overflow: auto;
 		z-index: 10000;
-		background: rgba(255, 255, 255, 100);
+		background: rgba(0, 0, 0, .90);
 	}
 	.nav-container {
 		margin: 14px auto;
 		width: 260px;
+		background: #FFF;
+		padding: 7px;
+	}
+	#nav h2 {
+		font-size: 18px;
+		margin: 0 0 7px 0;
 	}
 }
 .pull-right .close-nav {

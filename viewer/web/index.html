@@ -12,7 +12,7 @@
 <title>Finanzdatenvergleich NRW</title>
 </head>
 <body>
-	<div class="navbar navbar-fixed-top">
+	<div class="navbar navbar-fixed-top hidden-phone">
 		<div class="navbar-inner">
 			<div class="container">
 				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -78,7 +78,7 @@
 
 	<div class="container">
 		<header class="hidden-phone">
-			<div class="pull-right2" style="float: right; padding: 50px 50px 0 0;">
+			<div class="pull-right2 visible-desktop" style="float: right; padding: 50px 50px 0 0;">
 				<a href="http://www.facebook.com/PiratenfraktionNRW" title="zur Facebookseite der Fraktion">
 					<img width="32" height="32" alt="Facebook-Icon" src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/icons/facebook-32x32.png" />
 				</a>
@@ -100,13 +100,15 @@
 			<div id="map"></div>
 	
 			<div id="nav" class="hide">
-				<div class="visible-phone pull-right">
-					<button type="button" class="btn close-nav">
-						<i class="icon-remove"></i>
-					</button>
-				</div>
-	
 				<form class="nav-container settings form-inline" method="GET" action="index.html">
+					<div class="visible-phone pull-right">
+						<button type="button" class="btn close-nav">
+							<i class="icon-remove"></i>
+						</button>
+					</div>
+					
+					<h2 class="visible-phone">Optionen</h2>
+
 					<label class="title">Produktgruppe</label>
 					<button type="button" class="close close-nav hidden-phone pull-right" data-dismiss="modal">&times;</button>
 					<select name="product">
@@ -164,9 +166,10 @@
 			<div class="modal-body">
 				<strong>Datenquellen:</strong>
 				<ul>
-					<li>Map powered by Leaflet - Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>
-						contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a
-						href="http://cloudmade.com">CloudMade</a></li>
+					<li>
+						Map powered by Leaflet - Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,
+						<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>
+					</li>
 					<li>...</li>
 				</ul>
 			</div>
