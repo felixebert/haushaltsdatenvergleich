@@ -10,20 +10,25 @@
 			selectList.html(this.generateHtml(hdv.data.meta.tree, hdv.data.meta.productLabels));
 			selectList.val(hdv.settings.product);
 		},
-		generateHtml: function(tree, labels) {
+		getLabel: function(productKey, products) {
+			return _.find(products, function(product) {
+				return product.key == productKey;
+			}).label;
+		},
+		generateHtml: function(tree, products) {
 			var html = '';
 			_.each(_.keys(tree), _.bind(function(groupKey) {
-				html += '<optgroup label="' + labels[groupKey] + '">';
-				html += this.generateOptions(tree[groupKey], labels);
+				html += '<optgroup label="' + this.getLabel(groupKey, products) + '">';
+				html += this.generateOptions(tree[groupKey], products);
 				html += '</optgroup>';
 			}, this));
 			return html;
 		},
-		generateOptions: function(keys, labels) {
+		generateOptions: function(keys, products) {
 			var html = '';
-			_.each(keys, function(key) {
-				html += '<option value="' + key + '">' + labels[key] + '</option>';
-			});
+			_.each(keys, _.bind(function(key) {
+				html += '<option value="' + key + '">' + this.getLabel(key, products) + '</option>';
+			}, this));
 			return html;
 		}
 	};
@@ -42,11 +47,11 @@
 		},
 		reset: function() {
 			var selectList = $('select[name="account"]');
-			var accounts = this.getAccountsWithValues(hdv.data.values.areas);
-			if (_.indexOf(accounts, hdv.settings.account) < 0) {
+			var accountKeys = this.getAccountsWithValues(hdv.data.values.areas);
+			if (_.indexOf(accountKeys, hdv.settings.account) < 0) {
 				hdv.settingsService.resetAccount();
 			}
-			selectList.html(this.generateHtml(accounts, hdv.data.meta.incomeLabels, hdv.data.meta.spendingsLabels));
+			selectList.html(this.generateHtml(accountKeys, hdv.data.meta.incomeLabels, hdv.data.meta.spendingsLabels));
 			selectList.val(hdv.settings.account);
 
 			this.status = {
@@ -63,17 +68,17 @@
 			});
 			return _.uniq(accounts);
 		},
-		generateHtml: function(accounts, incomeLabels, spendingsLabels) {
+		generateHtml: function(accountKeys, incomeAccounts, spendingsAccounts) {
 			var html = '';
-			html += this.generateOptGroup(accounts, incomeLabels, 'Einnahmen');
-			html += this.generateOptGroup(accounts, spendingsLabels, 'Ausgaben');
+			html += this.generateOptGroup(accountKeys, incomeAccounts, 'Einnahmen');
+			html += this.generateOptGroup(accountKeys, spendingsAccounts, 'Ausgaben');
 			return html;
 		},
-		generateOptGroup: function(accounts, labels, groupLabel) {
+		generateOptGroup: function(accountKeys, accounts, groupLabel) {
 			var html = '<optgroup label="' + groupLabel + '">';
-			_.each(_.keys(labels), function(accountId) {
-				if (_.indexOf(accounts, accountId) >= 0) {
-					html += '<option value="' + accountId + '">' + labels[accountId] + '</option>';
+			_.each(accounts, function(account) {
+				if (_.indexOf(accountKeys, account.key.toString()) >= 0) {
+					html += '<option value="' + account.key + '">' + account.label + '</option>';
 				}
 			});
 			html += '</optgroup>';
