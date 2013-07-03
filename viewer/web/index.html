@@ -190,6 +190,7 @@
 				<tr title="Einwohnerzahl">
 					<th><i class="icon-user"></i></th>
 					<td>{{number area.population}}</td>
+				</tr>
 				<tr title="Fläche">
 					<th><i class="icon-globe"></i></th>
 					<td>{{number area.size}} km²</td>
@@ -197,6 +198,10 @@
 				<tr title="Rohbetrag des ausgewählten Kontos in der Quelldatei">
 					<th><i class="icon-briefcase"></i></th>
 					<td>{{{financeValue accountValue}}}</td>
+				</tr>
+				<tr title="Gemeindeschlüssel: Kontonummer">
+					<th><i class="icon-tag"></i></th>
+					<td>{{area.key}}: {{account}}</td>
 				</tr>
 			</tbody>
 		</table>
