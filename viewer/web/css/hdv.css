@@ -167,27 +167,33 @@ label.title {
 	margin-top: 14px;
 }
 
-/* area data */
-.table-area td {
+/* area popup */
+.table-comparison-value {
+	margin-bottom: 1em;
+	width: 100%;
+	max-width: 250px;
+}
+.table-comparison-value td {
+	padding-right: 7px;
+}
+.table-comparison-value th {
 	text-align: right;
+	vertical-align: bottom;
 }
 
-.btn-popup {
-	position: absolute;
-	right: 10px;
-	top: 10px;
+p.raw-values-title {
+	margin-bottom: 4px;
 }
+.table-raw-values td,
+.table-raw-values th {
+	padding: 4px;
+}
+a.btn-balance {
+	color: #000;
+}
+
 .popup-label {
 	padding-right: 30px;
-}
-.popup-value {
-	display: block;
-	text-align: right;
-	margin-right: 8px;
-	margin-top: 4px;
-}
-.leaflet-popup-close-button {
-	display: none;
 }
 
 /* balance */

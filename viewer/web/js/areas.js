@@ -14,6 +14,13 @@
 
 			return value;
 		},
+		rawValueOf: function(accountValues, account) {
+			var value = '-';
+			if (!_.isEmpty(accountValues) && accountValues[account] !== undefined) {
+				value = accountValues[account];
+			}
+			return value;
+		},
 		getCurrentLabel: function() {
 			var account = $('.settings select[name="account"] option:selected').text();
 			var relation = $('.settings input[name="relation"]:checked').data('label');
@@ -57,13 +64,14 @@
 		},
 		refreshLayer: function(areaLayer, accountValues, log10Boundaries, valueLabel, isSpending, settings) {
 			var areaMeta = this.getAreaMeta(areaLayer.key);
-			var rawValue = _.isEmpty(accountValues) ? '-' : accountValues[settings.account];
+			var rawValue = areaValue.rawValueOf(accountValues, settings.account);
 			var value = areaValue.of(accountValues, settings.account);
 			var comparisonValue = areaValue.inRelationTo(value, this.getRelationValue(areaMeta, settings.relation));
+			var inexistent = isNaN(parseInt(rawValue, 10)) ? true : false;
 
 			var templateObject = this.getTemplateObject(valueLabel, areaLayer, areaMeta, comparisonValue, rawValue);
 
-			areaLayer.value.setStyle(hdv.layerStyle.forValue(comparisonValue, log10Boundaries, isSpending));
+			areaLayer.value.setStyle(hdv.layerStyle.forValue(comparisonValue, log10Boundaries, isSpending, inexistent));
 			areaLayer.value.bindPopup(hdv.map.templates.popup(templateObject));
 		},
 		refreshLayers: function(settings) {
