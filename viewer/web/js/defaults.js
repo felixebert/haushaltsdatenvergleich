@@ -13,8 +13,8 @@
 	};
 
 	var defaultService = {
-		init: function() {
-			_.extend(hdv.defaults, this._parseSearchQuery(window.location.search));
+		init: function(options) {
+			_.extend(hdv.defaults, options, this._parseSearchQuery(window.location.search));
 		},
 		_parseSearchQuery: function(search) {
 			var defaults = {};

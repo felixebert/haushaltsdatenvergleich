@@ -35,7 +35,7 @@
 
 	var areas = {
 		init: function() {
-			$(hdv).on('loader.finished', _.bind(this.update, this));
+			$(hdv).on('accountSelectList.finished', _.bind(this.update, this));
 		},
 		getRelationValue: function(areaMeta, relationName) {
 			return areaMeta[relationName];
@@ -84,7 +84,6 @@
 		update: function() {
 			this.refreshLayers(hdv.settings);
 		}
-
 	};
 
 	hdv.areas = areas;

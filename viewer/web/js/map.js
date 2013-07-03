@@ -50,10 +50,13 @@
 			$(hdv).on('settingsUpdate', _.bind(this.update, this));
 		},
 		update: function() {
-			this.loadAreaLayers(hdv.settings.areaType);
-			this.loadValues(this.getValueFile(hdv.settings.areaType, hdv.settings.year, hdv.settings.product));
-			this.loadMetadata(this.getMetadataFile(hdv.settings.areaType, hdv.settings.year));
-			this.done();
+			if (!this.allLoaded()) {
+				this.loadAreaLayers(hdv.settings.areaType);
+				this.loadValues(this.getValueFile(hdv.settings.areaType, hdv.settings.year, hdv.settings.product));
+				this.loadMetadata(this.getMetadataFile(hdv.settings.areaType, hdv.settings.year));
+			} else {
+				this.done();
+			}
 		},
 		done: function() {
 			if (this.allLoaded()) {
@@ -120,25 +123,6 @@
 		}
 	};
 
-	var data = {
-		areaLayers: [],
-		meta: {},
-		values: {},
-		getAreaLayer: function(key) {
-			return _.find(this.areaLayers, function(area) {
-				return area.key == key;
-			});
-		},
-		addAreaLayer: function(feature, layer) {
-			this.areaLayers.push({
-				'key': feature.properties.KN ? feature.properties.KN : feature.properties.AGS,
-				'label': feature.properties.GN ? feature.properties.GN : feature.properties.GEN,
-				'attribute': feature.properties.DES,
-				'value': layer
-			});
-		}
-	};
-
 	var map = {
 		leafletMap: null,
 		templates: {},
@@ -196,9 +180,9 @@
 				this.settingsControl.toggleNav();
 			}, this));
 		},
-		removeLayers: function(layers) {
-			_.each(layers, _.bind(function(layer) {
-				this.leafletMap.removeLayer(layer.value);
+		removeLayers: function(areaLayers) {
+			_.each(areaLayers, _.bind(function(areaLayer) {
+				this.leafletMap.removeLayer(areaLayer.value);
 			}, this));
 		},
 		addAreaLayers: function(geojson, callback) {
@@ -214,5 +198,4 @@
 
 	hdv.map = map;
 	hdv.loader = loader;
-	hdv.data = data;
 })(hdv, L, $, _);
