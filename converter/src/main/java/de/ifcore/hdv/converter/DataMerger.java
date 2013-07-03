@@ -53,8 +53,8 @@ public class DataMerger {
 			}
 		}
 		filterNullValuesInProducts();
-		return new MergedData(result, productMap, tree.getTree(), productLabels.asSortedMap(),
-				incomeLabels.asSortedMap(), spendingsLabels.asSortedMap());
+		return new MergedData(result, productMap, tree.getTree(), productLabels.getKeyAccounts(),
+				incomeLabels.getKeyAccounts(), spendingsLabels.getKeyAccounts());
 	}
 
 	private void filterNullValuesInProducts() {

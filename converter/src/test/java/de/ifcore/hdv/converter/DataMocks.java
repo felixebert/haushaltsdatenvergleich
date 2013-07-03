@@ -3,8 +3,10 @@ package de.ifcore.hdv.converter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -14,6 +16,7 @@ import de.ifcore.hdv.converter.data.BalanceItem;
 import de.ifcore.hdv.converter.data.BalanceValue;
 import de.ifcore.hdv.converter.data.Category;
 import de.ifcore.hdv.converter.data.InOutProduct;
+import de.ifcore.hdv.converter.data.KeyAccount;
 import de.ifcore.hdv.converter.data.MergedData;
 
 public class DataMocks {
@@ -83,10 +86,10 @@ public class DataMocks {
 		products.put(100, new MinMaxProduct(1234, "label"));
 		Map<Integer, List<Integer>> tree = new HashMap<>();
 		tree.put(1, Arrays.asList(100));
-		Map<Integer, String> productLabels = new HashMap<>();
-		productLabels.put(100, "Product_100");
-		Map<Integer, String> incomeLabels = new HashMap<>();
-		Map<Integer, String> spendingsLabels = new HashMap<>();
+		Set<KeyAccount> productLabels = new HashSet<>();
+		productLabels.add(new KeyAccount(100, "Product_100"));
+		Set<KeyAccount> incomeLabels = new HashSet<>();
+		Set<KeyAccount> spendingsLabels = new HashSet<>();
 		return new MergedData(areas, products, tree, productLabels, incomeLabels, spendingsLabels);
 	}
 }
