@@ -23,8 +23,7 @@
 		},
 		getCurrentLabel: function() {
 			var account = $('.settings select[name="account"] option:selected').text();
-			var relation = $('.settings input[name="relation"]:checked').data('label');
-			return this.getLabel(account, relation);
+			return this.getLabel(account, hdv.settings.relation, hdv.settings.year);
 		},
 		inRelationTo: function(value, relationValue) {
 			if (relationValue) {
@@ -35,8 +34,14 @@
 		getValueInRelationTo: function(value, relation) {
 			return Math.round((value / relation) * 100) / 100;
 		},
-		getLabel: function(accountName, relationLabel) {
-			return accountName + (relationLabel ? ' ' + relationLabel : '');
+		getLabel: function(accountName, relation, year) {
+			var relationLabel = '';
+			if (relation === 'population') {
+				relationLabel = 'je Einwohner';
+			} else if (relation === 'size') {
+				relationLabel = 'je km²';
+			}
+			return accountName + ' ' + relationLabel + ' in ' + year;
 		}
 	};
 
