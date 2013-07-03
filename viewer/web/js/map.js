@@ -164,6 +164,20 @@
 			$('.datasources').on('click', function() {
 				$('#datasources').modal('toggle');
 			});
+			$('.permalink').on('click', _.bind(function() {
+				this.showPermalink();
+			}, this));
+		},
+		showPermalink: function() {
+			var permalink = this.buildPermalink();
+			prompt('Bitte kopieren Sie folgende URL:', permalink);
+		},
+		buildPermalink: function() {
+			var baseUrl = window.location.href;
+			if (baseUrl.indexOf('?') > 0) {
+				baseUrl = baseUrl.substr(0, baseUrl.indexOf('?'));
+			}
+			return baseUrl + '?' + $.param($('.settings').serializeArray());
 		},
 		setupModals: function() {
 			var modals = ['info', 'imprint', 'datasources'];
