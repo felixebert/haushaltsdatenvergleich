@@ -1,5 +1,6 @@
 package de.ifcore.hdv.converter.data;
 
+import java.text.CollationKey;
 import java.text.Collator;
 import java.util.Locale;
 
@@ -11,10 +12,13 @@ public class KeyAccount implements Comparable<KeyAccount> {
 	private static final Collator collator = Collator.getInstance(Locale.GERMAN);
 	private int key;
 	private String label;
+	@JsonIgnore
+	private CollationKey collationKey;
 
 	public KeyAccount(int key, String label) {
 		this.key = key;
 		this.label = label;
+		collationKey = collator.getCollationKey(label);
 	}
 
 	public int getKey() {
@@ -27,7 +31,7 @@ public class KeyAccount implements Comparable<KeyAccount> {
 
 	@Override
 	public int compareTo(KeyAccount o) {
-		int c = collator.compare(label, o.label);
+		int c = collationKey.compareTo(o.collationKey);
 		if (c == 0) {
 			c = key - o.key;
 		}

@@ -41,8 +41,8 @@ public class DataSplitter {
 			}
 			areas.put(apa.getKey(), accounts);
 		}
-		Map<Integer, MinMax> minMaxAccounts = mergedData.getProducts().containsKey(productId) ? mergedData
-				.getProducts().get(productId).getAccounts() : emptyMinMaxAccounts;
+		Map<Integer, MinMax> minMaxAccounts = mergedData.getProductsMap().containsKey(productId) ? mergedData
+				.getProductsMap().get(productId).getAccounts() : emptyMinMaxAccounts;
 		return new Product(areas, minMaxAccounts);
 	}
 }

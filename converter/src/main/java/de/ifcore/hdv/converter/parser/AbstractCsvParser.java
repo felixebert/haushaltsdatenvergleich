@@ -1,8 +1,8 @@
 package de.ifcore.hdv.converter.parser;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public abstract class AbstractCsvParser<T> {
@@ -18,7 +18,7 @@ public abstract class AbstractCsvParser<T> {
 	}
 
 	protected List<T> parseWithIterator(Iterator<String[]> iterator) {
-		List<T> result = new ArrayList<>();
+		List<T> result = new LinkedList<>();
 		while (iterator.hasNext()) {
 			List<T> item = parseItem(iterator.next());
 			if (item != null)

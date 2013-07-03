@@ -29,7 +29,12 @@ public class LongValue {
 
 	public static LongValue valueOf(String value) {
 		try {
-			return new LongValue(Long.valueOf(value), null);
+			char firstChar = value.charAt(0);
+			if (firstChar == '.' || firstChar == '-') {
+				return new LongValue(null, value);
+			}
+			else
+				return new LongValue(Long.valueOf(value), null);
 		}
 		catch (NumberFormatException e) {
 			return new LongValue(null, value);

@@ -12,21 +12,21 @@ public class MergedData {
 
 	private List<AccountsPerArea> areas;
 	@JsonIgnore
-	private Map<Integer, MinMaxProduct> products;
+	private Map<Integer, MinMaxProduct> productsMap;
 	private Map<Integer, List<Integer>> tree;
-	private Set<KeyAccount> productLabels;
-	private Set<KeyAccount> incomeLabels;
-	private Set<KeyAccount> spendingsLabels;
+	private Set<KeyAccount> products;
+	private Set<KeyAccount> incomeAccounts;
+	private Set<KeyAccount> spendingsAccounts;
 
-	public MergedData(List<AccountsPerArea> areas, Map<Integer, MinMaxProduct> products,
-			Map<Integer, List<Integer>> tree, Set<KeyAccount> productLabels, Set<KeyAccount> incomeLabels,
-			Set<KeyAccount> spendingsLabels) {
+	public MergedData(List<AccountsPerArea> areas, Map<Integer, MinMaxProduct> productsMap,
+			Map<Integer, List<Integer>> tree, Set<KeyAccount> products, Set<KeyAccount> incomeAccounts,
+			Set<KeyAccount> spendingsAccounts) {
 		this.areas = areas;
-		this.products = products;
+		this.productsMap = productsMap;
 		this.tree = tree;
-		this.productLabels = productLabels;
-		this.incomeLabels = incomeLabels;
-		this.spendingsLabels = spendingsLabels;
+		this.products = products;
+		this.incomeAccounts = incomeAccounts;
+		this.spendingsAccounts = spendingsAccounts;
 	}
 
 	public List<AccountsPerArea> getAreas() {
@@ -37,19 +37,19 @@ public class MergedData {
 		return tree;
 	}
 
-	public Map<Integer, MinMaxProduct> getProducts() {
+	public Map<Integer, MinMaxProduct> getProductsMap() {
+		return productsMap;
+	}
+
+	public Set<KeyAccount> getProducts() {
 		return products;
 	}
 
-	public Set<KeyAccount> getProductLabels() {
-		return productLabels;
+	public Set<KeyAccount> getIncomeAccounts() {
+		return incomeAccounts;
 	}
 
-	public Set<KeyAccount> getIncomeLabels() {
-		return incomeLabels;
-	}
-
-	public Set<KeyAccount> getSpendingsLabels() {
-		return spendingsLabels;
+	public Set<KeyAccount> getSpendingsAccounts() {
+		return spendingsAccounts;
 	}
 }

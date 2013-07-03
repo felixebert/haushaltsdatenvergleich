@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.ifcore.hdv.converter.data.Account;
+import de.ifcore.hdv.converter.data.AccountDataAndLabels;
 import de.ifcore.hdv.converter.data.MergedData;
 import de.ifcore.hdv.converter.data.Population;
 import de.ifcore.hdv.converter.parser.AccountParser;
@@ -38,7 +39,9 @@ public class BaseConverter {
 		System.out.println("Daten aggregieren: " + (System.currentTimeMillis() - time) + " ms");
 		time = System.currentTimeMillis();
 		DataMerger dataMerger = new DataMerger();
-		MergedData mergedData = dataMerger.mergeData(parsedPopulation, parsedArea, parsedIncome, parsedSpendings);
+		AccountDataAndLabels income = new AccountDataAndLabels(parsedIncome, incomeParser.getLabels());
+		AccountDataAndLabels spendings = new AccountDataAndLabels(parsedSpendings, spendingsParser.getLabels());
+		MergedData mergedData = dataMerger.mergeData(parsedPopulation, parsedArea, income, spendings);
 		System.out.println("Daten verarbeiten: " + (System.currentTimeMillis() - time) + " ms");
 		return mergedData;
 	}
