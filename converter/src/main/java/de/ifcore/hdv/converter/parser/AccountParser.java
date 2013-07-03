@@ -11,6 +11,7 @@ import de.ifcore.hdv.converter.utils.Utils;
 public abstract class AccountParser extends AbstractColumnCsvParser<Account> {
 
 	private static final int AREA_KEY = 1;
+	private static final int AREA_LABEL = 2;
 	private static final int ACCOUNT_KEY = 3;
 	private static final int ACCOUNT_NAME = 4;
 	private static final int VALUE_COLMN = 5;
@@ -26,6 +27,7 @@ public abstract class AccountParser extends AbstractColumnCsvParser<Account> {
 		if (strings.length == VALUE_COLMN + columnDefinitions.size()) {
 			String areaKey = strings[AREA_KEY];
 			if (isAreaKeyAcceptable(areaKey)) {
+				String areaLabel = strings[AREA_LABEL];
 				String accountKey = strings[ACCOUNT_KEY];
 				String accountName = strings[ACCOUNT_NAME];
 				if (isAreaKeyValid(areaKey) && Utils.hasText(accountKey)) {
@@ -34,8 +36,8 @@ public abstract class AccountParser extends AbstractColumnCsvParser<Account> {
 						ColumnDefinition cd = columnDefinitions.get(x);
 						String value = strings[VALUE_COLMN + x];
 						LongValue convertedValue = LongValue.valueOf(value);
-						result.add(new Account(areaKey, cd.getKey(), cd.getLabel(), parsedAccountKey, accountName,
-								convertedValue));
+						result.add(new Account(areaKey, areaLabel, cd.getKey(), cd.getLabel(), parsedAccountKey,
+								accountName, convertedValue));
 					}
 				}
 			}

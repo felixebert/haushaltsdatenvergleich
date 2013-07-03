@@ -10,6 +10,7 @@ import java.util.Set;
 import de.ifcore.hdv.converter.data.Account;
 import de.ifcore.hdv.converter.data.AccountValue;
 import de.ifcore.hdv.converter.data.AccountsPerArea;
+import de.ifcore.hdv.converter.data.AreaLabel;
 import de.ifcore.hdv.converter.data.Category;
 import de.ifcore.hdv.converter.data.CategoryTree;
 import de.ifcore.hdv.converter.data.InOutProduct;
@@ -28,25 +29,25 @@ public class DataMerger {
 	public MergedData mergeData(Map<String, Population> populationMap, Map<String, Double> areaSizes,
 			List<Account> income, List<Account> spendings) {
 		List<AccountsPerArea> result = new ArrayList<AccountsPerArea>();
-		Set<String> areaKeys = AreaUtils.createUniqueAreaKeys(income, spendings);
+		Set<AreaLabel> areaKeys = AreaUtils.createUniqueAreaKeys(income, spendings);
 		createCategoryMap(income, spendings);
-		for (String areaKey : areaKeys) {
-			Population population = populationMap.get(areaKey);
-			Double areaSize = areaSizes.get(areaKey);
+		for (AreaLabel areaLabel : areaKeys) {
+			Population population = populationMap.get(areaLabel.getKey());
+			Double areaSize = areaSizes.get(areaLabel.getKey());
 			Map<Integer, InOutProduct> inOutMap = new HashMap<>();
-			processDataForArea(areaKey, inOutMap, income);
-			processDataForArea(areaKey, inOutMap, spendings);
+			processDataForArea(areaLabel.getKey(), inOutMap, income);
+			processDataForArea(areaLabel.getKey(), inOutMap, spendings);
 			if (population == null) {
-				System.out.println("Keine Einwohnerzahlen für " + areaKey);
+				System.out.println("Keine Einwohnerzahlen für " + areaLabel.getKey());
 			}
 			else if (areaSize == null) {
-				System.out.println("Keine Fläche für " + areaKey);
+				System.out.println("Keine Fläche für " + areaLabel.getKey());
 			}
 			else {
 				Collection<InOutProduct> accountValues = inOutMap.values();
 				Map<Integer, InOutProduct> accountValuesMap = convertToMap(accountValues);
-				AccountsPerArea accountsPerArea = new AccountsPerArea(areaKey, population.getPopulation(),
-						areaSize.doubleValue(), accountValuesMap);
+				AccountsPerArea accountsPerArea = new AccountsPerArea(areaLabel.getKey(), areaLabel.getLabel(),
+						population.getPopulation(), areaSize.doubleValue(), accountValuesMap);
 				processMinMax(accountValues, accountsPerArea);
 				result.add(accountsPerArea);
 			}

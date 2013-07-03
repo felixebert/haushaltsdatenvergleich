@@ -3,15 +3,17 @@ package de.ifcore.hdv.converter.data;
 public class Account {
 
 	private String areaKey;
+	private String areaLabel;
 	private int productKey;
 	private String productName;
 	private int accountKey;
 	private String accountName;
 	private LongValue value;
 
-	public Account(String areaKey, int productKey, String productName, int accountKey, String accountName,
-			LongValue value) {
+	public Account(String areaKey, String areaLabel, int productKey, String productName, int accountKey,
+			String accountName, LongValue value) {
 		this.areaKey = areaKey;
+		this.areaLabel = areaLabel;
 		this.productKey = productKey;
 		this.productName = productName;
 		this.accountKey = accountKey;
@@ -41,5 +43,9 @@ public class Account {
 
 	public String getProductName() {
 		return productName;
+	}
+
+	public String getAreaLabel() {
+		return areaLabel;
 	}
 }

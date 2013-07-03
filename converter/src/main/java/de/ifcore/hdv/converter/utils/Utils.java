@@ -31,8 +31,15 @@ public class Utils {
 	public static void writeData(Object object, String filename) throws JsonProcessingException, IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.registerModule(new JsonModule());
-		ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
-		String json = objectWriter.writeValueAsString(object);
+		String json = null;
+		String prettyJson = System.getProperty("pretty.json", "true");
+		if ("true".equals(prettyJson)) {
+			ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
+			json = objectWriter.writeValueAsString(object);
+		}
+		else {
+			json = objectMapper.writeValueAsString(object);
+		}
 		OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(filename), Charset.forName("UTF8"));
 		out.write(json);
 		out.flush();
@@ -48,13 +55,8 @@ public class Utils {
 		}
 	}
 
-	private static long getUsedMemory() {
-		return (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024 * 1024);
-	}
-
 	public static List<String[]> readCsvFile(InputStream in) {
 		try {
-			System.out.println("MemUse before: " + getUsedMemory() + " MB");
 			long time = System.currentTimeMillis();
 			Reader input = new InputStreamReader(in, Charset.forName("ISO-8859-1"));
 			CsvListReader reader = new CsvListReader(input, CsvPreference.EXCEL_NORTH_EUROPE_PREFERENCE);
@@ -77,7 +79,6 @@ public class Utils {
 			} while (lineOfStrings != null);
 			reader.close();
 			System.out.println("readAll: " + (System.currentTimeMillis() - time) + " ms");
-			System.out.println("MemUse after: " + getUsedMemory() + " MB");
 			return result;
 		}
 		catch (IOException e) {

@@ -11,9 +11,11 @@ public class AccountsPerArea {
 	private double size;
 	@JsonIgnore
 	private Map<Integer, InOutProduct> products;
+	private String label;
 
-	public AccountsPerArea(String key, long population, double size, Map<Integer, InOutProduct> products) {
+	public AccountsPerArea(String key, String label, long population, double size, Map<Integer, InOutProduct> products) {
 		this.key = key;
+		this.label = label;
 		this.population = population;
 		this.size = size;
 		this.products = products;
@@ -29,6 +31,10 @@ public class AccountsPerArea {
 
 	public double getSize() {
 		return size;
+	}
+
+	public String getLabel() {
+		return label;
 	}
 
 	public Map<Integer, InOutProduct> getProducts() {

@@ -20,6 +20,7 @@ import de.ifcore.hdv.converter.data.Population;
 public class DataMergerTest {
 
 	private static final String AREA_KEY = "12345678";
+	private static final String AREA_LABEL = "Stadt";
 
 	@Test
 	public void itShouldMergeData() throws Exception {
@@ -28,17 +29,18 @@ public class DataMergerTest {
 		areaSizes.put(AREA_KEY, Double.valueOf(12345.67));
 		Map<String, Population> population = new HashMap<>();
 		population.put(AREA_KEY, new Population(1234));
-		List<Account> income = Arrays.asList(
-				new Account(AREA_KEY, 223, "Testproduct", 123, "Testaccount", LongValue.valueOf(100)),
-				new Account(AREA_KEY, 224, "Testproduct2", 124, "Testaccount2", LongValue.valueOf(200)));
-		List<Account> spendings = Arrays.asList(
-				new Account(AREA_KEY, 223, "Testproduct", 123, "Testaccount", LongValue.valueOf(100)),
-				new Account(AREA_KEY, 224, "Testproduct2", 124, "Testaccount2", LongValue.valueOf(200)));
+		List<Account> income = Arrays.asList(new Account(AREA_KEY, AREA_LABEL, 223, "Testproduct", 123, "Testaccount",
+				LongValue.valueOf(100)), new Account(AREA_KEY, AREA_LABEL, 224, "Testproduct2", 124, "Testaccount2",
+				LongValue.valueOf(200)));
+		List<Account> spendings = Arrays.asList(new Account(AREA_KEY, AREA_LABEL, 223, "Testproduct", 123,
+				"Testaccount", LongValue.valueOf(100)), new Account(AREA_KEY, AREA_LABEL, 224, "Testproduct2", 124,
+				"Testaccount2", LongValue.valueOf(200)));
 		MergedData mergedData = dataMerger.mergeData(population, areaSizes, income, spendings);
 		List<AccountsPerArea> result = mergedData.getAreas();
 		assertNotNull(result);
 		AccountsPerArea accountsPerArea = result.get(0);
 		assertEquals(AREA_KEY, accountsPerArea.getKey());
+		assertEquals(AREA_LABEL, accountsPerArea.getLabel());
 		assertEquals(12345.67, accountsPerArea.getSize(), 0.001);
 		assertEquals(1234, accountsPerArea.getPopulation());
 		assertFalse(accountsPerArea.getProducts().isEmpty());
