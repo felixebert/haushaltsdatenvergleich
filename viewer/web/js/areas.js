@@ -37,11 +37,11 @@
 		getLabel: function(accountName, relation, year) {
 			var relationLabel = '';
 			if (relation === 'population') {
-				relationLabel = 'je Einwohner';
+				relationLabel = ' je Einwohner';
 			} else if (relation === 'size') {
-				relationLabel = 'je km²';
+				relationLabel = ' je km²';
 			}
-			return accountName + ' ' + relationLabel + ' in ' + year;
+			return accountName + relationLabel + ' in ' + year;
 		}
 	};
 
