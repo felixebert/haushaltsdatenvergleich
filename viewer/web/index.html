@@ -92,8 +92,8 @@
 					src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/icons/youtube-32x32.png">
 				</a>
 			</div>
-			<a title="Die offizielle Homepage der Piratenfraktion im Landtag NRW" href="http://www.piratenfraktion-nrw.de"> <img
-				width="580" src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/pp.png">
+			<a title="Die offizielle Homepage der Piratenfraktion im Landtag NRW" href="http://www.piratenfraktion-nrw.de"> <img style="width:580px"
+				src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/pp.png">
 			</a>
 		</header>
 
@@ -169,8 +169,10 @@
 	<script id="popup-template" type="text/x-handlebars-template">
 		<p class="popup-label"><strong>{{areaLabel}}</strong></p>
 		
-		<a href="bilanz.html?{{keyForBalance}}" target="_blank" class="btn btn-balance btn-popup" title="Bilanz"><i class="icon-briefcase"></i></a>
-		
+		<div class="btn-group btn-popup">
+		<a href="bilanz.html?{{keyForBalance}}" target="_blank" class="btn btn-balance " title="Bilanz"><i class="icon-briefcase"></i></a>
+		<a class="btn btn-close-popup" href="#" ><i class="icon-remove"></i></a>
+		</div>
 		<p>
 			<strong>{{valueLabel}}:</strong><br />
 			<strong class="popup-value">

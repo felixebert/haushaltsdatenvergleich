@@ -212,3 +212,12 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 a.menu:after, .dropdown-toggle:after {
     content: none;
 }
+
+.navbar-inner {
+  border-radius: 0px !important;
+}
+
+.dropdown-menu {
+  z-index: 100000 !important;
+  margin: 0 !important;
+}
