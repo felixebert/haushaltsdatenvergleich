@@ -3,8 +3,11 @@ package de.ifcore.hdv.converter.data;
 import java.text.Collator;
 import java.util.Locale;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class KeyAccount implements Comparable<KeyAccount> {
 
+	@JsonIgnore
 	private static final Collator collator = Collator.getInstance(Locale.GERMAN);
 	private int key;
 	private String label;

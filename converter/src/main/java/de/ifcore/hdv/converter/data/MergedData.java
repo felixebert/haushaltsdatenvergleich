@@ -2,6 +2,7 @@ package de.ifcore.hdv.converter.data;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -13,13 +14,13 @@ public class MergedData {
 	@JsonIgnore
 	private Map<Integer, MinMaxProduct> products;
 	private Map<Integer, List<Integer>> tree;
-	private Map<Integer, String> productLabels;
-	private Map<Integer, String> incomeLabels;
-	private Map<Integer, String> spendingsLabels;
+	private Set<KeyAccount> productLabels;
+	private Set<KeyAccount> incomeLabels;
+	private Set<KeyAccount> spendingsLabels;
 
 	public MergedData(List<AccountsPerArea> areas, Map<Integer, MinMaxProduct> products,
-			Map<Integer, List<Integer>> tree, Map<Integer, String> productLabels, Map<Integer, String> incomeLabels,
-			Map<Integer, String> spendingsLabels) {
+			Map<Integer, List<Integer>> tree, Set<KeyAccount> productLabels, Set<KeyAccount> incomeLabels,
+			Set<KeyAccount> spendingsLabels) {
 		this.areas = areas;
 		this.products = products;
 		this.tree = tree;
@@ -40,15 +41,15 @@ public class MergedData {
 		return products;
 	}
 
-	public Map<Integer, String> getProductLabels() {
+	public Set<KeyAccount> getProductLabels() {
 		return productLabels;
 	}
 
-	public Map<Integer, String> getSpendingsLabels() {
-		return spendingsLabels;
+	public Set<KeyAccount> getIncomeLabels() {
+		return incomeLabels;
 	}
 
-	public Map<Integer, String> getIncomeLabels() {
-		return incomeLabels;
+	public Set<KeyAccount> getSpendingsLabels() {
+		return spendingsLabels;
 	}
 }

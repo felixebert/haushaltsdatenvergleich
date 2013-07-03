@@ -15,6 +15,10 @@ public class AccountLabels {
 		keyAccounts.add(new KeyAccount(key, label));
 	}
 
+	public Set<KeyAccount> getKeyAccounts() {
+		return keyAccounts;
+	}
+
 	public Map<Integer, String> asSortedMap() {
 		Map<Integer, String> result = new LinkedHashMap<>(keyAccounts.size());
 		for (KeyAccount keyAccount : keyAccounts) {
