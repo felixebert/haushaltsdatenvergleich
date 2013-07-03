@@ -3,7 +3,7 @@
 (function(hdv, _) {
 	var defaults = {
 		lat: 51.463,
-		lon: 7.18,
+		lon: 7.88,
 		zoom: 9,
 		product: 999,
 		account: 7,

@@ -21,9 +21,9 @@
 			}
 			return value;
 		},
-		getCurrentLabel: function() {
-			var account = $('.settings select[name="account"] option:selected').text();
-			return this.getLabel(account, hdv.settings.relation, hdv.settings.year);
+		getCurrentLabel: function(isSpending) {
+			var accountLabel = $('.settings select[name="account"] option:selected').text();
+			return this.getLabel(accountLabel, hdv.settings.account, hdv.settings.relation, hdv.settings.year, isSpending);
 		},
 		inRelationTo: function(value, relationValue) {
 			if (relationValue) {
@@ -34,14 +34,19 @@
 		getValueInRelationTo: function(value, relation) {
 			return Math.round((value / relation) * 100) / 100;
 		},
-		getLabel: function(accountName, relation, year) {
+		getLabel: function(accountLabel, account, relation, year, isSpending) {
 			var relationLabel = '';
 			if (relation === 'population') {
 				relationLabel = ' je Einwohner';
 			} else if (relation === 'size') {
 				relationLabel = ' je km²';
 			}
-			return accountName + relationLabel + ' in ' + year;
+
+			var accountPrefix = '';
+			if (account != 6 && account != 7) {
+				accountPrefix = isSpending ? 'Ausgaben für ' : 'Einnahmen über ';
+			}
+			return accountPrefix + accountLabel + relationLabel + ' in ' + year;
 		}
 	};
 
@@ -64,7 +69,8 @@
 				'area': areaMeta,
 				'value': value,
 				'accountValue': accountValue,
-				'keyForBalance': hdv.balance.getKeyForArea(areaMeta.key, layer.attribute)
+				'keyForBalance': hdv.balance.getKeyForArea(areaMeta.key, layer.attribute),
+				'account': hdv.settings.account
 			};
 		},
 		refreshLayer: function(areaLayer, accountValues, log10Boundaries, valueLabel, isSpending, settings) {
@@ -82,8 +88,8 @@
 		refreshLayers: function(settings) {
 			var boundaries = hdv.accountBoundaries.findAccordingTo(settings);
 			var log10Boundaries = hdv.accountBoundaries.toLog10(boundaries);
-			var valueLabel = areaValue.getCurrentLabel();
 			var isSpending = hdv.accounts.isSpending(settings.account);
+			var valueLabel = areaValue.getCurrentLabel(isSpending);
 
 			_.each(hdv.data.areaLayers, _.bind(function(areaLayer) {
 				var accountValues = hdv.data.values.areas[areaLayer.key];
