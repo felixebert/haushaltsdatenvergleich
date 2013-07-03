@@ -62,10 +62,14 @@ a {
 }
 #map-container {
 	position: relative;
+	margin-top: 2em;
 }
 #map {
-	height: 550px;
+	height: 600px;
 	width: 100%;
+}
+header {
+	margin-bottom: 2em;
 }
 
 /* custom control */
@@ -168,17 +172,9 @@ label.title {
 }
 
 /* area popup */
-.table-comparison-value {
-	margin-bottom: 1em;
-	width: 100%;
-	max-width: 250px;
-}
-.table-comparison-value td {
-	padding-right: 7px;
-}
-.table-comparison-value th {
-	text-align: right;
-	vertical-align: bottom;
+.popup-value {
+	display: block;
+	padding-top: 4px;
 }
 
 p.raw-values-title {
@@ -219,11 +215,22 @@ a.menu:after, .dropdown-toggle:after {
     content: none;
 }
 
+/* bootstrap */
 .navbar-inner {
-  border-radius: 0px !important;
+	border-radius: 0px !important;
 }
-
 .dropdown-menu {
-  z-index: 100000 !important;
-  margin: 0 !important;
+	z-index: 100000 !important;
+	margin: 0 !important;
+}
+.navbar {
+	position: static;
+	font-size: 16px;
+}
+.nav li a {
+	line-height: 16px;
+	padding-right: 28px !important;
+}
+a.brand {
+	line-height: 14px;
 }
