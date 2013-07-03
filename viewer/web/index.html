@@ -169,20 +169,16 @@
 	<script id="popup-template" type="text/x-handlebars-template">
 		<p class="popup-label"><strong>{{areaLabel}}</strong></p>
 		
-		<table class="table-comparison-value">
-			<tbody>
-				<tr>
-					<td>{{valueLabel}}:</td>
-					<th>
-						{{#if value}}
-							{{{currency value}}}
-						{{else}}
-							?
-						{{/if}}
-					</th>
-				</tr>
-			</tbody>
-		</table>
+		<p>
+			{{valueLabel}}:
+			<strong class="popup-value">
+				{{#if value}}
+					{{{currency value}}}
+				{{else}}
+					?
+				{{/if}}
+			</strong>
+		</p>
 
 		<p class="raw-values-title">Rohdaten:</p>
 		<table class="table-raw-values">
