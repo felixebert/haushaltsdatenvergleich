@@ -213,6 +213,7 @@
 				</ul>
 			</div>
 		</div>
+		<div id="socialshareprivacy"></div>
 		
 		<br />
 		<section>
@@ -285,6 +286,8 @@
 	<script src="lib/underscore.js"></script>
 	<script src="lib/leaflet.js"></script>
 	<script src="lib/jquery.js"></script>
+	<script src="lib/jquery.socialshareprivacy.min.js"></script>
+	<script src="lib/jquery.socialshareprivacy.min.de.js"></script>
 	<script src="lib/bootstrap.js"></script>
 	<script src="lib/handlebars.js"></script>
 	<script src="js/app.js"></script>
@@ -302,6 +305,7 @@
 	<script type="text/javascript">
 		$(function() {
 			hdv.init();
+			$('#socialshareprivacy').socialSharePrivacy();
 		});
 	</script>
 </body>
