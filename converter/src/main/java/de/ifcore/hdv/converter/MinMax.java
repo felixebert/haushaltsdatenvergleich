@@ -29,14 +29,14 @@ public class MinMax {
 		addMinMaxValue(calc.getValuePerPopulation(), MIN_VALUE_PER_POP, MAX_VALUE_PER_POP);
 	}
 
-	private void addMinMaxValue(LongValue value, int min, int max) {
-		if (value.isValid()) {
+	private void addMinMaxValue(Double value, int min, int max) {
+		if (!Double.isNaN(value)) {
 			if (data[min] == null)
-				data[min] = Double.valueOf(value.getValue());
+				data[min] = value;
 			if (data[max] == null)
-				data[max] = Double.valueOf(value.getValue());
-			data[min] = Math.min(data[min], value.getValue());
-			data[max] = Math.max(data[max], value.getValue());
+				data[max] = value;
+			data[min] = Math.min(data[min], value);
+			data[max] = Math.max(data[max], value);
 		}
 	}
 

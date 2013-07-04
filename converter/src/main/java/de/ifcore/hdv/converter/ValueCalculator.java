@@ -14,24 +14,24 @@ public class ValueCalculator {
 		this.size = size;
 	}
 
-	public LongValue getValue() {
-		return value;
+	public Double getValue() {
+		return value.isValid() ? value.getValue() : Double.NaN;
 	}
 
-	private LongValue divideSafe(LongValue value1, long value2) {
+	private Double divideSafe(LongValue value1, long value2) {
 		if (value1.isValid()) {
-			long newValue = Long.valueOf(value1.getValue() / value2);
-			return LongValue.valueOf(newValue);
+			double newValue = (double)value1.getValue() / value2;
+			return Double.valueOf(newValue);
 		}
 		else
-			return value1;
+			return Double.NaN;
 	}
 
-	public LongValue getValuePerArea() {
+	public Double getValuePerArea() {
 		return divideSafe(value, Math.round(size));
 	}
 
-	public LongValue getValuePerPopulation() {
+	public Double getValuePerPopulation() {
 		return divideSafe(value, population);
 	}
 }

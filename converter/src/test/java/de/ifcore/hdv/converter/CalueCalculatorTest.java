@@ -13,23 +13,21 @@ public class CalueCalculatorTest {
 
 	@Test
 	public void itShouldReturnIncomeAndSpendingsUnmodified() throws Exception {
-		assertFalse(calcNullValues.getValue().isValid());
-		assertLongValue(2000, calc.getValue());
+		assertTrue(Double.isNaN(calcNullValues.getValue()));
+		assertValue(2000, calc.getValue());
 	}
 
 	@Test
 	public void itShouldReturnPerAreaValues() throws Exception {
-		assertFalse(calcNullValues.getValuePerArea().isValid());
-		assertLongValue(1000, calc.getValuePerArea());
+		assertValue(1000, calc.getValuePerArea());
 	}
 
 	@Test
 	public void itShouldReturnPerPopulationValues() throws Exception {
-		assertFalse(calcNullValues.getValuePerPopulation().isValid());
-		assertLongValue(200, calc.getValuePerPopulation());
+		assertValue(200, calc.getValuePerPopulation());
 	}
 
-	private static void assertLongValue(long expected, LongValue actual) {
-		assertEquals(Long.valueOf(expected), actual.getValue());
+	private static void assertValue(long expected, Double actual) {
+		assertEquals(expected, actual.doubleValue(), 0.001);
 	}
 }
