@@ -155,15 +155,32 @@
 			}).addTo(this.leafletMap);
 		},
 		addAttributionControl: function() {
-			var attribution = '<a class="imprint">Impressum</a>';
+			var attribution = '<a class="permalink">Permalink</a> &nbsp;&nbsp; <a class="datasources">Datenquellen</a> &nbsp;&nbsp; <a class="imprint">Impressum</a>';
 			L.control.attribution().setPrefix(null).addAttribution(attribution).addTo(this.leafletMap);
 
 			$('.imprint').on('click', function() {
 				$('#imprint').modal('toggle');
 			});
+			$('.datasources').on('click', function() {
+				$('#datasources').modal('toggle');
+			});
+			$('.permalink').on('click', _.bind(function() {
+				this.showPermalink();
+			}, this));
+		},
+		showPermalink: function() {
+			var permalink = this.buildPermalink();
+			prompt('Bitte kopieren Sie folgende URL:', permalink);
+		},
+		buildPermalink: function() {
+			var baseUrl = window.location.href;
+			if (baseUrl.indexOf('?') > 0) {
+				baseUrl = baseUrl.substr(0, baseUrl.indexOf('?'));
+			}
+			return baseUrl + '?' + $.param($('.settings').serializeArray());
 		},
 		setupModals: function() {
-			var modals = ['info', 'imprint'];
+			var modals = ['info', 'imprint', 'datasources'];
 			_.each(modals, function(modalId) {
 				$('#' + modalId).modal({
 					'show': false

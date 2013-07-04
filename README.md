@@ -41,26 +41,14 @@ Die konvertierten Daten werden im Verzeichnis viewer\web\data erstellt.
 Datenquellen
 ------------
 
-Für dieses Projekt werden folgende Daten verwendet:
+* Finanzrechnungsstatistik:  [Landesdatenbank NRW](https://www.landesdatenbank.nrw.de/) Tabellencodes: 71147-05i und 71147-15i
 
-Finanzdaten für die Jahre 2009 und 2010
-Quelle: 
+* Einwohnerzahlen auf Basis des Zensus 2011: [Gemeindeverzeichnis-Informationssystem (GV-ISys)](https://www.destatis.de/DE/ZahlenFakten/LaenderRegionen/Regionales/Gemeindeverzeichnis/Administrativ/AdministrativeUebersicht.html) des Statistischen Bundesamts
 
-Einwohnerzahlen Zensus 2012
-Quelle: 
+* Fläche in km² je Gemeinde - Stand 31.03.2013: [Gemeindeverzeichnis-Informationssystem (GV-ISys)](https://www.destatis.de/DE/ZahlenFakten/LaenderRegionen/Regionales/Gemeindeverzeichnis/Gemeindeverzeichnis.html) des Statistischen Bundesamts
 
-Gemeinde Flächen Stand 31.03.2013:
-Quelle:
+* Bilanzdaten von 2009: IT.NRW - bezogen von [piratenfraktion-nrw.de](http://www.piratenfraktion-nrw.de/2012/12/transparenzerfolg-finanzdaten-der-kommunen-veroffentlicht/)
 
-Gemeinde Bilanzdaten Stand ???
-Quelle:
+* Gemeindeflächen Geodaten: [Ministerium für Inneres und Kommunales des Landes Nordrhein-Westfalen](http://www.mik.nrw.de/themen-aufgaben/buergerbeteiligung-wahlen/wahlen/auf-allen-ebenen/landtagswahl/wahl-2012/wahlkreiskarten.html)
 
-Gemeindeflächen Geodaten
-Quelle:
-Ministerium für Inneres und Kommunales des Landes Nordrhein-Westfalen
-http://www.mik.nrw.de/themen-aufgaben/buergerbeteiligung-wahlen/wahlen/auf-allen-ebenen/landtagswahl/wahl-2012/wahlkreiskarten.html
-
-Landkreisflächen Geodaten
-Quelle:
-Bundesamt für Kartographie und Geodäsie
-http://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu&gdz_akt_zeile=5&gdz_anz_zeile=1&gdz_unt_zeile=17&gdz_user_id=0
+* Landkreisflächen Geodaten [Bundesamt für Kartographie und Geodäsie](http://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu&gdz_akt_zeile=5&gdz_anz_zeile=1&gdz_unt_zeile=17&gdz_user_id=0)
