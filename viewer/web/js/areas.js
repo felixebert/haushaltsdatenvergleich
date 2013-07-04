@@ -70,7 +70,8 @@
 				'value': value,
 				'accountValue': accountValue,
 				'keyForBalance': hdv.balance.getKeyForArea(areaMeta.key, layer.attribute),
-				'settings': hdv.settings
+				'settings': hdv.settings,
+				'isNumericValue': !isNaN(parseInt(accountValue, 10))
 			};
 		},
 		refreshLayer: function(areaLayer, accountValues, log10Boundaries, valueLabel, isSpending, settings) {
