@@ -54,7 +54,7 @@ module.exports = function(grunt) {
 					dot: true,
 					cwd: 'src/',
 					dest: 'dist/',
-					src: ['*.{ico,png,txt,html}', 'img/{,*/}*.{gif}', 'socialshareprivacy/*']
+					src: ['*.{ico,png,txt,html}', 'img/{,*/}*.{gif}', 'socialshareprivacy/*', 'data/*.geojson']
 				}]
 			}
 		},
@@ -62,7 +62,7 @@ module.exports = function(grunt) {
 			dist: {
 				files: [{
 					dot: true,
-					src: ['dist/*']
+					src: ['dist/{css,js,img}']
 				}]
 			}
 		},
