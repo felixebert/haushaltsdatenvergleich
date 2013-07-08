@@ -13,9 +13,13 @@ module.exports = function(grunt) {
 				globals: {
 					jQuery: true,
 					console: true,
-					module: true,
-					document: true
-				}
+					window: true,
+					hdv: true,
+					_: true,
+					Handlebars: true,
+					L: true
+				},
+				laxbreak: true
 			}
 		},
 		rev: {
@@ -118,5 +122,5 @@ module.exports = function(grunt) {
 	grunt.registerTask('test', ['testacular']);
 	grunt.registerTask('dataupdate', ['jsonmin:dist']);
 	grunt.registerTask('build', ['clean:dist', 'useminPrepare', 'imagemin', 'concat', 'cssmin', 'uglify', 'copy:dist', 'rev', 'usemin']);
-	grunt.registerTask('default', ['jshint', 'test', 'build']);
+	grunt.registerTask('default', ['build']);
 };

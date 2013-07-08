@@ -1,6 +1,5 @@
-'use strict';
-
 (function(hdv, _, $) {
+	'use strict';
 	var settingsService = {
 		init: function() {
 			$('.settings').on('change', _.bind(this.update, this));
@@ -26,4 +25,4 @@
 
 	hdv.settings = {};
 	hdv.settingsService = settingsService;
-})(hdv, _, $);
+})(hdv, _, jQuery);

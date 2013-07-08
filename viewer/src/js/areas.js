@@ -1,6 +1,5 @@
-'use strict';
-
 (function(hdv, $, _, Handlebars) {
+	'use strict';
 	var nullSafeNumber = function(number) {
 		return (number === null || number === undefined || isNaN(parseInt(number, 10))) ? 0 : number;
 	};
@@ -105,4 +104,4 @@
 	hdv.areas = areas;
 	hdv.areaValue = areaValue;
 	areas.init();
-})(hdv, $, _, Handlebars);
+})(hdv, jQuery, _, Handlebars);

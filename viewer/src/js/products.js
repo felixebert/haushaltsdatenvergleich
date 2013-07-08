@@ -1,6 +1,5 @@
-'use strict';
-
 (function(hdv, $, _) {
+	'use strict';
 	var productSelectList = {
 		init: function() {
 			$(hdv).on('loaded.metadata', _.bind(this.reset, this));
@@ -147,4 +146,4 @@
 
 	hdv.accounts = accounts;
 	hdv.accountBoundaries = accountBoundaries;
-})(hdv, $, _);
+})(hdv, jQuery, _);

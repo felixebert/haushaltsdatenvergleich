@@ -1,6 +1,5 @@
-'use strict';
-
 (function(hdv, _, $) {
+	'use strict';
 	var data = {
 		areaLayers: [],
 		meta: {},
@@ -25,4 +24,4 @@
 	};
 
 	hdv.data = data;
-})(hdv, _, $);
+})(hdv, _, jQuery);

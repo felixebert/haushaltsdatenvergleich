@@ -1,6 +1,5 @@
-'use strict';
-
 (function(hdv, _) {
+	'use strict';
 	var defaults = {
 		lat: 51.463,
 		lon: 7.88,

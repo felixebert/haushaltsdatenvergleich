@@ -1,5 +1,5 @@
-'use strict';
 (function(hdv, L, $, _) {
+	'use strict';
 	var SettingsControl = L.Control.extend({
 		options: {
 			position: 'topleft'
@@ -215,4 +215,4 @@
 
 	hdv.map = map;
 	hdv.loader = loader;
-})(hdv, L, $, _);
+})(hdv, L, jQuery, _);

@@ -1,5 +1,5 @@
-'use strict';
 (function(hdv, Handlebars) {
+	'use strict';
 	Handlebars.registerHelper('number', function(n) {
 		return hdv.formatter.number(n);
 	});

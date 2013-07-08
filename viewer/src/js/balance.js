@@ -1,6 +1,5 @@
-'use strict';
-
 (function(hdv, $, _, Handlebars) {
+	'use strict';
 	var balance = {
 		template: null,
 		init: function(key) {
@@ -36,4 +35,4 @@
 	};
 
 	hdv.balance = balance;
-})(hdv, $, _, Handlebars);
+})(hdv, jQuery, _, Handlebars);
