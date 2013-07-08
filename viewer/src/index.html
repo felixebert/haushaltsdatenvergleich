@@ -4,11 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- build:css css/hdv.css -->
 <link href="css/fonts.css" rel="stylesheet" />
 <link href="css/bootstrap.css" rel="stylesheet" />
 <link href="css/bootstrap-responsive.css" rel="stylesheet" />
 <link href="css/leaflet.css" rel="stylesheet" />
 <link href="css/hdv.css" rel="stylesheet" />
+<!-- endbuild -->
 <title>Finanzdatenvergleich NRW</title>
 </head>
 <body>
@@ -290,11 +292,10 @@
 		</p>
 	</script>
 
+	<!-- build:js js/hdv.js -->
 	<script src="lib/underscore.js"></script>
 	<script src="lib/leaflet.js"></script>
 	<script src="lib/jquery.js"></script>
-	<script src="lib/jquery.socialshareprivacy.min.js"></script>
-	<script src="lib/jquery.socialshareprivacy.min.de.js"></script>
 	<script src="lib/bootstrap.js"></script>
 	<script src="lib/handlebars.js"></script>
 	<script src="js/app.js"></script>
@@ -308,7 +309,10 @@
 	<script src="js/balance.js"></script>
 	<script src="js/products.js"></script>
 	<script src="js/areas.js"></script>
+	<!-- endbuild -->
 
+	<script src="socialshareprivacy/jquery.socialshareprivacy.min.js"></script>
+	<script src="socialshareprivacy/jquery.socialshareprivacy.min.de.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			hdv.init();
