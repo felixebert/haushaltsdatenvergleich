@@ -8,7 +8,7 @@ Der Viewer ist eine JavaScript/HTML5 Web App, welche die Daten im Browser darste
 und dem Benutzer verschiedene Möglichkeiten zum Vergleich der Daten bietet.
 
 Der Viewer befindet sich im viewer/web Verzeichnis und kann mit der Datei index.html geöffnet werden. 
-Alle Daten sind bereits konvertiert und in dem Verzeichnis viewer/web/data aufbereitet.
+Alle Daten sind bereits konvertiert und in dem Verzeichnis viewer/src/data aufbereitet.
 
 Möchte man das Projekt verändern oder aktualisierte Daten verwenden muss das Java-Projekt 
 kompiliert und verschiedene Konverter gestartet werden. 
