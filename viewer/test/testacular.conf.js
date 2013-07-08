@@ -3,12 +3,12 @@ basePath = '../';
 files = [
   JASMINE,
   JASMINE_ADAPTER,
-  'web/lib/jquery.js',
-  'web/lib/underscore.js',
-  'web/lib/leaflet.js',
-  'web/lib/handlebars.js',
-  'web/js/app.js',
-  'web/js/*.js',
+  'src/lib/jquery.js',
+  'src/lib/underscore.js',
+  'src/lib/leaflet.js',
+  'src/lib/handlebars.js',
+  'src/js/app.js',
+  'src/js/*.js',
   'test/unit/**/*.js'
 ];
 
