@@ -21,14 +21,14 @@ Im Einzelnen verwendete Konverter-Klassen:
 
 *	Konverter für die Haushaltsdaten der Gemeinden
 
-	de.ifcore.hdv.converter.Converter <Einnahmen-Datei> <Ausgaben-Datei> <Einwohnerzahl-Datei> <Flaechen-Datei> <Ausgabe-Verzeichnis>
+	    de.ifcore.hdv.converter.Converter <Einnahmen-Datei> <Ausgaben-Datei> <Einwohnerzahl-Datei> <Flaechen-Datei> <Ausgabe-Verzeichnis>
 
 *	Konverter für die Haushaltsdaten der Landkreise
 
-	de.ifcore.hdv.converter.CountyConverter <Einnahmen-Datei> <Ausgaben-Datei> <Einwohnerzahl-Datei> <Flaechen-Datei> <Ausgabe-Verzeichnis>
+	    de.ifcore.hdv.converter.CountyConverter <Einnahmen-Datei> <Ausgaben-Datei> <Einwohnerzahl-Datei> <Flaechen-Datei> <Ausgabe-Verzeichnis>
 
 *	Konverter für die Bilanzdaten
 
-	de.ifcore.hdv.converter.BalanceConverter <Bilanzdaten-Datei> <Ausgabe-Verzeichnis>
+	    de.ifcore.hdv.converter.BalanceConverter <Bilanzdaten-Datei> <Ausgabe-Verzeichnis>
 
 
