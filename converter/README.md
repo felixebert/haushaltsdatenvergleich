@@ -1,17 +1,18 @@
+Converter
+------------------
+
 Möchte man aktualisierte Daten einspielen muss dieses Java-Projekt
 kompiliert werden. Anschließend können verschiedene Konverter gestartet werden.
 Diese Schritte werden im Folgenden beschrieben.
 
-Projekt kompilieren
--------------------
+# Projekt kompilieren
 
 	mvn clean package
 
 Dadurch wird das Java Projekt kompiliert und zu einer JAR Datei zusammen
 mit allen Abhängigkeiten gepackt.
 
-Daten konvertieren
-------------------
+# Daten konvertieren
 
 Bitte beachten Sie die fertigen Konverter-Skripte namens konvertiere_*.sh (Unix) / konvertiere_*.cmd (Windows)
 

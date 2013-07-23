@@ -9,6 +9,8 @@ einheitliches JSON-Format für den Viewer aufbereitet.
 Der Viewer ist eine JavaScript/HTML5 Web App, welche die Daten im Browser darstellt 
 und dem Benutzer verschiedene Möglichkeiten zum Vergleich der Daten bietet.
 
+Weitere Informationen zu den Modulen erhalten sie in den README-Dateien der Modul-Verzeichnisse.
+
 Datenquellen
 -----------
 
