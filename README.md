@@ -1,47 +1,23 @@
 ﻿Haushaltsdatenvergleich NRW
 ===========================
 
-Das Projekt besteht aus zwei Modulen. Zum einen aus einem Konverter und zum anderen aus einem Viewer.
+Das Projekt besteht aus zwei Modulen - einem Konverter und einem Viewer.
+
 Der Konverter ist ein Java Programm, welches die verschiedenen Datenquellen in ein 
 einheitliches JSON-Format für den Viewer aufbereitet.
+
 Der Viewer ist eine JavaScript/HTML5 Web App, welche die Daten im Browser darstellt 
 und dem Benutzer verschiedene Möglichkeiten zum Vergleich der Daten bietet.
 
-Der Viewer befindet sich im viewer/web Verzeichnis und kann mit der Datei index.html geöffnet werden. 
-Alle Daten sind bereits konvertiert und in dem Verzeichnis viewer/src/data aufbereitet.
-
-Möchte man das Projekt verändern oder aktualisierte Daten verwenden muss das Java-Projekt 
-kompiliert und verschiedene Konverter gestartet werden. 
-Diese Schritte werden im Folgenden beschrieben.
-
-Projekt kompilieren
--------------------
-Im Verzeichnis "converter" 
-
-"mvn clean package"
-
-ausführen.
-
-Dadurch wird das Java Projekt kompiliert und zu einer JAR Datei zusammen 
-mit allen Abhängigkeiten gepackt.
-
-Daten konvertieren
-------------------
-
-Im Projekt-Verzeichnis folgende Skripte ausführen:
-
-"konvertiere_bilanz" 
-"konvertiere_finanzdaten_gemeinden" 
-"konvertiere_finanzdaten_landkreise"
-
-Alterntaiv kann das Skript "konvertiere_alles" ausgeführt werden.
-
-Die konvertierten Daten werden im Verzeichnis viewer\web\data erstellt.
-
 Datenquellen
-------------
+-----------
 
-* Finanzrechnungsstatistik:  [Landesdatenbank NRW](https://www.landesdatenbank.nrw.de/) Tabellencodes: 71147-05i und 71147-15i
+Alle verwendeten Rohdaten befinden sich im Verzeichnis converter/data
+Die aus den Rohdaten erzeugten JSON-Dateien befinden sich im Verzeichnis viewer/src/data
+
+Folgende Daten wurden in diesem Projekt verwendet:
+
+* kommunale Finanzdaten: [Landesdatenbank NRW](https://www.landesdatenbank.nrw.de/) Tabellencodes: 71147-05i und 71147-15i
 
 * Einwohnerzahlen auf Basis des Zensus 2011: [Gemeindeverzeichnis-Informationssystem (GV-ISys)](https://www.destatis.de/DE/ZahlenFakten/LaenderRegionen/Regionales/Gemeindeverzeichnis/Administrativ/AdministrativeUebersicht.html) des Statistischen Bundesamts
 
