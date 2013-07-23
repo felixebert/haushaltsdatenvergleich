@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Visualisierung der kommunalen Haushaltsdaten in NRW</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,6 @@
 <link href="css/leaflet.css" rel="stylesheet" />
 <link href="css/hdv.css" rel="stylesheet" />
 <!-- endbuild -->
-<title>Finanzdatenvergleich NRW</title>
 </head>
 <body>
 	<div class="navbar navbar-fixed-top hidden-phone">
@@ -227,6 +227,7 @@
 						IT.NRW - bezogen von <a href="http://www.piratenfraktion-nrw.de/2012/12/transparenzerfolg-finanzdaten-der-kommunen-veroffentlicht/">piratenfraktion-nrw.de</a>
 					</li>
 				</ul>
+				<p>bitte beachten Sie auch das <a href="https://github.com/felixebert/haushaltsdatenvergleich">GitHub Repository</a></p>
 			</div>
 		</div>
 		<div id="socialshareprivacy"></div>
@@ -236,19 +237,32 @@
 			<header class="header">
 				<h2 class="post-title">Erläuterungen</h2>
 			</header>
+			<p class="pull-right">
+				<a href="https://github.com/felixebert/haushaltsdatenvergleich">
+					<img src="img/github.png" alt="GitHub Repository" />
+				</a>
+			</p>
+			
 			<aside class="meta">
 				<article class="article">
+					<p>
 					Die Daten sind frei verfügbar. Die Veröffentlichung erfolgt ohne Gewähr. Quelle: Landesdatenbank NRW<br />
 					Trotz sorgfältiger Prüfung kann für Übertragungsfehler keine Haftung übernommen werden.<br />
-					<br />
+					</p>
+					<p>
 					Anregungen nehmen wir gerne auf und sind hier zu erreichen:<br />
 					<a href="mailto:piratenfraktion@landtag.nrw.de">piratenfraktion@landtag.nrw.de</a><br />
+					</p>
 				</article>
 			</aside>
-			<p class="pull-right">
+
+			
+			<p class="attribution">&copy; Piratenfraktion im Landtag NRW</p>
+			
+			<p>
 				<a href="http://www.piratenfraktion-nrw.de/impressum/">Impressum</a>
 			</p>
-			<p class="attribution">&copy; Piratenfraktion im Landtag NRW</p>
+			
 		</section>
 	</div>
 	<div class="ajax-loader"></div>
@@ -322,7 +336,13 @@
 	<script type="text/javascript">
 		$(function() {
 			hdv.init();
-			$('#socialshareprivacy').socialSharePrivacy();
+			$('#socialshareprivacy').socialSharePrivacy({
+				services: {
+					twitter: {
+		                hashtags : '20piraten'
+		            }
+				}
+			});
 		});
 	</script>
 </body>
