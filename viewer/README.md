@@ -2,11 +2,11 @@
 
 Alle HTML, JavaScript und CSS-Dateien befinden sich im Verzeichnis src/. Zum Einsatz kommen die JavaScript-Frameworks Leaflet, underscore.js und jQuery
 
-Unit-Tests für die JavaScript-Dateien befinden sich im Verzeichnis test/ (testacular-Tests)
+Unit-Tests für die JavaScript-Dateien befinden sich im Verzeichnis test/ (auf Basis von testacular)
 
 Im Verzeichnis scripts/ befindet sich ein einfacher node.js Server, der zum Entwickeln verwendet werden kann.
 
-Im Verzeichnis src/data befinden sich die .json-Dateien des converters.
+Im Verzeichnis src/data befinden sich die vom converter-Modul konvertierten Daten in Form von .json-Dateien.
 
 ## Build
 
