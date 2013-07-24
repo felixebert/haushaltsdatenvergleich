@@ -186,6 +186,7 @@
 					'show': false
 				});
 			});
+			$('#info .modal-body').html($('.info-text').html());
 		},
 		addSettingsControl: function() {
 			this.settingsControl = new SettingsControl().addTo(this.leafletMap);

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Visualisierung der kommunalen Haushaltsdaten in NRW</title>
+<title>Visualisierung der kommunalen Finanzdaten in NRW</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -96,7 +96,7 @@
 			</a>
 		</header>
 		
-		<h1 class="hidden-phone">Haushaltsdatenvergleich NRW</h1>
+		<h1 class="hidden-phone">Kommunale Finanzdaten NRW</h1>
 		
 		<!--[if lte IE 8]>
 			<div class="alert alert-error">
@@ -166,10 +166,9 @@
 		<div id="info" class="modal hide">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h3>Finanzdatenvergleich NRW</h3>
+				<h3>Hinweise zu der Darstellung der Karte und der enthaltenen Informationen</h3>
 			</div>
 			<div class="modal-body">
-				<p>Beim Finanzdatenvergleich NRW handelt es sich um ein Projekt der Piratenpartei NRW ...</p>
 			</div>
 		</div>
 
@@ -235,34 +234,66 @@
 		<br />
 		<section>
 			<header class="header">
-				<h2 class="post-title">Erläuterungen</h2>
+				<h2 class="post-title">Hinweise zu der Darstellung der Karte und der enthaltenen Informationen</h2>
 			</header>
+
+			<div class="info-text">
+				<p>
+					Die Daten sind frei verfügbar. Die Veröffentlichung erfolgt ohne Gewähr. Quelle: Landesdatenbank NRW<br /> Trotz sorgfältiger Prüfung kann
+					für Übertragungsfehler keine Haftung übernommen werden.<br />
+				</p>
+	
+				<H3>Finanzstatistik</H3>
+	
+				<p>Klicken sie links oben auf das Sternsymbol um ins Menü zu gelangen. Rechts am Bildrand sollte sich ein Auswahlfeld öffnen.</p>
+	
+				<ol>
+					<li>Dort suchen sie sich zu Beginn eine PRODUKTGRUPPE ihrer Wahl aus. Produktgruppen sind Oberbegriffe unter denen verschiedene
+						Aufgaben der Kommune gesammelt werden, wie z.B. “Ordnungsangelegenheiten“.</li>
+					<li>Unter dem Menüpunkt KONTO wählen sie jetzt eine Kategorie, die sie bei diesem Produkt besonders interessiert, z.B. die
+						“Auszahlungen insgesamt“. (Nicht zu jedem Produkt existiert auch ein entsprechendes Konto, bzw. ein entsprechender Wert.)
+	
+						<p>Die Karte sollte spätestens jetzt eine Färbung erhalten.</p>
+	
+						<p>
+							Bei Ausgaben der Kommunen verlaufen die Skalen von „Neutral“ 0 Euro bis „Dunkel Rot“ jeweiliger Höchstwert.<br /> Bei Einnahmen der
+							Kommunen verläuft die Skala von „Neutral“ 0 Euro bis „Dunkel Grün“ jeweiliger Höchstwert.
+						</p>
+					</li>
+					<li>Standardmäßig werden Ihnen nun die absoluten Werte aus den Kommunen angezeigt. Sie haben jetzt noch die Möglichkeit die Färbung der
+						Karte zu ändern, indem Sie sich die Finanzdaten in Bezug auf die jeweilige Einwohnerzahl oder die Fläche der Kommunen anzeigen lassen.</li>
+					<li>Als letzten Schritt wählen Sie nun das Jahr aus zu dem Sie die Daten angezeigt bekommen möchten. (Wir bemühen aktuelle Zahlen
+						einzupflegen sobald sie uns vorliegen.)</li>
+				</ol>
+	
+				<H3>Bilanzen</H3>
+	
+				<p>Sollten Sie sich für die Bilanz einer Kommune interessieren, dann haben Sie die Möglichkeit auch direkt auf die entsprechende Fläche der
+				Kommune zu klicken. Danach öffnet sich ein kleines Fenster. Dort befindet sich unten ein entsprechender Button zum Aufruf der gemeldeten
+				Bilanz. Wichtig ist, dass Sie vorher im Menü festgelegt haben für welchen Zeitraum Sie sich die Daten anzeigen lassen möchten. (Leider liegen
+				bis heute keine vollständigen Unterlagen zur Erhebung der Bilanzstatistik vor. Wir sind natürlich bemüht alle Informationen, die uns zur
+				Verfügung gestellt werden schnellstmöglich hier einzupflegen.)</p>
+	
+				<p><br /></p>
+	
+				<p>
+					Anregungen nehmen wir gerne auf und sind hier zu erreichen:<br /> <a href="mailto:piratenfraktion@landtag.nrw.de">piratenfraktion@landtag.nrw.de</a><br />
+				</p>
+	
+				<p class="attribution">&copy; Piratenfraktion im Landtag NRW</p>
+			
+			</div>	
+			
 			<p class="pull-right">
 				<a href="https://github.com/felixebert/haushaltsdatenvergleich">
 					<img src="img/github.png" alt="GitHub Repository" />
 				</a>
 			</p>
 			
-			<aside class="meta">
-				<article class="article">
-					<p>
-					Die Daten sind frei verfügbar. Die Veröffentlichung erfolgt ohne Gewähr. Quelle: Landesdatenbank NRW<br />
-					Trotz sorgfältiger Prüfung kann für Übertragungsfehler keine Haftung übernommen werden.<br />
-					</p>
-					<p>
-					Anregungen nehmen wir gerne auf und sind hier zu erreichen:<br />
-					<a href="mailto:piratenfraktion@landtag.nrw.de">piratenfraktion@landtag.nrw.de</a><br />
-					</p>
-				</article>
-			</aside>
-
-			
-			<p class="attribution">&copy; Piratenfraktion im Landtag NRW</p>
-			
+			<p><br /></p>
 			<p>
 				<a href="http://www.piratenfraktion-nrw.de/impressum/">Impressum</a>
 			</p>
-			
 		</section>
 	</div>
 	<div class="ajax-loader"></div>
