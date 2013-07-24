@@ -4,12 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kommunale Finanzdaten NRW - Bilanz</title>
+<meta name="description" content="Bilanz einer Gemeinde in NRW" />
+<meta name="author" content="Piratenfraktion im Landtag NRW">
+
+<!-- build:css css/hdv.css -->
 <link href="css/fonts.css" rel="stylesheet" />
 <link href="css/bootstrap.css" rel="stylesheet" />
 <link href="css/bootstrap-responsive.css" rel="stylesheet" />
 <link href="css/leaflet.css" rel="stylesheet" />
 <link href="css/hdv.css" rel="stylesheet" />
-<title>Kommunale Finanzdaten NRW - Bilanz</title>
+<!-- endbuild -->
 </head>
 <body>
 	<div class="navbar navbar-fixed-top hidden-phone">
@@ -166,6 +172,7 @@
 		{{/eachProperty}}
 	</script>
 
+	<!-- build:js js/hdv.bilanz.js -->
 	<script src="lib/underscore.js"></script>
 	<script src="lib/jquery.js"></script>
 	<script src="lib/handlebars.js"></script>
@@ -173,6 +180,7 @@
 	<script src="js/utils.js"></script>
 	<script src="js/handlebars-helper.js"></script>
 	<script src="js/balance.js"></script>
+	<!-- endbuild -->
 
 	<script type="text/javascript">
 		$(function() {

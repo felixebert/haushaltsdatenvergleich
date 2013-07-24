@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Visualisierung der kommunalen Finanzdaten in NRW</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Visualisierung der kommunalen Finanzdaten in NRW</title>
+<meta name="description"
+	content="Visualisierung der kommunalen Finanzdaten NRW, inklusive der Finanz- und der Bilanzstatistik. Alles auf einen Blick leicht verständlich und einfach zu bedienen. Eine neue Form der Transparenz." />
+<meta name="author" content="Piratenfraktion im Landtag NRW">
+<meta property="og:image" content="img/hdv-screenshot.jpg" />
+
 <!-- build:css css/hdv.css -->
 <link href="css/fonts.css" rel="stylesheet" />
 <link href="css/bootstrap.css" rel="stylesheet" />
@@ -21,8 +27,8 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
 
-				<a class="brand" title="Startseite" href="/"><img src="https://haushalt.piratenfraktion-nrw.de/assets/house.png"
-					id="nav_house" border="0" style="display: inline;"></a>
+				<a class="brand" title="Startseite" href="/"><img src="https://haushalt.piratenfraktion-nrw.de/assets/house.png" id="nav_house"
+					border="0" style="display: inline;"></a>
 
 				<div class="nav-collapse collapse">
 					<ul class="nav">
@@ -81,23 +87,21 @@
 	<div class="container">
 		<header class="hidden-phone">
 			<div class="pull-right2 visible-desktop" style="float: right; padding: 50px 50px 0 0;">
-				<a href="http://www.facebook.com/PiratenfraktionNRW" title="zur Facebookseite der Fraktion">
-					<img width="32" height="32" alt="Facebook-Icon" src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/icons/facebook-32x32.png" />
-				</a>
-				<a href="https://twitter.com/20piraten" title="zum Twitteraccount der Fraktion">
-					<img width="32" height="32" alt="Twitter-Icon" src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/icons/twitter-32x32.png" />
-				</a>
-				<a href="https://youtube.com/PiratenfraktionNRW" title="zum YouTube-Account der Fraktion">
-					<img width="32" height="32" alt="YouTube-Icon" src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/icons/youtube-32x32.png" />
+				<a href="http://www.facebook.com/PiratenfraktionNRW" title="zur Facebookseite der Fraktion"> <img width="32" height="32"
+					alt="Facebook-Icon" src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/icons/facebook-32x32.png" />
+				</a> <a href="https://twitter.com/20piraten" title="zum Twitteraccount der Fraktion"> <img width="32" height="32" alt="Twitter-Icon"
+					src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/icons/twitter-32x32.png" />
+				</a> <a href="https://youtube.com/PiratenfraktionNRW" title="zum YouTube-Account der Fraktion"> <img width="32" height="32"
+					alt="YouTube-Icon" src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/icons/youtube-32x32.png" />
 				</a>
 			</div>
-			<a title="Die offizielle Homepage der Piratenfraktion im Landtag NRW" href="http://www.piratenfraktion-nrw.de">
-				<img style="width:580px" src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/pp.png" />
+			<a title="Die offizielle Homepage der Piratenfraktion im Landtag NRW" href="http://www.piratenfraktion-nrw.de"> <img style="width: 580px"
+				src="https://www.piratenfraktion-nrw.de/wp-content/themes/wordpress-bootstrap/images/pp.png" />
 			</a>
 		</header>
-		
+
 		<h1 class="hidden-phone">Kommunale Finanzdaten NRW</h1>
-		
+
 		<!--[if lte IE 8]>
 			<div class="alert alert-error">
 				<i class="icon-info-sign"></i>
@@ -106,14 +110,13 @@
 		<![endif]-->
 		<noscript>
 			<div class="alert alert-error">
-				<i class="icon-info-sign"></i>
-				Zur Anzeige der Visualisierung ist JavaScript erforderlich.
+				<i class="icon-info-sign"></i> Zur Anzeige der Visualisierung ist JavaScript erforderlich.
 			</div>
 		</noscript>
 
 		<div id="map-container">
 			<div id="map"></div>
-	
+
 			<div id="nav" class="hide">
 				<form class="nav-container settings form-inline" method="GET" action="index.html">
 					<div class="visible-phone pull-right">
@@ -121,39 +124,29 @@
 							<i class="icon-remove"></i>
 						</button>
 					</div>
-					
+
 					<h2 class="visible-phone">Optionen</h2>
 
 					<label class="title">Produktgruppe</label>
 					<button type="button" class="close close-nav hidden-phone pull-right" data-dismiss="modal">&times;</button>
 					<select name="product">
 						<option value="none" selected="selected">Bitte wählen ...</option>
-					</select>
-					
-					<label class="title">Konto</label>
-					<select name="account">
+					</select> <label class="title">Konto</label> <select name="account">
 						<option value="none" selected="selected">Bitte wählen ...</option>
-					</select>
-					
-					<label class="title">im Verhältnis zur?</label>
+					</select> <label class="title">im Verhältnis zur?</label>
 					<p>
-						<label class="radio">
-							<input type="radio" name="relation" value="population" data-label="pro Einwohnerzahl"> Einwohnerzahl
-						</label>
-						<label class="radio">
-							<input type="radio" name="relation" value="size" data-label="pro Fläche"> Fläche
-						</label>
-						<label class="radio">
-							<input type="radio" name="relation" value="none" data-label=""> absolut
+						<label class="radio"> <input type="radio" name="relation" value="population" data-label="pro Einwohnerzahl"> Einwohnerzahl
+						</label> <label class="radio"> <input type="radio" name="relation" value="size" data-label="pro Fläche"> Fläche
+						</label> <label class="radio"> <input type="radio" name="relation" value="none" data-label=""> absolut
 						</label>
 					</p>
-	
+
 					<label class="title">Gebietsgröße</label>
 					<p>
-						<label class="radio"><input type="radio" name="areaType" value="gemeinden"> Gemeinden</label>
-						<label class="radio"><input type="radio" name="areaType" value="landkreise"> Landkreise</label>
+						<label class="radio"><input type="radio" name="areaType" value="gemeinden"> Gemeinden</label> <label class="radio"><input
+							type="radio" name="areaType" value="landkreise"> Landkreise</label>
 					</p>
-	
+
 					<label class="title">Abrechnungsjahr</label> <select name="year">
 						<option value="2009" selected="selected">2009</option>
 						<option value="2010">2010</option>
@@ -168,8 +161,7 @@
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h3>Hinweise zu der Darstellung der Karte und der enthaltenen Informationen</h3>
 			</div>
-			<div class="modal-body">
-			</div>
+			<div class="modal-body"></div>
 		</div>
 
 		<div id="imprint" class="modal hide">
@@ -179,13 +171,8 @@
 			</div>
 			<div class="modal-body">
 				<address>
-					<strong>Piratenfraktion im Landtag NRW</strong><br />
-					Fraktionsvorstand<br />
-					Platz des Landtags 1<br />
-					40221 Düsseldorf<br /><br />
-					E-Mail: 20Piraten@piratenfraktion-nrw.de<br />
-					Tel.: 0211 884-4608<br />
-					Fax: 0211 884-3705
+					<strong>Piratenfraktion im Landtag NRW</strong><br /> Fraktionsvorstand<br /> Platz des Landtags 1<br /> 40221 Düsseldorf<br /> <br />
+					E-Mail: 20Piraten@piratenfraktion-nrw.de<br /> Tel.: 0211 884-4608<br /> Fax: 0211 884-3705
 				</address>
 			</div>
 		</div>
@@ -197,40 +184,39 @@
 			</div>
 			<div class="modal-body">
 				<ul>
-					<li>
-						Map powered by Leaflet - Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,
-						<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>
+					<li>Map powered by Leaflet - Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a
+						href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>
 					</li>
-					<li>
-						Gemeindeflächen Geodaten:
-						<a href="http://www.mik.nrw.de/themen-aufgaben/buergerbeteiligung-wahlen/wahlen/auf-allen-ebenen/landtagswahl/wahl-2012/wahlkreiskarten.html">Ministerium für Inneres und Kommunales des Landes Nordrhein-Westfalen</a>
+					<li>Gemeindeflächen Geodaten: <a
+						href="http://www.mik.nrw.de/themen-aufgaben/buergerbeteiligung-wahlen/wahlen/auf-allen-ebenen/landtagswahl/wahl-2012/wahlkreiskarten.html">Ministerium
+							für Inneres und Kommunales des Landes Nordrhein-Westfalen</a>
 					</li>
-					<li>
-						Landkreisflächen Geodaten:
-						<a href="http://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu&gdz_akt_zeile=5&gdz_anz_zeile=1&gdz_unt_zeile=17&gdz_user_id=0">Bundesamt für Kartographie und Geodäsie</a>
+					<li>Landkreisflächen Geodaten: <a
+						href="http://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu&gdz_akt_zeile=5&gdz_anz_zeile=1&gdz_unt_zeile=17&gdz_user_id=0">Bundesamt
+							für Kartographie und Geodäsie</a>
 					</li>
-					<li>
-						Einwohnerzahlen:
-						<a href="https://www.destatis.de/DE/ZahlenFakten/LaenderRegionen/Regionales/Gemeindeverzeichnis/Administrativ/AdministrativeUebersicht.html">Gemeindeverzeichnis-Informationssystem (GV-ISys)</a> des Statistischen Bundesamts
+					<li>Einwohnerzahlen: <a
+						href="https://www.destatis.de/DE/ZahlenFakten/LaenderRegionen/Regionales/Gemeindeverzeichnis/Administrativ/AdministrativeUebersicht.html">Gemeindeverzeichnis-Informationssystem
+							(GV-ISys)</a> des Statistischen Bundesamts
 					</li>
-					<li>
-						Fläche in km² je Gemeinde:
-						<a href="https://www.destatis.de/DE/ZahlenFakten/LaenderRegionen/Regionales/Gemeindeverzeichnis/Gemeindeverzeichnis.html">Gemeindeverzeichnis-Informationssystem (GV-ISys)</a> des Statistischen Bundesamts
+					<li>Fläche in km² je Gemeinde: <a
+						href="https://www.destatis.de/DE/ZahlenFakten/LaenderRegionen/Regionales/Gemeindeverzeichnis/Gemeindeverzeichnis.html">Gemeindeverzeichnis-Informationssystem
+							(GV-ISys)</a> des Statistischen Bundesamts
 					</li>
-					<li>
-						Finanzrechnungsstatisik:
-						<a href="https://www.landesdatenbank.nrw.de/">Landesdatenbank NRW</a> (Tabellencodes: 71147-05i und 71147-15i)
+					<li>Finanzrechnungsstatisik: <a href="https://www.landesdatenbank.nrw.de/">Landesdatenbank NRW</a> (Tabellencodes: 71147-05i und
+						71147-15i)
 					</li>
-					<li>
-						Bilanz:
-						IT.NRW - bezogen von <a href="http://www.piratenfraktion-nrw.de/2012/12/transparenzerfolg-finanzdaten-der-kommunen-veroffentlicht/">piratenfraktion-nrw.de</a>
+					<li>Bilanz: IT.NRW - bezogen von <a
+						href="http://www.piratenfraktion-nrw.de/2012/12/transparenzerfolg-finanzdaten-der-kommunen-veroffentlicht/">piratenfraktion-nrw.de</a>
 					</li>
 				</ul>
-				<p>bitte beachten Sie auch das <a href="https://github.com/felixebert/haushaltsdatenvergleich">GitHub Repository</a></p>
+				<p>
+					bitte beachten Sie auch das <a href="https://github.com/felixebert/haushaltsdatenvergleich">GitHub Repository</a>
+				</p>
 			</div>
 		</div>
 		<div id="socialshareprivacy"></div>
-		
+
 		<br />
 		<section>
 			<header class="header">
@@ -242,55 +228,58 @@
 					Die Daten sind frei verfügbar. Die Veröffentlichung erfolgt ohne Gewähr. Quelle: Landesdatenbank NRW<br /> Trotz sorgfältiger Prüfung kann
 					für Übertragungsfehler keine Haftung übernommen werden.<br />
 				</p>
-	
+
 				<H3>Finanzstatistik</H3>
-	
+
 				<p>Klicken sie links oben auf das Sternsymbol um ins Menü zu gelangen. Rechts am Bildrand sollte sich ein Auswahlfeld öffnen.</p>
-	
+
 				<ol>
 					<li>Dort suchen sie sich zu Beginn eine PRODUKTGRUPPE ihrer Wahl aus. Produktgruppen sind Oberbegriffe unter denen verschiedene
 						Aufgaben der Kommune gesammelt werden, wie z.B. “Ordnungsangelegenheiten“.</li>
 					<li>Unter dem Menüpunkt KONTO wählen sie jetzt eine Kategorie, die sie bei diesem Produkt besonders interessiert, z.B. die
 						“Auszahlungen insgesamt“. (Nicht zu jedem Produkt existiert auch ein entsprechendes Konto, bzw. ein entsprechender Wert.)
-	
+
 						<p>Die Karte sollte spätestens jetzt eine Färbung erhalten.</p>
-	
+
 						<p>
 							Bei Ausgaben der Kommunen verlaufen die Skalen von „Neutral“ 0 Euro bis „Dunkel Rot“ jeweiliger Höchstwert.<br /> Bei Einnahmen der
 							Kommunen verläuft die Skala von „Neutral“ 0 Euro bis „Dunkel Grün“ jeweiliger Höchstwert.
 						</p>
 					</li>
-					<li>Standardmäßig werden Ihnen nun die absoluten Werte aus den Kommunen angezeigt. Sie haben jetzt noch die Möglichkeit die Färbung der
-						Karte zu ändern, indem Sie sich die Finanzdaten in Bezug auf die jeweilige Einwohnerzahl oder die Fläche der Kommunen anzeigen lassen.</li>
+					<li>Standardmäßig werden Ihnen nun die absoluten Werte aus den Kommunen angezeigt. Sie haben jetzt noch die Möglichkeit die Färbung
+						der Karte zu ändern, indem Sie sich die Finanzdaten in Bezug auf die jeweilige Einwohnerzahl oder die Fläche der Kommunen anzeigen lassen.</li>
 					<li>Als letzten Schritt wählen Sie nun das Jahr aus zu dem Sie die Daten angezeigt bekommen möchten. (Wir bemühen aktuelle Zahlen
 						einzupflegen sobald sie uns vorliegen.)</li>
 				</ol>
-	
+
 				<H3>Bilanzen</H3>
-	
-				<p>Sollten Sie sich für die Bilanz einer Kommune interessieren, dann haben Sie die Möglichkeit auch direkt auf die entsprechende Fläche der
-				Kommune zu klicken. Danach öffnet sich ein kleines Fenster. Dort befindet sich unten ein entsprechender Button zum Aufruf der gemeldeten
-				Bilanz. Wichtig ist, dass Sie vorher im Menü festgelegt haben für welchen Zeitraum Sie sich die Daten anzeigen lassen möchten. (Leider liegen
-				bis heute keine vollständigen Unterlagen zur Erhebung der Bilanzstatistik vor. Wir sind natürlich bemüht alle Informationen, die uns zur
-				Verfügung gestellt werden schnellstmöglich hier einzupflegen.)</p>
-	
-				<p><br /></p>
-	
+
+				<p>Sollten Sie sich für die Bilanz einer Kommune interessieren, dann haben Sie die Möglichkeit auch direkt auf die entsprechende Fläche
+					der Kommune zu klicken. Danach öffnet sich ein kleines Fenster. Dort befindet sich unten ein entsprechender Button zum Aufruf der
+					gemeldeten Bilanz. Wichtig ist, dass Sie vorher im Menü festgelegt haben für welchen Zeitraum Sie sich die Daten anzeigen lassen möchten.
+					(Leider liegen bis heute keine vollständigen Unterlagen zur Erhebung der Bilanzstatistik vor. Wir sind natürlich bemüht alle Informationen,
+					die uns zur Verfügung gestellt werden schnellstmöglich hier einzupflegen.)</p>
+
+				<p>
+					<br />
+				</p>
+
 				<p>
 					Anregungen nehmen wir gerne auf und sind hier zu erreichen:<br /> <a href="mailto:piratenfraktion@landtag.nrw.de">piratenfraktion@landtag.nrw.de</a><br />
 				</p>
-	
+
 				<p class="attribution">&copy; Piratenfraktion im Landtag NRW</p>
-			
-			</div>	
-			
+
+			</div>
+
 			<p class="pull-right">
-				<a href="https://github.com/felixebert/haushaltsdatenvergleich">
-					<img src="img/github.png" alt="GitHub Repository" />
+				<a href="https://github.com/felixebert/haushaltsdatenvergleich"> <img src="img/github.png" alt="GitHub Repository" />
 				</a>
 			</p>
-			
-			<p><br /></p>
+
+			<p>
+				<br />
+			</p>
 			<p>
 				<a href="http://www.piratenfraktion-nrw.de/impressum/">Impressum</a>
 			</p>
@@ -370,8 +359,8 @@
 			$('#socialshareprivacy').socialSharePrivacy({
 				services: {
 					twitter: {
-		                hashtags : '20piraten'
-		            }
+						hashtags: '20piraten'
+					}
 				}
 			});
 		});
