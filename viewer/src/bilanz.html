@@ -161,8 +161,8 @@
 						{{#each value}}
 							<tr>
 								<td>{{label}}</td>
-								<td class="balance-value">{{number previous.value}} &euro;</td>
-								<td class="balance-value">{{number current.value}} &euro;</td>
+								<td class="balance-value">{{{balanceValue previous.value}}}</td>
+								<td class="balance-value">{{{balanceValue current.value}}}</td>
 							</tr>
 						{{/each}}
 					</tbody>

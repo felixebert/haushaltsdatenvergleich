@@ -15,6 +15,12 @@
 		}
 		return hdv.formatter.number(n) + '&nbsp;&euro;';
 	});
+	Handlebars.registerHelper('balanceValue', function(n) {
+		if (n === null || n === undefined) {
+			return '';
+		}
+		return hdv.formatter.number(n) + '&nbsp;&euro;';
+	});
 
 	Handlebars.registerHelper('eachProperty', function(context, options) {
 		var result = "";
