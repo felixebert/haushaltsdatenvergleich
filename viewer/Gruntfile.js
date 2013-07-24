@@ -39,7 +39,7 @@ module.exports = function(grunt) {
 			tasks: ['jshint']
 		},
 		useminPrepare: {
-			html: 'src/index.html',
+			html: ['src/*.html'],
 			options: {
 				dest: 'dist/'
 			}
