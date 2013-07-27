@@ -21,8 +21,9 @@
 			return value;
 		},
 		getCurrentLabel: function(isSpending) {
+			var productLabel = $('.settings select[name="product"] option:selected').text();
 			var accountLabel = $('.settings select[name="account"] option:selected').text();
-			return this.getLabel(accountLabel, hdv.settings.account, hdv.settings.relation, hdv.settings.year, isSpending);
+			return this.getLabel(accountLabel, productLabel, hdv.settings.account, hdv.settings.relation, hdv.settings.year, isSpending);
 		},
 		inRelationTo: function(value, relationValue) {
 			if (relationValue) {
@@ -33,7 +34,7 @@
 		getValueInRelationTo: function(value, relation) {
 			return Math.round((value / relation) * 100) / 100;
 		},
-		getLabel: function(accountLabel, account, relation, year, isSpending) {
+		getLabel: function(accountLabel, productLabel, account, relation, year, isSpending) {
 			var relationLabel = '';
 			if (relation === 'population') {
 				relationLabel = ' je Einwohner';
@@ -45,7 +46,7 @@
 			if (account != 6 && account != 7) {
 				accountPrefix = isSpending ? 'Ausgaben für ' : 'Einnahmen über ';
 			}
-			return accountPrefix + accountLabel + relationLabel + ' in ' + year;
+			return productLabel + '<br />' + accountPrefix + accountLabel + relationLabel + ' in ' + year;
 		}
 	};
 
