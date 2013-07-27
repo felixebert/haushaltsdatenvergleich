@@ -22,7 +22,7 @@
 			$.getJSON('data/bilanz/' + key + '.json').done(_.bind(handleSuccess, this)).fail(handleError).always(postLoad);
 		},
 		render: function(key, data) {
-			$('h1').text('Bilanz von ' + data.label);
+			$('h1').html('Bilanz von ' + data.label + ' <small>2009</small>');
 			$('.assets').html(this.template(data.assets));
 			$('.liabilities').html(this.template(data.liabilities));
 		},
