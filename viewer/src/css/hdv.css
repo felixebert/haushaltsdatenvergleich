@@ -68,7 +68,7 @@ a {
 	height: 600px;
 	width: 100%;
 }
-@media (max-width: 979px) {
+@media (max-width: 767px) {
 	#map-container {
 		position: inherit;
 	}
@@ -150,7 +150,7 @@ a.leaflet-control-active {
 .nav-container {
 	margin: 14px;
 }
-@media (max-width: 979px) {
+@media (max-width: 767px) {
 	#nav {
 		top: 0;
 		left: 0;
@@ -170,6 +170,9 @@ a.leaflet-control-active {
 	#nav h2 {
 		font-size: 18px;
 		margin: 0 0 7px 0;
+	}
+	#socialshareprivacy {
+		display: none;
 	}
 }
 .pull-right .close-nav {
